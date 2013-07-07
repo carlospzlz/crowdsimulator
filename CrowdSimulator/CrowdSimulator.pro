@@ -16,11 +16,14 @@ TARGET = CrowdSimulator
 
 HEADERS += \
     include/Agent.h \
-    include/Renderer.h
+    include/CrowdEngine.h \
+    include/CellPartition.h
 
 SOURCES += \
+    src/main.cpp \
+    src/CrowdEngine.cpp \
     src/Agent.cpp \
-    src/Renderer.cpp
+    src/CellPartition.cpp
 
 
 #######################
@@ -55,7 +58,7 @@ LIBS+= -lGLEW
 
 #NGL library at home
 INCLUDEPATH += $(HOME)/NGL/include
-LIBS += -L$(HOME)/NGL/lib -l NGL
+LIBS += -L$(HOME)/NGL/lib -lNGL
 
 
 ######################################
