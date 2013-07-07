@@ -1,35 +1,44 @@
 #include "CrowdEngine.h"
 
-CrowdEngine::CrowdEngine() : m_cellPartition(m_cellSize)
+const float CrowdEngine::s_initStride = 0.5;
+
+const int CrowdEngine::s_cellSize = 1;
+
+const float CrowdEngine::s_neighbourhoodRadius = 1;
+
+CrowdEngine::CrowdEngine() : m_cellPartition(s_cellSize)
 {
     m_numberOfFlocks = 0;
 }
 
 CrowdEngine::~CrowdEngine()
 {
+    std::cout << "CrowdEngine: deleting all agents" << std::endl;
+
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     for(std::vector<Agent*>::iterator currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
         delete (*currentAgent);
     }
-    std::cout << "CrowdEngine: All agents deleted" << std::endl;
 }
 
 void CrowdEngine::createFlock(int _rows, int _columns, ngl::Vec2 _position)
 {
     Agent* myAgent;
-    float startingX = _position.m_x - (_columns-1)/2.0 * m_initStride;
-    float startingZ = _position.m_y - (_rows-1)/2.0 * m_initStride;
+    float startingX = _position.m_x - (_columns-1)/2.0 * s_initStride;
+    float startingZ = _position.m_y - (_rows-1)/2.0 * s_initStride;
 
     ngl::Vec3 agentPosition;
     std::vector<Agent*> flockAgents;
 
+    std::cout << "CrowdEngine: Creating flock of " << _rows*_columns << " agents" << std::endl;
+
     for (int i=0; i<_columns; ++i)
         for (int j=0; j<_rows; ++j)
         {
-            agentPosition.m_x = startingX+i*m_initStride;
+            agentPosition.m_x = startingX+i*s_initStride;
             agentPosition.m_y = 0;
-            agentPosition.m_z = startingZ+j*m_initStride;
+            agentPosition.m_z = startingZ+j*s_initStride;
 
             myAgent = new Agent(agentPosition,m_numberOfFlocks);
 
@@ -54,5 +63,7 @@ void CrowdEngine::printAgents()
 void CrowdEngine::update()
 {
     m_cellPartition.updateCells(m_agents);
-    m_cellPartition.printCells();
+
+    m_cellPartition.updateNeighbours(m_agents, s_neighbourhoodRadius);
+
 }

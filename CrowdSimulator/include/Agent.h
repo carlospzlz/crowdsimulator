@@ -12,6 +12,7 @@ private:
     float m_mass;
     float m_strength;
     float m_maxStrength;
+    ngl::Vec3 m_direction;
     ngl::Vec3 m_totalForce;
     ngl::Vec3 m_velocity;
     float m_maxSpeed;
@@ -24,6 +25,7 @@ private:
     std::string m_primitive;
 
     std::vector<Agent*> m_neighbours;
+    std::vector<Agent*> m_watchedAgents;
 
     void flockingForce();
     void draggingForce();
@@ -33,14 +35,15 @@ public:
     Agent(ngl::Vec3 _pos, int _fid);
     ~Agent() { }
 
-    //void setPosition(ngl::Vec3 _pos); { m_transformation.setPosition(_pos); }
-    //void setFlock(int _fid) { m_flockID = _fid; }
+    void setPosition(ngl::Vec3 _pos) { m_transformation.setPosition(_pos); }
+    void setNeighbours(const std::vector<Agent*> &_neighbours) { m_neighbours = _neighbours; }
 
-    ngl::Vec4 getPosition() { return m_transformation.getPosition(); }
-    ngl::Vec4 getPreviousPos() { return m_previousTransform.getPosition(); }
+    ngl::Vec4 getPosition() const { return m_transformation.getPosition(); }
+    ngl::Vec4 getPreviousPos() const { return m_previousTransform.getPosition(); }
 
     void execute();
-    void print();
+    float distance(const Agent *_agent) const;
+    void print() const;
 
 };
 
