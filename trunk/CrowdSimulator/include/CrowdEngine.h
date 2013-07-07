@@ -9,8 +9,9 @@ class CrowdEngine
 {
 
 private:
-    const float m_initStride = 0.5;
-    const int m_cellSize = 1;
+    static const float s_initStride;
+    static const int s_cellSize;
+    static const float s_neighbourhoodRadius;
     int m_numberOfFlocks;
     std::vector<Agent*> m_agents;
 

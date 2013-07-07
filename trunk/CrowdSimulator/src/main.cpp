@@ -28,19 +28,15 @@ int main()
 
     CrowdEngine myCrowdEngine;
 
-    myCrowdEngine.createFlock(5,5,ngl::Vec2(0,0));
+    myCrowdEngine.createFlock(100,100,ngl::Vec2(0,0));
 
-    std::cout << "printing agents..." << std::endl;
-    myCrowdEngine.printAgents();
+    //myCrowdEngine.printAgents();
 
-    myCrowdEngine.printCellPartition();
+    //myCrowdEngine.printCellPartition();
 
-    std::cout << "updating CrowdEngine..." << std::endl;
+    myCrowdEngine.update();  
     myCrowdEngine.update();
-    myCrowdEngine.printCellPartition();
     myCrowdEngine.update();
-    myCrowdEngine.printCellPartition();
-
 
 
     return 0;
