@@ -17,13 +17,18 @@ TARGET = CrowdSimulator
 HEADERS += \
     include/Agent.h \
     include/CrowdEngine.h \
-    include/CellPartition.h
+    include/CellPartition.h \
+    include/GLWindow.h \
+    include/MainWindow.h \
+    include/Renderer.h
 
 SOURCES += \
     src/main.cpp \
     src/CrowdEngine.cpp \
     src/Agent.cpp \
-    src/CellPartition.cpp
+    src/CellPartition.cpp \
+    src/GLWindow.cpp \
+    src/MainWindow.cpp
 
 
 #######################
