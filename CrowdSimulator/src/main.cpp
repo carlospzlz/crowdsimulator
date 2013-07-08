@@ -1,7 +1,7 @@
 #include "ngl/Vec2.h"
 #include "CrowdEngine.h"
 
-int main()
+int main(int argc, char **args)
 {
     /*
     std::pair<int,int> a(0,0);
@@ -26,9 +26,15 @@ int main()
     std::cout << "accessing...\n" << map.at(b) << std::endl;
     */
 
+    if (argc<3)
+    {
+        std::cout << "Input the size of the flock, mate!" << std::endl;
+        exit(EXIT_SUCCESS);
+    }
+
     CrowdEngine myCrowdEngine;
 
-    myCrowdEngine.createFlock(100,100,ngl::Vec2(0,0));
+    myCrowdEngine.createFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0));
 
     //myCrowdEngine.printAgents();
 
