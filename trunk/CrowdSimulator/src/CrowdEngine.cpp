@@ -24,6 +24,12 @@ CrowdEngine::~CrowdEngine()
 
 void CrowdEngine::createFlock(int _rows, int _columns, ngl::Vec2 _position)
 {
+    if (_rows<=0 || _columns<=0)
+    {
+        std::cout << "CrowdEngine: ERROR: Impossible to create flock "<<_rows << "x" << _columns << std::endl;
+        return;
+    }
+
     Agent* myAgent;
     float startingX = _position.m_x - (_columns-1)/2.0 * s_initStride;
     float startingZ = _position.m_y - (_rows-1)/2.0 * s_initStride;
@@ -31,7 +37,8 @@ void CrowdEngine::createFlock(int _rows, int _columns, ngl::Vec2 _position)
     ngl::Vec3 agentPosition;
     std::vector<Agent*> flockAgents;
 
-    std::cout << "CrowdEngine: Creating flock of " << _rows*_columns << " agents" << std::endl;
+    std::cout << "CrowdEngine: Creating flock " << _rows << "x"<< _columns
+              <<" (" << _rows*_columns << " agents)" << std::endl;
 
     for (int i=0; i<_columns; ++i)
         for (int j=0; j<_rows; ++j)
