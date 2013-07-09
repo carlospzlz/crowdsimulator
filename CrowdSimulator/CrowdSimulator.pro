@@ -19,8 +19,7 @@ HEADERS += \
     include/CrowdEngine.h \
     include/CellPartition.h \
     include/GLWindow.h \
-    include/MainWindow.h \
-    include/Renderer.h
+    include/MainWindow.h
 
 SOURCES += \
     src/main.cpp \
