@@ -20,6 +20,10 @@ Q_OBJECT
 
 private :
 
+    const int m_timerValue;
+    int m_timer;
+    bool m_simulating;
+
     int m_spinXFace;
     int m_spinYFace;
     bool m_rotate;
@@ -29,6 +33,7 @@ private :
     int m_origXPos;
     int m_origYPos;
     bool m_active;
+
 
     void mouseMoveEvent(QMouseEvent * _event);
     void mousePressEvent(QMouseEvent *_event);

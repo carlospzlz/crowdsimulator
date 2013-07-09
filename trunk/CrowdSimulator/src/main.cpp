@@ -3,6 +3,7 @@
 
 int main(int argc, char **args)
 {
+
     if (argc=0)
     {
         std::cout << "GRAPHIC MODE" << std::endl;
@@ -27,6 +28,9 @@ int main(int argc, char **args)
     myCrowdEngine.update();  
     myCrowdEngine.update();
     myCrowdEngine.update();
+
+    QGLWidget w;
+    w.paint
 
     std::cout << QT_VERSION << QT_VERSION_STR << std::endl;
 
