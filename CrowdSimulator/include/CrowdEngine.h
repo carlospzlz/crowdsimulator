@@ -20,6 +20,11 @@ private:
 public:
     CrowdEngine();
     ~CrowdEngine();
+    std::vector<Agent*>::const_iterator getAgentsBegin() { return m_agents.begin(); }
+    std::vector<Agent*>::const_iterator getAgentsEnd() { return m_agents.end(); }
+    int getCellSize() const { return s_cellSize; }
+    float getRadius() const { return s_neighbourhoodRadius; }
+
     void createFlock(int _rows, int _columns, ngl::Vec2 _position);
     void printAgents();
     void printCellPartition() { m_cellPartition.printCells(); }

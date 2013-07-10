@@ -1,10 +1,13 @@
+#include <QApplication>
+#include "MainWindow.h"
+
 #include "ngl/Vec2.h"
 #include "CrowdEngine.h"
 
 int main(int argc, char **args)
 {
 
-    if (argc=0)
+    if ( argc == 1 )
     {
         std::cout << "GRAPHIC MODE" << std::endl;
 
@@ -14,25 +17,25 @@ int main(int argc, char **args)
         win.show();
         return app.exec();;
     }
+    else if ( argc >= 2)
+    {
 
-    std::cout << "TERMINAL/DEBUGGING MODE" << std::endl;
+        std::cout << "TERMINAL/DEBUGGING MODE" << std::endl;
 
-    CrowdEngine myCrowdEngine;
+        CrowdEngine myCrowdEngine;
 
-    myCrowdEngine.createFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0));
+        myCrowdEngine.createFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0));
 
-    //myCrowdEngine.printAgents();
+        myCrowdEngine.printAgents();
 
-    //myCrowdEngine.printCellPartition();
+        myCrowdEngine.printCellPartition();
 
-    myCrowdEngine.update();  
-    myCrowdEngine.update();
-    myCrowdEngine.update();
+        myCrowdEngine.update();
+        myCrowdEngine.update();
+        myCrowdEngine.update();
 
-    QGLWidget w;
-    w.paint
-
-    std::cout << QT_VERSION << QT_VERSION_STR << std::endl;
+        myCrowdEngine.printAgents();
+    }
 
 
     return 0;
