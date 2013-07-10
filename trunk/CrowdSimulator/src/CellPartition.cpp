@@ -59,13 +59,13 @@ void CellPartition::printCells() const
 
         for(std::list<Agent*>::const_iterator currentAgent=currentCell->second.begin(); currentAgent!=endAgent; ++currentAgent)
         {
-            std::cout << *currentAgent << "(" << (*currentAgent)->getPosition().m_x << "," << (*currentAgent)->getPosition().m_z << ")\t";
+            std::cout << "(" << (*currentAgent)->getPosition().m_x << "," << (*currentAgent)->getPosition().m_z << ")\t";
         }
         std::cout << std::endl;
     }
 }
 
-void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents, float _radius)
+void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents)
 {
     std::set<Agent*> checkedAgents;
 
@@ -74,6 +74,7 @@ void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents, float 
     std::vector<Agent*> agentsInCells, neighbours1, neighbours2;
 
     Agent *agent1, *agent2;
+    float visionRadius;
     std::vector<Agent*>::const_iterator endAgent1, endAgent2;
 
     endAgent1 = _agents.end();
@@ -85,13 +86,14 @@ void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents, float 
         agent1 = *currentAgent1;
         if ( !checkedAgents.count(agent1) )
         {
-            leftDownCornerBox.m_x = agent1->getPosition().m_x-_radius;
-            leftDownCornerBox.m_z = agent1->getPosition().m_z-_radius;
-            rightUpCornerBox.m_x = agent1->getPosition().m_x+_radius;
-            rightUpCornerBox.m_z = agent1->getPosition().m_z+_radius;
+            visionRadius = agent1->getVisionRadius();
+            leftDownCornerBox.m_x = agent1->getPosition().m_x - visionRadius;
+            leftDownCornerBox.m_z = agent1->getPosition().m_z - visionRadius;
+            rightUpCornerBox.m_x = agent1->getPosition().m_x + visionRadius;
+            rightUpCornerBox.m_z = agent1->getPosition().m_z + visionRadius;
 
             findAgentsInCells(leftDownCornerBox, rightUpCornerBox, agentsInCells);
-            findNeighboursInAgents(agent1, _radius, agentsInCells, neighbours1);
+            findNeighboursInAgents(agent1, agentsInCells, neighbours1);
             agent1->setNeighbours(neighbours1);
 
             // FLAG for agent1
@@ -111,16 +113,17 @@ void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents, float 
                 agent2 = *currentAgent2;
                 if ( !checkedAgents.count(agent2) )
                 {
-                    leftDownCornerBox.m_x = agent2->getPosition().m_x-_radius;
-                    leftDownCornerBox.m_z = agent2->getPosition().m_z-_radius;
-                    rightUpCornerBox.m_x = agent2->getPosition().m_x+_radius;
-                    rightUpCornerBox.m_z = agent2->getPosition().m_z+_radius;
+                    visionRadius = agent2->getVisionRadius();
+                    leftDownCornerBox.m_x = agent2->getPosition().m_x - visionRadius;
+                    leftDownCornerBox.m_z = agent2->getPosition().m_z - visionRadius;
+                    rightUpCornerBox.m_x = agent2->getPosition().m_x + visionRadius;
+                    rightUpCornerBox.m_z = agent2->getPosition().m_z + visionRadius;
 
                     if ( leftDownCornerBox.m_x>xLimits.first && rightUpCornerBox.m_x<= xLimits.second &&
                          leftDownCornerBox.m_z>zLimits.first && rightUpCornerBox.m_z<= zLimits.second)
                     {
                         //The circunference is inside the same group of cells
-                        findNeighboursInAgents(agent2, _radius, agentsInCells, neighbours2);
+                        findNeighboursInAgents(agent2, agentsInCells, neighbours2);
                         agent2->setNeighbours(neighbours2);
 
                         //FLAG for agent2
@@ -152,12 +155,13 @@ void CellPartition::findAgentsInCells(ngl::Vec3 _leftDownCornerBox, ngl::Vec3 _r
         {
             currentCell.first = x;
             currentCell.second = z;
+            //do not make the method constant, if so this is not allowed
             pAgentsInCell = &(m_cells[currentCell]);
             _agentsInCells.insert(_agentsInCells.end(), pAgentsInCell->begin(), pAgentsInCell->end());
         }
 }
 
-void CellPartition::findNeighboursInAgents(const Agent* _agent, float _radius, const std::vector<Agent*> &_agentsInCells,
+void CellPartition::findNeighboursInAgents(const Agent* _agent, const std::vector<Agent*> &_agentsInCells,
                                            std::vector<Agent*> &_neighbours) const
 {
     Agent* agent;
@@ -167,7 +171,7 @@ void CellPartition::findNeighboursInAgents(const Agent* _agent, float _radius, c
     {
         agent = *currentAgent;
 
-        if ( agent != _agent && agent->distance(_agent) < _radius )
+        if ( agent != _agent && agent->distance(_agent) < agent->getVisionRadius() )
             _neighbours.push_back(agent);
     }
 

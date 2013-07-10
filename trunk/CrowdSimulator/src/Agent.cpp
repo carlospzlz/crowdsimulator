@@ -5,6 +5,7 @@ Agent::Agent()
     m_active = true;
     m_mass = 1;
     m_maxStrength = 1;
+    m_visionRadius = 3;
     m_strength = m_maxStrength;
     m_maxSpeed = 3;
     m_transformation.reset();
@@ -21,6 +22,7 @@ Agent::Agent(ngl::Vec3 _pos, int _fid)
     m_active = true;
     m_mass = 1;
     m_maxStrength = 1;
+    m_visionRadius = 3;
     m_strength = m_maxStrength;
     m_maxSpeed = 3;
     m_transformation.reset();
@@ -37,6 +39,7 @@ void Agent::print() const
 {
     std::cout << "AGENT " << this << "(Flock " << m_flockID<< ")" << std::endl;
     std::cout << "position = " << m_transformation.getPosition() << std::endl;
+    std::cout << "vision radius = " << m_visionRadius << std::endl;
     std::cout << "neighbours (" << m_neighbours.size() << "):"<< std::endl;
 
     Agent* agent;

@@ -12,6 +12,7 @@ private:
     float m_mass;
     float m_strength;
     float m_maxStrength;
+    float m_visionRadius;
     ngl::Vec3 m_direction;
     ngl::Vec3 m_totalForce;
     ngl::Vec3 m_velocity;
@@ -40,6 +41,8 @@ public:
 
     ngl::Vec4 getPosition() const { return m_transformation.getPosition(); }
     ngl::Vec4 getPreviousPos() const { return m_previousTransform.getPosition(); }
+    ngl::Transformation getTransform() const { return m_transformation; }
+    int getVisionRadius() const { return m_visionRadius; }
 
     void execute();
     float distance(const Agent *_agent) const;

@@ -5,12 +5,14 @@
 #include <ngl/Camera.h>
 #include <ngl/Colour.h>
 #include <ngl/SpotLight.h>
+#include <ngl/Transformation.h>
 #include <ngl/TransformStack.h>
 #include <ngl/Obj.h>
 #include <ngl/NCCAPointBake.h>
 // it must be included after our stuff becuase GLEW needs to be first
 #include <QResizeEvent>
 #include <QEvent>
+#include "CrowdEngine.h"
 
 class GLWindow : public QGLWidget
 {
@@ -19,21 +21,27 @@ class GLWindow : public QGLWidget
 Q_OBJECT
 
 private :
-
-    const int m_timerValue;
+    static const float s_rotationIncrement;
+    static const float s_translationIncrement;
+    static const float s_zoomIncrement;
+    static const int s_groundSize;
+    static const int s_timerValue;
     int m_timer;
     bool m_simulating;
-
-    int m_spinXFace;
-    int m_spinYFace;
     bool m_rotate;
     bool m_translate;
-    int m_origX;
-    int m_origY;
-    int m_origXPos;
-    int m_origYPos;
-    bool m_active;
+    std::pair<int,int> m_previousMousePosition;
+    ngl::Vec2 m_globalRotation;
+    ngl::Vec3 m_globalTranslation;
+    ngl::TransformStack m_transformStack;
+    ngl::Transformation m_transformation;
+    ngl::Camera m_camera;
+    ngl::Light m_light;
 
+    CrowdEngine m_crowdEngine;
+
+    void loadMatricesToShader(ngl::TransformStack &_tx);
+    void loadMVPToShader(ngl::TransformStack &_tx);
 
     void mouseMoveEvent(QMouseEvent * _event);
     void mousePressEvent(QMouseEvent *_event);
@@ -48,7 +56,7 @@ public :
      */
     GLWindow(QWidget *_parent);
     ~GLWindow();
-    inline void toggleActive(){m_active ^=true;}
+    inline void toggleSimulating(){ m_simulating = !m_simulating; }
 
 protected:
 

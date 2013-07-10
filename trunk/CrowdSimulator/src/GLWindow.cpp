@@ -10,9 +10,13 @@
 #include "ngl/ShaderLib.h"
 
 
-const static float INCREMENT=0.01;
+const float GLWindow::s_rotationIncrement = 0.5;
+const float GLWindow::s_translationIncrement = 0.05;
+const float GLWindow::s_zoomIncrement = 1;
+const int GLWindow::s_groundSize = 100;
 
-const static float ZOOM=0.1;
+//timer = 20 ms => 50 fps ~ 48
+const int GLWindow::s_timerValue = 20;
 
 /**
  * in this ctor we need to call the CreateCoreGLContext class, this is mainly for the MacOS Lion version as
@@ -29,15 +33,20 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
   // Now set the initial GLWindow attributes to default values
   m_rotate=false;
-  m_spinXFace=0;
-  m_spinYFace=0;
+  m_translate=false;
+
+  m_previousMousePosition.first = 0;
+  m_previousMousePosition.second = 0;
+
+  m_crowdEngine.createFlock(10,10,ngl::Vec2(0,0));
 
 }
 
 GLWindow::~GLWindow()
 {
   ngl::NGLInit *Init = ngl::NGLInit::instance();
-  std::cout<<"GLWindow: Shutting down NGL; removing VAO's and Shaders" << std::endl;
+  std::cout<<"GLWindow: removing camera, light and quitting NGL" << std::endl;
+  //delete m_camera;
   //delete m_light;
   Init->NGLQuit();
 }
@@ -78,6 +87,7 @@ void GLWindow::initializeGL()
     //shader->setShaderParam1i("Normalize",1);
 
     //LOAD COLOUR SHADER
+
     shader->createShaderProgram("Colour");
     shader->attachShader("ColourVertex",ngl::VERTEX);
     shader->attachShader("ColourFragment",ngl::FRAGMENT);
@@ -90,52 +100,58 @@ void GLWindow::initializeGL()
     shader->bindAttribute("Colour",0,"inVert");
     shader->linkProgramObject("Colour");
 
-    (*shader)["Phong"]->use();
 
-  ngl::Vec3 from(0,0,6);
-  ngl::Vec3 to(0,0,0);
-  ngl::Vec3 up(0,1,0);
-  // now load to our new camera
-  m_cam= new ngl::Camera(from,to,up,ngl::PERSPECTIVE);
-  // set the shape using FOV 45 Aspect Ratio based on Width and Height
-  // The final two are near and far clipping planes of 0.5 and 10
-  m_cam->setShape(45,(float)720.0/576.0,0.05,350,ngl::PERSPECTIVE);
-  shader->setShaderParam3f("viewerPos",m_cam->getEye().m_x,m_cam->getEye().m_y,m_cam->getEye().m_z);
-  // now create our light this is done after the camera so we can pass the
-  // transpose of the projection matrix to the light to do correct eye space
-  // transformations
-  ngl::Mat4 iv=m_cam->getViewMatrix();
-  iv.transpose();
-  m_light = new ngl::Light(ngl::Vec3(-1,2,1),ngl::Colour(1,1,1,1),ngl::Colour(1,1,1,1),ngl::POINTLIGHT );
-  m_light->setTransform(iv);
-  // load these values to the shader as well
-  m_light->loadToShader("light");
+    (*shader)["Phong"]->use();
+    shader->setShaderParam4f("Colour",1,0,0,1);
+
+    //CAMERA
+    ngl::Vec3 from(0,10,10);
+    ngl::Vec3 to(0,0,0);
+    ngl::Vec3 up(0,1,0);
+    m_camera = ngl::Camera(from,to,up,ngl::PERSPECTIVE);
+    m_camera.setShape(45,(float)720.0/576.0,0.05,350,ngl::PERSPECTIVE);
+    shader->setShaderParam3f("viewerPos",m_camera.getEye().m_x,m_camera.getEye().m_y,m_camera.getEye().m_z);
+
+    //LIGHT
+    ngl::Mat4 iv=m_camera.getViewMatrix();
+    iv.transpose();
+    m_light = ngl::Light(ngl::Vec3(-1,2,1),ngl::Colour(1,1,1,1),ngl::Colour(1,1,1,1),ngl::POINTLIGHT );
+    m_light.setTransform(iv);
+    // load these values to the shader as well
+    m_light.loadToShader("light");
+
+    //Primitives for drawing
+    ngl::VAOPrimitives *primitives = ngl::VAOPrimitives::instance();
+    primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
+    primitives->createTorus("radius",0.01,1,3,16);
 
 }
 
 
 void GLWindow::resizeGL(int _w, int _h)
 {
-  glViewport(0,0,_w,_h);
-  m_cam->setShape(45,(float)_w/_h,0.05,350,ngl::PERSPECTIVE);
+    glViewport(0,0,_w,_h);
+    m_camera.setShape(45,(float)_w/_h,0.05,350,ngl::PERSPECTIVE);
 }
+
 inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
 {
-  ngl::ShaderLib *shader=ngl::ShaderLib::instance();
 
-  ngl::Mat4 MV;
-  ngl::Mat4 MVP;
-  ngl::Mat3 normalMatrix;
-  ngl::Mat4 M;
-  M=_tx.getCurrAndGlobal().getMatrix();
-  MV=  _tx.getCurrAndGlobal().getMatrix()*m_cam->getViewMatrix();
-  MVP= M*m_cam->getVPMatrix();
-  normalMatrix=MV;
-  normalMatrix.inverse();
-  shader->setShaderParamFromMat4("MV",MV);
-  shader->setShaderParamFromMat4("MVP",MVP);
-  shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
-  shader->setShaderParamFromMat4("M",M);
+    ngl::ShaderLib *shader=ngl::ShaderLib::instance();
+
+    ngl::Mat4 MV;
+    ngl::Mat4 MVP;
+    ngl::Mat3 normalMatrix;
+    ngl::Mat4 M;
+    M=_tx.getCurrAndGlobal().getMatrix();
+    MV=  _tx.getCurrAndGlobal().getMatrix()*m_camera.getViewMatrix();
+    MVP= M*m_camera.getVPMatrix();
+    normalMatrix=MV;
+    normalMatrix.inverse();
+    shader->setShaderParamFromMat4("MV",MV);
+    shader->setShaderParamFromMat4("MVP",MVP);
+    shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
+    shader->setShaderParamFromMat4("M",M);
 }
 
 inline void GLWindow::loadMVPToShader(ngl::TransformStack &_tx)
@@ -143,148 +159,141 @@ inline void GLWindow::loadMVPToShader(ngl::TransformStack &_tx)
     ngl::ShaderLib *shader=ngl::ShaderLib::instance();
     ngl::Mat4 MVP;
 
-    MVP = _tx.getCurrAndGlobal().getMatrix()*m_cam->getVPMatrix();
+    MVP = _tx.getCurrAndGlobal().getMatrix()*m_camera.getVPMatrix();
     shader->setShaderParamFromMat4("MVP",MVP);
 }
-
-
 
 void GLWindow::paintGL()
 {
 
     // clear the screen and depth buffer
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  // grab an instance of the shader manager
-  ngl::ShaderLib *shader=ngl::ShaderLib::instance();
-  (*shader)["Phong"]->use();
+    // grab an instance of the shader manager
+    ngl::ShaderLib *shader=ngl::ShaderLib::instance();
+    //(*shader)["Phong"]->use();
 
-  //(*shader)["nglColourShader"]->use();
-  //shader->setShaderParam4f("Colour",1,0,0,1);
+    //(*shader)["nglColourShader"]->use();
+    //shader->setShaderParam4f("Colour",1,0,0,1);
 
-  // Rotation based on the mouse position for our global transform
-  ngl::Transformation trans;
-  ngl::Mat4 rotX;
-  ngl::Mat4 rotY;
-  // create the rotation matrices
-  rotX.rotateX(m_spinXFace);
-  rotY.rotateY(m_spinYFace);
-  // multiply the rotations
-  ngl::Mat4 final=rotY*rotX;
-  // add the translations
-  //  final.m_m[3][0] = m_modelPos.m_x;
-  //  final.m_m[3][1] = m_modelPos.m_y;
-  //  final.m_m[3][2] = m_modelPos.m_z;
-  // set this in the TX stack
-  trans.setMatrix(final);
-  m_transformStack.setGlobal(trans);
+    ngl::VAOPrimitives *primitives = ngl::VAOPrimitives::instance();
 
-  //move the hair
-  ngl::Vec3 pos = ngl::Vec3(m_modelPos.m_x,m_modelPos.m_y,m_modelPos.m_z);
-  m_hair.setPosition(pos);
-
-   // get the VBO instance and draw the built in teapot
-  ngl::VAOPrimitives *prim=ngl::VAOPrimitives::instance();
+    //GLOBAL TRANSFORMATION
 
 
-  //drawing the hair
-  Particle* current;
-  Particle* next;
-  ngl::Vec3 distance;
-  float xRot, zRot;
-  std::vector<Particle*>::iterator endParticle = m_hairParticles.end();
-  std::vector<Particle*>::iterator currentParticle;
-  for( currentParticle = m_hairParticles.begin(); currentParticle<endParticle; ++currentParticle)
-  {
-      current = *currentParticle;
-      next = current->getNext();
+    //std::cout << m_transformStack.getCurrAndGlobal().getPosition() << std::endl
 
-      m_transformStack.pushTransform();
-      //POSITION
-      m_transformStack.setPosition(current->getPosition());
+    //DRAWING
+    ngl::Transformation transform;
+    int cellSize;
+    int visionRadius;
 
-      if (next)
-      {
-        //SCALE: distance
-        distance = next->getPosition()-current->getPosition();
-        m_transformStack.setScale(1,1,distance.length());
-        //ROTATION
-        //going from the particle
-        m_transformStack.setRotation(-90,0,0);
+    //Drawing the grid
+    cellSize = m_crowdEngine.getCellSize();
+    transform.setScale(cellSize,0,cellSize);
+    m_transformStack.setCurrent(transform);
+    loadMVPToShader(m_transformStack);
+    shader->setShaderParam4f("Colour",1,1,1,1);
+    primitives->draw("ground");
 
-        //DO NOT TOUCH THE ROTATION
-        //rotation in X
-        xRot = atan(distance.m_z/distance.m_y) * 180/M_PI;
-        if (distance.m_y>0)
-            zRot += 180;
-        //rotation in Z
-        zRot = atan(-distance.m_x/distance.m_y) * 180/M_PI;
-        if (distance.m_y>0)
-            zRot += 180;
+    //DRAWING AGENTS
+    std::vector<Agent*>::const_iterator endAgent = m_crowdEngine.getAgentsEnd();
+    std::vector<Agent*>::const_iterator currentAgent;
+    Agent* agent;
 
-       m_transformStack.addRotation(xRot,0,zRot);
-      }
+    shader->setShaderParam4f("Colour",1,0,0,1);
 
-      shader->setShaderParam4f("Colour",1.0,0.8,0.0,1.0);
-      loadMatricesToShader(m_transformStack);
-      //loadMVPToShader(m_transformStack);
-
-      if (next)
-          prim->draw("hair");
-
-      if (m_seeParticles)
-      {
-        m_transformStack.setScale(1,1,1);
-        shader->setShaderParam4f("Colour",1.0,0.0,0.0,1.0);
+    for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        agent = *currentAgent;
+        agent->print();
+        m_transformStack.setCurrent(agent->getTransform());
         loadMatricesToShader(m_transformStack);
-        prim->draw("particle");
-      }
-      m_transformStack.popTransform();
+        primitives->draw("teapot");
 
-      //std::cout << m_hairParticles.size() << std::endl;
-      //(*currentParticle)->info();
+        visionRadius = agent->getVisionRadius();
+        transform.setScale(visionRadius,visionRadius,1);
+        transform.setPosition(agent->getPosition());
+        transform.setRotation(90,0,0);
+        m_transformStack.setCurrent(transform);
+        loadMatricesToShader(m_transformStack);
 
-  }
+        primitives->draw("radius");
+        
+    }
+
+    /*
+    shader->use("Colour");
+
+    for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        agent = *currentAgent;
+        transform.setScale(2,2,1);
+        transform.setPosition(agent->getPosition());
+        transform.setRotation(90,0,0);
+        m_transformStack.setCurrent(transform);
+        loadMVPToShader(m_transformStack);
+
+        primitives->draw("radius");
+
+    }
+
+    shader->use("Phong");
+    */
 
 }
 
 void GLWindow::mouseMoveEvent(QMouseEvent * _event)
 {
-    if(_event->buttons()==Qt::LeftButton &&  m_rotate)
+    bool rotate;
+
+    if( (rotate = _event->buttons()==Qt::LeftButton &&  m_rotate ) ||
+        (_event->buttons() == Qt::RightButton && m_translate ) )
     {
-        int diffx=_event->x()-m_origX;
-        int diffy=_event->y()-m_origY;
-        m_spinXFace += (float) 0.5f * diffy;
-        m_spinYFace += (float) 0.5f * diffx;
-        m_origX = _event->x();
-        m_origY = _event->y();
+        if (rotate)
+        {
+            m_globalRotation.m_x += s_rotationIncrement * (_event->y() - m_previousMousePosition.second);
+            m_globalRotation.m_y += s_rotationIncrement * (_event->x() - m_previousMousePosition.first);
+            m_previousMousePosition.first = _event->x();
+            m_previousMousePosition.second = _event->y();
+        }
+        else
+        {
+            m_globalTranslation.m_x += s_translationIncrement * (_event->x() - m_previousMousePosition.first);
+            m_globalTranslation.m_y -= s_translationIncrement * (_event->y() - m_previousMousePosition.second);
+            m_previousMousePosition.first = _event->x();
+            m_previousMousePosition.second = _event->y();
+
+        }
+        ngl::Transformation globalTransform;
+        ngl::Mat4 xRotMat, yRotMat, globalMatrix;
+        xRotMat.rotateX(m_globalRotation.m_x);
+        yRotMat.rotateY(m_globalRotation.m_y);
+        globalMatrix = yRotMat*xRotMat;
+        globalMatrix.m_m[3][0] = m_globalTranslation.m_x;
+        globalMatrix.m_m[3][1] = m_globalTranslation.m_y;
+        globalMatrix.m_m[3][2] = m_globalTranslation.m_z;
+        globalTransform.setMatrix(globalMatrix);
+        m_transformStack.setGlobal(globalTransform);
+
         updateGL();
   }
-  else if(_event->buttons() == Qt::RightButton && m_translate)
-  {
-        int diffX = (int)(_event->x() - m_origXPos);
-        int diffY = (int)(_event->y() - m_origYPos);
-        m_origXPos=_event->x();
-        m_origYPos=_event->y();
-        m_modelPos.m_x += INCREMENT * diffX;
-        m_modelPos.m_y -= INCREMENT * diffY;
-        updateGL();
-    }
 }
 
 
 void GLWindow::mousePressEvent(QMouseEvent * _event)
 {
-    if(_event->button() == Qt::RightButton)
+    std::cout << "pressed event" << std::endl;
+    if(_event->button() == Qt::LeftButton)
     {
-        m_origX = _event->x();
-        m_origY = _event->y();
+        m_previousMousePosition.first = _event->x();
+        m_previousMousePosition.second = _event->y();
         m_rotate =true;
     }
-    else if(_event->button() == Qt::LeftButton)
+    else if(_event->button() == Qt::RightButton)
     {
-        m_origXPos = _event->x();
-        m_origYPos = _event->y();
+        m_previousMousePosition.first = _event->x();
+        m_previousMousePosition.second = _event->y();
         m_translate=true;
     }
 
@@ -293,11 +302,11 @@ void GLWindow::mousePressEvent(QMouseEvent * _event)
 
 void GLWindow::mouseReleaseEvent(QMouseEvent * _event)
 {
-    if (_event->button() == Qt::RightButton)
+    if (_event->button() == Qt::LeftButton)
     {
         m_rotate=false;
     }
-    if (_event->button() == Qt::LeftButton)
+    if (_event->button() == Qt::RightButton)
     {
         m_translate=false;
     }
@@ -308,12 +317,25 @@ void GLWindow::wheelEvent(QWheelEvent *_event)
 {
     if(_event->delta() > 0)
     {
-        m_modelPos.m_z+=ZOOM;
+        m_globalTranslation.m_y += s_zoomIncrement;
+        m_globalTranslation.m_z += s_zoomIncrement;
     }
     else if(_event->delta() <0 )
     {
-        m_modelPos.m_z-=ZOOM;
+        m_globalTranslation.m_y -= s_zoomIncrement;
+        m_globalTranslation.m_z -= s_zoomIncrement;
     }
+    ngl::Transformation globalTransform;
+    ngl::Mat4 xRotMat, yRotMat, globalMatrix;
+    xRotMat.rotateX(m_globalRotation.m_x);
+    yRotMat.rotateY(m_globalRotation.m_y);
+    globalMatrix = yRotMat*xRotMat;
+    globalMatrix.m_m[3][0] = m_globalTranslation.m_x;
+    globalMatrix.m_m[3][1] = m_globalTranslation.m_y;
+    globalMatrix.m_m[3][2] = m_globalTranslation.m_z;
+    globalTransform.setMatrix(globalMatrix);
+    m_transformStack.setGlobal(globalTransform);
+
     updateGL();
 }
 
@@ -322,21 +344,6 @@ void GLWindow::timerEvent(QTimerEvent *_event)
 {
     //CHICHA!!
     (void) _event;
-    m_hair.applyForce(m_gravity);
-    m_hair.applyRandomGravity();
-    m_hair.applyWind(m_windMagnitude*m_windDirection);
-    m_hair.update();
+    //TIME TO FIGHT!
     updateGL();
 }
-
-void GLWindow::startSimTimer()
-{
-    m_timer=startTimer(m_timerValue);
-}
-
-void GLWindow::update()
-{
-    m_hair.createHair();
-    m_hairParticles = m_hair.getParticles();
-}
-

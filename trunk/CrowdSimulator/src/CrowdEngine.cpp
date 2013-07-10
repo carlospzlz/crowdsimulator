@@ -1,10 +1,10 @@
 #include "CrowdEngine.h"
 
-const float CrowdEngine::s_initStride = 0.5;
+const float CrowdEngine::s_initStride = 2;
 
-const int CrowdEngine::s_cellSize = 1;
+const int CrowdEngine::s_cellSize = 4;
 
-const float CrowdEngine::s_neighbourhoodRadius = 1;
+const float CrowdEngine::s_neighbourhoodRadius = 3;
 
 CrowdEngine::CrowdEngine() : m_cellPartition(s_cellSize)
 {
@@ -71,6 +71,6 @@ void CrowdEngine::update()
 {
     m_cellPartition.updateCells(m_agents);
 
-    m_cellPartition.updateNeighbours(m_agents, s_neighbourhoodRadius);
+    m_cellPartition.updateNeighbours(m_agents);
 
 }
