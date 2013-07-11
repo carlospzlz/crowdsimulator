@@ -26,19 +26,23 @@ const int GLWindow::s_timerValue = 20;
 GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLFormat::defaultFormat()), _parent )
 {
 
-  // set this widget to have the initial keyboard focus
-  setFocus();
-  // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
-  this->resize(_parent->size());
+    // set this widget to have the initial keyboard focus
+    setFocus();
+    // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
+    this->resize(_parent->size());
 
-  // Now set the initial GLWindow attributes to default values
-  m_rotate=false;
-  m_translate=false;
+    // Now set the initial GLWindow attributes to default values
+    m_rotate = false;
+    m_translate = false;
+    m_simulating = true;
 
-  m_previousMousePosition.first = 0;
-  m_previousMousePosition.second = 0;
+    m_previousMousePosition.first = 0;
+    m_previousMousePosition.second = 0;
 
-  m_crowdEngine.createFlock(10,10,ngl::Vec2(0,0));
+    m_crowdEngine.loadBrain("simple");
+    m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,0),"testFlock");
+
+    m_timer = startTimer(s_timerValue);
 
 }
 
@@ -342,8 +346,11 @@ void GLWindow::wheelEvent(QWheelEvent *_event)
 
 void GLWindow::timerEvent(QTimerEvent *_event)
 {
-    //CHICHA!!
     (void) _event;
-    //TIME TO FIGHT!
+
+    //CROWD SIMULATION!!
+    if (m_simulating)
+        m_crowdEngine.update();
+
     updateGL();
 }

@@ -10,6 +10,11 @@ inline std::pair<int,int> CellPartition::cell(ngl::Vec4 _position) const
                               ceil(_position.m_z/(float)m_cellSize) );
 }
 
+void CellPartition::addAgent(Agent *_agent)
+{
+    m_cells[cell(_agent->getPosition())].push_back(_agent);
+}
+
 void CellPartition::addAgents(const std::vector<Agent *> &_agents)
 {
     Agent* agent;
