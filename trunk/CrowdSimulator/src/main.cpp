@@ -23,12 +23,21 @@ int main(int argc, char **args)
         std::cout << "TERMINAL/DEBUGGING MODE" << std::endl;
 
         CrowdEngine myCrowdEngine;
+        Agent* myAgent = new Agent();
 
-        myCrowdEngine.createFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0));
+        myAgent->print();
+
+        myAgent->setBrain("simple");
+        myCrowdEngine.addAgent(myAgent);
+
+        std::cout << "agent added" << std::endl;
+        myCrowdEngine.loadBrain("simple");
+
+        myCrowdEngine.createRandomFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0),"testFlock");
 
         myCrowdEngine.printAgents();
 
-        myCrowdEngine.printCellPartition();
+        //myCrowdEngine.printCellPartition();
 
         myCrowdEngine.update();
         myCrowdEngine.update();

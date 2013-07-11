@@ -49,7 +49,7 @@ DEFINES += LINUX
 # NEEDED LIBRARIES:
 #
 # opengl, glew, NGL
-# boost
+# lua, boost
 ###################
 
 #OpenGL QT
@@ -57,12 +57,15 @@ QT += opengl
 
 LIBS+= -lGLEW
 
-#include boost for tokenizer and reading from configFiles
-#INCLUDEPATH += /usr/local/boost
-
 #NGL library at home
 INCLUDEPATH += $(HOME)/NGL/include
 LIBS += -L$(HOME)/NGL/lib -lNGL
+
+#link lua dynamic libraries
+LIBS += -llua -ldl
+
+#include boost for tokenizer and reading from configFiles
+#INCLUDEPATH += /usr/local/boost
 
 
 ######################################

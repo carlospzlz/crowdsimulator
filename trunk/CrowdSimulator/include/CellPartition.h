@@ -16,6 +16,7 @@ private:
 
 public:
     CellPartition(int _cellSize) : m_cellSize(_cellSize) { }
+    void addAgent(Agent* _agent);
     void addAgents(const std::vector<Agent *> &_agents);
     void updateCells(const std::vector<Agent*> &_agents);
     void printCells() const;
