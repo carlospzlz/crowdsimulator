@@ -20,7 +20,6 @@ class Agent
 private:
     static lua_State* s_luaState;
 
-    bool m_active;
     float m_mass;
     float m_strength;
     float m_maxStrength;
@@ -34,11 +33,10 @@ private:
     std::string m_state;
     float m_visionRange;
     std::string m_brain;
-    std::map<std::string,std::string> m_labels;
+    std::map<std::string,std::string> m_messages;
     std::string m_primitive;
 
     std::vector<Agent*> m_neighbours;
-    std::vector<Agent*> m_watchedAgents;
 
     void flockingForce();
     void draggingForce();
@@ -50,7 +48,6 @@ public:
 
     void static setLuaState(lua_State* _luaState) { s_luaState = _luaState; }
 
-    void setActive(bool _active) { m_active = _active; }
     void setMass(float _mass) { m_mass = _mass; }
     void setMaxStrength(float _maxStrength) { m_maxStrength = _maxStrength; m_strength = m_maxStrength; }
     void setMaxSpeed(float _maxSpeed) { m_maxSpeed = _maxSpeed; }
@@ -58,8 +55,12 @@ public:
     void setPosition(ngl::Vec3 _pos) { m_transformation.setPosition(_pos); }
     void setNeighbours(const std::vector<Agent*> &_neighbours) { m_neighbours = _neighbours; }
     void setBrain(std::string _brain) { m_brain = _brain; }
-    void addLabel(std::string _key, std::string _value) { m_labels[_key] = _value; }
+    void addMessage(std::string _key, std::string _value) { m_messages[_key] = _value; }
 
+    float getMass() const { return m_mass; }
+    float getStrength() const { return m_strength; }
+    float getMaxSpeed() const { return m_maxSpeed; }
+    std::string getState() const { return m_state; }
     ngl::Vec4 getPosition() const { return m_transformation.getPosition(); }
     ngl::Vec4 getPreviousPos() const { return m_previousTransform.getPosition(); }
     ngl::Transformation getTransform() const { return m_transformation; }

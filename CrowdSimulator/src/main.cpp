@@ -25,13 +25,12 @@ int main(int argc, char **args)
         CrowdEngine myCrowdEngine;
         Agent* myAgent = new Agent();
 
-        myAgent->print();
+        //myAgent->print();
 
-        myAgent->setBrain("simple");
+        myAgent->setBrain("printer");
         myCrowdEngine.addAgent(myAgent);
 
-        std::cout << "agent added" << std::endl;
-        myCrowdEngine.loadBrain("simple");
+        myCrowdEngine.loadBrain("printer");
 
         myCrowdEngine.createRandomFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0),"testFlock");
 
@@ -40,10 +39,9 @@ int main(int argc, char **args)
         //myCrowdEngine.printCellPartition();
 
         myCrowdEngine.update();
-        myCrowdEngine.update();
-        myCrowdEngine.update();
-
         myCrowdEngine.printAgents();
+        myCrowdEngine.update();
+        myCrowdEngine.update();
     }
 
 
