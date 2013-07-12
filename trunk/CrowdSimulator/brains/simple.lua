@@ -1,4 +1,4 @@
-function simple (x)
-	print("the script is running!!")
-	return x+1
+function simple (strength, position, velocity, state,  messages, neighbours)
+	
+	return
 end

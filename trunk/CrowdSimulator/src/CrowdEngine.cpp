@@ -24,8 +24,10 @@ CrowdEngine::CrowdEngine() : m_cellPartition(s_cellSize)
 
 CrowdEngine::~CrowdEngine()
 {
-    std::cout << "CrowdEngine: deleting all agents" << std::endl;
+    std::cout << "CrowdEngine: closing lua" << std::endl;
+    lua_close(s_luaState);
 
+    std::cout << "CrowdEngine: deleting all agents" << std::endl;
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     for(std::vector<Agent*>::iterator currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
@@ -52,13 +54,17 @@ void CrowdEngine::loadBrain(std::string _brain)
 void CrowdEngine::addAgent(Agent* agent)
 {
     std::cout << "CrowdEngine: adding agent " << agent << " to the crowd" << std::endl;
-    m_agents.push_back(agent);
-    m_cellPartition.addAgent(agent);
 
     std::string brain = agent->getBrain();
-    if ( !s_loadedBrains.count(brain) )
+    if ( s_loadedBrains.count(brain) )
     {
-        std::cout << "CrowdEngine: WARNING: the brain " << brain << " is not loaded" << std::endl;
+        m_agents.push_back(agent);
+        m_cellPartition.addAgent(agent);
+
+    }
+    else
+    {
+        std::cout << "CrowdEngine:  ERROR: Agent not added, the brain " << brain << " is not loaded" << std::endl;
     }
 }
 
@@ -67,6 +73,12 @@ void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position
     if (_rows<=0 || _columns<=0)
     {
         std::cout << "CrowdEngine: ERROR: Impossible to create flock "<<_rows << "x" << _columns << std::endl;
+        return;
+    }
+
+    if (s_loadedBrains.empty())
+    {
+        std::cout << "CrowdEngine: ERROR: Impossible to create flock: No brains loaded" << std::endl;
         return;
     }
 

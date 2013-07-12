@@ -39,7 +39,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
-    m_crowdEngine.loadBrain("simple");
+    m_crowdEngine.loadBrain("empty");
     m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,0),"testFlock");
 
     m_timer = startTimer(s_timerValue);
