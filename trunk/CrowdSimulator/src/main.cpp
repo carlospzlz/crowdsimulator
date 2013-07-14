@@ -25,12 +25,14 @@ int main(int argc, char **args)
         CrowdEngine myCrowdEngine;
         Agent* myAgent = new Agent();
 
-        //myAgent->print();
+        myCrowdEngine.loadBrain("boid");
+        myCrowdEngine.loadBrain("leaderBoid");
+        myCrowdEngine.loadBrain("empty");
 
-        myAgent->setBrain("printer");
+        myAgent->setBrain("leaderBoid");
+        myAgent->addAttribute("flock","testFlock");
+        myAgent->setPosition(ngl::Vec3(0,0,0));
         myCrowdEngine.addAgent(myAgent);
-
-        myCrowdEngine.loadBrain("printer");
 
         myCrowdEngine.createRandomFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0),"testFlock");
 
@@ -40,8 +42,6 @@ int main(int argc, char **args)
 
         myCrowdEngine.update();
         myCrowdEngine.printAgents();
-        myCrowdEngine.update();
-        myCrowdEngine.update();
     }
 
 

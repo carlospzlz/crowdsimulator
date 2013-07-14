@@ -8,7 +8,7 @@ class CellPartition
 {
 
 private:
-    const int m_cellSize;
+    int m_cellSize;
     std::map<std::pair<int,int>,std::list<Agent*> > m_cells;
     inline std::pair<int,int> cell(ngl::Vec4 _position) const;
     void findAgentsInCells (ngl::Vec3 _leftDownCornerBox, ngl::Vec3 _rightUpCornerBox, std::vector<Agent*> &_agentsInCells);

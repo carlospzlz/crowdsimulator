@@ -39,9 +39,20 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
-    m_crowdEngine.loadBrain("empty");
-    m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,0),"testFlock");
+    // PLAYING WITH AGENTS
+    //m_crowdEngine.loadBrain("printer");
+    m_crowdEngine.loadBrain("boid");
+    m_crowdEngine.createRandomFlock(3,3,ngl::Vec2(0,0),"testFlock");
 
+    Agent *myAgent = new Agent();
+    m_crowdEngine.loadBrain("leaderBoid");
+    myAgent->setBrain("leaderBoid");
+    myAgent->addAttribute("flock","testFlock");
+    myAgent->setVisionRadius(20);
+    //m_crowdEngine.addAgent(myAgent);
+
+
+    //START TIMER (maybe it's not simulating)
     m_timer = startTimer(s_timerValue);
 
 }
@@ -129,6 +140,11 @@ void GLWindow::initializeGL()
     primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
     primitives->createTorus("radius",0.01,1,3,16);
 
+    //Loading geometry for testing
+    m_geometry = new ngl::Obj("geometry/legoman.obj");
+    m_geometry->createVAO();
+    m_geometry->calcBoundingSphere();
+
 }
 
 
@@ -205,15 +221,18 @@ void GLWindow::paintGL()
     std::vector<Agent*>::const_iterator currentAgent;
     Agent* agent;
 
+    // COLOUR
     shader->setShaderParam4f("Colour",1,0,0,1);
+    //shader->setShaderParam4f("Colour",0.5,0.5,0.5,1);
 
     for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
     {
         agent = *currentAgent;
-        agent->print();
+        //agent->print();
         m_transformStack.setCurrent(agent->getTransform());
         loadMatricesToShader(m_transformStack);
-        primitives->draw("teapot");
+        //primitives->draw("cube");
+        m_geometry->draw();
 
         visionRadius = agent->getVisionRadius();
         transform.setScale(visionRadius,visionRadius,1);
@@ -287,7 +306,6 @@ void GLWindow::mouseMoveEvent(QMouseEvent * _event)
 
 void GLWindow::mousePressEvent(QMouseEvent * _event)
 {
-    std::cout << "pressed event" << std::endl;
     if(_event->button() == Qt::LeftButton)
     {
         m_previousMousePosition.first = _event->x();

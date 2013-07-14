@@ -37,6 +37,7 @@ private :
     ngl::Transformation m_transformation;
     ngl::Camera m_camera;
     ngl::Light m_light;
+    ngl::Obj *m_geometry;
 
     CrowdEngine m_crowdEngine;
 

@@ -1,31 +1,51 @@
-function printer (strength, position, velocity, state,  messages, neighbours)
+function printer (agentID, position, strength, velocity, state,  attributes, inbox, neighbours)
 	
-	print("Information arrived to the brain PRINTER")
-	print("strength= ",strength)
+	print("AGENT "..agentID.." uses brain PRINTER")
 	print("position= ",position)
-	print(position.m_x, position.m_y, position.m_z)
+	print(position.x, position.y, position.z)
+	print("strength= ",strength)
 	print("velocity= ",velocity)
-	print(velocity.m_x, velocity.m_y, velocity.m_z)
+	print(velocity.x, velocity.y, velocity.z)
 	print("state= ",state)
-	print("messages ",messages)
-	for key,message in pairs(messages)
+
+	print("attributes: ",attributes,#attributes)
+	for key,value in pairs(attributes)
 	do
-		print(key,message)
+		print(key,value)
 	end
-	print(messages.flock)
-	print("neighbours= ",neighbours)
+
+	print("inbox: ",inbox,#inbox)
+	for key,message in pairs(inbox)
+	do
+		print(message)
+		print(message.agentID)
+		print(message.label)
+		print(message.position)
+		print(message.strength)
+	end
+
+	print("neighbours= ",neighbours,#neighbours)
 	for index,neighbour in pairs(neighbours)
 	do
-		print("mass= ",neighbour.m_mass)
-		print("strength= ",neighbour.m_strength)
-		print("position= ",neighbour.position)
-		print(neighbour.m_position.m_x,neighbour.m_position.m_y, neighbour.m_position.m_z)
-		print("state= ",neighbour.state)
-		print("messages= ",neighbour.m_messages)
-		for key,message in pairs(neighbour.m_messages)
+		print("\tagentID=",neighbour.agentID)
+		print("\tmass= ",neighbour.mass)
+		print("\tstrength= ",neighbour.strength)
+		print("\tposition= ",neighbour.position)
+		print("\t"..neighbour.position.x,neighbour.position.y, neighbour.position.z)
+		print("\tvelocity= ",neighbour.position)
+		print("\t"..neighbour.velocity.x,neighbour.velocity.y, neighbour.velocity.z)
+		print("\tstate= ",neighbour.state)
+		print("\tattributes= ",neighbour.attributes,#neighbour.attributes)
+		for key,value in pairs(neighbour.attributes)
 		do
-			print(key,message)
+			print("\t",key,value)
 		end
 	end
-	return
+
+	print("\n")
+
+	force = {0,0,0}
+	messages = {}
+
+	return force, strength, state, messages
 end

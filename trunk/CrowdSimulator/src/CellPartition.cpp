@@ -32,7 +32,7 @@ void CellPartition::updateCells(const std::vector<Agent *> &_agents)
     Agent* agent;
     std::pair<int,int> currentCell, previousCell;
 
-    std::cout << "CellPartition: updating cells" << std::endl;
+    // std::cout << "CellPartition: updating cells" << std::endl;
 
     std::vector<Agent*>::const_iterator endAgent = _agents.end();
     for(std::vector<Agent*>::const_iterator currentAgent = _agents.begin(); currentAgent!=endAgent; ++currentAgent)
@@ -84,7 +84,7 @@ void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents)
 
     endAgent1 = _agents.end();
 
-    std::cout << "CellPartition: updating neighbours" << std::endl;
+    // std::cout << "CellPartition: updating neighbours" << std::endl;
 
     for(std::vector<Agent*>::const_iterator currentAgent1 = _agents.begin(); currentAgent1!=endAgent1; ++currentAgent1)
     {
