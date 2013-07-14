@@ -1,16 +1,13 @@
 #include "CrowdEngine.h"
 
 
-const float CrowdEngine::s_initStride = 2;
-
-const int CrowdEngine::s_cellSize = 4;
-
-const float CrowdEngine::s_neighbourhoodRadius = 3;
+const float CrowdEngine::s_initStride = 1;
+const int CrowdEngine::s_cellSize = 2;
+const float CrowdEngine::s_step = 0.1;
+const float CrowdEngine::s_friction = 0.01;
 
 const std::string CrowdEngine::s_brainsPath = "brains/";
-
 std::set<std::string> CrowdEngine::s_loadedBrains;
-
 lua_State* CrowdEngine::s_luaState;
 
 
@@ -18,6 +15,8 @@ CrowdEngine::CrowdEngine() : m_cellPartition(s_cellSize)
 {
     s_luaState = luaL_newstate();
     Agent::setLuaState(s_luaState);
+    Agent::setStep(s_step);
+    Agent::setFriction(s_friction);
 
     luaL_openlibs(s_luaState);
 }
@@ -53,7 +52,7 @@ void CrowdEngine::loadBrain(std::string _brain)
 
 void CrowdEngine::addAgent(Agent* agent)
 {
-    std::cout << "CrowdEngine: adding agent " << agent << " to the crowd" << std::endl;
+    std::cout << "CrowdEngine: adding agent " << agent->getAgentID() << " to the crowd" << std::endl;
 
     std::string brain = agent->getBrain();
     if ( s_loadedBrains.count(brain) )
@@ -64,7 +63,8 @@ void CrowdEngine::addAgent(Agent* agent)
     }
     else
     {
-        std::cout << "CrowdEngine:  ERROR: Agent not added, the brain " << brain << " is not loaded" << std::endl;
+        std::cout << "CrowdEngine:  ERROR: Agent " << agent->getAgentID() <<
+                     " not added, the brain " << brain << " is not loaded" << std::endl;
     }
 }
 
@@ -91,14 +91,8 @@ void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position
     std::set<std::string>::const_iterator firstBrain;
     std::vector<Agent*> flockAgents;
 
-    if (s_loadedBrains.empty())
-    {
-        std::cout << "CrowdEngine: WARNING: Flock cannot be created because there are no brains loaded" << std::endl;
-        return;
-    }
-
-    std::cout << "CrowdEngine: Creating flock " << _flock << _rows << "x"<< _columns
-              <<" (" << _rows*_columns << " agents)" << std::endl;
+    std::cout << "CrowdEngine: Creating flock " << _flock << " " << _rows << "x"
+              << _columns <<" (" << _rows*_columns << " agents)" << std::endl;
 
     for (int i=0; i<_columns; ++i)
         for (int j=0; j<_rows; ++j)

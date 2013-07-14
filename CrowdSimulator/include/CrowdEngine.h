@@ -12,7 +12,8 @@ class CrowdEngine
 private:
     static const float s_initStride;
     static const int s_cellSize;
-    static const float s_neighbourhoodRadius;
+    static const float s_step;
+    static const float s_friction;
     static const std::string s_brainsPath;
     static std::set<std::string> s_loadedBrains;
     static lua_State* s_luaState;
@@ -26,7 +27,6 @@ public:
     std::vector<Agent*>::const_iterator getAgentsBegin() { return m_agents.begin(); }
     std::vector<Agent*>::const_iterator getAgentsEnd() { return m_agents.end(); }
     int getCellSize() const { return s_cellSize; }
-    float getRadius() const { return s_neighbourhoodRadius; }
 
     void loadBrain(std::string _brain);
     void addAgent(Agent *agent);
