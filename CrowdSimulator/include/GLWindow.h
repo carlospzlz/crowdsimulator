@@ -8,7 +8,8 @@
 #include <ngl/Transformation.h>
 #include <ngl/TransformStack.h>
 #include <ngl/Obj.h>
-#include <ngl/NCCAPointBake.h>
+#include <ngl/VAOPrimitives.h>
+#include <ngl/ShaderLib.h>
 // it must be included after our stuff becuase GLEW needs to be first
 #include <QResizeEvent>
 #include <QEvent>
@@ -35,14 +36,18 @@ private :
     ngl::Vec3 m_globalTranslation;
     ngl::TransformStack m_transformStack;
     ngl::Transformation m_transformation;
+    ngl::VAOPrimitives *m_primitives;
+    ngl::ShaderLib *m_shader;
     ngl::Camera m_camera;
     ngl::Light m_light;
-    ngl::Obj *m_geometry;
+    ngl::Obj *m_dummy;
 
     CrowdEngine m_crowdEngine;
 
     void loadMatricesToShader(ngl::TransformStack &_tx);
     void loadMVPToShader(ngl::TransformStack &_tx);
+    void inline drawVector(ngl::Vec4 _vector);
+    void inline drawRadius(int _radius);
 
     void mouseMoveEvent(QMouseEvent * _event);
     void mousePressEvent(QMouseEvent *_event);

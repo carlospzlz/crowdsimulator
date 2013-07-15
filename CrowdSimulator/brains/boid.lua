@@ -1,18 +1,21 @@
 function boid (agentID, position, strength, velocity, state, attributes, inbox, neighbours)
-	
-	--print("AGENT "..agentID.." uses brain simple")
-	
-	-- Implementation of the Craig Reinold's boid
-	
-	-- COHESION
+
+	flockForce = flockSteering(position, velocity, attributes, neighbours);
+
+	messages = {}
+
+	return flockForce, strength, state, messages 
+
+end
+
+function flockSteering (position, velocity, attributes, neighbours)
+
+	-- IMPLEMENTATION OF THE CRAIG REINOLD'S FLOCKING BEHAVIOUS
 	sumPositions = {0,0,0}
 	separationVector = {0,0,0}
 	velocities = {0,0,0}
 
 	counter = 0
-
-	-- SEPARATION
-
 	for key,neighbour in pairs(neighbours)
 	do
 		if (attributes.flock==neighbour.attributes.flock)
@@ -42,18 +45,22 @@ function boid (agentID, position, strength, velocity, state, attributes, inbox, 
 		cohesion[2] = sumPositions[2]/counter - position.y
 		cohesion[3] = sumPositions[3]/counter - position.z
 
-		separation[1] = (separationVector[1]/counter)
-		separation[2] = (separationVector[2]/counter)
-		separation[3] = (separationVector[3]/counter)
+		separation[1] = separationVector[1] / counter
+		separation[2] = separationVector[2] / counter
+		separation[3] = separationVector[3] / counter
 	end
 
-	if (separation[1] == 0)
+	-- the separation force is inversely proportional to the distance
+	separationModulus = math.sqrt(separation[1]^2 + separation[2]^2 + separation[3]^2)
+	
+	if (separationModulus ~= 0)
 	then
-		separation[1] == 10
-	else
-		separation[1]==
+		separation[1] = separation[1] / separationModulus
+		separation[2] = separation[2] / separationModulus
+		separation[3] = separation[3] / separationModulus
+	end
 
-	-- ALIGMENT RULE WITH 2 CROSS PRODUCTS
+	-- Aligmnet rule with 2 cross products
 	vxvn = {}
 	vxvn[1] = velocity.y*velocities[3] - velocity.z*velocities[2]
 	vxvn[2] = - velocity.x*velocities[3] + velocity.z*velocities[1]
@@ -66,21 +73,24 @@ function boid (agentID, position, strength, velocity, state, attributes, inbox, 
 
 	force = {}
 
-	force[1] = 7*cohesion[1] + 0.1*separation[1] + 0.1*vxvnxv[1]
-	force[2] = 7*cohesion[2] + 0.1*separation[2] + 0.1*vxvnxv[2]
-	force[3] = 7*cohesion[2] + 0.1*separation[3] + 0.1*vxvnxv[3]
+	wc = 0.15
+	ws = 0.3
+	wa = 0.005
+	force[1] = cohesion[1]*wc + separation[1]*ws + vxvnxv[1]*wa
+	force[2] = cohesion[2]*wc + separation[2]*ws + vxvnxv[2]*wa
+	force[3] = cohesion[3]*wc + separation[3]*ws + vxvnxv[3]*wa
 
-	print("AGENT "..agentID.."("..counter..")")
-	print("cohesion: "..cohesion[1]..", "..cohesion[2]..", "..cohesion[3])
-	print("separation: "..separation[1]..", "..separation[2].." "..separation[3])
-	print("alignment: "..vxvnxv[1]..", "..vxvnxv[2].." "..vxvnxv[3])
-	print("force: "..force[1]..", "..force[2].." "..force[3])
-	print("velocity: "..velocity.x..velocity.y..velocity.z)
-	print("\n")
+	--print("AGENT "..agentID.."("..counter..")")
+	--print("cohesion: "..cohesion[1]..", "..cohesion[2]..", "..cohesion[3])
+	--print("separation: "..separation[1]..", "..separation[2].." "..separation[3])
+	--print("alignment: "..vxvnxv[1]..", "..vxvnxv[2].." "..vxvnxv[3])
+	--print("force: "..force[1]..", "..force[2].." "..force[3])
+	--print("velocity: "..velocity.x..velocity.y..velocity.z)
+	--print("\n")
 
 	messages = {}
 
 	--print("sending ",force,strength,messages,"\n")
 
-	return force, strength, state, messages
+	return force
 end
