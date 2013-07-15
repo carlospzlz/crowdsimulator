@@ -13,7 +13,7 @@ Agent::Agent()
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
     m_maxStrength = 1;
-    m_visionRadius = 3;
+    m_visionRadius = 4;
     m_strength = m_maxStrength;
     m_maxSpeed = 1;
     m_transformation.reset();
@@ -28,7 +28,7 @@ Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
     m_maxStrength = 0.001;
-    m_visionRadius = 5;
+    m_visionRadius = 4;
     m_strength = m_maxStrength;
     m_maxSpeed = 1;
     m_transformation.setPosition(_pos);
@@ -206,17 +206,18 @@ void Agent::execute()
         lua_settable(s_luaState, 9);
 
         //position key at Stack[10]
+        position = msge.position;
         lua_pushstring(s_luaState, "position");
         //table for position at Stack[11]
         lua_createtable(s_luaState,3,0);
         lua_pushstring(s_luaState,"x");
-        lua_pushnumber(s_luaState,m_velocity.m_x);
+        lua_pushnumber(s_luaState,position.m_x);
         lua_settable(s_luaState,11);
         lua_pushstring(s_luaState,"y");
-        lua_pushnumber(s_luaState,m_velocity.m_y);
+        lua_pushnumber(s_luaState,position.m_y);
         lua_settable(s_luaState,11);
         lua_pushstring(s_luaState,"z");
-        lua_pushnumber(s_luaState,m_velocity.m_z);
+        lua_pushnumber(s_luaState,position.m_z);
         lua_settable(s_luaState,11);
         //setting on the table message
         lua_settable(s_luaState,9);

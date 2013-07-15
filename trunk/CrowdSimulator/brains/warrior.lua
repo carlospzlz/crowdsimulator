@@ -1,6 +1,27 @@
-function leaderBoid (agentID, position, strength, velocity, state, attributes, inbox, neighbours)
-	
-	--LEADER BOID
+function warrior (agentID, position, strength, velocity, state, attributes, inbox, neighbours)
+
+	-- WARRIOR BEHAVIOUR
+
+	-- PROCESSING MESSAGES	
+	followForce = {0,0,0}
+	for key,message in pairs(inbox)
+	do
+		if (message.label=="follow")
+		then
+			for key,neighbour in pairs(neighbours)
+			do
+				if ( neighbour.agentID==message.agentID 
+				     and neighbour.attributes.flock 
+				     and neighbour.attributes.flock==attributes.flock )
+				     then
+					     --Obey the order
+					     followForce[1] = message.position.x - position.x
+					     followForce[2] = message.position.y - position.y
+					     followForce[3] = message.position.z - position.z
+				     end
+			end
+		end
+	end
 
 	--FLOCKING BEHAVIOUR
 	sumPositions = {0,0,0}
@@ -109,62 +130,36 @@ function leaderBoid (agentID, position, strength, velocity, state, attributes, i
 
 	--Weights for the flocking force
 	flockForce = {}
-	wc = 0.1
-	ws = 0.1
-	wa = 0.1
+	wc = 0.01
+	ws = 0.05
+	wa = 0.01
 	flockForce[1] = cohesion[1]*wc + separation[1]*ws + alignment[1]*wa
 	flockForce[2] = cohesion[2]*wc + separation[2]*ws + alignment[2]*wa
 	flockForce[3] = cohesion[3]*wc + separation[3]*ws + alignment[3]*wa
 	
-	--LEADERSHIP FORCE
-	magnitude = math.sqrt( (velocity.x*velocity.x)+(velocity.y*velocity.y)+(velocity.z*velocity.z) )
-
-	direction = {}
-
-	if (magnitude==0)
+	-- The flock needs to be in movement
+	if (speed == 0)
 	then
-		direction.x = 1;
-		direction.y = 0;
-		direction.z = 0;
-	else
-		direction.x = velocity.x/magnitude
-		direction.y = velocity.y/magnitude
-		direction.z = velocity.z/magnitude
+		flockForce[1] = math.random()
+		flockForce[2] = 0
+		flockForce[3] = math.random()
 	end
 
-	angle = (math.pi/300)
-
-	direction.x = direction.x*math.cos(angle)-direction.z*math.sin(angle);
-	direction.z = direction.x*math.sin(angle)+direction.z*math.cos(angle);
+	flockForce[1] = flockForce[1] + math.random()
+	flockForce[3] = flockForce[3] + math.random()
 	
-	leadershipForce = {}
-	leadershipForce[1] = direction.x*3
-	leadershipForce[2] = 0
-	leadershipForce[3] = direction.z*3
-
-
 	--SYNTHESIS OF ALL THE FORCES
 	force = {}
-	leaderW = 1
-	flockW = 0.2
-	force[1] = leadershipForce[1]*leaderW + flockForce[1]*flockW
-	force[2] = leadershipForce[2]*leaderW + flockForce[2]*flockW
-	force[3] = leadershipForce[3]*leaderW + flockForce[3]*flockW
+	flockW = 1
+	followW = 0.1
+	force[1] = flockForce[1]*flockW + followForce[1]*followW;
+	force[2] = flockForce[2]*flockW + followForce[2]*followW;
+	force[3] = flockForce[3]*flockW + followForce[3]*followW;
 
-	--print(force[1].." "..force[2].." "..force[3]);
-
-	--SEND MESSAGES
 	messages = {}
-	counter = 1
-	for key,neighbour in pairs(neighbours)
-	do
-		messages[counter] = {}
-		if (neighbour.attributes.flock and attributes.flock==neighbour.attributes.flock)
-		then
-			messages[counter][1] = "follow"	
-		end
-		counter = counter + 1
-	end
-	
-	return force, strength, state, messages
+
+	print("FORCE",force[1],force[2],force[3])
+
+	return force, strength, state, messages 
+
 end

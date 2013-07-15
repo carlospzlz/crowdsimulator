@@ -41,15 +41,15 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
     // PLAYING WITH AGENTS
     //m_crowdEngine.loadBrain("printer");
-    m_crowdEngine.loadBrain("boid");
-    m_crowdEngine.createRandomFlock(3,3,ngl::Vec2(0,0),"testFlock");
+    m_crowdEngine.loadBrain("warrior");
+    m_crowdEngine.createRandomFlock(5,10,ngl::Vec2(0,0),"testFlock");
 
     Agent *myAgent = new Agent();
     m_crowdEngine.loadBrain("leaderBoid");
     myAgent->setBrain("leaderBoid");
     myAgent->addAttribute("flock","testFlock");
-    myAgent->setVisionRadius(20);
-    //m_crowdEngine.addAgent(myAgent);
+    myAgent->setVisionRadius(8);
+    m_crowdEngine.addAgent(myAgent);
 
 
     //START TIMER (maybe it's not simulating)
@@ -79,45 +79,45 @@ void GLWindow::initializeGL()
     #endif
 
     // INITIALIZING SHADERS
-    ngl::ShaderLib *shader=ngl::ShaderLib::instance();
+    m_shader=ngl::ShaderLib::instance();
 
     //LOAD PHONG SHADER
-    shader->createShaderProgram("Phong");
-    shader->attachShader("PhongVertex",ngl::VERTEX);
-    shader->attachShader("PhongFragment",ngl::FRAGMENT);
-    shader->loadShaderSource("PhongVertex","shaders/Phong.vs");
-    shader->loadShaderSource("PhongFragment","shaders/Phong.fs");
-    shader->compileShader("PhongVertex");
-    shader->compileShader("PhongFragment");
-    shader->attachShaderToProgram("Phong","PhongVertex");
-    shader->attachShaderToProgram("Phong","PhongFragment");
-    shader->bindAttribute("Phong",0,"inVert");
-    shader->bindAttribute("Phong",1,"inUV");
-    shader->bindAttribute("Phong",2,"inNormal");
+    m_shader->createShaderProgram("Phong");
+    m_shader->attachShader("PhongVertex",ngl::VERTEX);
+    m_shader->attachShader("PhongFragment",ngl::FRAGMENT);
+    m_shader->loadShaderSource("PhongVertex","shaders/Phong.vs");
+    m_shader->loadShaderSource("PhongFragment","shaders/Phong.fs");
+    m_shader->compileShader("PhongVertex");
+    m_shader->compileShader("PhongFragment");
+    m_shader->attachShaderToProgram("Phong","PhongVertex");
+    m_shader->attachShaderToProgram("Phong","PhongFragment");
+    m_shader->bindAttribute("Phong",0,"inVert");
+    m_shader->bindAttribute("Phong",1,"inUV");
+    m_shader->bindAttribute("Phong",2,"inNormal");
 
-    // now we have associated this data we can link the shader
-    shader->linkProgramObject("Phong");
+    // now we have associated this data we can link the m_shader
+    m_shader->linkProgramObject("Phong");
     // and make it active ready to load values
     //(*shader)["Phong"]->use();
     //shader->setShaderParam1i("Normalize",1);
 
     //LOAD COLOUR SHADER
 
-    shader->createShaderProgram("Colour");
-    shader->attachShader("ColourVertex",ngl::VERTEX);
-    shader->attachShader("ColourFragment",ngl::FRAGMENT);
-    shader->loadShaderSource("ColourVertex","shaders/Colour.vs");
-    shader->loadShaderSource("ColourFragment","shaders/Colour.fs");
-    shader->compileShader("ColourVertex");
-    shader->compileShader("ColourFragment");
-    shader->attachShaderToProgram("Colour","ColourVertex");
-    shader->attachShaderToProgram("Colour","ColourFragment");
-    shader->bindAttribute("Colour",0,"inVert");
-    shader->linkProgramObject("Colour");
+    m_shader->createShaderProgram("Colour");
+    m_shader->attachShader("ColourVertex",ngl::VERTEX);
+    m_shader->attachShader("ColourFragment",ngl::FRAGMENT);
+    m_shader->loadShaderSource("ColourVertex","shaders/Colour.vs");
+    m_shader->loadShaderSource("ColourFragment","shaders/Colour.fs");
+    m_shader->compileShader("ColourVertex");
+    m_shader->compileShader("ColourFragment");
+    m_shader->attachShaderToProgram("Colour","ColourVertex");
+    m_shader->attachShaderToProgram("Colour","ColourFragment");
+    m_shader->bindAttribute("Colour",0,"inVert");
+    m_shader->linkProgramObject("Colour");
 
 
-    (*shader)["Phong"]->use();
-    shader->setShaderParam4f("Colour",1,0,0,1);
+    (*m_shader)["Phong"]->use();
+    m_shader->setShaderParam4f("Colour",1,0,0,1);
 
     //CAMERA
     ngl::Vec3 from(0,10,10);
@@ -125,7 +125,7 @@ void GLWindow::initializeGL()
     ngl::Vec3 up(0,1,0);
     m_camera = ngl::Camera(from,to,up,ngl::PERSPECTIVE);
     m_camera.setShape(45,(float)720.0/576.0,0.05,350,ngl::PERSPECTIVE);
-    shader->setShaderParam3f("viewerPos",m_camera.getEye().m_x,m_camera.getEye().m_y,m_camera.getEye().m_z);
+    m_shader->setShaderParam3f("viewerPos",m_camera.getEye().m_x,m_camera.getEye().m_y,m_camera.getEye().m_z);
 
     //LIGHT
     ngl::Mat4 iv=m_camera.getViewMatrix();
@@ -136,14 +136,17 @@ void GLWindow::initializeGL()
     m_light.loadToShader("light");
 
     //Primitives for drawing
-    ngl::VAOPrimitives *primitives = ngl::VAOPrimitives::instance();
-    primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
-    primitives->createTorus("radius",0.01,1,3,16);
+    m_primitives = ngl::VAOPrimitives::instance();
+    m_primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
+    m_primitives->createTorus("radius",0.01,1,3,16);
+    m_primitives->createCylinder("vectorModulus",0.04,2,6,1);
+    m_primitives->createCone("vectorSense",0.1,0.4,6,1);
+
 
     //Loading geometry for testing
-    m_geometry = new ngl::Obj("geometry/legoman.obj");
-    m_geometry->createVAO();
-    m_geometry->calcBoundingSphere();
+    m_dummy= new ngl::Obj("dummies/legoman.obj");
+    m_dummy->createVAO();
+    m_dummy->calcBoundingSphere();
 
 }
 
@@ -157,8 +160,6 @@ void GLWindow::resizeGL(int _w, int _h)
 inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
 {
 
-    ngl::ShaderLib *shader=ngl::ShaderLib::instance();
-
     ngl::Mat4 MV;
     ngl::Mat4 MVP;
     ngl::Mat3 normalMatrix;
@@ -168,19 +169,18 @@ inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
     MVP= M*m_camera.getVPMatrix();
     normalMatrix=MV;
     normalMatrix.inverse();
-    shader->setShaderParamFromMat4("MV",MV);
-    shader->setShaderParamFromMat4("MVP",MVP);
-    shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
-    shader->setShaderParamFromMat4("M",M);
+    m_shader->setShaderParamFromMat4("MV",MV);
+    m_shader->setShaderParamFromMat4("MVP",MVP);
+    m_shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
+    m_shader->setShaderParamFromMat4("M",M);
 }
 
 inline void GLWindow::loadMVPToShader(ngl::TransformStack &_tx)
 {
-    ngl::ShaderLib *shader=ngl::ShaderLib::instance();
     ngl::Mat4 MVP;
 
     MVP = _tx.getCurrAndGlobal().getMatrix()*m_camera.getVPMatrix();
-    shader->setShaderParamFromMat4("MVP",MVP);
+    m_shader->setShaderParamFromMat4("MVP",MVP);
 }
 
 void GLWindow::paintGL()
@@ -189,32 +189,17 @@ void GLWindow::paintGL()
     // clear the screen and depth buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // grab an instance of the shader manager
-    ngl::ShaderLib *shader=ngl::ShaderLib::instance();
-    //(*shader)["Phong"]->use();
-
-    //(*shader)["nglColourShader"]->use();
-    //shader->setShaderParam4f("Colour",1,0,0,1);
-
-    ngl::VAOPrimitives *primitives = ngl::VAOPrimitives::instance();
-
-    //GLOBAL TRANSFORMATION
-
-
-    //std::cout << m_transformStack.getCurrAndGlobal().getPosition() << std::endl
-
     //DRAWING
     ngl::Transformation transform;
     int cellSize;
-    int visionRadius;
 
     //Drawing the grid
     cellSize = m_crowdEngine.getCellSize();
     transform.setScale(cellSize,0,cellSize);
     m_transformStack.setCurrent(transform);
     loadMVPToShader(m_transformStack);
-    shader->setShaderParam4f("Colour",1,1,1,1);
-    primitives->draw("ground");
+    m_shader->setShaderParam4f("Colour",1,1,1,1);
+    m_primitives->draw("ground");
 
     //DRAWING AGENTS
     std::vector<Agent*>::const_iterator endAgent = m_crowdEngine.getAgentsEnd();
@@ -222,7 +207,7 @@ void GLWindow::paintGL()
     Agent* agent;
 
     // COLOUR
-    shader->setShaderParam4f("Colour",1,0,0,1);
+    m_shader->setShaderParam4f("Colour",1,0,0,1);
     //shader->setShaderParam4f("Colour",0.5,0.5,0.5,1);
 
     for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
@@ -232,16 +217,11 @@ void GLWindow::paintGL()
         m_transformStack.setCurrent(agent->getTransform());
         loadMatricesToShader(m_transformStack);
         //primitives->draw("cube");
-        m_geometry->draw();
+        m_dummy->draw();
 
-        visionRadius = agent->getVisionRadius();
-        transform.setScale(visionRadius,visionRadius,1);
-        transform.setPosition(agent->getPosition());
-        transform.setRotation(90,0,0);
-        m_transformStack.setCurrent(transform);
-        loadMatricesToShader(m_transformStack);
+        drawRadius(agent->getVisionRadius());
 
-        primitives->draw("radius");
+        drawVector(agent->getVelocity());
         
     }
 
@@ -263,6 +243,37 @@ void GLWindow::paintGL()
 
     shader->use("Phong");
     */
+
+}
+
+inline void GLWindow::drawVector(ngl::Vec4 _vector)
+{
+    int scale=2;
+    float yRot=0;
+
+    yRot = atan2(-_vector.m_z,_vector.m_x) * 180/M_PI;
+    m_transformStack.setRotation(0,yRot-90,0);
+
+    //MODULUS
+    m_transformStack.setScale(1,1,scale*_vector.length());
+    loadMatricesToShader(m_transformStack);
+    m_primitives->draw("vectorModulus");
+
+    //SENSE
+    // why x2?!!
+    m_transformStack.setScale(1,1,-1);
+    m_transformStack.addPosition(2*scale*_vector.m_x,0,2*scale*_vector.m_z);
+    loadMatricesToShader(m_transformStack);
+    m_primitives->draw("vectorSense");
+
+}
+
+inline void GLWindow::drawRadius(int _radius)
+{
+    m_transformStack.setScale(_radius,_radius,1);
+    m_transformStack.setRotation(90,0,0);
+    loadMatricesToShader(m_transformStack);
+    m_primitives->draw("radius");
 
 }
 
