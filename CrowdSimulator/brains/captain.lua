@@ -111,20 +111,20 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 				attackForce[1] = attackForce[1] + attackDirection[1]*message.strength
 				attackForce[2] = attackForce[2] + attackDirection[2]*message.strength
 				attackForce[3] = attackForce[3] + attackDirection[3]*message.strength
-				
+
 				--key point
 				damage = damage + message.strength
 			end
 		end
 		
 		--normalize
-		magnitude = math.sqrt(attackForce[1]^2 + attackForce[2]^2 + attackForce[3]^2)
-		if (magnitude>0)
-		then
-			attackForce[1] = attackForce[1] / magnitude
-			attackForce[2] = attackForce[2] / magnitude
-			attackForce[3] = attackForce[3] / magnitude
-		end	
+		--magnitude = math.sqrt(attackForce[1]^2 + attackForce[2]^2 + attackForce[3]^2)
+		--if (magnitude>0)
+		--then
+		--	attackForce[1] = attackForce[1] / magnitude
+		--	attackForce[2] = attackForce[2] / magnitude
+		--	attackForce[3] = attackForce[3] / magnitude
+		--end	
 
 		return attackForce, damage
 
@@ -150,7 +150,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		for key, neighbour in pairs(neighbours)
 		do
 			if (neighbour.attributes.army~=attributes.army and
-			    neighbour.state~="captainDead")
+			    neighbour.state~="captainDead" and neighbour.state~="warriorDead")
 			then
 				enemiesCounter = enemiesCounter + 1
 			end
@@ -166,11 +166,6 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 			return {0,0,0}, {0,0,0}, strength, "captainHold", {}
 		end	
 		
-		
-
-		--Flocking force
-		flockForce = captainFlockForce(position,attributes,neighbours,1,1,0)
-
 		--AttackForce
 		attackForce, damage = captainAttackForce(position,inbox)
 
@@ -213,9 +208,9 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		heading = {0,0,0}
 		if (enemiesCounter > 0)
 		then
-			movementForce[1] = (closestEnemyPosition[1] - position.x) - velocity.x
-			movementForce[2] = (closestEnemyPosition[2] - position.y) - velocity.y
-			movementForce[3] = (closestEnemyPosition[3] - position.z) - velocity.z
+			movementForce[1] = (closestEnemyPosition[1] - position.x)
+			movementForce[2] = (closestEnemyPosition[2] - position.y)
+			movementForce[3] = (closestEnemyPosition[3] - position.z)
 
 			magnitude = math.sqrt(movementForce[1]^2+movementForce[2]^2+movementForce[3]^2)
 			heading[1] = movementForce[1] / magnitude
@@ -225,13 +220,12 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 
 		--INTEGRATE FORCES
 		force = {}
-		fw = 0.01
-		aw = 0.1
-		mw = 0.01
+		aw = 0.05
+		mw = 0.05
 		--print(enemiesAttackForce[1],enemiesAttackForce[2],enemiesAttackForce[3])
-		force[1] = attackForce[1]*aw + movementForce[1]*mw + flockForce[1]*fw
-		force[2] = attackForce[2]*aw + movementForce[2]*mw + flockForce[2]*fw
-		force[3] = attackForce[3]*aw + movementForce[3]*mw + flockForce[3]*fw
+		force[1] = attackForce[1]*aw + movementForce[1]*strength*mw
+		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw
+		force[3] = attackForce[3]*aw + movementForce[3]*strength*mw
 
 		--CALCULATING STRENGTH
 		--Damage and cost of attack
@@ -258,7 +252,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		for key,neighbour in pairs(neighbours)
 		do
 			if (neighbour.attributes.army~=attributes.army and
-			    neighbour.state~=dead)
+			    neighbour.state~="captainDead" and neighbour.state~="warriorDead")
 			then
 				enemiesCounter = enemiesCounter + 1
 			end
@@ -273,9 +267,6 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		else	
 			return {0,0,0}, {0,0,0}, strength, "captainHold", {}
 		end
-
-		--FLOCK FORCE
-		flockForce = captainFlockForce(position,attributes,neighbours,1,1,1)
 
 		--INCOMING ATTACK FORCE
 		attackForce, damage = captainAttackForce(position,inbox)
@@ -307,15 +298,14 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		--INTEGRATING FORCE
 		force = {}
 		aw = 0.05
-		fw = 0.01
-		force[1] = flockForce[1] * fw + attackForce[1] * aw
-		force[2] = flockForce[2] * fw + attackForce[2] * aw
-		force[3] = flockForce[3] * fw + attackForce[3] * aw
+		resistance = 0.05
+		force[1] = attackForce[1]*aw - velocity.x*resistance*strength
+		force[2] = attackForce[2]*aw - velocity.y*resistance*strength
+		force[3] = attackForce[3]*aw - velocity.z*resistance*strength
 
 		--CALCULATING STRENGTH
 		dw = 0.0001
-		strength = strength + 0.001 - damage*dw
-
+		strength = strength + 0.005 - damage*dw
 
 		return force, heading, strength, state, messages
 
@@ -332,6 +322,26 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 
 	stateAction.captainDead = captainDead
 
+	--LOST
+	function captainLost(velocity)
+		angle = (math.pi/300)
+
+		lostForce = {0,0,0}
+		lostForce[1] = velocity.x*math.cos(angle)-velocity.z*math.sin(angle);
+		lostForce[3] = velocity.x*math.sin(angle)+velocity.z*math.cos(angle);
+
+		magnitude = math.sqrt(lostForce[1]^2 + lostForce[2]^2 + lostForce[3]^2)
+		if (magnitude>0)
+		then		
+			lostForce[1] = lostForce[1] / magnitude
+			lostForce[2] = lostForce[2] / magnitude
+			lostForce[3] = lostForce[3] / magnitude
+		end
+
+		return lostForce
+	end
+
+
 	--RUN STATE
 	function captainRun(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
@@ -340,7 +350,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		for key,neighbour in pairs(neighbours)
 		do
 			if (attributes.army ~= neighbour.attributes.army and
-			    neighbour.state~="captainDead")
+			    neighbour.state~="captainDead" and neighbour.state~="warriorDead")
 			then
 				enemiesCounter = enemiesCounter + 1
 			end
@@ -365,21 +375,33 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 			leadershipForce[3] = 1
 		end
 
-		--SYNTHESIS OF ALL THE FORCES
+		--NO FLOCKING -> NOTHING TO LEAD		
 		force = {}
-		lw = 0.02
-		fw = 0.01
-		force[1] = leadershipForce[1]*lw + flockForce[1]*fw
-		force[2] = leadershipForce[2]*lw + flockForce[2]*fw
-		force[3] = leadershipForce[3]*lw + flockForce[3]*fw
+		magnitude = math.sqrt(flockForce[1]^2+flockForce[2]^2+flockForce[3]^2)
+		if (magnitude==0)
+		then
+			force = captainLost(velocity)
+		else
+			lw = 1
+			fw = 1
+			force[1] = (leadershipForce[1]*lw + flockForce[1]*fw)
+			force[2] = (leadershipForce[2]*lw + flockForce[2]*fw)
+			force[3] = (leadershipForce[3]*lw + flockForce[3]*fw)
+		end
+		
+		--THE FORCE DEPENDS ON THE STRENGTH
+		tw = 0.1
+		force[1] = force[1] * tw * strength
+		force[2] = force[2] * tw * strength
+		force[3] = force[3] * tw * strength
 
-		strength = strength + 0.0001
+		--RECOVERING
+		strength = strength + 0.001
 		
 		--print(force[1].." "..force[2].." "..force[3]);
 
 		messages = {}
 
-	
 		return force, {0,0,0}, strength, state, messages
 
 	end
