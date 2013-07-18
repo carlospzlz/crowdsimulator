@@ -15,7 +15,7 @@ Agent::Agent()
     m_maxStrength = 3;
     m_visionRadius = 5;
     m_strength = m_maxStrength;
-    m_maxSpeed = 1;
+    m_maxSpeed = 2;
     m_transformation.reset();
     m_previousTransform = m_transformation;
     m_state = "unknown";
@@ -30,7 +30,7 @@ Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
     m_maxStrength = 3;
     m_visionRadius = 5;
     m_strength = m_maxStrength;
-    m_maxSpeed = 1;
+    m_maxSpeed = 2;
     m_transformation.setPosition(_pos);
     m_previousTransform = m_transformation;
     m_attributes["flock"] = _flock;
