@@ -151,7 +151,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		for key, neighbour in pairs(neighbours)
 		do
 			if (neighbour.attributes.army~=attributes.army and
-			    neighbour.state~="warriorDead")
+			    neighbour.state~="warriorDead" and neighbour.state~="captainDead")
 			then
 				enemiesCounter = enemiesCounter + 1
 			end
@@ -166,11 +166,6 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		else	
 			return {0,0,0}, {0,0,0}, strength, "warriorHold", {}
 		end	
-		
-		
-
-		--Flocking force
-		flockForce = warriorFlockForce(position,attributes,neighbours,0,0,0)
 
 		--AttackForce
 		attackForce, damage = warriorAttackForce(position,inbox)
@@ -214,9 +209,10 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		heading = {0,0,0}
 		if (enemiesCounter > 0)
 		then
-			movementForce[1] = (closestEnemyPosition[1] - position.x) - velocity.x
-			movementForce[2] = (closestEnemyPosition[2] - position.y) - velocity.y
-			movementForce[3] = (closestEnemyPosition[3] - position.z) - velocity.z
+			movementForce[1] = (closestEnemyPosition[1] - position.x)
+			movementForce[2] = (closestEnemyPosition[2] - position.y)
+			movementForce[3] = (closestEnemyPosition[3] - position.z)
+			--before you had a steering behaviour, substracting the velocity...
 
 			magnitude = math.sqrt(movementForce[1]^2+movementForce[2]^2+movementForce[3]^2)
 			heading[1] = movementForce[1] / magnitude
@@ -226,18 +222,17 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 
 		--INTEGRATE FORCES
 		force = {}
-		fw = 0.01
 		aw = 0.1
 		mw = 0.01
 		--print(enemiesAttackForce[1],enemiesAttackForce[2],enemiesAttackForce[3])
-		force[1] = attackForce[1]*aw + (movementForce[1]*mw + flockForce[1]*fw)
-		force[2] = attackForce[2]*aw + (movementForce[2]*mw + flockForce[2]*fw)
-		force[3] = attackForce[3]*aw + (movementForce[3]*mw + flockForce[3]*fw)
+		force[1] = attackForce[1]*aw + movementForce[1]*mw
+		force[2] = attackForce[2]*aw + movementForce[2]*mw
+		force[3] = attackForce[3]*aw + movementForce[3]*mw
 
 		--CALCULATING STRENGTH
 		--Damage and cost of attack
 		wd = 0.01
-		strength = strength - 0.01 - damage*wd
+		strength = strength - 0.001 - damage*wd
 
 		--print(attributes.army,"STRENGTH AND DAMAGE", strength,damage)
 
@@ -260,7 +255,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		for key,neighbour in pairs(neighbours)
 		do
 			if (neighbour.attributes.army~=attributes.army and
-			    neighbour.state~=dead)
+			    neighbour.state~="warriorDead" and neighbour.state~="captainDead")
 			then
 				enemiesCounter = enemiesCounter + 1
 			end
@@ -275,9 +270,6 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		else	
 			return {0,0,0}, {0,0,0}, strength, "warriorHold", {}
 		end
-
-		--FLOCK FORCE
-		flockForce = warriorFlockForce(position,attributes,neighbours,0,0,0)
 
 		--INCOMING ATTACK FORCE
 		attackForce, damage = warriorAttackForce(position,inbox)
@@ -309,14 +301,14 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		--SYNTHESIS OF THE FORCE
 		force = {}
 		aw = 0.05
-		fw = 0.01
-		force[1] = flockForce[1]*fw + attackForce[1]*aw
-		force[2] = flockForce[2]*fw + attackForce[2]*aw
-		force[3] = flockForce[3]*fw + attackForce[3]*aw
+		resistance = 0.05
+		force[1] = attackForce[1]*aw - velocity.x*resistance
+		force[2] = attackForce[2]*aw - velocity.y*resistance
+		force[3] = attackForce[3]*aw - velocity.z*resistance
 
 		--CALCULATING STRENGTH
 		wd = 0.0001
-		strength = strength + 0.01 - damage*wd
+		strength = strength + 0.005 - damage*wd
 
 		return force, heading, strength, state, messages
 
@@ -335,7 +327,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 
 	--LOST
 	function warriorLost(velocity)
-		angle = (math.pi/300)
+		angle = (math.pi/12)
 
 		lostForce = {0,0,0}
 		lostForce[1] = velocity.x*math.cos(angle)-velocity.z*math.sin(angle);
@@ -360,7 +352,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		for key,neighbour in pairs(neighbours)
 		do
 			if (attributes.army ~= neighbour.attributes.army and
-			    neighbour.state~="warriorDead")
+			    neighbour.state~="warriorDead" and neighbour.state~="captainDead")
 			then
 				enemiesCounter = enemiesCounter + 1
 			end
@@ -372,24 +364,23 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		end
 		
 		--FLOCK BEHAVIOUR
-		flockForce = warriorFlockForce(position,attributes,neighbours,1,1,1)
-
-		--THE FORCE DEPENDS ON THE STRENGTH
-		force = {}
-		fw = 0.01
-		strength = 1
-		--wf = 
-		force[1] = flockForce[1] * fw * strength
-		force[2] = flockForce[2] * fw * strength
-		force[3] = flockForce[3] * fw * strength
+		flockForce = warriorFlockForce(position,attributes,neighbours,1,1,3)
 
 		--NO FLOCKING		
+		force = {}
 		magnitude = math.sqrt(flockForce[1]^2+flockForce[2]^2+flockForce[3]^2)
 		if (magnitude==0)
 		then
 			force = warriorLost(velocity)
+		else
+			force = flockForce
 		end
 		
+		--THE FORCE DEPENDS ON THE STRENGTH
+		tw = 0.01
+		force[1] = force[1] * tw * strength
+		force[2] = force[2] * tw * strength
+		force[3] = force[3] * tw * strength
 
 		--RECOVERING
 		strength = strength + 0.001
