@@ -19,7 +19,7 @@ struct message
     int agentID;
     std::string label;
     ngl::Vec3 position;
-    int strength;
+    float strength;
 };
 
 class Agent
@@ -38,6 +38,7 @@ private:
     float m_visionRadius;
     ngl::Vec4 m_totalForce;
     ngl::Vec4 m_velocity;
+    ngl::Vec4 m_heading;
     float m_maxSpeed;
     ngl::Transformation m_transformation;
     ngl::Transformation m_previousTransform;
@@ -60,10 +61,12 @@ public:
     void setMass(float _mass) { m_mass = _mass; }
     void setMaxStrength(float _maxStrength) { m_maxStrength = _maxStrength; m_strength = m_maxStrength; }
     void setMaxSpeed(float _maxSpeed) { m_maxSpeed = _maxSpeed; }
+    void setHeading(ngl::Vec3 _heading) { m_heading = _heading; }
     void setVisionRadius(float _visionRadius) { m_visionRadius = _visionRadius; }
     void setPosition(ngl::Vec3 _pos) { m_transformation.setPosition(_pos); }
     void setNeighbours(const std::vector<Agent*> &_neighbours) { m_neighbours = _neighbours; }
     void setBrain(std::string _brain) { m_brain = _brain; }
+    void setState(std::string _state) { m_state = _state; }
     void addAttribute(std::string _key, std::string _value) { m_attributes[_key] = _value; }
 
     float getAgentID() const { return m_agentID; }
@@ -77,6 +80,7 @@ public:
     ngl::Transformation getTransform() { return m_transformation; }
     int getVisionRadius() const { return m_visionRadius; }
     std::string getBrain() const { return m_brain; }
+    const std::map<std::string,std::string> &getAttributes() { return m_attributes; }
 
     void execute();
     void sendMessage(message _message) { m_inbox.push_back(_message); }

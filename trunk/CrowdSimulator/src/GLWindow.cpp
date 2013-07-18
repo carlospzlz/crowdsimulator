@@ -41,15 +41,35 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
     // PLAYING WITH AGENTS
     //m_crowdEngine.loadBrain("printer");
-    m_crowdEngine.loadBrain("warrior");
-    m_crowdEngine.createRandomFlock(5,10,ngl::Vec2(0,0),"testFlock");
+    m_crowdEngine.loadBrain("troll");
 
-    Agent *myAgent = new Agent();
-    m_crowdEngine.loadBrain("leaderBoid");
-    myAgent->setBrain("leaderBoid");
-    myAgent->addAttribute("flock","testFlock");
-    myAgent->setVisionRadius(8);
-    m_crowdEngine.addAgent(myAgent);
+    m_crowdEngine.createRandomFlock(2,2,ngl::Vec2(0,20),"flock1",2,"army1");
+    m_crowdEngine.loadBrain("warrior");
+    m_crowdEngine.createRandomFlock(2,2,ngl::Vec2(0,-20),"flock2",1,"army2");
+
+    //Captain 1
+    Agent *captain1 = new Agent();
+    m_crowdEngine.loadBrain("captain");
+    captain1->setBrain("captain");
+    captain1->addAttribute("flock","flock1");
+    captain1->addAttribute("army","army1");
+    captain1->setMaxStrength(3);
+    captain1->setPosition(ngl::Vec3(1,0,18));
+    captain1->setVisionRadius(8);
+    captain1->setState("hold");
+    m_crowdEngine.addAgent(captain1);
+
+    //Captain 2
+    Agent *captain2 = new Agent();
+    //m_crowdEngine.loadBrain("captain");
+    captain2->setBrain("captain");
+    captain2->addAttribute("flock","flock2");
+    captain2->addAttribute("army","army2");
+    captain2->setMaxStrength(1);
+    captain2->setPosition(ngl::Vec3(-1,0,-18));
+    captain2->setVisionRadius(8);
+    captain2->setState("hold");
+    m_crowdEngine.addAgent(captain2);
 
 
     //START TIMER (maybe it's not simulating)
@@ -148,6 +168,10 @@ void GLWindow::initializeGL()
     m_dummy->createVAO();
     m_dummy->calcBoundingSphere();
 
+    m_dummy2= new ngl::Obj("dummies/human.obj");
+    m_dummy2->createVAO();
+    m_dummy2->calcBoundingSphere();
+
 }
 
 
@@ -209,15 +233,21 @@ void GLWindow::paintGL()
     // COLOUR
     m_shader->setShaderParam4f("Colour",1,0,0,1);
     //shader->setShaderParam4f("Colour",0.5,0.5,0.5,1);
+    std::string army;
 
     for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
     {
         agent = *currentAgent;
         //agent->print();
         m_transformStack.setCurrent(agent->getTransform());
+        setStateColour(agent->getState());
         loadMatricesToShader(m_transformStack);
         //primitives->draw("cube");
-        m_dummy->draw();
+        army = agent->getAttributes().at("army");
+        if (army=="army1")
+            m_dummy->draw();
+        else
+            m_dummy2->draw();
 
         drawRadius(agent->getVisionRadius());
 
@@ -248,23 +278,30 @@ void GLWindow::paintGL()
 
 inline void GLWindow::drawVector(ngl::Vec4 _vector)
 {
-    int scale=2;
-    float yRot=0;
+    float magnitude = _vector.length();
 
-    yRot = atan2(-_vector.m_z,_vector.m_x) * 180/M_PI;
-    m_transformStack.setRotation(0,yRot-90,0);
+    // without this check we get ngl determinat 0
+    // because of the scale
+    if (magnitude>0)
+    {
+        int scale=2;
+        float yRot=0;
 
-    //MODULUS
-    m_transformStack.setScale(1,1,scale*_vector.length());
-    loadMatricesToShader(m_transformStack);
-    m_primitives->draw("vectorModulus");
+        yRot = atan2(-_vector.m_z,_vector.m_x) * 180/M_PI;
+        m_transformStack.setRotation(0,yRot-90,0);
 
-    //SENSE
-    // why x2?!!
-    m_transformStack.setScale(1,1,-1);
-    m_transformStack.addPosition(2*scale*_vector.m_x,0,2*scale*_vector.m_z);
-    loadMatricesToShader(m_transformStack);
-    m_primitives->draw("vectorSense");
+        //MODULUS
+        m_transformStack.setScale(1,1,scale*_vector.length());
+        loadMatricesToShader(m_transformStack);
+        m_primitives->draw("vectorModulus");
+
+        //SENSE
+        // why x2?!!
+        m_transformStack.setScale(1,1,-1);
+        m_transformStack.addPosition(2*scale*_vector.m_x,0,2*scale*_vector.m_z);
+        loadMatricesToShader(m_transformStack);
+        m_primitives->draw("vectorSense");
+    }
 
 }
 
@@ -275,6 +312,33 @@ inline void GLWindow::drawRadius(int _radius)
     loadMatricesToShader(m_transformStack);
     m_primitives->draw("radius");
 
+}
+
+inline void GLWindow::setStateColour(std::string _state)
+{
+    //warrior states
+    if (_state=="warriorHold")
+        m_shader->setShaderParam4f("Colour",1,1,1,1);
+    else if (_state=="warriorRun")
+        m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="warriorAttack")
+        m_shader->setShaderParam4f("Colour",1,0,0,1);
+    else if (_state=="warriorDefend")
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
+    else if (_state=="warriorDead")
+        m_shader->setShaderParam4f("Colour",0,0,0,0);
+
+    //captain states
+    else if (_state=="captainHold")
+        m_shader->setShaderParam4f("Colour",1,1,1,1);
+    else if (_state=="captainRun")
+        m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="captainAttack")
+        m_shader->setShaderParam4f("Colour",1,0,0,1);
+    else if (_state=="captainDefend")
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
+    else if (_state=="captainDead")
+        m_shader->setShaderParam4f("Colour",0,0,0,0);
 }
 
 void GLWindow::mouseMoveEvent(QMouseEvent * _event)
