@@ -16,7 +16,7 @@ const float GLWindow::s_zoomIncrement = 1;
 const int GLWindow::s_groundSize = 100;
 
 //timer = 20 ms => 50 fps ~ 48
-const int GLWindow::s_timerValue = 20;
+const int GLWindow::s_timerValue = 0;
 
 /**
  * in this ctor we need to call the CreateCoreGLContext class, this is mainly for the MacOS Lion version as
@@ -40,36 +40,40 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.second = 0;
 
     // PLAYING WITH AGENTS
-    //m_crowdEngine.loadBrain("printer");
-    m_crowdEngine.loadBrain("troll");
-
-    m_crowdEngine.createRandomFlock(2,2,ngl::Vec2(0,20),"flock1",2,"army1");
     m_crowdEngine.loadBrain("warrior");
-    m_crowdEngine.createRandomFlock(2,2,ngl::Vec2(0,-20),"flock2",1,"army2");
+    //m_crowdEngine.loadBrain("boid");
+
+    m_crowdEngine.createRandomFlock(7,7,ngl::Vec2(0,20),"flock1",2,"army1");
+    //m_crowdEngine.loadBrain("warrior");
+    m_crowdEngine.createRandomFlock(7,7,ngl::Vec2(0,-20),"flock2",1,"army2");
 
     //Captain 1
     Agent *captain1 = new Agent();
     m_crowdEngine.loadBrain("captain");
-    captain1->setBrain("captain");
+    captain1->setBrain("warrior");
     captain1->addAttribute("flock","flock1");
     captain1->addAttribute("army","army1");
-    captain1->setMaxStrength(3);
+    captain1->setMaxStrength(2);
+    captain1->setMaxSpeed(10);
     captain1->setPosition(ngl::Vec3(1,0,18));
     captain1->setVisionRadius(8);
-    captain1->setState("hold");
+    captain1->setState("holdCaptain");
     m_crowdEngine.addAgent(captain1);
 
     //Captain 2
     Agent *captain2 = new Agent();
-    //m_crowdEngine.loadBrain("captain");
+    m_crowdEngine.loadBrain("captain");
     captain2->setBrain("captain");
     captain2->addAttribute("flock","flock2");
     captain2->addAttribute("army","army2");
-    captain2->setMaxStrength(1);
+    captain2->setMaxStrength(2);
+    captain2->setMaxSpeed(1);
     captain2->setPosition(ngl::Vec3(-1,0,-18));
     captain2->setVisionRadius(8);
-    captain2->setState("hold");
+    captain2->setState("holdCaptain");
     m_crowdEngine.addAgent(captain2);
+
+    //m_crowdEngine.addAgent(troll);
 
 
     //START TIMER (maybe it's not simulating)
@@ -250,8 +254,8 @@ void GLWindow::paintGL()
             m_dummy2->draw();
 
         drawRadius(agent->getVisionRadius());
-
         drawVector(agent->getVelocity());
+        drawStrength(agent->getStrength(),agent->getMass());
         
     }
 
@@ -274,6 +278,20 @@ void GLWindow::paintGL()
     shader->use("Phong");
     */
 
+}
+
+inline void GLWindow::drawStrength(float _strength, float _mass)
+{
+    if (_strength>0)
+    {
+        int scaleLength=1;
+        int scaleHeight=2;
+        m_transformStack.addPosition(-0.2,_mass*scaleHeight,0);
+        m_transformStack.setScale(0.05,0.1,_strength*scaleLength);
+        m_transformStack.setRotation(0,90,0);
+        loadMatricesToShader(m_transformStack);
+        m_primitives->draw("cube");
+    }
 }
 
 inline void GLWindow::drawVector(ngl::Vec4 _vector)
@@ -301,6 +319,9 @@ inline void GLWindow::drawVector(ngl::Vec4 _vector)
         m_transformStack.addPosition(2*scale*_vector.m_x,0,2*scale*_vector.m_z);
         loadMatricesToShader(m_transformStack);
         m_primitives->draw("vectorSense");
+
+        //UNDO POSITION
+        m_transformStack.addPosition(-2*scale*_vector.m_x,0,-2*scale*_vector.m_z);
     }
 
 }
@@ -311,6 +332,8 @@ inline void GLWindow::drawRadius(int _radius)
     m_transformStack.setRotation(90,0,0);
     loadMatricesToShader(m_transformStack);
     m_primitives->draw("radius");
+    m_transformStack.setScale(-_radius,-_radius,1);
+    m_transformStack.setRotation(-90,0,0);
 
 }
 

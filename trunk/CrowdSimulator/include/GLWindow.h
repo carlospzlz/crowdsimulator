@@ -49,6 +49,7 @@ private :
     void loadMVPToShader(ngl::TransformStack &_tx);
     void inline drawVector(ngl::Vec4 _vector);
     void inline drawRadius(int _radius);
+    void inline drawStrength(float _strength, float _mass);
     void inline setStateColour(std::string _state);
 
     void mouseMoveEvent(QMouseEvent * _event);
