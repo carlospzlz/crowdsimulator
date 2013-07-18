@@ -3,7 +3,7 @@
 
 const float CrowdEngine::s_initStride = 1;
 const int CrowdEngine::s_cellSize = 2;
-const float CrowdEngine::s_step = 0.1;
+const float CrowdEngine::s_step = 0.05;
 const float CrowdEngine::s_friction = 0.01;
 
 const std::string CrowdEngine::s_brainsPath = "brains/";
@@ -46,7 +46,7 @@ void CrowdEngine::loadBrain(std::string _brain)
     }
     else
     {
-        std::cout << "CrowdEngine: Brain " << _brain << "already loaded" << std::endl;
+        std::cout << "CrowdEngine: Brain " << _brain << " already loaded" << std::endl;
     }
 }
 
@@ -68,7 +68,7 @@ void CrowdEngine::addAgent(Agent* agent)
     }
 }
 
-void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock)
+void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock, float _maxStrength, std::string _army)
 {
     if (_rows<=0 || _columns<=0)
     {
@@ -106,6 +106,8 @@ void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position
             brain = *firstBrain;
 
             myAgent = new Agent(agentPosition,_flock,brain);
+            myAgent->addAttribute("army",_army);
+            myAgent->setMaxStrength(_maxStrength);
 
             m_agents.push_back(myAgent);
             flockAgents.push_back(myAgent);

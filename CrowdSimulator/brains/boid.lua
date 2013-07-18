@@ -1,96 +1,89 @@
-function boid (agentID, position, strength, velocity, state, attributes, inbox, neighbours)
+function boid (agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
-	flockForce = flockSteering(position, velocity, attributes, neighbours);
+	-- BOID BEHAVIOUR
 
-	messages = {}
+	--FLOCKING BEHAVIOUR
+	positionSum = {0,0,0}
+	separation = {0,0,0}
+	averageHeading = {0,0,0}
+	neighbourSpeed = 0
 
-	return flockForce, strength, state, messages 
-
-end
-
-function flockSteering (position, velocity, attributes, neighbours)
-
-	-- IMPLEMENTATION OF THE CRAIG REINOLD'S FLOCKING BEHAVIOUS
-	sumPositions = {0,0,0}
-	separationVector = {0,0,0}
-	velocities = {0,0,0}
+	distanceVector = {}
+	distance = 0
 
 	counter = 0
 	for key,neighbour in pairs(neighbours)
 	do
 		if (attributes.flock==neighbour.attributes.flock)
 		then
-			sumPositions[1] = sumPositions[1] + neighbour.position.x
-			sumPositions[2] = sumPositions[2] + neighbour.position.y
-			sumPositions[3] = sumPositions[3] + neighbour.position.z
+			positionSum[1] = positionSum[1] + neighbour.position.x
+			positionSum[2] = positionSum[2] + neighbour.position.y
+			positionSum[3] = positionSum[3] + neighbour.position.z
 			
-			separationVector[1] = separationVector[1] + (position.x-neighbour.position.x)
-			separationVector[2] = separationVector[2] + (position.y-neighbour.position.y)
-			separationVector[3] = separationVector[3] + (position.z-neighbour.position.z)
-
-			velocities[1] = velocities[1] + neighbour.velocity.x
-			velocities[2] = velocities[2] + neighbour.velocity.y
-			velocities[3] = velocities[3] + neighbour.velocity.z
+			distanceVector[1] = position.x - neighbour.position.x
+			distanceVector[2] = position.y - neighbour.position.y
+			distanceVector[3] = position.z - neighbour.position.z
+			distance = math.sqrt(distanceVector[1]^2 + distanceVector[2]^2 + distanceVector[3]^2)
+			
+			--separation normalized and weighted, that's the reason of ^2
+			if (distance > 0)
+			then
+				separation[1] = separation[1] + distanceVector[1]/distance^2
+				separation[2] = separation[2] + distanceVector[2]/distance^2
+				separation[3] = separation[3] + distanceVector[3]/distance^2
+			end
+			
+			neighbourSpeed = math.sqrt(neighbour.velocity.x^2+neighbour.velocity.y^2+neighbour.velocity.z^2)
+			if (neighbourSpeed > 0)
+			then
+				averageHeading[1] = averageHeading[1] + neighbour.velocity.x / neighbourSpeed
+				averageHeading[2] = averageHeading[2] + neighbour.velocity.y / neighbourSpeed
+				averageHeading[3] = averageHeading[3] + neighbour.velocity.z / neighbourSpeed
+			end
 
 			counter = counter+1
 		end
 	end
 
+	alignment = {0,0,0}
 	cohesion = {0,0,0}
-	separation = {0,0,0}
-	
 	if (counter>0)
 	then
-		cohesion[1] = sumPositions[1]/counter - position.x
-		cohesion[2] = sumPositions[2]/counter - position.y
-		cohesion[3] = sumPositions[3]/counter - position.z
+		alignment[1] = averageHeading[1] / counter - velocity.x
+		alignment[2] = averageHeading[2] / counter - velocity.y
+		alignment[3] = averageHeading[3] / counter - velocity.z
 
-		separation[1] = separationVector[1] / counter
-		separation[2] = separationVector[2] / counter
-		separation[3] = separationVector[3] / counter
+		cohesion[1] = (positionSum[1] / counter - position.x) - velocity.x
+		cohesion[2] = (positionSum[2] / counter - position.y) - velocity.y
+		cohesion[3] = (positionSum[3] / counter - position.z) - velocity.z
 	end
 
-	-- the separation force is inversely proportional to the distance
-	separationModulus = math.sqrt(separation[1]^2 + separation[2]^2 + separation[3]^2)
+	--Weights for the flocking force
+	flockForce = {}
+	wc = 0.1
+	ws = 0.1 
+	wa = 0.2
+	flockForce[1] = cohesion[1]*wc + separation[1]*ws + alignment[1]*wa
+	flockForce[2] = cohesion[2]*wc + separation[2]*ws + alignment[2]*wa
+	flockForce[3] = cohesion[3]*wc + separation[3]*ws + alignment[3]*wa
 	
-	if (separationModulus ~= 0)
-	then
-		separation[1] = separation[1] / separationModulus
-		separation[2] = separation[2] / separationModulus
-		separation[3] = separation[3] / separationModulus
-	end
-
-	-- Aligmnet rule with 2 cross products
-	vxvn = {}
-	vxvn[1] = velocity.y*velocities[3] - velocity.z*velocities[2]
-	vxvn[2] = - velocity.x*velocities[3] + velocity.z*velocities[1]
-	vxvn[3] = velocity.x*velocities[2] - velocity.y*velocities[1]
-
-	vxvnxv = {}
-	vxvnxv[1] = vxvn[2]*velocity.z - vxvn[3]*velocity.y
-	vxvnxv[2] = - vxvn[1]*velocity.z + vxvn[3]*velocity.x
-	vxvnxv[3] = vxvn[1]*velocity.y - vxvn[2]*velocity.x
-
+	
+	--SYNTHESIS OF ALL THE FORCES
 	force = {}
+	force[1] = flockForce[1]
+	force[2] = flockForce[2]
+	force[3] = flockForce[3]
 
-	wc = 0.15
-	ws = 0.3
-	wa = 0.005
-	force[1] = cohesion[1]*wc + separation[1]*ws + vxvnxv[1]*wa
-	force[2] = cohesion[2]*wc + separation[2]*ws + vxvnxv[2]*wa
-	force[3] = cohesion[3]*wc + separation[3]*ws + vxvnxv[3]*wa
-
-	--print("AGENT "..agentID.."("..counter..")")
-	--print("cohesion: "..cohesion[1]..", "..cohesion[2]..", "..cohesion[3])
-	--print("separation: "..separation[1]..", "..separation[2].." "..separation[3])
-	--print("alignment: "..vxvnxv[1]..", "..vxvnxv[2].." "..vxvnxv[3])
-	--print("force: "..force[1]..", "..force[2].." "..force[3])
-	--print("velocity: "..velocity.x..velocity.y..velocity.z)
-	--print("\n")
+	heading = {}
+	--forceMagnitude = math.sqrt(force[1]^2,force[2]^2,force[3]^2)
+	--heading[1] = force[1] / forceMagnitude
+	--heading[2] = force[2] / forceMagnitude
+	--heading[3] = force[3] / forceMagnitude
 
 	messages = {}
 
-	--print("sending ",force,strength,messages,"\n")
+	--print("FORCE",force[1],force[2],force[3])
 
-	return force
+	return force, heading, strength, state, messages 
+
 end

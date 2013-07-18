@@ -30,7 +30,7 @@ public:
 
     void loadBrain(std::string _brain);
     void addAgent(Agent *agent);
-    void createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock);
+    void createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock, float _maxStrength, std::string _army);
     void loadCrowd(std::string _fileName);
     void printAgents();
     void printCellPartition() { m_cellPartition.printCells(); }

@@ -34,7 +34,7 @@ int main(int argc, char **args)
         myAgent->setPosition(ngl::Vec3(0,0,0));
         myCrowdEngine.addAgent(myAgent);
 
-        myCrowdEngine.createRandomFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0),"testFlock");
+        myCrowdEngine.createRandomFlock(atoi(args[1]),atoi(args[2]),ngl::Vec2(0,0),"testFlock",1,"testArmy");
 
         myCrowdEngine.printAgents();
 

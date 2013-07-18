@@ -41,6 +41,7 @@ private :
     ngl::Camera m_camera;
     ngl::Light m_light;
     ngl::Obj *m_dummy;
+    ngl::Obj *m_dummy2;
 
     CrowdEngine m_crowdEngine;
 
@@ -48,6 +49,7 @@ private :
     void loadMVPToShader(ngl::TransformStack &_tx);
     void inline drawVector(ngl::Vec4 _vector);
     void inline drawRadius(int _radius);
+    void inline setStateColour(std::string _state);
 
     void mouseMoveEvent(QMouseEvent * _event);
     void mousePressEvent(QMouseEvent *_event);

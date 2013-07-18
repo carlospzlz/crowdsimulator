@@ -12,8 +12,8 @@ Agent::Agent()
 {
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
-    m_maxStrength = 1;
-    m_visionRadius = 4;
+    m_maxStrength = 3;
+    m_visionRadius = 5;
     m_strength = m_maxStrength;
     m_maxSpeed = 1;
     m_transformation.reset();
@@ -27,8 +27,8 @@ Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
 {
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
-    m_maxStrength = 0.001;
-    m_visionRadius = 4;
+    m_maxStrength = 3;
+    m_visionRadius = 5;
     m_strength = m_maxStrength;
     m_maxSpeed = 1;
     m_transformation.setPosition(_pos);
@@ -103,7 +103,9 @@ void Agent::execute()
      * m_agentID: number
      * m_position: table
      * m_strength: number
+     * m_maxStrength: number
      * m_velocity: table
+     * m_heading: table
      * m_state: string
      * m_attributes: table
      * m_inbox: table
@@ -150,23 +152,26 @@ void Agent::execute()
     // Stack[4]: m_strength
     lua_pushnumber(s_luaState,m_strength);
 
-    // Stack[5]: m_velocity
+    // Stack[5]: m_maxStrength
+    lua_pushnumber(s_luaState,m_maxStrength);
+
+    // Stack[6]: m_velocity
     lua_createtable(s_luaState,3,0);
 
     lua_pushstring(s_luaState,"x");
     lua_pushnumber(s_luaState,m_velocity.m_x);
-    lua_settable(s_luaState,5);
+    lua_settable(s_luaState,6);
     lua_pushstring(s_luaState,"y");
     lua_pushnumber(s_luaState,m_velocity.m_y);
-    lua_settable(s_luaState,5);
+    lua_settable(s_luaState,6);
     lua_pushstring(s_luaState,"z");
     lua_pushnumber(s_luaState,m_velocity.m_z);
-    lua_settable(s_luaState,5);
+    lua_settable(s_luaState,6);
 
-    // Stack[6]: m_state
+    // Stack[7]: m_state
     lua_pushstring(s_luaState,m_state.c_str());
 
-    // Stack[7]: m_attributes
+    // Stack[8]: m_attributes
     int nAttributes = m_attributes.size();
     lua_createtable(s_luaState,nAttributes,0);
 
@@ -178,11 +183,11 @@ void Agent::execute()
         attribute = (*currentAttribute);
         lua_pushstring(s_luaState, attribute.first.c_str());
         lua_pushstring(s_luaState, attribute.second.c_str());
-        lua_settable(s_luaState, 7);
+        lua_settable(s_luaState, 8);
     }
 
-    // Stack[8]: inbox
-    // Do not need to check the stack, just needed 2 temporal slots
+    // Stack[9]: inbox
+    // be careful with the stack (20 slots)
     message msge;
     int index = 1;
     int nMessage = m_inbox.size();
@@ -193,44 +198,44 @@ void Agent::execute()
         currentMessage!=endMessage; ++currentMessage)
     {
         /**
-         * Each message is gonna be a table stored temporaly at Stack[9],
-         * but then it will be added to the table of neightbours at Stack[8]
+         * Each message is gonna be a table stored temporaly at Stack[10],
+         * but then it will be added to the table of message at Stack[9]
          */
         msge = (*currentMessage);
         lua_createtable(s_luaState,4,0);
         lua_pushstring(s_luaState, "agentID");
         lua_pushinteger(s_luaState, msge.agentID);
-        lua_settable(s_luaState, 9);
+        lua_settable(s_luaState, 10);
         lua_pushstring(s_luaState, "label");
         lua_pushstring(s_luaState, msge.label.c_str());
-        lua_settable(s_luaState, 9);
+        lua_settable(s_luaState, 10);
 
-        //position key at Stack[10]
+        //position key at Stack[11]
         position = msge.position;
         lua_pushstring(s_luaState, "position");
-        //table for position at Stack[11]
+        //table for position at Stack[12]
         lua_createtable(s_luaState,3,0);
         lua_pushstring(s_luaState,"x");
         lua_pushnumber(s_luaState,position.m_x);
-        lua_settable(s_luaState,11);
+        lua_settable(s_luaState,12);
         lua_pushstring(s_luaState,"y");
         lua_pushnumber(s_luaState,position.m_y);
-        lua_settable(s_luaState,11);
+        lua_settable(s_luaState,12);
         lua_pushstring(s_luaState,"z");
         lua_pushnumber(s_luaState,position.m_z);
-        lua_settable(s_luaState,11);
+        lua_settable(s_luaState,12);
         //setting on the table message
-        lua_settable(s_luaState,9);
+        lua_settable(s_luaState,10);
 
         lua_pushstring(s_luaState, "strength");
-        lua_pushinteger(s_luaState, msge.strength);
-        lua_settable(s_luaState, 9);
+        lua_pushnumber(s_luaState, msge.strength);
+        lua_settable(s_luaState, 10);
 
-        lua_rawseti(s_luaState,8,index);
+        lua_rawseti(s_luaState,9,index);
         ++index;
     }
 
-    // Stack[9]: neighbours
+    // Stack[10]: neighbours
     Agent* agent;
     ngl::Vec4 velocity;
     index = 1;
@@ -241,8 +246,8 @@ void Agent::execute()
     for(std::vector<Agent*>::const_iterator currentAgent = m_neighbours.begin(); currentAgent!=endAgent; ++currentAgent)
     {
         /**
-         * Each agent is gonna be a table stored temporaly at Stack[10],
-         * but then it will be added to the table of neightbours at Stack[9]
+         * Each agent is gonna be a table stored temporaly at Stack[11],
+         * but then it will be added to the table of neightbours at Stack[10]
          */
 
         agent = (*currentAgent);
@@ -251,87 +256,88 @@ void Agent::execute()
         // agentID
         lua_pushstring(s_luaState,"agentID");
         lua_pushnumber(s_luaState,agent->getAgentID());
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
         // mass
         lua_pushstring(s_luaState,"mass");
         lua_pushnumber(s_luaState,agent->getMass());
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
         // strength
         lua_pushstring(s_luaState,"strength");
         lua_pushnumber(s_luaState,agent->getStrength());
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
         // position
         position = agent->getPosition();
-        // m_position key at Stack[11]
+        // m_position key at Stack[12]
         lua_pushstring(s_luaState,"position");
-        // Position table at Stack[12]
+        // Position table at Stack[13]
         lua_createtable(s_luaState,3,0);
         lua_pushstring(s_luaState,"x");
         lua_pushnumber(s_luaState,position.m_x);
-        lua_settable(s_luaState,12);
+        lua_settable(s_luaState,13);
         lua_pushstring(s_luaState,"y");
         lua_pushnumber(s_luaState,position.m_y);
-        lua_settable(s_luaState,12);
+        lua_settable(s_luaState,13);
         lua_pushstring(s_luaState,"z");
         lua_pushnumber(s_luaState,position.m_z);
-        lua_settable(s_luaState,12);
+        lua_settable(s_luaState,13);
         // Add position table to the Agent-table
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
         // velocity
         velocity = agent->getVelocity();
-        // m_position key at Stack[11]
+        // m_position key at Stack[12]
         lua_pushstring(s_luaState,"velocity");
-        // Position table at Stack[12]
+        // Position table at Stack[13]
         lua_createtable(s_luaState,3,0);
         lua_pushstring(s_luaState,"x");
         lua_pushnumber(s_luaState,velocity.m_x);
-        lua_settable(s_luaState,12);
+        lua_settable(s_luaState,13);
         lua_pushstring(s_luaState,"y");
         lua_pushnumber(s_luaState,velocity.m_y);
-        lua_settable(s_luaState,12);
+        lua_settable(s_luaState,13);
         lua_pushstring(s_luaState,"z");
         lua_pushnumber(s_luaState,velocity.m_z);
-        lua_settable(s_luaState,12);
+        lua_settable(s_luaState,13);
         // Add position table to the Agent-table
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
 
         // state
         lua_pushstring(s_luaState,"state");
         lua_pushstring(s_luaState,agent->getState().c_str());
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
 
         // Attributes
-        nAttributes = m_attributes.size();
-        // m_messages key at Stack[11]
+        nAttributes = agent->getAttributes().size();
+        // m_messages key at Stack[12]
         lua_pushstring(s_luaState,"attributes");
-        // Messages table at Stack[12]
+        // Messages table at Stack[13]
         lua_createtable(s_luaState,nAttributes,0);
 
-        endAttribute = m_attributes.end();
-        for(std::map<std::string,std::string>::const_iterator currentAttribute = m_attributes.begin();
+        endAttribute = agent->getAttributes().end();
+        for(std::map<std::string,std::string>::const_iterator currentAttribute = agent->getAttributes().begin();
             currentAttribute!=endAttribute; ++currentAttribute)
         {
             attribute = (*currentAttribute);
             lua_pushstring(s_luaState, attribute.first.c_str());
             lua_pushstring(s_luaState, attribute.second.c_str());
-            lua_settable(s_luaState, 12);
+            lua_settable(s_luaState, 13);
         }
         // Add message table to the Agent-table
-        lua_settable(s_luaState,10);
+        lua_settable(s_luaState,11);
 
-        lua_rawseti(s_luaState,9,index);
+        //Add neighbour table
+        lua_rawseti(s_luaState,10,index);
         ++index;
     }
 
 
-    // Take a lot of care here (func+8)
-    lua_call(s_luaState,8,4);
+    // Take a lot of care here (func+10)
+    lua_call(s_luaState,9,5);
 
     /*
     std::cout << lua_typename(s_luaState,lua_type(s_luaState,1))
@@ -343,6 +349,7 @@ void Agent::execute()
     // Returned values
     /**
      * force: table
+     * heading: table
      * strength: number
      * state: string
      * messages: table
@@ -366,25 +373,43 @@ void Agent::execute()
     // ADDING MOVEMENT FORCE
     m_totalForce += agentForce;
 
-    // Strength at Stack[2]
-    m_strength = lua_tonumber(s_luaState,2);
+    // Heading at Stack[2]
+    m_heading = 0;
+    lua_pushnil(s_luaState);
+    if (lua_next(s_luaState,2))
+    {
+        m_heading.m_x = lua_tonumber(s_luaState,-1);
+        lua_pop(s_luaState,1);
+        lua_next(s_luaState,2);
+        m_heading.m_y = lua_tonumber(s_luaState,-1);
+        lua_pop(s_luaState,1);
+        lua_next(s_luaState,2);
+        m_heading.m_z = lua_tonumber(s_luaState,-1);
+        lua_pop(s_luaState,2);
+    }
 
-    // State at Stack[3]
-    m_state = std::string(lua_tostring(s_luaState,3));
+    // Strength at Stack[3]
+    m_strength = lua_tonumber(s_luaState,3);
 
-    // Messages to send at Stack[4]
+    // CLAMPING STRENGTH
+    m_strength = fminf(m_strength,m_maxStrength);
+
+    // State at Stack[4]
+    m_state = std::string(lua_tostring(s_luaState,4));
+
+    // Messages to send at Stack[5]
     message msg;
     int neighbourIndex = 0;
     msg.agentID = m_agentID;
     msg.position = m_transformation.getPosition();
     msg.strength = m_strength;
     lua_pushnil(s_luaState);
-    while (lua_next(s_luaState,4))
+    while (lua_next(s_luaState,5))
     {
         lua_pushnil(s_luaState);
-        while (lua_next(s_luaState,6))
+        while (lua_next(s_luaState,7))
         {
-            msg.label = std::string(lua_tostring(s_luaState,8));
+            msg.label = std::string(lua_tostring(s_luaState,9));
             lua_pop(s_luaState,1);
             m_neighbours[neighbourIndex]->sendMessage(msg);
         }
@@ -393,7 +418,7 @@ void Agent::execute()
     }
 
     // Leave the lua stack as you found it! (empty)
-    lua_pop(s_luaState,4);
+    lua_pop(s_luaState,5);
 
     // SUBSTRACTING FRICTION FORCE
     m_totalForce -= s_friction*m_velocity;
@@ -412,12 +437,19 @@ void Agent::execute()
     // CALCULATE NEW ROTATION WITH THE VELOCITY
     ngl::Vec4 rotation = 0;
 
+    // Make it work in any direction...
     // Rotation in Y
-    if (m_velocity.m_x != 0)
-        rotation.m_y = atan2(-m_velocity.m_z,m_velocity.m_x) * 180/M_PI;
+    ngl::Vec3 heading;
+    if (m_heading.length()>0)
+        heading = m_heading;
+    else
+        heading = m_velocity;
+
+    if (heading.m_x != 0)
+        rotation.m_y = atan2(-heading.m_z,heading.m_x) * 180/M_PI;
     else
     {
-        if (m_velocity.m_z<0)
+        if (heading.m_z<0)
             rotation.m_y = 90;
         else
             rotation.m_y = -90;

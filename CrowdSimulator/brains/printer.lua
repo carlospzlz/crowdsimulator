@@ -1,9 +1,10 @@
-function printer (agentID, position, strength, velocity, state,  attributes, inbox, neighbours)
+function printer (agentID, position, strength, maxStrength, velocity, state,  attributes, inbox, neighbours)
 	
 	print("AGENT "..agentID.." uses brain PRINTER")
 	print("position= ",position)
 	print(position.x, position.y, position.z)
 	print("strength= ",strength)
+	print("maxStrength= ",maxStrength)
 	print("velocity= ",velocity)
 	print(velocity.x, velocity.y, velocity.z)
 	print("state= ",state)
@@ -46,6 +47,7 @@ function printer (agentID, position, strength, velocity, state,  attributes, inb
 
 	force = {0,0,0}
 	messages = {}
+	heading = {}
 
-	return force, strength, state, messages
+	return force, heading, strength, state, messages
 end
