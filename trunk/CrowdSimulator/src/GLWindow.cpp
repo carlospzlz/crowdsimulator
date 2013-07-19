@@ -38,13 +38,17 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
+    m_drawVelocityVector = false;
+    m_drawVisionRadius = false;
+    m_drawStrength = false;
+
     // PLAYING WITH AGENTS
     m_crowdEngine.loadBrain("warrior");
     //m_crowdEngine.loadBrain("boid");
 
-    m_crowdEngine.createRandomFlock(7,7,ngl::Vec2(0,20),"flock1",2,"army1");
+    m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,20),"flock1",2,"army1");
     //m_crowdEngine.loadBrain("warrior");
-    m_crowdEngine.createRandomFlock(7,7,ngl::Vec2(0,-20),"flock2",1,"army2");
+    m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,-20),"flock2",1,"army2");
 
     //Captain 1
     Agent *captain1 = new Agent();
@@ -130,7 +134,6 @@ void GLWindow::initializeGL()
     //shader->setShaderParam1i("Normalize",1);
 
     //LOAD COLOUR SHADER
-
     m_shader->createShaderProgram("Colour");
     m_shader->attachShader("ColourVertex",ngl::VERTEX);
     m_shader->attachShader("ColourFragment",ngl::FRAGMENT);
@@ -143,9 +146,9 @@ void GLWindow::initializeGL()
     m_shader->bindAttribute("Colour",0,"inVert");
     m_shader->linkProgramObject("Colour");
 
-
+    //BY DEFAULT PHONG
+    m_shaderIndex = phong;
     (*m_shader)["Phong"]->use();
-    m_shader->setShaderParam4f("Colour",1,0,0,1);
 
     //CAMERA
     ngl::Vec3 from(0,10,10);
@@ -163,23 +166,73 @@ void GLWindow::initializeGL()
     // load these values to the shader as well
     m_light.loadToShader("light");
 
-    //Primitives for drawing
+    // PRIMITIVES FOR GUIDELINES
     m_primitives = ngl::VAOPrimitives::instance();
     m_primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
     m_primitives->createTorus("radius",0.01,1,3,16);
     m_primitives->createCylinder("vectorModulus",0.04,2,6,1);
     m_primitives->createCone("vectorSense",0.1,0.4,6,1);
 
+    // BOID VAO
+    buildBoidVAO();
 
-    //Loading geometry for testing
-    m_dummy= new ngl::Obj("dummies/legoman.obj");
-    m_dummy->createVAO();
-    m_dummy->calcBoundingSphere();
+    // DUMMIES
+    // The index 0 is reserved for the boidVAO
+    ngl::Obj *obj;
 
-    m_dummy2= new ngl::Obj("dummies/human.obj");
-    m_dummy2->createVAO();
-    m_dummy2->calcBoundingSphere();
+    obj = new ngl::Obj("dummies/legoman.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies.push_back(obj);
 
+    obj = new ngl::Obj("dummies/human.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies.push_back(obj);
+
+    obj = new ngl::Obj("dummies/teddy.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies.push_back(obj);
+
+    obj = new ngl::Obj("dummies/cow.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies.push_back(obj);
+
+    obj = new ngl::Obj("dummies/speedboat.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies.push_back(obj);
+}
+
+void GLWindow::buildBoidVAO()
+{
+    //BUILD SIMPLE BOID FOR EFFICIENT DRAWING
+    ngl::Vec3 vertex[] =
+    {
+        ngl::Vec3(0,0.3,0),
+        ngl::Vec3(0.7,0,0),
+        ngl::Vec3(0,0,-0.4),
+
+        ngl::Vec3(0,0.3,0),
+        ngl::Vec3(0.7,0,0),
+        ngl::Vec3(0,0,0.4),
+
+        ngl::Vec3(0,0.3,0),
+        ngl::Vec3(-0.4,0,0),
+        ngl::Vec3(0,0,-0.4),
+
+        ngl::Vec3(0,0.3,0),
+        ngl::Vec3(-0.4,0,0),
+        ngl::Vec3(0,0,0.4)
+    };
+    m_boidVAO = ngl::VertexArrayObject::createVOA(GL_TRIANGLES);
+    m_boidVAO->bind();
+    m_boidVAO->setData(sizeof(vertex),vertex[0].m_x);
+    m_boidVAO->setVertexAttributePointer(0,3,GL_FLOAT,0,0);
+    m_boidVAO->setNumIndices(sizeof(vertex)/sizeof(ngl::Vec3));
+    m_boidVAO->unbind();
 }
 
 
@@ -239,7 +292,7 @@ void GLWindow::paintGL()
     Agent* agent;
 
     // COLOUR
-    m_shader->setShaderParam4f("Colour",1,0,0,1);
+    //m_shader->setShaderParam4f("Colour",1,0,0,1);
     //shader->setShaderParam4f("Colour",0.5,0.5,0.5,1);
     std::string army;
 
@@ -249,18 +302,33 @@ void GLWindow::paintGL()
         //agent->print();
         m_transformStack.setCurrent(agent->getTransform());
         setStateColour(agent->getState());
-        loadMatricesToShader(m_transformStack);
+        if (m_shaderIndex==phong)
+            loadMatricesToShader(m_transformStack);
+        else if (m_shaderIndex==colour)
+            loadMVPToShader(m_transformStack);
         //primitives->draw("cube");
-        army = agent->getAttributes().at("army");
-        if (army=="army1")
-            m_dummy->draw();
+        //army = agent->getAttributes().at("army");
+        //if (army=="army1")
+        //    m_dummy->draw();
+        //else
+        //    m_dummy2->draw();
+        if (m_dummyIndex == 0)
+        {
+            m_boidVAO->bind();
+            m_boidVAO->draw();
+            m_boidVAO->unbind();
+        }
         else
-            m_dummy2->draw();
+        {
+            m_dummies[m_dummyIndex-1]->draw();
+        }
 
-        drawRadius(agent->getVisionRadius());
-        drawVector(agent->getVelocity());
-        drawStrength(agent->getStrength(),agent->getMass());
-        
+        if (m_drawVelocityVector)
+            drawVector(agent->getVelocity());
+        if (m_drawVisionRadius)
+            drawRadius(agent->getVisionRadius());
+        if (m_drawStrength)
+            drawStrength(agent->getStrength(),agent->getMass());
     }
 
     /*
@@ -481,4 +549,41 @@ void GLWindow::toggleSimulation(bool _pressed)
         if (m_timer->isActive())
             m_timer->stop();
     }
+}
+
+void GLWindow::setDrawVelocityVector(bool _pressed)
+{
+    m_drawVelocityVector = _pressed;
+    updateGL();
+}
+
+void GLWindow::setDrawVisionRadius(bool _pressed)
+{
+    m_drawVisionRadius = _pressed;
+    updateGL();
+}
+
+void GLWindow::setDrawStrength(bool _pressed)
+{
+    m_drawStrength = _pressed;
+    updateGL();
+}
+
+void GLWindow::setDummyIndex(int _index)
+{
+    m_dummyIndex = _index;
+    updateGL();
+}
+
+void GLWindow::setShader(int _index)
+{
+    m_shaderIndex = _index;
+
+    if (m_shaderIndex==phong)
+        (*m_shader)["Phong"]->use();
+    else if (m_shaderIndex==colour)
+        (*m_shader)["Colour"]->use();
+
+    updateGL();
+
 }
