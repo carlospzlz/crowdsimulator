@@ -29,6 +29,9 @@ SOURCES += \
     src/GLWindow.cpp \
     src/MainWindow.cpp
 
+FORMS += \
+    ui/MainWindow.ui
+
 
 #######################
 # GENERAL CONFIGURATION
@@ -39,6 +42,8 @@ QMAKE_CXX = clang++
 QMAKE_CXXFLAGS = -fdiagnostics-fixit-info -g
 
 OBJECTS_DIR = obj
+
+MOC_DIR = moc
 
 INCLUDEPATH += include
 
@@ -54,6 +59,11 @@ DEFINES += LINUX
 
 #OpenGL QT
 QT += opengl
+QT += \
+    core \
+    gui
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 LIBS+= -lGLEW
 

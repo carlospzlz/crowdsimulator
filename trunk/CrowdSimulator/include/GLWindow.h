@@ -13,6 +13,7 @@
 // it must be included after our stuff becuase GLEW needs to be first
 #include <QResizeEvent>
 #include <QEvent>
+#include <QTimer>
 #include "CrowdEngine.h"
 
 class GLWindow : public QGLWidget
@@ -27,8 +28,9 @@ private :
     static const float s_zoomIncrement;
     static const int s_groundSize;
     static const int s_timerValue;
-    int m_timer;
-    bool m_simulating;
+    QTimer *m_timer;
+    //int m_timer;
+    //bool m_simulating;
     bool m_rotate;
     bool m_translate;
     std::pair<int,int> m_previousMousePosition;
@@ -55,8 +57,11 @@ private :
     void mouseMoveEvent(QMouseEvent * _event);
     void mousePressEvent(QMouseEvent *_event);
     void mouseReleaseEvent(QMouseEvent *_event);
-    void timerEvent(QTimerEvent *_event);
     void wheelEvent(QWheelEvent *_event);
+
+private slots:
+    // This is called by the QTimer
+    void updateSimulation();
 
 public :
     /**
@@ -65,7 +70,10 @@ public :
      */
     GLWindow(QWidget *_parent);
     ~GLWindow();
-    inline void toggleSimulating(){ m_simulating = !m_simulating; }
+    void setTimerInterval(int _interval) { m_timer->setInterval(_interval); }
+
+public slots:
+    void toggleSimulation(bool _pressed);
 
 protected:
 

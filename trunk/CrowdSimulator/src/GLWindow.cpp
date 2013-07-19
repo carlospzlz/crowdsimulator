@@ -34,7 +34,6 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     // Now set the initial GLWindow attributes to default values
     m_rotate = false;
     m_translate = false;
-    m_simulating = true;
 
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
@@ -75,9 +74,14 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
     //m_crowdEngine.addAgent(troll);
 
-
+    //TRYING WITH Qtimer
+    m_timer = new QTimer(this);
+    QMetaObject::Connection a = connect(m_timer,SIGNAL(timeout()),this,SLOT(updateSimulation()));
+    std::cout << a << std::endl;
+    //m_timer->setInterval(20);
+    //m_timer->start(20);
     //START TIMER (maybe it's not simulating)
-    m_timer = startTimer(s_timerValue);
+    //m_timer = startTimer(s_timerValue);
 
 }
 
@@ -459,14 +463,22 @@ void GLWindow::wheelEvent(QWheelEvent *_event)
     updateGL();
 }
 
-
-void GLWindow::timerEvent(QTimerEvent *_event)
+void GLWindow::updateSimulation()
 {
-    (void) _event;
-
-    //CROWD SIMULATION!!
-    if (m_simulating)
-        m_crowdEngine.update();
-
+    m_crowdEngine.update();
     updateGL();
+}
+
+void GLWindow::toggleSimulation(bool _pressed)
+{
+    if (_pressed)
+    {
+        if (!m_timer->isActive())
+            m_timer->start();
+    }
+    else
+    {
+        if (m_timer->isActive())
+            m_timer->stop();
+    }
 }
