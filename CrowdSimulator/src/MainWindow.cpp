@@ -1,18 +1,27 @@
 #include "MainWindow.h"
-#include "GLWindow.h"
-#include <QApplication>
-//#include "ui_mainwindow.h"
+#include "ui_MainWindow.h"
 
-MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent)//, m_ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::MainWindow)
 {
 
   // setup the user interface
-  //m_ui->setupUi(this);
+  m_ui->setupUi(this);
   // set the window size
-  this->resize(QSize(1024,720));
+  // this->resize(QSize(1024,720));
   // create our GLWindow
   m_gl = new GLWindow(this);
 
+  m_ui->s_windowLayout->addWidget(m_gl,0,0,5,2);
+
+  // Wire up the components of the GUI to the functionalities
+  connect(m_ui->s_simulateButton,SIGNAL(clicked(bool)),m_gl,SLOT(toggleSimulation(bool)));
+  connect(m_ui->s_timerSlider,SIGNAL(valueChanged(int)),this,SLOT(setTimerInterval(int)));
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete m_ui;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *_event)
@@ -37,9 +46,9 @@ void MainWindow::keyPressEvent(QKeyEvent *_event)
   m_gl->updateGL();
 }
 
-void MainWindow::resizeEvent ( QResizeEvent * _event )
+void MainWindow::setTimerInterval(int _interval)
 {
-  m_gl->resize(_event->size());
+    m_gl->setTimerInterval(_interval);
+    m_ui->s_timerLcd->display(_interval);
 }
-
 
