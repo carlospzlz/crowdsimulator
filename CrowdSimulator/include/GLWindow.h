@@ -1,7 +1,6 @@
 #ifndef __GL_WINDOW_H__
 #define __GL_WINDOW_H__
 
-
 #include <ngl/Camera.h>
 #include <ngl/Colour.h>
 #include <ngl/SpotLight.h>
@@ -15,6 +14,8 @@
 #include <QEvent>
 #include <QTimer>
 #include "CrowdEngine.h"
+
+enum shader{phong,colour};
 
 class GLWindow : public QGLWidget
 {
@@ -40,13 +41,19 @@ private :
     ngl::Transformation m_transformation;
     ngl::VAOPrimitives *m_primitives;
     ngl::ShaderLib *m_shader;
+    int m_shaderIndex;
     ngl::Camera m_camera;
     ngl::Light m_light;
-    ngl::Obj *m_dummy;
-    ngl::Obj *m_dummy2;
+    std::vector<ngl::Obj*> m_dummies;
+    int m_dummyIndex;
+    ngl::VertexArrayObject *m_boidVAO;
+    bool m_drawVelocityVector;
+    bool m_drawVisionRadius;
+    bool m_drawStrength;
 
     CrowdEngine m_crowdEngine;
 
+    void buildBoidVAO();
     void loadMatricesToShader(ngl::TransformStack &_tx);
     void loadMVPToShader(ngl::TransformStack &_tx);
     void inline drawVector(ngl::Vec4 _vector);
@@ -74,6 +81,11 @@ public :
 
 public slots:
     void toggleSimulation(bool _pressed);
+    void setDrawVelocityVector(bool _pressed);
+    void setDrawVisionRadius(bool _pressed);
+    void setDrawStrength(bool _pressed);
+    void setDummyIndex(int _index);
+    void setShader(int _index);
 
 protected:
 
