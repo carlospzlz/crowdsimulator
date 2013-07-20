@@ -19,15 +19,16 @@ HEADERS += \
     include/CrowdEngine.h \
     include/CellPartition.h \
     include/GLWindow.h \
-    include/MainWindow.h
+    include/MainWindow.h \
+    include/QuadraticGridCP.h
 
 SOURCES += \
     src/main.cpp \
     src/CrowdEngine.cpp \
     src/Agent.cpp \
-    src/CellPartition.cpp \
     src/GLWindow.cpp \
-    src/MainWindow.cpp
+    src/MainWindow.cpp \
+    src/QuadraticGridCP.cpp
 
 FORMS += \
     ui/MainWindow.ui

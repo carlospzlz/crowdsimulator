@@ -42,6 +42,9 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_drawVisionRadius = false;
     m_drawStrength = false;
 
+    //ADD CELLPARTITION TO THE CROWDENGINE!
+    m_crowdEngine.setCellPartition(new QuadraticGridCP(2));
+
     // PLAYING WITH AGENTS
     m_crowdEngine.loadBrain("warrior");
     //m_crowdEngine.loadBrain("boid");
@@ -204,6 +207,9 @@ void GLWindow::initializeGL()
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
+
+    //DEFAULT LEGOMAN
+    m_dummyIndex = 1;
 }
 
 void GLWindow::buildBoidVAO()
@@ -244,28 +250,31 @@ void GLWindow::resizeGL(int _w, int _h)
 
 inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
 {
-
+    ngl::Mat4 M;
     ngl::Mat4 MV;
     ngl::Mat4 MVP;
-    ngl::Mat3 normalMatrix;
-    ngl::Mat4 M;
-    M=_tx.getCurrAndGlobal().getMatrix();
-    MV=  _tx.getCurrAndGlobal().getMatrix()*m_camera.getViewMatrix();
-    MVP= M*m_camera.getVPMatrix();
-    normalMatrix=MV;
-    normalMatrix.inverse();
-    m_shader->setShaderParamFromMat4("MV",MV);
-    m_shader->setShaderParamFromMat4("MVP",MVP);
-    m_shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
-    m_shader->setShaderParamFromMat4("M",M);
-}
 
-inline void GLWindow::loadMVPToShader(ngl::TransformStack &_tx)
-{
-    ngl::Mat4 MVP;
+    if (m_shaderIndex==phong)
+    {
 
-    MVP = _tx.getCurrAndGlobal().getMatrix()*m_camera.getVPMatrix();
-    m_shader->setShaderParamFromMat4("MVP",MVP);
+        ngl::Mat3 normalMatrix;
+        M=_tx.getCurrAndGlobal().getMatrix();
+        MV= _tx.getCurrAndGlobal().getMatrix()*m_camera.getViewMatrix();
+        MVP= M*m_camera.getVPMatrix();
+        normalMatrix=MV;
+        normalMatrix.inverse();
+        m_shader->setShaderParamFromMat4("MV",MV);
+        m_shader->setShaderParamFromMat4("MVP",MVP);
+        m_shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
+        m_shader->setShaderParamFromMat4("M",M);
+    }
+    else if (m_shaderIndex==colour)
+    {
+        M=_tx.getCurrAndGlobal().getMatrix();
+        MV= _tx.getCurrAndGlobal().getMatrix()*m_camera.getViewMatrix();
+        MVP= M*m_camera.getVPMatrix();
+        m_shader->setShaderParamFromMat4("MVP",MVP);
+    }
 }
 
 void GLWindow::paintGL()
@@ -280,9 +289,9 @@ void GLWindow::paintGL()
 
     //Drawing the grid
     cellSize = m_crowdEngine.getCellSize();
-    transform.setScale(cellSize,0,cellSize);
+    transform.setScale(cellSize,1,cellSize);
     m_transformStack.setCurrent(transform);
-    loadMVPToShader(m_transformStack);
+    loadMatricesToShader(m_transformStack);
     m_shader->setShaderParam4f("Colour",1,1,1,1);
     m_primitives->draw("ground");
 
@@ -302,16 +311,7 @@ void GLWindow::paintGL()
         //agent->print();
         m_transformStack.setCurrent(agent->getTransform());
         setStateColour(agent->getState());
-        if (m_shaderIndex==phong)
-            loadMatricesToShader(m_transformStack);
-        else if (m_shaderIndex==colour)
-            loadMVPToShader(m_transformStack);
-        //primitives->draw("cube");
-        //army = agent->getAttributes().at("army");
-        //if (army=="army1")
-        //    m_dummy->draw();
-        //else
-        //    m_dummy2->draw();
+        loadMatricesToShader(m_transformStack);
         if (m_dummyIndex == 0)
         {
             m_boidVAO->bind();
@@ -585,5 +585,19 @@ void GLWindow::setShader(int _index)
         (*m_shader)["Colour"]->use();
 
     updateGL();
+}
 
+void GLWindow::rearrangeCellPartition(int _cellSize)
+{
+    if (m_timer->isActive())
+    {
+        m_timer->stop();
+        m_crowdEngine.rearrangePartition(_cellSize);
+        m_timer->start();
+    }
+    else
+    {
+        m_crowdEngine.rearrangePartition(_cellSize);
+    }
+    updateGL();
 }

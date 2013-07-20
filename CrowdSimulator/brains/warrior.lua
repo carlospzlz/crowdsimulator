@@ -340,7 +340,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 			lostForce[2] = lostForce[2] / magnitude
 			lostForce[3] = lostForce[3] / magnitude
 		end
-
+		
 		return lostForce
 	end
 
@@ -372,6 +372,10 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		if (magnitude==0)
 		then
 			force = warriorLost(velocity)
+			-- if he's lost he should run faster
+			force[1] = 10 * force[1]
+			force[2] = 10 * force[2]
+			force[3] = 10 * force[3]
 		else
 			force = flockForce
 		end

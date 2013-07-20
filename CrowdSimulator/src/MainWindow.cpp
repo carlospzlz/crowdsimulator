@@ -11,17 +11,21 @@ MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::Mai
   // create our GLWindow
   m_gl = new GLWindow(this);
 
-  m_ui->s_windowLayout->addWidget(m_gl,0,0,5,2);
+  m_ui->s_windowLayout->addWidget(m_gl,0,0,5,3);
 
   // Wire up the components of the GUI to the functionalities
   connect(m_ui->s_simulateButton,SIGNAL(clicked(bool)),m_gl,SLOT(toggleSimulation(bool)));
   connect(m_ui->s_timerSlider,SIGNAL(valueChanged(int)),this,SLOT(setTimerInterval(int)));
+  connect(m_ui->s_stepSlider,SIGNAL(valueChanged(int)),this,SLOT(setStep(int)));
+
   connect(m_ui->s_drawVelocityVector,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVelocityVector(bool)));
   connect(m_ui->s_drawVisionRadius,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVisionRadius(bool)));
   connect(m_ui->s_drawStrength,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawStrength(bool)));
+
   connect(m_ui->s_dummyComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setDummyIndex(int)));
   connect(m_ui->s_shaderComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setShader(int)));
 
+  connect(m_ui->s_cellSizeSpinbox,SIGNAL(valueChanged(int)),m_gl,SLOT(rearrangeCellPartition(int)));
 }
 
 MainWindow::~MainWindow()
@@ -57,3 +61,8 @@ void MainWindow::setTimerInterval(int _interval)
     m_ui->s_timerLcd->display(_interval);
 }
 
+void MainWindow::setStep(int _step)
+{
+    m_gl->setStep(_step/100.0);
+    m_ui->s_stepLcd->display(_step/100.0);
+}
