@@ -25,6 +25,7 @@ private:
 private slots :
     /* Here we add our GLWindow extending the base functionality of our class*/
     void setTimerInterval(int _interval);
+    void setStep(int _step);
 
 protected :
     /*Overwritten methods from QObject*/

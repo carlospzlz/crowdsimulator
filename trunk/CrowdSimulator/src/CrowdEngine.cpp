@@ -2,23 +2,19 @@
 
 
 const float CrowdEngine::s_initStride = 1;
-const int CrowdEngine::s_cellSize = 2;
-const float CrowdEngine::s_step = 0.05;
-const float CrowdEngine::s_friction = 0.01;
-
 const std::string CrowdEngine::s_brainsPath = "brains/";
 std::set<std::string> CrowdEngine::s_loadedBrains;
 lua_State* CrowdEngine::s_luaState;
 
 
-CrowdEngine::CrowdEngine() : m_cellPartition(s_cellSize)
+CrowdEngine::CrowdEngine()
 {
     s_luaState = luaL_newstate();
     Agent::setLuaState(s_luaState);
-    Agent::setStep(s_step);
-    Agent::setFriction(s_friction);
-
     luaL_openlibs(s_luaState);
+
+    Agent::setStep(0.05);
+    Agent::setFriction(0.01);
 }
 
 CrowdEngine::~CrowdEngine()
@@ -58,7 +54,7 @@ void CrowdEngine::addAgent(Agent* agent)
     if ( s_loadedBrains.count(brain) )
     {
         m_agents.push_back(agent);
-        m_cellPartition.addAgent(agent);
+        m_cellPartition->addAgent(agent);
 
     }
     else
@@ -113,7 +109,7 @@ void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position
             flockAgents.push_back(myAgent);
         }
 
-    m_cellPartition.addAgents(flockAgents);
+    m_cellPartition->addAgents(flockAgents);
 }
 
 void CrowdEngine::printAgents()
@@ -128,8 +124,8 @@ void CrowdEngine::printAgents()
 
 void CrowdEngine::update()
 {
-    m_cellPartition.updateCells(m_agents);
-    m_cellPartition.updateNeighbours(m_agents);
+    m_cellPartition->updateCells(m_agents);
+    m_cellPartition->updateNeighbours(m_agents);
 
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     for(std::vector<Agent*>::iterator currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)

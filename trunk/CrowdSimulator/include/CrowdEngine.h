@@ -11,29 +11,32 @@ class CrowdEngine
 
 private:
     static const float s_initStride;
-    static const int s_cellSize;
-    static const float s_step;
-    static const float s_friction;
     static const std::string s_brainsPath;
     static std::set<std::string> s_loadedBrains;
     static lua_State* s_luaState;
 
     std::vector<Agent*> m_agents;
-    CellPartition m_cellPartition;
+    CellPartition *m_cellPartition;
 
 public:
     CrowdEngine();
     ~CrowdEngine();
+
+    void setCellPartition(CellPartition* _cellPartition) { m_cellPartition = _cellPartition; }
+    void setStep(float _step) { Agent::setStep(_step); }
+    void setFriction(float _friction) {Agent::setFriction(_friction); }
+
     std::vector<Agent*>::const_iterator getAgentsBegin() { return m_agents.begin(); }
     std::vector<Agent*>::const_iterator getAgentsEnd() { return m_agents.end(); }
-    int getCellSize() const { return s_cellSize; }
+    int getCellSize() const { return m_cellPartition->getCellSize(); }
 
     void loadBrain(std::string _brain);
     void addAgent(Agent *agent);
     void createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock, float _maxStrength, std::string _army);
     void loadCrowd(std::string _fileName);
     void printAgents();
-    void printCellPartition() { m_cellPartition.printCells(); }
+    void printCellPartition() { m_cellPartition->printCells(); }
+    void rearrangePartition(int _cellSize) { m_cellPartition->rearrangePartition(_cellSize, m_agents); }
     void update();
 
 };

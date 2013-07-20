@@ -1,6 +1,6 @@
-#include "CellPartition.h"
+#include "QuadraticGridCP.h"
 
-inline std::pair<int,int> CellPartition::cell(ngl::Vec4 _position) const
+inline std::pair<int,int> QuadraticGridCP::cell(ngl::Vec4 _position) const
 {
     /**
      *This is the way of indexing
@@ -10,12 +10,12 @@ inline std::pair<int,int> CellPartition::cell(ngl::Vec4 _position) const
                               ceil(_position.m_z/(float)m_cellSize) );
 }
 
-void CellPartition::addAgent(Agent *_agent)
+void QuadraticGridCP::addAgent(Agent *_agent)
 {
     m_cells[cell(_agent->getPosition())].push_back(_agent);
 }
 
-void CellPartition::addAgents(const std::vector<Agent *> &_agents)
+void QuadraticGridCP::addAgents(const std::vector<Agent *> &_agents)
 {
     Agent* agent;
 
@@ -27,7 +27,7 @@ void CellPartition::addAgents(const std::vector<Agent *> &_agents)
     }
 }
 
-void CellPartition::updateCells(const std::vector<Agent *> &_agents)
+void QuadraticGridCP::updateCells(const std::vector<Agent *> &_agents)
 {
     Agent* agent;
     std::pair<int,int> currentCell, previousCell;
@@ -50,7 +50,7 @@ void CellPartition::updateCells(const std::vector<Agent *> &_agents)
 
 }
 
-void CellPartition::printCells() const
+void QuadraticGridCP::printCells() const
 {
     std::map<std::pair<int,int>,std::list<Agent*> >::const_iterator endCell = m_cells.end();
     std::list<Agent*>::const_iterator endAgent;
@@ -70,7 +70,7 @@ void CellPartition::printCells() const
     }
 }
 
-void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents)
+void QuadraticGridCP::updateNeighbours(const std::vector<Agent *> &_agents)
 {
     std::set<Agent*> checkedAgents;
 
@@ -146,7 +146,7 @@ void CellPartition::updateNeighbours(const std::vector<Agent *> &_agents)
 
 }
 
-void CellPartition::findAgentsInCells(ngl::Vec3 _leftDownCornerBox, ngl::Vec3 _rightUpCornerBox,
+void QuadraticGridCP::findAgentsInCells(ngl::Vec3 _leftDownCornerBox, ngl::Vec3 _rightUpCornerBox,
                                       std::vector<Agent*> &_agentsInCells)
 {
     std::pair<int,int> leftDownCell, rightUpCell, currentCell;
@@ -166,7 +166,7 @@ void CellPartition::findAgentsInCells(ngl::Vec3 _leftDownCornerBox, ngl::Vec3 _r
         }
 }
 
-void CellPartition::findNeighboursInAgents(const Agent* _agent, const std::vector<Agent*> &_agentsInCells,
+void QuadraticGridCP::findNeighboursInAgents(const Agent* _agent, const std::vector<Agent*> &_agentsInCells,
                                            std::vector<Agent*> &_neighbours) const
 {
     Agent* agent;
@@ -181,3 +181,14 @@ void CellPartition::findNeighboursInAgents(const Agent* _agent, const std::vecto
     }
 
 }
+
+void QuadraticGridCP::rearrangePartition(int _cellSize, const std::vector<Agent *> &_agents)
+{
+    m_cells.clear();
+    m_cellSize = _cellSize;
+
+    addAgents(_agents);
+
+    std::cout << "changed cell to " << m_cellSize << std::endl;
+}
+

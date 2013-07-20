@@ -14,6 +14,7 @@
 #include <QEvent>
 #include <QTimer>
 #include "CrowdEngine.h"
+#include "QuadraticGridCP.h"
 
 enum shader{phong,colour};
 
@@ -55,7 +56,6 @@ private :
 
     void buildBoidVAO();
     void loadMatricesToShader(ngl::TransformStack &_tx);
-    void loadMVPToShader(ngl::TransformStack &_tx);
     void inline drawVector(ngl::Vec4 _vector);
     void inline drawRadius(int _radius);
     void inline drawStrength(float _strength, float _mass);
@@ -86,6 +86,9 @@ public slots:
     void setDrawStrength(bool _pressed);
     void setDummyIndex(int _index);
     void setShader(int _index);
+    void setStep(float _step) { m_crowdEngine.setStep(_step); }
+    void setFriction(float _friction) { m_crowdEngine.setFriction(_friction);}
+    void rearrangeCellPartition(int _cellSize);
 
 protected:
 
