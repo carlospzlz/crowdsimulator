@@ -188,7 +188,4 @@ void QuadraticGridCP::rearrangePartition(int _cellSize, const std::vector<Agent 
     m_cellSize = _cellSize;
 
     addAgents(_agents);
-
-    std::cout << "changed cell to " << m_cellSize << std::endl;
 }
-

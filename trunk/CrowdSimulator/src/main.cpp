@@ -17,11 +17,21 @@ int main(int argc, char **args)
         win.show();
         return app.exec();;
     }
-    else if ( argc >= 2)
+    else
     {
 
-        std::cout << "TERMINAL/DEBUGGING MODE" << std::endl;
+        std::cout << "TEXT MODE" << std::endl;
 
+        Parser *myParser = new TXTParser();
+
+        std::vector<Agent*> agents;
+        myParser->loadCrowd("crowds/test.txt", agents);
+
+        std::cout << agents.size() << std::endl;
+
+        agents.at(0)->print();
+
+        /*
         CrowdEngine myCrowdEngine;
         Agent* myAgent = new Agent();
 
@@ -38,10 +48,11 @@ int main(int argc, char **args)
 
         myCrowdEngine.printAgents();
 
-        //myCrowdEngine.printCellPartition();
+        myCrowdEngine.printCellPartition();
 
         myCrowdEngine.update();
         myCrowdEngine.printAgents();
+        */
     }
 
 

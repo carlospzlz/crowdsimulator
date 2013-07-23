@@ -13,6 +13,9 @@
 #include <QResizeEvent>
 #include <QEvent>
 #include <QTimer>
+#include <QFileDialog>
+
+#include "TXTParser.h"
 #include "CrowdEngine.h"
 #include "QuadraticGridCP.h"
 
@@ -25,6 +28,8 @@ class GLWindow : public QGLWidget
 Q_OBJECT
 
 private :
+    static const QString s_brainsPath;
+    static const QString s_crowdsPath;
     static const float s_rotationIncrement;
     static const float s_translationIncrement;
     static const float s_zoomIncrement;
@@ -48,14 +53,18 @@ private :
     std::vector<ngl::Obj*> m_dummies;
     int m_dummyIndex;
     ngl::VertexArrayObject *m_boidVAO;
+    bool m_drawBoundingSphere;
+    bool m_drawCells;
     bool m_drawVelocityVector;
     bool m_drawVisionRadius;
     bool m_drawStrength;
 
+    Parser* m_parser;
     CrowdEngine m_crowdEngine;
 
     void buildBoidVAO();
     void loadMatricesToShader(ngl::TransformStack &_tx);
+    void inline drawBoundingSphere(float _mass);
     void inline drawVector(ngl::Vec4 _vector);
     void inline drawRadius(int _radius);
     void inline drawStrength(float _strength, float _mass);
@@ -81,6 +90,8 @@ public :
 
 public slots:
     void toggleSimulation(bool _pressed);
+    void setDrawCells(bool _pressed);
+    void setDrawBoundingSphere(bool _pressed);
     void setDrawVelocityVector(bool _pressed);
     void setDrawVisionRadius(bool _pressed);
     void setDrawStrength(bool _pressed);
@@ -89,6 +100,10 @@ public slots:
     void setStep(float _step) { m_crowdEngine.setStep(_step); }
     void setFriction(float _friction) { m_crowdEngine.setFriction(_friction);}
     void rearrangeCellPartition(int _cellSize);
+    void loadBrains();
+    void loadCrowds();
+    void restart();
+    void clear();
 
 protected:
 

@@ -2,7 +2,6 @@
 
 
 const float CrowdEngine::s_initStride = 1;
-const std::string CrowdEngine::s_brainsPath = "brains/";
 std::set<std::string> CrowdEngine::s_loadedBrains;
 lua_State* CrowdEngine::s_luaState;
 
@@ -19,10 +18,10 @@ CrowdEngine::CrowdEngine()
 
 CrowdEngine::~CrowdEngine()
 {
-    std::cout << "CrowdEngine: closing lua" << std::endl;
+    std::cout << "CrowdEngine: Closing lua" << std::endl;
     lua_close(s_luaState);
 
-    std::cout << "CrowdEngine: deleting all agents" << std::endl;
+    std::cout << "CrowdEngine: Deleting all agents" << std::endl;
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     for(std::vector<Agent*>::iterator currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
@@ -32,35 +31,52 @@ CrowdEngine::~CrowdEngine()
 
 void CrowdEngine::loadBrain(std::string _brain)
 {
-    if ( !s_loadedBrains.count(_brain) )
+
+    unsigned brainNameStartingPos = _brain.find_last_of("/\\")+1;
+    unsigned brainNameLength = (_brain.find_last_of(".")) - brainNameStartingPos;
+    std::string brainName = _brain.substr(brainNameStartingPos,brainNameLength);
+    if ( !s_loadedBrains.count(brainName) )
     {
-        std::ostringstream path;
-        path << s_brainsPath << _brain << ".lua";
-        luaL_dofile(s_luaState,path.str().c_str());
-        s_loadedBrains.insert(_brain);
-        std::cout << "CrowdEngine: Brain " << _brain << " loaded from " << path.str().c_str() << std::endl;
+        if (!luaL_dofile(s_luaState,_brain.c_str()))
+        {
+            s_loadedBrains.insert(brainName);
+            std::cout << "CrowdEngine: Brain " << brainName << " loaded from " << _brain << std::endl;
+        }
+        else
+        {
+            std::cout << "CrowdEngine: ERROR: " << brainName << " cannot be loaded from " << _brain << std::endl;
+        }
     }
     else
     {
-        std::cout << "CrowdEngine: Brain " << _brain << " already loaded" << std::endl;
+        std::cout << "CrowdEngine: Brain " << brainName << " already loaded" << std::endl;
     }
 }
 
 void CrowdEngine::addAgent(Agent* agent)
 {
-    std::cout << "CrowdEngine: adding agent " << agent->getAgentID() << " to the crowd" << std::endl;
-
     std::string brain = agent->getBrain();
     if ( s_loadedBrains.count(brain) )
     {
         m_agents.push_back(agent);
+        Agent* initialAgent = new Agent(*agent);
+        m_initialAgents.push_back(initialAgent);
         m_cellPartition->addAgent(agent);
-
     }
     else
     {
         std::cout << "CrowdEngine:  ERROR: Agent " << agent->getAgentID() <<
                      " not added, the brain " << brain << " is not loaded" << std::endl;
+    }
+}
+
+void CrowdEngine::addAgents(const std::vector<Agent*> &_agents)
+{
+    std::vector<Agent*>::const_iterator endAgent = _agents.end();
+    std::vector<Agent*>::const_iterator currentAgent;
+    for (currentAgent = _agents.begin(); currentAgent != endAgent; ++currentAgent)
+    {
+        addAgent(*currentAgent);
     }
 }
 
@@ -133,4 +149,31 @@ void CrowdEngine::update()
         (*currentAgent)->execute();
     }
 
+}
+
+void CrowdEngine::clear()
+{
+    m_agents.clear();
+    m_initialAgents.clear();
+    m_cellPartition->clear();
+}
+
+void CrowdEngine::restart()
+{
+    std::vector<Agent*>::iterator endAgent = m_agents.end();
+    std::vector<Agent*>::iterator currentAgent;
+    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        delete *currentAgent;
+    }
+    m_agents.clear();
+
+    std::vector<Agent*>::const_iterator endInitialAgent = m_initialAgents.end();
+    std::vector<Agent*>::const_iterator currentInitialAgent;
+    for( currentInitialAgent = m_initialAgents.begin(); currentInitialAgent!=endInitialAgent; ++currentInitialAgent)
+    {
+        m_agents.push_back(new Agent(**currentInitialAgent));
+    }
+    m_cellPartition->clear();
+    m_cellPartition->addAgents(m_agents);
 }

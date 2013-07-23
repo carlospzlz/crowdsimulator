@@ -16,6 +16,7 @@ private:
     static lua_State* s_luaState;
 
     std::vector<Agent*> m_agents;
+    std::vector<Agent*> m_initialAgents;
     CellPartition *m_cellPartition;
 
 public:
@@ -31,13 +32,15 @@ public:
     int getCellSize() const { return m_cellPartition->getCellSize(); }
 
     void loadBrain(std::string _brain);
-    void addAgent(Agent *agent);
+    void addAgent(Agent *_agent);
+    void addAgents(const std::vector<Agent *> &_agents);
     void createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock, float _maxStrength, std::string _army);
-    void loadCrowd(std::string _fileName);
     void printAgents();
     void printCellPartition() { m_cellPartition->printCells(); }
     void rearrangePartition(int _cellSize) { m_cellPartition->rearrangePartition(_cellSize, m_agents); }
     void update();
+    void clear();
+    void restart();
 
 };
 

@@ -20,7 +20,9 @@ HEADERS += \
     include/CellPartition.h \
     include/GLWindow.h \
     include/MainWindow.h \
-    include/QuadraticGridCP.h
+    include/QuadraticGridCP.h \
+    include/Parser.h \
+    include/TXTParser.h
 
 SOURCES += \
     src/main.cpp \
@@ -28,7 +30,9 @@ SOURCES += \
     src/Agent.cpp \
     src/GLWindow.cpp \
     src/MainWindow.cpp \
-    src/QuadraticGridCP.cpp
+    src/QuadraticGridCP.cpp \
+    src/TXTParser.cpp \
+    src/Parser.cpp
 
 FORMS += \
     ui/MainWindow.ui

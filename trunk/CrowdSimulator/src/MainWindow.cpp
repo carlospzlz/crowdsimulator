@@ -3,29 +3,43 @@
 
 MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::MainWindow)
 {
+    // setup the user interface
+    m_ui->setupUi(this);
+    // set the window size
+    // this->resize(QSize(1024,720));
+    // create our GLWindow
+    m_gl = new GLWindow(this);
 
-  // setup the user interface
-  m_ui->setupUi(this);
-  // set the window size
-  // this->resize(QSize(1024,720));
-  // create our GLWindow
-  m_gl = new GLWindow(this);
+    m_ui->s_windowLayout->addWidget(m_gl,0,0,6,3);
 
-  m_ui->s_windowLayout->addWidget(m_gl,0,0,5,3);
+    // WIRE UP THE COMPONENST OF THE GUI TO THE FUNCTIONALITIES
 
-  // Wire up the components of the GUI to the functionalities
-  connect(m_ui->s_simulateButton,SIGNAL(clicked(bool)),m_gl,SLOT(toggleSimulation(bool)));
-  connect(m_ui->s_timerSlider,SIGNAL(valueChanged(int)),this,SLOT(setTimerInterval(int)));
-  connect(m_ui->s_stepSlider,SIGNAL(valueChanged(int)),this,SLOT(setStep(int)));
+    // terrain
 
-  connect(m_ui->s_drawVelocityVector,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVelocityVector(bool)));
-  connect(m_ui->s_drawVisionRadius,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVisionRadius(bool)));
-  connect(m_ui->s_drawStrength,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawStrength(bool)));
+    // crowd
+    connect(m_ui->s_loadBrainButton,SIGNAL(clicked()),m_gl,SLOT(loadBrains()));
+    connect(m_ui->s_loadCrowdButton,SIGNAL(clicked()),m_gl,SLOT(loadCrowds()));
 
-  connect(m_ui->s_dummyComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setDummyIndex(int)));
-  connect(m_ui->s_shaderComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setShader(int)));
+    // cell partition
+    connect(m_ui->s_drawCells,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawCells(bool)));
+    connect(m_ui->s_cellSizeSpinbox,SIGNAL(valueChanged(int)),m_gl,SLOT(rearrangeCellPartition(int)));
 
-  connect(m_ui->s_cellSizeSpinbox,SIGNAL(valueChanged(int)),m_gl,SLOT(rearrangeCellPartition(int)));
+    // collisions
+    connect(m_ui->s_drawBoundingSphere,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawBoundingSphere(bool)));
+
+    // simulation
+    connect(m_ui->s_drawVelocityVector,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVelocityVector(bool)));
+    connect(m_ui->s_drawVisionRadius,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVisionRadius(bool)));
+    connect(m_ui->s_drawStrength,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawStrength(bool)));
+    connect(m_ui->s_shaderComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setShader(int)));
+    connect(m_ui->s_dummyComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setDummyIndex(int)));
+    connect(m_ui->s_simulateButton,SIGNAL(clicked(bool)),m_gl,SLOT(toggleSimulation(bool)));
+    connect(m_ui->s_restartButton,SIGNAL(clicked()),m_gl,SLOT(restart()));
+    connect(m_ui->s_clearButton,SIGNAL(clicked()),m_gl,SLOT(clear()));
+
+    // sliders
+    connect(m_ui->s_timerSlider,SIGNAL(valueChanged(int)),this,SLOT(setTimerInterval(int)));
+    connect(m_ui->s_stepSlider,SIGNAL(valueChanged(int)),this,SLOT(setStep(int)));
 }
 
 MainWindow::~MainWindow()
