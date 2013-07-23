@@ -19,6 +19,7 @@ public:
     virtual void updateNeighbours(const std::vector<Agent *> &_agents) = 0;
     virtual void rearrangePartition(int _cellSize, const std::vector<Agent *> &_agents) = 0;
     virtual void printCells() const = 0;
+    virtual void clear() = 0;
 
 };
 

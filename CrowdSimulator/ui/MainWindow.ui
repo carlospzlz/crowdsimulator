@@ -6,29 +6,270 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>815</width>
-    <height>622</height>
+    <width>832</width>
+    <height>1003</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Crowd Simulator</string>
   </property>
   <widget class="QWidget" name="WindowLayout">
    <layout class="QGridLayout" name="s_windowLayout">
-    <item row="4" column="3" rowspan="3">
-     <widget class="QGroupBox" name="groupBox_4">
+    <item row="1" column="3">
+     <widget class="QGroupBox" name="crowdGroupBox">
       <property name="title">
-       <string>Save</string>
+       <string>Crowd</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="1" column="1">
+        <widget class="QPushButton" name="s_loadCrowdButton">
+         <property name="text">
+          <string>Load Crowds</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="s_loadBrainButton">
+         <property name="text">
+          <string>Load Brains</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QSlider" name="s_timerSlider">
+      <property name="maximum">
+       <number>500</number>
+      </property>
+      <property name="singleStep">
+       <number>20</number>
+      </property>
+      <property name="value">
+       <number>20</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksBelow</enum>
+      </property>
+      <property name="tickInterval">
+       <number>20</number>
       </property>
      </widget>
     </item>
+    <item row="9" column="2">
+     <widget class="QLCDNumber" name="s_timerLcd">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Flat</enum>
+      </property>
+      <property name="intValue" stdset="0">
+       <number>20</number>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QSlider" name="s_stepSlider">
+      <property name="maximum">
+       <number>50</number>
+      </property>
+      <property name="singleStep">
+       <number>1</number>
+      </property>
+      <property name="pageStep">
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>5</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksBelow</enum>
+      </property>
+      <property name="tickInterval">
+       <number>5</number>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="2">
+     <widget class="QLCDNumber" name="s_stepLcd">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="lineWidth">
+       <number>1</number>
+      </property>
+      <property name="smallDecimalPoint">
+       <bool>true</bool>
+      </property>
+      <property name="segmentStyle">
+       <enum>QLCDNumber::Flat</enum>
+      </property>
+      <property name="value" stdset="0">
+       <double>0.050000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="s_stepLabel">
+      <property name="text">
+       <string>Step (units)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="s_timerLabel">
+      <property name="text">
+       <string>Timer (ms)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QGroupBox" name="terrainGroupBox">
+      <property name="title">
+       <string>Terrain</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="text">
+          <string>Process</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="pushButton_6">
+         <property name="text">
+          <string>Load</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
     <item row="2" column="3">
-     <widget class="QGroupBox" name="groupBox_3">
+     <widget class="QGroupBox" name="cellPartitionGroupBox">
+      <property name="title">
+       <string>Cell Partition</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="s_cellSizeSpinbox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50</number>
+         </property>
+         <property name="value">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QCheckBox" name="s_drawCells">
+         <property name="text">
+          <string>Cells</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Cell Size</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="4" column="3">
+     <widget class="QGroupBox" name="simulationGroupBox">
       <property name="title">
        <string>Simulation</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="4" column="0">
+       <item row="17" column="0" colspan="2">
+        <widget class="QPushButton" name="s_simulateButton">
+         <property name="text">
+          <string>Simulate</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Shader</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QCheckBox" name="s_drawVelocityVector">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Velocity Vector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="2">
         <widget class="QComboBox" name="s_shaderComboBox">
          <item>
           <property name="text">
@@ -42,60 +283,46 @@
          </item>
         </widget>
        </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Shader</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QCheckBox" name="s_drawVelocityVector">
-         <property name="text">
-          <string>Velocity vector</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
+       <item row="2" column="0" colspan="2">
         <widget class="QCheckBox" name="s_drawVisionRadius">
          <property name="text">
-          <string>Vision radius</string>
+          <string>Vision Radius</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
+       <item row="23" column="0" colspan="2">
         <layout class="QGridLayout" name="gridLayout_2">
-         <item row="0" column="0">
-          <widget class="QPushButton" name="pushButton_2">
+         <item row="1" column="0">
+          <widget class="QPushButton" name="s_restartButton">
            <property name="text">
-            <string>restart</string>
+            <string>Restart</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QPushButton" name="pushButton_3">
+         <item row="1" column="2">
+          <widget class="QPushButton" name="s_clearButton">
            <property name="text">
-            <string>clear</string>
+            <string>Clear</string>
            </property>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0" colspan="2">
         <widget class="QCheckBox" name="s_drawStrength">
          <property name="text">
           <string>Strength</string>
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="7" column="0" colspan="2">
         <widget class="QLabel" name="label_2">
          <property name="text">
           <string>Dummy</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="8" column="0" colspan="2">
         <widget class="QComboBox" name="s_dummyComboBox">
          <property name="currentIndex">
           <number>1</number>
@@ -132,47 +359,66 @@
          </item>
         </widget>
        </item>
-       <item row="7" column="0">
-        <widget class="QPushButton" name="s_simulateButton">
+       <item row="24" column="0">
+        <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>simulate</string>
+          <string/>
          </property>
-         <property name="checkable">
-          <bool>true</bool>
+        </widget>
+       </item>
+       <item row="25" column="0" colspan="2">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Save</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
-    <item row="0" column="3">
-     <widget class="QGroupBox" name="groupBox">
+    <item row="3" column="3">
+     <widget class="QGroupBox" name="collisionsGroupBox">
       <property name="title">
-       <string>Terrain</string>
+       <string>Collisions</string>
       </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="2" column="0" colspan="2">
+        <widget class="QCheckBox" name="s_drawBoundingSphere">
+         <property name="text">
+          <string>Bounding Sphere</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Radius/mass</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="s_radiusMass">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
-    <item row="1" column="3">
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="title">
-       <string>Crowd</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1" colspan="2">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="4" column="1">
+    <item row="5" column="3">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -185,134 +431,6 @@
       </property>
      </spacer>
     </item>
-    <item row="8" column="1">
-     <widget class="QSlider" name="s_timerSlider">
-      <property name="maximum">
-       <number>500</number>
-      </property>
-      <property name="singleStep">
-       <number>20</number>
-      </property>
-      <property name="value">
-       <number>20</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="tickPosition">
-       <enum>QSlider::TicksBelow</enum>
-      </property>
-      <property name="tickInterval">
-       <number>20</number>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="QLCDNumber" name="s_timerLcd">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Flat</enum>
-      </property>
-      <property name="intValue" stdset="0">
-       <number>20</number>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QSlider" name="s_stepSlider">
-      <property name="maximum">
-       <number>50</number>
-      </property>
-      <property name="singleStep">
-       <number>1</number>
-      </property>
-      <property name="pageStep">
-       <number>1</number>
-      </property>
-      <property name="value">
-       <number>5</number>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="tickPosition">
-       <enum>QSlider::TicksBelow</enum>
-      </property>
-      <property name="tickInterval">
-       <number>5</number>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QLCDNumber" name="s_stepLcd">
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="lineWidth">
-       <number>1</number>
-      </property>
-      <property name="smallDecimalPoint">
-       <bool>true</bool>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Flat</enum>
-      </property>
-      <property name="value" stdset="0">
-       <double>0.050000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="s_stepLabel">
-      <property name="text">
-       <string>Step (units)</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="s_timerLabel">
-      <property name="text">
-       <string>Timer (ms)</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="3">
-     <widget class="QGroupBox" name="groupBox_5">
-      <property name="title">
-       <string>Cell Partition</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_3">
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="s_cellSizeSpinbox">
-         <property name="maximum">
-          <number>50</number>
-         </property>
-         <property name="value">
-          <number>2</number>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Cell size</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -320,7 +438,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>815</width>
+     <width>832</width>
      <height>26</height>
     </rect>
    </property>

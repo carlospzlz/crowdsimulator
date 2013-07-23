@@ -22,7 +22,7 @@ public:
     void updateNeighbours(const std::vector<Agent *> &_agents);
     void rearrangePartition(int _cellSize, const std::vector<Agent *> &_agents);
     void printCells() const;
-
+    void clear() { m_cells.clear(); }
 };
 
 #endif // QUADRATICGRIDCP_H

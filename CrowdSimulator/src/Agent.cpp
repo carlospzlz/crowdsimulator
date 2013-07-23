@@ -13,14 +13,14 @@ Agent::Agent()
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
     m_maxStrength = 3;
-    m_visionRadius = 5;
     m_strength = m_maxStrength;
+    m_visionRadius = 5;  
     m_maxSpeed = 2;
     m_transformation.reset();
+    m_transformation.setScale(m_mass,m_mass,m_mass);
     m_previousTransform = m_transformation;
     m_state = "unknown";
     m_brain = "no brain";
-    m_primitive = "teapot";
 }
 
 Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
@@ -28,21 +28,37 @@ Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
     m_maxStrength = 3;
-    m_visionRadius = 5;
     m_strength = m_maxStrength;
+    m_visionRadius = 5;
     m_maxSpeed = 2;
+    m_transformation.setScale(m_mass,m_mass,m_mass);
     m_transformation.setPosition(_pos);
     m_previousTransform = m_transformation;
     m_attributes["flock"] = _flock;
     m_state = "unknown";
     m_brain = _brain;
-    m_primitive = "teapot";
+}
+
+Agent::Agent(const Agent &_agent)
+{
+    m_agentID = _agent.getAgentID();
+    m_mass = _agent.getMass();
+    m_maxStrength = _agent.getMaxStrength();
+    m_strength = m_maxStrength;
+    m_visionRadius = _agent.getVisionRadius();
+    m_maxSpeed = _agent.getMaxSpeed();
+    m_transformation.setPosition(_agent.getPosition());
+    m_previousTransform = m_transformation;
+    m_state = _agent.getState();
+    m_brain = _agent.getBrain();
+    m_attributes = _agent.getAttributes();
 }
 
 void Agent::print() const
 {
     std::cout << "AGENT " << m_agentID << std::endl;
     std::cout << "position = " << m_transformation.getPosition() << std::endl;
+    std::cout << "mass = " << m_mass << std::endl;
     std::cout << "strength = " << m_strength << "/" << m_maxStrength << std::endl;
     std::cout << "velocity =" << m_velocity << std::endl;
     std::cout << "vision radius = " << m_visionRadius << std::endl;
@@ -240,6 +256,7 @@ void Agent::execute()
     ngl::Vec4 velocity;
     index = 1;
     int nNeighbours = m_neighbours.size();
+    std::map<std::string,std::string> neighbourAttributes;
     lua_createtable(s_luaState,nNeighbours,0);
 
     std::vector<Agent*>::const_iterator endAgent = m_neighbours.end();
@@ -312,14 +329,15 @@ void Agent::execute()
 
 
         // Attributes
-        nAttributes = agent->getAttributes().size();
+        neighbourAttributes = agent->getAttributes();
+        nAttributes = neighbourAttributes.size();
         // m_messages key at Stack[12]
         lua_pushstring(s_luaState,"attributes");
         // Messages table at Stack[13]
         lua_createtable(s_luaState,nAttributes,0);
 
-        endAttribute = agent->getAttributes().end();
-        for(std::map<std::string,std::string>::const_iterator currentAttribute = agent->getAttributes().begin();
+        endAttribute = neighbourAttributes.end();
+        for(std::map<std::string,std::string>::const_iterator currentAttribute = neighbourAttributes.begin();
             currentAttribute!=endAttribute; ++currentAttribute)
         {
             attribute = (*currentAttribute);

@@ -46,19 +46,19 @@ private:
     std::string m_brain;
     std::vector<message> m_inbox;
     std::map<std::string,std::string> m_attributes;
-    std::string m_primitive;
     std::vector<Agent*> m_neighbours;
 
 public:
     Agent();
     Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain);
+    Agent(const Agent &_agent);
     ~Agent() { }
 
     void static setLuaState(lua_State* _luaState) { s_luaState = _luaState; }
     void static setStep(float _step) { s_step = _step; }
     void static setFriction(float _friction) { s_friction = _friction; }
 
-    void setMass(float _mass) { m_mass = _mass; }
+    void setMass(float _mass) { m_mass = _mass; m_transformation.setScale(_mass,_mass,_mass); }
     void setMaxStrength(float _maxStrength) { m_maxStrength = _maxStrength; m_strength = m_maxStrength; }
     void setMaxSpeed(float _maxSpeed) { m_maxSpeed = _maxSpeed; }
     void setHeading(ngl::Vec3 _heading) { m_heading = _heading; }
@@ -74,13 +74,14 @@ public:
     ngl::Vec4 getPreviousPos() const { return m_previousTransform.getPosition(); }
     float getMass() const { return m_mass; }
     float getStrength() const { return m_strength; }
+    float getMaxStrength() const { return m_maxStrength; }
     ngl::Vec4 getVelocity() const { return m_velocity; }
     float getMaxSpeed() const { return m_maxSpeed; }
     std::string getState() const { return m_state; }
     ngl::Transformation getTransform() { return m_transformation; }
     int getVisionRadius() const { return m_visionRadius; }
     std::string getBrain() const { return m_brain; }
-    const std::map<std::string,std::string> &getAttributes() { return m_attributes; }
+    std::map<std::string,std::string> getAttributes() const { return m_attributes; }
 
     void execute();
     void sendMessage(message _message) { m_inbox.push_back(_message); }

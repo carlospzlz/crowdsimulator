@@ -9,7 +9,8 @@
 #include "ngl/VAOPrimitives.h"
 #include "ngl/ShaderLib.h"
 
-
+const QString GLWindow::s_brainsPath = "brains";
+const QString GLWindow::s_crowdsPath = "crowds";
 const float GLWindow::s_rotationIncrement = 0.5;
 const float GLWindow::s_translationIncrement = 0.05;
 const float GLWindow::s_zoomIncrement = 1;
@@ -38,22 +39,28 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
+    m_drawBoundingSphere = false;
+    m_drawCells = true;
     m_drawVelocityVector = false;
     m_drawVisionRadius = false;
     m_drawStrength = false;
+
+    //PARSER
+    m_parser = new TXTParser();
 
     //ADD CELLPARTITION TO THE CROWDENGINE!
     m_crowdEngine.setCellPartition(new QuadraticGridCP(2));
 
     // PLAYING WITH AGENTS
-    m_crowdEngine.loadBrain("warrior");
+    //m_crowdEngine.loadBrain("warrior");
     //m_crowdEngine.loadBrain("boid");
 
-    m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,20),"flock1",2,"army1");
+    //m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,20),"flock1",2,"army1");
     //m_crowdEngine.loadBrain("warrior");
-    m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,-20),"flock2",1,"army2");
+    //m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,-20),"flock2",1,"army2");
 
     //Captain 1
+    /*
     Agent *captain1 = new Agent();
     m_crowdEngine.loadBrain("captain");
     captain1->setBrain("warrior");
@@ -64,9 +71,10 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     captain1->setPosition(ngl::Vec3(1,0,18));
     captain1->setVisionRadius(8);
     captain1->setState("holdCaptain");
-    m_crowdEngine.addAgent(captain1);
+    m_crowdEngine.addAgent(captain1);*/
 
     //Captain 2
+    /*
     Agent *captain2 = new Agent();
     m_crowdEngine.loadBrain("captain");
     captain2->setBrain("captain");
@@ -78,6 +86,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     captain2->setVisionRadius(8);
     captain2->setState("holdCaptain");
     m_crowdEngine.addAgent(captain2);
+    */
 
     //m_crowdEngine.addAgent(troll);
 
@@ -164,7 +173,7 @@ void GLWindow::initializeGL()
     //LIGHT
     ngl::Mat4 iv=m_camera.getViewMatrix();
     iv.transpose();
-    m_light = ngl::Light(ngl::Vec3(-1,2,1),ngl::Colour(1,1,1,1),ngl::Colour(1,1,1,1),ngl::POINTLIGHT );
+    m_light = ngl::Light(ngl::Vec3(-10,10,10),ngl::Colour(1,1,1,1),ngl::Colour(1,1,1,1),ngl::POINTLIGHT );
     m_light.setTransform(iv);
     // load these values to the shader as well
     m_light.loadToShader("light");
@@ -172,6 +181,8 @@ void GLWindow::initializeGL()
     // PRIMITIVES FOR GUIDELINES
     m_primitives = ngl::VAOPrimitives::instance();
     m_primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
+    m_primitives->createSphere("bSphere",1,10);
+    m_primitives->createCylinder("bCylinder",1,1,16,1);
     m_primitives->createTorus("radius",0.01,1,3,16);
     m_primitives->createCylinder("vectorModulus",0.04,2,6,1);
     m_primitives->createCone("vectorSense",0.1,0.4,6,1);
@@ -217,21 +228,21 @@ void GLWindow::buildBoidVAO()
     //BUILD SIMPLE BOID FOR EFFICIENT DRAWING
     ngl::Vec3 vertex[] =
     {
-        ngl::Vec3(0,0.3,0),
-        ngl::Vec3(0.7,0,0),
-        ngl::Vec3(0,0,-0.4),
+        ngl::Vec3(0,0.5,0),
+        ngl::Vec3(1,0,0),
+        ngl::Vec3(0,0,-0.5),
 
-        ngl::Vec3(0,0.3,0),
-        ngl::Vec3(0.7,0,0),
-        ngl::Vec3(0,0,0.4),
+        ngl::Vec3(0,0.5,0),
+        ngl::Vec3(1,0,0),
+        ngl::Vec3(0,0,0.5),
 
-        ngl::Vec3(0,0.3,0),
-        ngl::Vec3(-0.4,0,0),
-        ngl::Vec3(0,0,-0.4),
+        ngl::Vec3(0,0.5,0),
+        ngl::Vec3(-0.5,0,0),
+        ngl::Vec3(0,0,-0.5),
 
-        ngl::Vec3(0,0.3,0),
-        ngl::Vec3(-0.4,0,0),
-        ngl::Vec3(0,0,0.4)
+        ngl::Vec3(0,0.5,0),
+        ngl::Vec3(-0.5,0,0),
+        ngl::Vec3(0,0,0.5)
     };
     m_boidVAO = ngl::VertexArrayObject::createVOA(GL_TRIANGLES);
     m_boidVAO->bind();
@@ -284,16 +295,19 @@ void GLWindow::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //DRAWING
-    ngl::Transformation transform;
-    int cellSize;
 
     //Drawing the grid
-    cellSize = m_crowdEngine.getCellSize();
-    transform.setScale(cellSize,1,cellSize);
-    m_transformStack.setCurrent(transform);
-    loadMatricesToShader(m_transformStack);
-    m_shader->setShaderParam4f("Colour",1,1,1,1);
-    m_primitives->draw("ground");
+    if (m_drawCells)
+    {
+        ngl::Transformation transform;
+        int cellSize;
+        cellSize = m_crowdEngine.getCellSize();
+        transform.setScale(cellSize,1,cellSize);
+        m_transformStack.setCurrent(transform);
+        loadMatricesToShader(m_transformStack);
+        m_shader->setShaderParam4f("Colour",1,1,1,1);
+        m_primitives->draw("ground");
+    }
 
     //DRAWING AGENTS
     std::vector<Agent*>::const_iterator endAgent = m_crowdEngine.getAgentsEnd();
@@ -308,6 +322,7 @@ void GLWindow::paintGL()
     for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
     {
         agent = *currentAgent;
+
         //agent->print();
         m_transformStack.setCurrent(agent->getTransform());
         setStateColour(agent->getState());
@@ -322,7 +337,8 @@ void GLWindow::paintGL()
         {
             m_dummies[m_dummyIndex-1]->draw();
         }
-
+        if (m_drawBoundingSphere)
+            drawBoundingSphere(agent->getMass());
         if (m_drawVelocityVector)
             drawVector(agent->getVelocity());
         if (m_drawVisionRadius)
@@ -331,25 +347,21 @@ void GLWindow::paintGL()
             drawStrength(agent->getStrength(),agent->getMass());
     }
 
-    /*
-    shader->use("Colour");
+}
 
-    for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
+inline void GLWindow::drawBoundingSphere(float _mass)
+{
+    if (_mass>0)
     {
-        agent = *currentAgent;
-        transform.setScale(2,2,1);
-        transform.setPosition(agent->getPosition());
-        transform.setRotation(90,0,0);
-        m_transformStack.setCurrent(transform);
-        loadMVPToShader(m_transformStack);
-
-        primitives->draw("radius");
-
+        glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+        //m_transformStack.addPosition(0,_mass,0);
+        m_transformStack.setRotation(90,0,0);
+        loadMatricesToShader(m_transformStack);
+        m_primitives->draw("bCylinder");
+        m_transformStack.setRotation(-90,0,0);
+        //m_transformStack.addPosition(0,-_mass,0);
+        glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
     }
-
-    shader->use("Phong");
-    */
-
 }
 
 inline void GLWindow::drawStrength(float _strength, float _mass)
@@ -551,6 +563,18 @@ void GLWindow::toggleSimulation(bool _pressed)
     }
 }
 
+void GLWindow::setDrawCells(bool _pressed)
+{
+    m_drawCells = _pressed;
+    updateGL();
+}
+
+void GLWindow::setDrawBoundingSphere(bool _pressed)
+{
+    m_drawBoundingSphere = _pressed;
+    updateGL();
+}
+
 void GLWindow::setDrawVelocityVector(bool _pressed)
 {
     m_drawVelocityVector = _pressed;
@@ -598,6 +622,65 @@ void GLWindow::rearrangeCellPartition(int _cellSize)
     else
     {
         m_crowdEngine.rearrangePartition(_cellSize);
+    }
+    updateGL();
+}
+
+void GLWindow::loadBrains()
+{
+    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Load Brains"), s_brainsPath, tr("Lua Files (*.lua)"));
+
+    QStringList::iterator filenameEnd = filenames.end();
+    QStringList::iterator currentFilename;
+    for (currentFilename = filenames.begin(); currentFilename!=filenameEnd; ++currentFilename)
+        m_crowdEngine.loadBrain((*currentFilename).toStdString());
+
+}
+
+void GLWindow::loadCrowds()
+{
+    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Load Crowds"), s_crowdsPath, tr("Text Files (*.txt)"));
+    std::vector<Agent*> agents;
+
+    QStringList::iterator filenameEnd = filenames.end();
+    QStringList::iterator currentFilename;
+    for (currentFilename = filenames.begin(); currentFilename!=filenameEnd; ++currentFilename)
+    {
+        if ( m_parser->loadCrowd((*currentFilename).toStdString(), agents) )
+            m_crowdEngine.addAgents(agents);
+        else
+            std::cout << "GLWindow: ERROR: Impossible to load crowd from " << (*currentFilename).toStdString() << std::endl;
+    }
+
+    updateGL();
+}
+
+void GLWindow::clear()
+{
+    if (m_timer->isActive())
+    {
+        m_timer->stop();
+        m_crowdEngine.clear();
+        m_timer->start();
+    }
+    else
+    {
+        m_crowdEngine.clear();
+    }
+    updateGL();
+}
+
+void GLWindow::restart()
+{
+    if (m_timer->isActive())
+    {
+        m_timer->stop();
+        m_crowdEngine.restart();
+        m_timer->start();
+    }
+    else
+    {
+        m_crowdEngine.restart();
     }
     updateGL();
 }
