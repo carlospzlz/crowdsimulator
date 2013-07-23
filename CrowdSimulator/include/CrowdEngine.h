@@ -41,6 +41,7 @@ public:
     void update();
     void clear();
     void restart();
+    void scaleCollisionRadius(float _scale);
 
 };
 

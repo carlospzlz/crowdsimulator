@@ -12,6 +12,7 @@ Agent::Agent()
 {
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
+    m_collisionRadius = m_mass;
     m_maxStrength = 3;
     m_strength = m_maxStrength;
     m_visionRadius = 5;  
@@ -27,6 +28,7 @@ Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
 {
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
+    m_collisionRadius = m_mass;
     m_maxStrength = 3;
     m_strength = m_maxStrength;
     m_visionRadius = 5;
@@ -52,6 +54,13 @@ Agent::Agent(const Agent &_agent)
     m_state = _agent.getState();
     m_brain = _agent.getBrain();
     m_attributes = _agent.getAttributes();
+}
+
+void Agent::setMass(float _mass)
+{
+    m_mass = _mass;
+    m_transformation.setScale(_mass,_mass,_mass);
+    m_collisionRadius = m_mass;
 }
 
 void Agent::print() const

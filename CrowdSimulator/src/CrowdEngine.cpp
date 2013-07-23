@@ -177,3 +177,16 @@ void CrowdEngine::restart()
     m_cellPartition->clear();
     m_cellPartition->addAgents(m_agents);
 }
+
+void CrowdEngine::scaleCollisionRadius(float _scale)
+{
+    std::cout << "scaling:" << _scale << std::endl;
+
+    std::vector<Agent*>::iterator endAgent = m_agents.end();
+    std::vector<Agent*>::iterator currentAgent;
+    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        (*currentAgent)->scaleCollisionRadius(_scale);
+    }
+
+}

@@ -25,8 +25,8 @@ MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::Mai
     connect(m_ui->s_cellSizeSpinbox,SIGNAL(valueChanged(int)),m_gl,SLOT(rearrangeCellPartition(int)));
 
     // collisions
-    connect(m_ui->s_drawBoundingSphere,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawBoundingSphere(bool)));
-
+    connect(m_ui->s_drawBoundingSphere,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawCollisionRadius(bool)));
+    connect(m_ui->s_radiusMass,SIGNAL(valueChanged(double)),m_gl,SLOT(scaleCollisionRadius(double)));
     // simulation
     connect(m_ui->s_drawVelocityVector,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVelocityVector(bool)));
     connect(m_ui->s_drawVisionRadius,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVisionRadius(bool)));

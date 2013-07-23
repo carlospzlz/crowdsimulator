@@ -47,6 +47,7 @@ private:
     std::vector<message> m_inbox;
     std::map<std::string,std::string> m_attributes;
     std::vector<Agent*> m_neighbours;
+    float m_collisionRadius;
 
 public:
     Agent();
@@ -58,7 +59,7 @@ public:
     void static setStep(float _step) { s_step = _step; }
     void static setFriction(float _friction) { s_friction = _friction; }
 
-    void setMass(float _mass) { m_mass = _mass; m_transformation.setScale(_mass,_mass,_mass); }
+    void setMass(float _mass);
     void setMaxStrength(float _maxStrength) { m_maxStrength = _maxStrength; m_strength = m_maxStrength; }
     void setMaxSpeed(float _maxSpeed) { m_maxSpeed = _maxSpeed; }
     void setHeading(ngl::Vec3 _heading) { m_heading = _heading; }
@@ -82,10 +83,12 @@ public:
     int getVisionRadius() const { return m_visionRadius; }
     std::string getBrain() const { return m_brain; }
     std::map<std::string,std::string> getAttributes() const { return m_attributes; }
+    float getCollisionRadius() const { return m_collisionRadius; }
 
     void execute();
     void sendMessage(message _message) { m_inbox.push_back(_message); }
     float distance(const Agent *_agent) const;
+    void scaleCollisionRadius(float _scale) { m_collisionRadius = m_mass*_scale; }
     void print() const;
 
 };

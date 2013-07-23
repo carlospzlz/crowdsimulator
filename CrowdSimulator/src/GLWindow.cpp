@@ -39,7 +39,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
-    m_drawBoundingSphere = false;
+    m_drawCollisionRadius = false;
     m_drawCells = true;
     m_drawVelocityVector = false;
     m_drawVisionRadius = false;
@@ -182,8 +182,8 @@ void GLWindow::initializeGL()
     m_primitives = ngl::VAOPrimitives::instance();
     m_primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
     m_primitives->createSphere("bSphere",1,10);
-    m_primitives->createCylinder("bCylinder",1,1,16,1);
-    m_primitives->createTorus("radius",0.01,1,3,16);
+    m_primitives->createCylinder("radius",1,0,16,0);
+    m_primitives->createTorus("tradius",0.01,1,3,16);
     m_primitives->createCylinder("vectorModulus",0.04,2,6,1);
     m_primitives->createCone("vectorSense",0.1,0.4,6,1);
 
@@ -337,8 +337,8 @@ void GLWindow::paintGL()
         {
             m_dummies[m_dummyIndex-1]->draw();
         }
-        if (m_drawBoundingSphere)
-            drawBoundingSphere(agent->getMass());
+        if (m_drawCollisionRadius)
+            drawCollisionRadius(agent->getCollisionRadius());
         if (m_drawVelocityVector)
             drawVector(agent->getVelocity());
         if (m_drawVisionRadius)
@@ -349,15 +349,17 @@ void GLWindow::paintGL()
 
 }
 
-inline void GLWindow::drawBoundingSphere(float _mass)
+inline void GLWindow::drawCollisionRadius(float _collisionRadius)
 {
-    if (_mass>0)
+    if (_collisionRadius>0)
     {
         glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
         //m_transformStack.addPosition(0,_mass,0);
+        m_transformStack.setScale(_collisionRadius,_collisionRadius,1);
         m_transformStack.setRotation(90,0,0);
         loadMatricesToShader(m_transformStack);
-        m_primitives->draw("bCylinder");
+        m_primitives->draw("radius");
+        m_transformStack.setScale(1,1,1);
         m_transformStack.setRotation(-90,0,0);
         //m_transformStack.addPosition(0,-_mass,0);
         glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
@@ -410,13 +412,13 @@ inline void GLWindow::drawVector(ngl::Vec4 _vector)
 
 }
 
-inline void GLWindow::drawRadius(int _radius)
+inline void GLWindow::drawRadius(float _radius)
 {
     m_transformStack.setScale(_radius,_radius,1);
     m_transformStack.setRotation(90,0,0);
     loadMatricesToShader(m_transformStack);
     m_primitives->draw("radius");
-    m_transformStack.setScale(-_radius,-_radius,1);
+    m_transformStack.setScale(1,1,1);
     m_transformStack.setRotation(-90,0,0);
 
 }
@@ -569,9 +571,9 @@ void GLWindow::setDrawCells(bool _pressed)
     updateGL();
 }
 
-void GLWindow::setDrawBoundingSphere(bool _pressed)
+void GLWindow::setDrawCollisionRadius(bool _pressed)
 {
-    m_drawBoundingSphere = _pressed;
+    m_drawCollisionRadius = _pressed;
     updateGL();
 }
 
@@ -682,5 +684,11 @@ void GLWindow::restart()
     {
         m_crowdEngine.restart();
     }
+    updateGL();
+}
+
+void GLWindow::scaleCollisionRadius(double _scale)
+{
+    m_crowdEngine.scaleCollisionRadius(_scale);
     updateGL();
 }
