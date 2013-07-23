@@ -53,7 +53,7 @@ private :
     std::vector<ngl::Obj*> m_dummies;
     int m_dummyIndex;
     ngl::VertexArrayObject *m_boidVAO;
-    bool m_drawBoundingSphere;
+    bool m_drawCollisionRadius;
     bool m_drawCells;
     bool m_drawVelocityVector;
     bool m_drawVisionRadius;
@@ -64,9 +64,9 @@ private :
 
     void buildBoidVAO();
     void loadMatricesToShader(ngl::TransformStack &_tx);
-    void inline drawBoundingSphere(float _mass);
+    void inline drawCollisionRadius(float _collisionRadius);
     void inline drawVector(ngl::Vec4 _vector);
-    void inline drawRadius(int _radius);
+    void inline drawRadius(float _radius);
     void inline drawStrength(float _strength, float _mass);
     void inline setStateColour(std::string _state);
 
@@ -91,7 +91,7 @@ public :
 public slots:
     void toggleSimulation(bool _pressed);
     void setDrawCells(bool _pressed);
-    void setDrawBoundingSphere(bool _pressed);
+    void setDrawCollisionRadius(bool _pressed);
     void setDrawVelocityVector(bool _pressed);
     void setDrawVisionRadius(bool _pressed);
     void setDrawStrength(bool _pressed);
@@ -104,6 +104,7 @@ public slots:
     void loadCrowds();
     void restart();
     void clear();
+    void scaleCollisionRadius(double _scale);
 
 protected:
 
