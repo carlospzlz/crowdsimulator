@@ -60,9 +60,9 @@ function boid (agentID, position, strength, maxStrength, velocity, state, attrib
 
 	--Weights for the flocking force
 	flockForce = {}
-	wc = 0.1
-	ws = 0.1 
-	wa = 0.2
+	wc = 0.05
+	ws = 0.1
+	wa = 0.05
 	flockForce[1] = cohesion[1]*wc + separation[1]*ws + alignment[1]*wa
 	flockForce[2] = cohesion[2]*wc + separation[2]*ws + alignment[2]*wa
 	flockForce[3] = cohesion[3]*wc + separation[3]*ws + alignment[3]*wa

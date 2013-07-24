@@ -18,6 +18,7 @@
 #include "TXTParser.h"
 #include "CrowdEngine.h"
 #include "QuadraticGridCP.h"
+#include "RadialPE.h"
 
 enum shader{phong,colour};
 
@@ -53,6 +54,7 @@ private :
     std::vector<ngl::Obj*> m_dummies;
     int m_dummyIndex;
     ngl::VertexArrayObject *m_boidVAO;
+    float m_collisionRadiusScale;
     bool m_drawCollisionRadius;
     bool m_drawCells;
     bool m_drawVelocityVector;
