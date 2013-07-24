@@ -91,12 +91,10 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		attackDirection = {}
 		damage = 0
 		distance = 0
-		attackDistance = 3
 		for key,message in pairs(inbox)
 		do
 			if (message.label=="attack")
 			then
-
 				attackDirection[1] = position.x - message.position.x
 				attackDirection[2] = position.y - message.position.y
 				attackDirection[3] = position.z - message.position.z
@@ -130,13 +128,6 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 
 	end
 	
-	--HOLD STATE
-	function captainHold(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
-		return {0,0,0}, {0,0,0}, strength, "captainRun", {}
-	end
-
-	stateAction.captainHold = captainHold
-
 	--ATTACK STATE
 	function captainAttack(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
@@ -163,7 +154,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 				return {0,0,0}, {0,0,0}, strength, "captainDefend", {}
 			end
 		else	
-			return {0,0,0}, {0,0,0}, strength, "captainHold", {}
+			return {0,0,0}, {0,0,0}, strength, "captainRun", {}
 		end	
 		
 		--AttackForce
@@ -173,7 +164,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		closestEnemyPosition = {0,0,0}
 		messages = {}
 		distance = 99
-		attackDistance = 1
+		attackDistance = 3
 
 		enemiesCounter = 1
 		neighboursCounter = 1
@@ -220,8 +211,8 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 
 		--INTEGRATE FORCES
 		force = {}
-		aw = 0.05
-		mw = 0.05
+		aw = 2
+		mw = 0.01
 		--print(enemiesAttackForce[1],enemiesAttackForce[2],enemiesAttackForce[3])
 		force[1] = attackForce[1]*aw + movementForce[1]*strength*mw
 		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw
@@ -231,7 +222,8 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		--Damage and cost of attack
 		wd = 0.01
 		strength = strength -0.001 - damage*wd
-
+		
+		--print(agentID,attackForce[1], attackForce[2], attackForce[3])
 
 		return force, heading, strength, state, messages
 
@@ -265,7 +257,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 				return {0,0,0}, {0,0,0}, strength,"captainAttack", {}
 			end
 		else	
-			return {0,0,0}, {0,0,0}, strength, "captainHold", {}
+			return {0,0,0}, {0,0,0}, strength, "captainRun", {}
 		end
 
 		--INCOMING ATTACK FORCE
@@ -297,8 +289,8 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 
 		--INTEGRATING FORCE
 		force = {}
-		aw = 0.05
-		resistance = 0.05
+		aw = 2
+		resistance = 0.01
 		force[1] = attackForce[1]*aw - velocity.x*resistance*strength
 		force[2] = attackForce[2]*aw - velocity.y*resistance*strength
 		force[3] = attackForce[3]*aw - velocity.z*resistance*strength
@@ -306,6 +298,9 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		--CALCULATING STRENGTH
 		dw = 0.0001
 		strength = strength + 0.005 - damage*dw
+
+		--if you don't put this, messages are sent ¿?
+		messages = {}
 
 		return force, heading, strength, state, messages
 
@@ -378,16 +373,16 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		--NO FLOCKING -> NOTHING TO LEAD		
 		force = {}
 		magnitude = math.sqrt(flockForce[1]^2+flockForce[2]^2+flockForce[3]^2)
-		if (magnitude==0)
-		then
-			force = captainLost(velocity)
-		else
+		--if (magnitude==0)
+		--then
+		--	force = captainLost(velocity)
+		--else
 			lw = 1
 			fw = 1
 			force[1] = (leadershipForce[1]*lw + flockForce[1]*fw)
 			force[2] = (leadershipForce[2]*lw + flockForce[2]*fw)
 			force[3] = (leadershipForce[3]*lw + flockForce[3]*fw)
-		end
+		--end
 		
 		--THE FORCE DEPENDS ON THE STRENGTH
 		tw = 0.1
@@ -412,7 +407,7 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 	if not (stateAction[state])
 	then
 		print("Captain behaviour: WARNING: unknown state "..state)
-		return stateAction.captainHold(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
+		return stateAction.captainRun(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
 	else
 		return stateAction[state](agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
 	end

@@ -24,7 +24,7 @@ Agent::Agent()
     m_brain = "no brain";
 }
 
-Agent::Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain)
+Agent::Agent(ngl::Vec4 _pos, std::string _flock, std::string _brain)
 {
     m_agentID = s_numberOfAgents++;
     m_mass = 1;
@@ -50,10 +50,14 @@ Agent::Agent(const Agent &_agent)
     m_visionRadius = _agent.getVisionRadius();
     m_maxSpeed = _agent.getMaxSpeed();
     m_transformation.setPosition(_agent.getPosition());
+    m_transformation.setScale(m_mass,m_mass,m_mass);
+    m_transformation.setRotation(_agent.getTransform().getRotation());
     m_previousTransform = m_transformation;
     m_state = _agent.getState();
     m_brain = _agent.getBrain();
     m_attributes = _agent.getAttributes();
+    m_collisionRadius = _agent.getCollisionRadius();
+    m_heading = _agent.getHeading();
 }
 
 void Agent::setMass(float _mass)
@@ -72,6 +76,8 @@ void Agent::print() const
     std::cout << "velocity =" << m_velocity << std::endl;
     std::cout << "vision radius = " << m_visionRadius << std::endl;
     std::cout << "brain: " << m_brain << std::endl;
+    std::cout << "state: " << m_state << std::endl;
+    std::cout << "heading: " << m_heading << std::endl;
 
     // attributes
     std::cout << "attributes (" << m_attributes.size() << "):" << std::endl;
@@ -116,6 +122,27 @@ void Agent::print() const
 float Agent::distance(const Agent *_agent) const
 {
     return (_agent->getPosition()-m_transformation.getPosition()).length();
+}
+
+void Agent::setHeading(ngl::Vec4 _heading)
+{
+    if (_heading.length()>0)
+    {
+        m_heading = _heading;
+        ngl::Vec4 rotation;
+
+        if (m_heading.m_x != 0)
+            rotation.m_y = atan2(-m_heading.m_z,m_heading.m_x) * 180/M_PI;
+        else
+        {
+            if (m_heading.m_z<0)
+                rotation.m_y = 90;
+            else
+                rotation.m_y = -90;
+        }
+
+        m_transformation.setRotation(rotation);
+    }
 }
 
 void Agent::execute()

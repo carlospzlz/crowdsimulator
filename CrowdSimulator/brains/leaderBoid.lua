@@ -99,7 +99,7 @@ function leaderBoid (agentID, position, strength, maxStrength, velocity, state, 
 	--SYNTHESIS OF ALL THE FORCES
 	force = {}
 	leaderW = 0.3
-	flockW = 1
+	flockW = 0.1
 	force[1] = leadershipForce[1]*leaderW + flockForce[1]*flockW
 	force[2] = leadershipForce[2]*leaderW + flockForce[2]*flockW
 	force[3] = leadershipForce[3]*leaderW + flockForce[3]*flockW

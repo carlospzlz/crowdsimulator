@@ -35,22 +35,17 @@ void CrowdEngine::loadBrain(std::string _brain)
     unsigned brainNameStartingPos = _brain.find_last_of("/\\")+1;
     unsigned brainNameLength = (_brain.find_last_of(".")) - brainNameStartingPos;
     std::string brainName = _brain.substr(brainNameStartingPos,brainNameLength);
-    if ( !s_loadedBrains.count(brainName) )
+
+    if (!luaL_dofile(s_luaState,_brain.c_str()))
     {
-        if (!luaL_dofile(s_luaState,_brain.c_str()))
-        {
-            s_loadedBrains.insert(brainName);
-            std::cout << "CrowdEngine: Brain " << brainName << " loaded from " << _brain << std::endl;
-        }
-        else
-        {
-            std::cout << "CrowdEngine: ERROR: " << brainName << " cannot be loaded from " << _brain << std::endl;
-        }
+        s_loadedBrains.insert(brainName);
+        std::cout << "CrowdEngine: Brain " << brainName << " loaded from " << _brain << std::endl;
     }
     else
     {
-        std::cout << "CrowdEngine: Brain " << brainName << " already loaded" << std::endl;
+        std::cout << "CrowdEngine: ERROR: " << brainName << " cannot be loaded from " << _brain << std::endl;
     }
+
 }
 
 void CrowdEngine::addAgent(Agent* agent)
@@ -144,10 +139,39 @@ void CrowdEngine::update()
     m_cellPartition->updateNeighbours(m_agents);
 
     std::vector<Agent*>::iterator endAgent = m_agents.end();
-    for(std::vector<Agent*>::iterator currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    std::vector<Agent*>::iterator currentAgent;
+
+    //EXECUTION
+    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
         (*currentAgent)->execute();
     }
+
+    //COLLISIONS
+
+    std::set<int> collisionPair;
+    std::set<std::set<int> > checkedAgents;
+    std::vector<Agent*> neighbours;
+    std::vector<Agent*>::iterator endNeighbour;
+    std::vector<Agent*>::iterator currentNeighbour;
+    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        neighbours = (*currentAgent)->getNeighbours();
+        endNeighbour = neighbours.end();
+        for(currentNeighbour = neighbours.begin(); currentNeighbour!=endNeighbour; ++currentNeighbour)
+        {
+            collisionPair.insert((*currentAgent)->getAgentID());
+            collisionPair.insert((*currentNeighbour)->getAgentID());
+            if (checkedAgents.count(collisionPair)!=1)
+            {
+                //check collision
+                m_physicsEngine->checkCollision(*currentAgent,*currentNeighbour);
+                checkedAgents.insert(collisionPair);
+            }
+            collisionPair.clear();
+        }
+    }
+
 
 }
 
@@ -180,11 +204,15 @@ void CrowdEngine::restart()
 
 void CrowdEngine::scaleCollisionRadius(float _scale)
 {
-    std::cout << "scaling:" << _scale << std::endl;
-
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     std::vector<Agent*>::iterator currentAgent;
     for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        (*currentAgent)->scaleCollisionRadius(_scale);
+    }
+
+    endAgent = m_initialAgents.end();
+    for(currentAgent = m_initialAgents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
         (*currentAgent)->scaleCollisionRadius(_scale);
     }

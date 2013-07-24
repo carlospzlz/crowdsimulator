@@ -39,6 +39,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
+    m_collisionRadiusScale = 1;
     m_drawCollisionRadius = false;
     m_drawCells = true;
     m_drawVelocityVector = false;
@@ -50,6 +51,9 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
     //ADD CELLPARTITION TO THE CROWDENGINE!
     m_crowdEngine.setCellPartition(new QuadraticGridCP(2));
+
+    //ADD PHYSICS ENGINE TO THE CROWDENGINE!
+    m_crowdEngine.setPhysicsEngine(new RadialPE());
 
     // PLAYING WITH AGENTS
     //m_crowdEngine.loadBrain("warrior");
@@ -181,9 +185,8 @@ void GLWindow::initializeGL()
     // PRIMITIVES FOR GUIDELINES
     m_primitives = ngl::VAOPrimitives::instance();
     m_primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
-    m_primitives->createSphere("bSphere",1,10);
-    m_primitives->createCylinder("radius",1,0,16,0);
-    m_primitives->createTorus("tradius",0.01,1,3,16);
+    m_primitives->createCylinder("collisionRadius",1,1,16,1);
+    m_primitives->createTorus("visionRadius",0.01,1,3,16);
     m_primitives->createCylinder("vectorModulus",0.04,2,6,1);
     m_primitives->createCone("vectorSense",0.1,0.4,6,1);
 
@@ -354,14 +357,12 @@ inline void GLWindow::drawCollisionRadius(float _collisionRadius)
     if (_collisionRadius>0)
     {
         glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
-        //m_transformStack.addPosition(0,_mass,0);
-        m_transformStack.setScale(_collisionRadius,_collisionRadius,1);
+        m_transformStack.setScale(_collisionRadius,_collisionRadius,2);
         m_transformStack.setRotation(90,0,0);
         loadMatricesToShader(m_transformStack);
-        m_primitives->draw("radius");
+        m_primitives->draw("collisionRadius");
         m_transformStack.setScale(1,1,1);
         m_transformStack.setRotation(-90,0,0);
-        //m_transformStack.addPosition(0,-_mass,0);
         glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
     }
 }
@@ -370,13 +371,16 @@ inline void GLWindow::drawStrength(float _strength, float _mass)
 {
     if (_strength>0)
     {
-        int scaleLength=1;
-        int scaleHeight=2;
-        m_transformStack.addPosition(-0.2,_mass*scaleHeight,0);
+        float scaleLength=1;
+        float scaleHeight=2.2;
+        m_transformStack.addPosition(-0.02,_mass*scaleHeight,0);
         m_transformStack.setScale(0.05,0.1,_strength*scaleLength);
         m_transformStack.setRotation(0,90,0);
         loadMatricesToShader(m_transformStack);
         m_primitives->draw("cube");
+        m_transformation.addPosition(-_strength/2.0,-_mass*scaleHeight,0);
+        m_transformStack.setScale(1,1,1);
+        m_transformStack.setRotation(0,-90,0);
     }
 }
 
@@ -417,7 +421,7 @@ inline void GLWindow::drawRadius(float _radius)
     m_transformStack.setScale(_radius,_radius,1);
     m_transformStack.setRotation(90,0,0);
     loadMatricesToShader(m_transformStack);
-    m_primitives->draw("radius");
+    m_primitives->draw("visionRadius");
     m_transformStack.setScale(1,1,1);
     m_transformStack.setRotation(-90,0,0);
 
@@ -649,7 +653,10 @@ void GLWindow::loadCrowds()
     for (currentFilename = filenames.begin(); currentFilename!=filenameEnd; ++currentFilename)
     {
         if ( m_parser->loadCrowd((*currentFilename).toStdString(), agents) )
+        {
             m_crowdEngine.addAgents(agents);
+            m_crowdEngine.scaleCollisionRadius(m_collisionRadiusScale);
+        }
         else
             std::cout << "GLWindow: ERROR: Impossible to load crowd from " << (*currentFilename).toStdString() << std::endl;
     }
@@ -689,6 +696,7 @@ void GLWindow::restart()
 
 void GLWindow::scaleCollisionRadius(double _scale)
 {
+    m_collisionRadiusScale = _scale;
     m_crowdEngine.scaleCollisionRadius(_scale);
     updateGL();
 }

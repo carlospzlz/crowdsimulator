@@ -2,6 +2,7 @@
 #define CROWDENGINE_H
 
 #include "CellPartition.h"
+#include "PhysicsEngine.h"
 #include "ngl/Vec2.h"
 #include <math.h>
 
@@ -18,12 +19,14 @@ private:
     std::vector<Agent*> m_agents;
     std::vector<Agent*> m_initialAgents;
     CellPartition *m_cellPartition;
+    PhysicsEngine *m_physicsEngine;
 
 public:
     CrowdEngine();
     ~CrowdEngine();
 
     void setCellPartition(CellPartition* _cellPartition) { m_cellPartition = _cellPartition; }
+    void setPhysicsEngine(PhysicsEngine* _physicsEngine) { m_physicsEngine = _physicsEngine; }
     void setStep(float _step) { Agent::setStep(_step); }
     void setFriction(float _friction) {Agent::setFriction(_friction); }
 

@@ -22,7 +22,9 @@ HEADERS += \
     include/MainWindow.h \
     include/QuadraticGridCP.h \
     include/Parser.h \
-    include/TXTParser.h
+    include/TXTParser.h \
+    include/PhysicsEngine.h \
+    include/RadialPE.h
 
 SOURCES += \
     src/main.cpp \
@@ -32,7 +34,8 @@ SOURCES += \
     src/MainWindow.cpp \
     src/QuadraticGridCP.cpp \
     src/TXTParser.cpp \
-    src/Parser.cpp
+    src/Parser.cpp \
+    src/RadialPE.cpp
 
 FORMS += \
     ui/MainWindow.ui

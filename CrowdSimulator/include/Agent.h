@@ -51,7 +51,7 @@ private:
 
 public:
     Agent();
-    Agent(ngl::Vec3 _pos, std::string _flock, std::string _brain);
+    Agent(ngl::Vec4 _pos, std::string _flock, std::string _brain);
     Agent(const Agent &_agent);
     ~Agent() { }
 
@@ -59,12 +59,15 @@ public:
     void static setStep(float _step) { s_step = _step; }
     void static setFriction(float _friction) { s_friction = _friction; }
 
+    float static getStep() { return s_step; }
+
     void setMass(float _mass);
     void setMaxStrength(float _maxStrength) { m_maxStrength = _maxStrength; m_strength = m_maxStrength; }
     void setMaxSpeed(float _maxSpeed) { m_maxSpeed = _maxSpeed; }
-    void setHeading(ngl::Vec3 _heading) { m_heading = _heading; }
+    void setHeading(ngl::Vec4 _heading);
     void setVisionRadius(float _visionRadius) { m_visionRadius = _visionRadius; }
-    void setPosition(ngl::Vec3 _pos) { m_transformation.setPosition(_pos); }
+    void setPosition(ngl::Vec4 _pos) { m_transformation.setPosition(_pos); }
+    void setVelocity(ngl::Vec4 _vel) { m_velocity = _vel; }
     void setNeighbours(const std::vector<Agent*> &_neighbours) { m_neighbours = _neighbours; }
     void setBrain(std::string _brain) { m_brain = _brain; }
     void setState(std::string _state) { m_state = _state; }
@@ -79,11 +82,13 @@ public:
     ngl::Vec4 getVelocity() const { return m_velocity; }
     float getMaxSpeed() const { return m_maxSpeed; }
     std::string getState() const { return m_state; }
-    ngl::Transformation getTransform() { return m_transformation; }
+    ngl::Transformation getTransform() const { return m_transformation; }
     int getVisionRadius() const { return m_visionRadius; }
     std::string getBrain() const { return m_brain; }
     std::map<std::string,std::string> getAttributes() const { return m_attributes; }
     float getCollisionRadius() const { return m_collisionRadius; }
+    std::vector<Agent*> getNeighbours() const { return m_neighbours; }
+    ngl::Vec4 getHeading() const { return m_heading; }
 
     void execute();
     void sendMessage(message _message) { m_inbox.push_back(_message); }
