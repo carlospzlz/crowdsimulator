@@ -1,0 +1,17 @@
+# posX posY posZ mass maxStrength maxSpeed visionRadius state brain headX headY headZ
+# number of attributes
+# key value
+# ..
+#
+
+-1 0 0 1 1 1 4 state boid 0 0 -1
+1
+flock flock1
+
+1 0 0 1 1 1 4 state boid 0 0 -1
+1
+flock flock1
+
+3 0 0 1 1 1 4 state boid 0 0 -1
+1
+flock flock1

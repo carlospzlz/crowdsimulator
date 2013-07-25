@@ -8,10 +8,6 @@ void RadialPE::checkCollision(Agent *a1, Agent *a2)
     if (distance < radiusSum)
     {
         //THERE IS COLLISION
-        //std::cout << "COLLISION!" << std::endl;
-        a1->setPosition(a1->getPreviousPos());
-        a2->setPosition(a2->getPreviousPos());
-
 
         ngl::Vec4 distanceVector;
         distanceVector.m_x = a2->getPosition().m_x - a1->getPosition().m_x;
@@ -23,29 +19,55 @@ void RadialPE::checkCollision(Agent *a1, Agent *a2)
         //normalize
         tangentVector = tangentVector / tangentVector.length();
 
+        float magnitude;
+        float step = Agent::getStep();
+        float angleA1, angleA2;
+        // angleBetween returns in radians, not degrees.
+        // NGL doc is mistaken
+
         //FIXING AGENT1
         ngl::Vec4 velocityA1;
-        velocityA1.m_x = a1->getVelocity().m_x;
-        velocityA1.m_z = a1->getVelocity().m_z;
+        velocityA1 = a1->getVelocity();
 
-        float magnitude = velocityA1.dot(tangentVector);
-        velocityA1 = magnitude*tangentVector;
-        a1->setVelocity(velocityA1);
-        // fixing position of Agent1
-        float step = Agent::getStep();
-        a1->setPosition(a1->getPreviousPos()+velocityA1*step);
+        if (velocityA1.length() > 0)
+        {
+            angleA1 = velocityA1.angleBetween(distanceVector);
+
+            if (angleA1 < M_PI/2.0)
+            {
+                // FIX!
+                // fixing velocity of Agent1
+                magnitude= velocityA1.dot(tangentVector);
+                velocityA1 = magnitude*tangentVector;
+                a1->setVelocity(velocityA1);
+                // fixing position of Agent1
+                a1->setPosition(a1->getPreviousPos()+velocityA1*step);
+            }
+        }
 
         //FIXING AGENT2
         ngl::Vec4 velocityA2;
-        velocityA1.m_x = a2->getVelocity().m_x;
-        velocityA1.m_z = a2->getVelocity().m_z;
+        velocityA2 = a2->getVelocity();
 
-        magnitude = velocityA2.dot(tangentVector);
-        velocityA2 = magnitude*tangentVector;
-        a2->setVelocity(velocityA2);
-        // fixing position of Agent2
-        a2->setPosition(a2->getPreviousPos()+velocityA2*step);
+        if (velocityA2.length() > 0)
+        {
+            angleA2 = velocityA2.angleBetween(-distanceVector);
 
+            if (angleA2 < M_PI/2.0)
+            {
+                //FIX!
+                //fixing velocity of Agent2
+                magnitude = velocityA2.dot(tangentVector);
+                velocityA2 = magnitude*tangentVector;
+                a2->setVelocity(velocityA2);
+                // fixing position of Agent2
+                a2->setPosition(a2->getPreviousPos()+velocityA2*step);
+            }
+        }
+
+        //std::cout << "COLLISION; "
+        //          << a1->getAgentID() << " angleA1: " << angleA1 << "\t"
+        //          << a2->getAgentID() << " angleA2: " << angleA2 << std::endl;
 
     }
 }
