@@ -1,6 +1,6 @@
-function leaderBoid (agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
-	
-	--LEADER BOID
+function cohesiveBoid (agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
+
+	-- BOID BEHAVIOUR
 
 	--FLOCKING BEHAVIOUR
 	positionSum = {0,0,0}
@@ -16,7 +16,6 @@ function leaderBoid (agentID, position, strength, maxStrength, velocity, state, 
 	do
 		if (attributes.flock==neighbour.attributes.flock)
 		then
-
 			positionSum[1] = positionSum[1] + neighbour.position.x
 			positionSum[2] = positionSum[2] + neighbour.position.y
 			positionSum[3] = positionSum[3] + neighbour.position.z
@@ -62,57 +61,29 @@ function leaderBoid (agentID, position, strength, maxStrength, velocity, state, 
 	--Weights for the flocking force
 	flockForce = {}
 	wc = 0.1
-	ws = 0.1
-	-- THE LEADER DOES NOT OBEY THE ALIGNMENT FORCE
-	wa = 0
+	ws = 0.05
+	wa = 0.5
 	flockForce[1] = cohesion[1]*wc + separation[1]*ws + alignment[1]*wa
 	flockForce[2] = cohesion[2]*wc + separation[2]*ws + alignment[2]*wa
 	flockForce[3] = cohesion[3]*wc + separation[3]*ws + alignment[3]*wa
 	
-	--LEADERSHIP FORCE
-	speed = math.sqrt( (velocity.x*velocity.x)+(velocity.y*velocity.y)+(velocity.z*velocity.z) )
-
-	direction = {}
-
-	if (speed==0)
-	then
-		direction.x = 1;
-		direction.y = 0;
-		direction.z = 0;
-	else
-		direction.x = velocity.x/speed
-		direction.y = velocity.y/speed
-		direction.z = velocity.z/speed
-	end
-
-	angle = (math.pi/300)
-
-	direction.x = direction.x*math.cos(angle)-direction.z*math.sin(angle);
-	direction.z = direction.x*math.sin(angle)+direction.z*math.cos(angle);
-
-	leadershipForce = {}
-	leadershipForce[1] = direction.x
-	leadershipForce[2] = 0
-	leadershipForce[3] = direction.z
-
-
+	
 	--SYNTHESIS OF ALL THE FORCES
 	force = {}
-	leaderW = 0.3
-	flockW = 0.1
-	force[1] = leadershipForce[1]*leaderW + flockForce[1]*flockW
-	force[2] = leadershipForce[2]*leaderW + flockForce[2]*flockW
-	force[3] = leadershipForce[3]*leaderW + flockForce[3]*flockW
+	force[1] = flockForce[1]
+	force[2] = flockForce[2]
+	force[3] = flockForce[3]
 
 	heading = {}
-	--forceMagnitude = math.sqrt(force[1]^2, force[2]^2, force[3]^2)
+	--forceMagnitude = math.sqrt(force[1]^2,force[2]^2,force[3]^2)
 	--heading[1] = force[1] / forceMagnitude
 	--heading[2] = force[2] / forceMagnitude
 	--heading[3] = force[3] / forceMagnitude
 
-	--print(force[1].." "..force[2].." "..force[3]);
-
 	messages = {}
-	
-	return force, heading, strength, state, messages
+
+	--print("FORCE",force[1],force[2],force[3])
+
+	return force, heading, strength, state, messages 
+
 end
