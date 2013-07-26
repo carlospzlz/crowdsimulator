@@ -9,6 +9,7 @@
 #include <ngl/Obj.h>
 #include <ngl/VAOPrimitives.h>
 #include <ngl/ShaderLib.h>
+#include <ngl/Text.h>
 // it must be included after our stuff becuase GLEW needs to be first
 #include <QResizeEvent>
 #include <QEvent>
@@ -36,9 +37,11 @@ private :
     static const float s_zoomIncrement;
     static const int s_groundSize;
     static const int s_timerValue;
-    QTimer *m_timer;
-    //int m_timer;
-    //bool m_simulating;
+    QTimer *m_updateCrowdEngineTimer;
+    QTimer *m_updateFPSTimer;
+    int m_fps;
+    int m_frameCounter;
+    ngl::Text *m_text;
     bool m_rotate;
     bool m_translate;
     std::pair<int,int> m_previousMousePosition;
@@ -78,8 +81,10 @@ private :
     void wheelEvent(QWheelEvent *_event);
 
 private slots:
-    // This is called by the QTimer
+    // This is called by the QTimer m_updateCrowdEngineTimer
     void updateSimulation();
+    // This is called by the QTimer m_updateFPSTimer
+    void updateFPS();
 
 public :
     /**
@@ -88,7 +93,7 @@ public :
      */
     GLWindow(QWidget *_parent);
     ~GLWindow();
-    void setTimerInterval(int _interval) { m_timer->setInterval(_interval); }
+    void setTimerInterval(int _interval) { m_updateCrowdEngineTimer->setInterval(_interval); }
 
 public slots:
     void toggleSimulation(bool _pressed);

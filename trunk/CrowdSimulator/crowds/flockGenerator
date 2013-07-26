@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fileName=generatedFlock.txt
+fileName=flock2_circular_100cohesiveBoid.txt
 
 touch $fileName
 
@@ -10,12 +10,12 @@ echo >> $fileName
 xCentre=0
 zCentre=0
 
-flock=flock4
-rows=7
-columns=7
+flock=flock2
+rows=10
+columns=10
 brain=cohesiveBoid
 
-echo "0 0 0 1 2 1 8 parallelGoingRight parallelLeader 1 0 0" >> $fileName
+echo "0 0 0 1 2 0.5 8 state circularLeader 0 0 1" >> $fileName
 echo "1" >> $fileName
 echo "flock $flock" >> $fileName
 echo >> $fileName
@@ -27,15 +27,15 @@ for ((i=0;i<$columns;++i))
 do
 	for ((j=0;j<$rows;++j))
 	do
-		rand=$(($RANDOM%100))
-		mass=$(echo "scale=2; 0.5 + $rand / 100" | bc)
-		rand=$(($RANDOM%100))
-		maxStrength=$(echo "scale=2; 0.5 + $rand / 100" | bc)
-		rand=$(($RANDOM%100))
-		maxSpeed=$(echo "scale=2; 0.5 + $rand / 100" | bc)
+		rand=$(($RANDOM%50))
+		mass=$(echo "scale=2; 0.75 + $rand / 100" | bc)
+		rand=$(($RANDOM%50))
+		maxStrength=$(echo "scale=2; 0.75 + $rand / 100" | bc)
+		rand=$(($RANDOM%50))
+		maxSpeed=$(echo "scale=2; 0.75 + $rand / 100" | bc)
 		x=$(($startingX + i))
 		z=$(($startingZ + j))
-		echo "$x 0 $z $mass $maxStrength $maxSpeed 4 state $brain -1 0 0" >> $fileName
+		echo "$x 0 $z $mass $maxStrength $maxSpeed 4 state $brain 0 0 1" >> $fileName
 		echo "1" >> $fileName
 		echo "flock $flock" >> $fileName
 		echo >> $fileName
