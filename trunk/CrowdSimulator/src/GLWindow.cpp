@@ -166,7 +166,11 @@ void GLWindow::initializeGL()
     m_shader->bindAttribute("Colour",0,"inVert");
     m_shader->linkProgramObject("Colour");
 
-    //BY DEFAULT PHONG
+    //INITIALIZE TEXT FOR DRAWING FPS ON SCREEN
+    m_text = new ngl::Text(QFont("Arial",18));
+    m_text->setColour(1,1,0);
+
+    //BY DEFAULT PHONG (text loads nglTextShader)
     m_shaderIndex = phong;
     (*m_shader)["Phong"]->use();
 
@@ -229,9 +233,6 @@ void GLWindow::initializeGL()
     //DEFAULT LEGOMAN
     m_dummyIndex = 1;
 
-    //INITIALIZE TEXT FOR DRAWING FPS ON SCREEN
-    m_text = new ngl::Text(QFont("Arial",100));
-    m_text->setColour(1,1,0);
 }
 
 void GLWindow::buildBoidVAO()
@@ -268,6 +269,8 @@ void GLWindow::resizeGL(int _w, int _h)
 {
     glViewport(0,0,_w,_h);
     m_camera.setShape(45,(float)_w/_h,0.05,350,ngl::PERSPECTIVE);
+    //THIS LINE GAVE ME A LOT OF PAIN!
+    m_text->setScreenSize(_w,_h);
 }
 
 inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
@@ -309,6 +312,14 @@ void GLWindow::paintGL()
     glEnable(GL_DEPTH_TEST);
 
     //DRAWING
+    /**
+     * The shader needs to be set each time
+     * because the ngl::text leaves nglTextShader
+     */
+    if (m_shaderIndex==phong)
+        (*m_shader)["Phong"]->use();
+    else if (m_shaderIndex==colour)
+        (*m_shader)["Colour"]->use();
 
     //Drawing the grid
     if (m_drawCells)
@@ -358,12 +369,8 @@ void GLWindow::paintGL()
 
     //DRAWING TEXT WITH THE FPS
     QString text = QString("%1 FPS").arg(m_fps);
-    m_text->renderText(10,10,"ESTA MERDA NON FURRULA");
-    //return to the shader in use...
-    if (m_shaderIndex==phong)
-        (*m_shader)["Phong"]->use();
-    else if (m_shaderIndex==colour)
-        (*m_shader)["Colour"]->use();
+    m_text->renderText(20,10,text);
+
 
 
 }
