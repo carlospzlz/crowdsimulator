@@ -129,13 +129,6 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		return attackForce, damage
 
 	end
-	
-	--HOLD STATE
-	function warriorHold(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
-		return {0,0,0}, {0,0,0}, strength, "warriorRun", {}
-	end
-
-	stateAction.warriorHold = warriorHold
 
 	
 	--ATTACK STATE
@@ -164,7 +157,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 				return {0,0,0}, {0,0,0}, strength, "warriorDefend", {}
 			end
 		else	
-			return {0,0,0}, {0,0,0}, strength, "warriorHold", {}
+			return {0,0,0}, {0,0,0}, strength, "warriorRun", {}
 		end	
 
 		--AttackForce
@@ -222,12 +215,12 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 
 		--INTEGRATE FORCES
 		force = {}
-		aw = 0.1
+		aw = 2
 		mw = 0.01
 		--print(enemiesAttackForce[1],enemiesAttackForce[2],enemiesAttackForce[3])
-		force[1] = attackForce[1]*aw + movementForce[1]*mw
-		force[2] = attackForce[2]*aw + movementForce[2]*mw
-		force[3] = attackForce[3]*aw + movementForce[3]*mw
+		force[1] = attackForce[1]*aw + movementForce[1]*strength*mw
+		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw
+		force[3] = attackForce[3]*aw + movementForce[3]*strength*mw
 
 		--CALCULATING STRENGTH
 		--Damage and cost of attack
@@ -268,7 +261,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 				return {0,0,0}, {0,0,0}, strength,"warriorAttack", {}
 			end
 		else	
-			return {0,0,0}, {0,0,0}, strength, "warriorHold", {}
+			return {0,0,0}, {0,0,0}, strength, "warriorRun", {}
 		end
 
 		--INCOMING ATTACK FORCE
@@ -300,15 +293,18 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 
 		--SYNTHESIS OF THE FORCE
 		force = {}
-		aw = 0.05
-		resistance = 0.05
-		force[1] = attackForce[1]*aw - velocity.x*resistance
-		force[2] = attackForce[2]*aw - velocity.y*resistance
-		force[3] = attackForce[3]*aw - velocity.z*resistance
+		aw = 2
+		resistance = 0.01
+		force[1] = attackForce[1]*aw - velocity.x*resistance*strength
+		force[2] = attackForce[2]*aw - velocity.y*resistance*strength
+		force[3] = attackForce[3]*aw - velocity.z*resistance*strength
 
 		--CALCULATING STRENGTH
 		wd = 0.0001
 		strength = strength + 0.005 - damage*wd
+
+		--if you don't put this messages are sent
+		messages = {}
 
 		return force, heading, strength, state, messages
 
@@ -364,7 +360,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		end
 		
 		--FLOCK BEHAVIOUR
-		flockForce = warriorFlockForce(position,attributes,neighbours,1,1,3)
+		flockForce = warriorFlockForce(position,attributes,neighbours,0.1,0.05,0.1)
 
 		--NO FLOCKING		
 		force = {}
@@ -403,7 +399,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	if not (stateAction[state])
 	then
 		print("Warrior behaviour: WARNING: unknown state "..state)
-		return stateAction.warriorHold(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
+		return stateAction.warriorRun(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
 	else
 		return stateAction[state](agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
 	end

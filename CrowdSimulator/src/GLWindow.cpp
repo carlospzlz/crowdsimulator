@@ -39,7 +39,8 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
-    m_collisionRadiusScale = 1;
+    // the default might be 1, but for human fits better narrower
+    m_collisionRadiusScale = 0.5;
     m_drawCollisionRadius = false;
     m_drawCells = true;
     m_drawVelocityVector = false;
@@ -94,14 +95,17 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
     //m_crowdEngine.addAgent(troll);
 
-    //TRYING WITH Qtimer
-    m_timer = new QTimer(this);
-    QMetaObject::Connection a = connect(m_timer,SIGNAL(timeout()),this,SLOT(updateSimulation()));
-    std::cout << a << std::endl;
-    //m_timer->setInterval(20);
-    //m_timer->start(20);
-    //START TIMER (maybe it's not simulating)
-    //m_timer = startTimer(s_timerValue);
+    //TIMER FOR THE UPDATING OF THE CROWDENGINE
+    m_updateCrowdEngineTimer = new QTimer(this);
+    connect(m_updateCrowdEngineTimer,SIGNAL(timeout()),this,SLOT(updateSimulation()));
+
+    //TIMER FOR THE UPDATING OF THE FPS
+    m_updateFPSTimer = new QTimer(this);
+    connect(m_updateFPSTimer,SIGNAL(timeout()),this,SLOT(updateFPS()));
+    m_updateFPSTimer->setInterval(1000);
+    m_updateFPSTimer->start();
+    m_fps = 0;
+    m_frameCounter = 0;
 
 }
 
@@ -224,6 +228,10 @@ void GLWindow::initializeGL()
 
     //DEFAULT LEGOMAN
     m_dummyIndex = 1;
+
+    //INITIALIZE TEXT FOR DRAWING FPS ON SCREEN
+    m_text = new ngl::Text(QFont("Arial",100));
+    m_text->setColour(1,1,0);
 }
 
 void GLWindow::buildBoidVAO()
@@ -297,6 +305,9 @@ void GLWindow::paintGL()
     // clear the screen and depth buffer
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // enabling depth test
+    glEnable(GL_DEPTH_TEST);
+
     //DRAWING
 
     //Drawing the grid
@@ -316,11 +327,6 @@ void GLWindow::paintGL()
     std::vector<Agent*>::const_iterator endAgent = m_crowdEngine.getAgentsEnd();
     std::vector<Agent*>::const_iterator currentAgent;
     Agent* agent;
-
-    // COLOUR
-    //m_shader->setShaderParam4f("Colour",1,0,0,1);
-    //shader->setShaderParam4f("Colour",0.5,0.5,0.5,1);
-    std::string army;
 
     for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
     {
@@ -349,6 +355,16 @@ void GLWindow::paintGL()
         if (m_drawStrength)
             drawStrength(agent->getStrength(),agent->getMass());
     }
+
+    //DRAWING TEXT WITH THE FPS
+    QString text = QString("%1 FPS").arg(m_fps);
+    m_text->renderText(10,10,"ESTA MERDA NON FURRULA");
+    //return to the shader in use...
+    if (m_shaderIndex==phong)
+        (*m_shader)["Phong"]->use();
+    else if (m_shaderIndex==colour)
+        (*m_shader)["Colour"]->use();
+
 
 }
 
@@ -430,9 +446,7 @@ inline void GLWindow::drawRadius(float _radius)
 inline void GLWindow::setStateColour(std::string _state)
 {
     //warrior states
-    if (_state=="warriorHold")
-        m_shader->setShaderParam4f("Colour",1,1,1,1);
-    else if (_state=="warriorRun")
+    if (_state=="warriorRun")
         m_shader->setShaderParam4f("Colour",0,1,0,1);
     else if (_state=="warriorAttack")
         m_shader->setShaderParam4f("Colour",1,0,0,1);
@@ -442,8 +456,6 @@ inline void GLWindow::setStateColour(std::string _state)
         m_shader->setShaderParam4f("Colour",0,0,0,0);
 
     //captain states
-    else if (_state=="captainHold")
-        m_shader->setShaderParam4f("Colour",1,1,1,1);
     else if (_state=="captainRun")
         m_shader->setShaderParam4f("Colour",0,1,0,1);
     else if (_state=="captainAttack")
@@ -553,20 +565,28 @@ void GLWindow::updateSimulation()
 {
     m_crowdEngine.update();
     updateGL();
+    ++m_frameCounter;
 }
 
 void GLWindow::toggleSimulation(bool _pressed)
 {
     if (_pressed)
     {
-        if (!m_timer->isActive())
-            m_timer->start();
+        if (!m_updateCrowdEngineTimer->isActive())
+            m_updateCrowdEngineTimer->start();
     }
     else
     {
-        if (m_timer->isActive())
-            m_timer->stop();
+        if (m_updateCrowdEngineTimer->isActive())
+            m_updateCrowdEngineTimer->stop();
     }
+}
+
+void GLWindow::updateFPS()
+{
+    m_fps = m_frameCounter;
+    m_frameCounter = 0;
+    updateGL();
 }
 
 void GLWindow::setDrawCells(bool _pressed)
@@ -619,11 +639,11 @@ void GLWindow::setShader(int _index)
 
 void GLWindow::rearrangeCellPartition(int _cellSize)
 {
-    if (m_timer->isActive())
+    if (m_updateCrowdEngineTimer->isActive())
     {
-        m_timer->stop();
+        m_updateCrowdEngineTimer->stop();
         m_crowdEngine.rearrangePartition(_cellSize);
-        m_timer->start();
+        m_updateCrowdEngineTimer->start();
     }
     else
     {
@@ -666,11 +686,11 @@ void GLWindow::loadCrowds()
 
 void GLWindow::clear()
 {
-    if (m_timer->isActive())
+    if (m_updateCrowdEngineTimer->isActive())
     {
-        m_timer->stop();
+        m_updateCrowdEngineTimer->stop();
         m_crowdEngine.clear();
-        m_timer->start();
+        m_updateCrowdEngineTimer->start();
     }
     else
     {
@@ -681,11 +701,11 @@ void GLWindow::clear()
 
 void GLWindow::restart()
 {
-    if (m_timer->isActive())
+    if (m_updateCrowdEngineTimer->isActive())
     {
-        m_timer->stop();
+        m_updateCrowdEngineTimer->stop();
         m_crowdEngine.restart();
-        m_timer->start();
+        m_updateCrowdEngineTimer->start();
     }
     else
     {

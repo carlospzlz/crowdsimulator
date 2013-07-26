@@ -377,8 +377,8 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		--then
 		--	force = captainLost(velocity)
 		--else
-			lw = 1
-			fw = 1
+			lw = 0.5
+			fw = 0.1
 			force[1] = (leadershipForce[1]*lw + flockForce[1]*fw)
 			force[2] = (leadershipForce[2]*lw + flockForce[2]*fw)
 			force[3] = (leadershipForce[3]*lw + flockForce[3]*fw)

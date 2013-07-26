@@ -62,7 +62,7 @@ function cohesiveBoid (agentID, position, strength, maxStrength, velocity, state
 	flockForce = {}
 	wc = 0.1
 	ws = 0.05
-	wa = 0.5
+	wa = 0.1
 	flockForce[1] = cohesion[1]*wc + separation[1]*ws + alignment[1]*wa
 	flockForce[2] = cohesion[2]*wc + separation[2]*ws + alignment[2]*wa
 	flockForce[3] = cohesion[3]*wc + separation[3]*ws + alignment[3]*wa

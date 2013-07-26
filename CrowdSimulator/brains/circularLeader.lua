@@ -85,7 +85,7 @@ function circularLeader (agentID, position, strength, maxStrength, velocity, sta
 		direction.z = velocity.z/speed
 	end
 
-	angle = (math.pi/300)
+	angle = (math.pi/150)
 
 	direction.x = direction.x*math.cos(angle)-direction.z*math.sin(angle);
 	direction.z = direction.x*math.sin(angle)+direction.z*math.cos(angle);
@@ -98,7 +98,7 @@ function circularLeader (agentID, position, strength, maxStrength, velocity, sta
 
 	--SYNTHESIS OF ALL THE FORCES
 	force = {}
-	leaderW = 0.3
+	leaderW = 0.5
 	flockW = 0.1
 	force[1] = leadershipForce[1]*leaderW + flockForce[1]*flockW
 	force[2] = leadershipForce[2]*leaderW + flockForce[2]*flockW

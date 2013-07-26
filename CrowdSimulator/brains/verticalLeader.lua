@@ -86,7 +86,7 @@ function verticalLeader (agentID, position, strength, maxStrength, velocity, sta
 	--STATE VERTICALGOINGUP
 	function verticalGoingUp(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
-		if (position.z > 20)
+		if (position.z < -40)
 		then
 			return {0,0,0},{0,0,0},strength,"verticalGoingDown",{}
 		end
@@ -95,9 +95,9 @@ function verticalLeader (agentID, position, strength, maxStrength, velocity, sta
 		flockForce = verticalFlockForce(position,attributes,neighbours,0.1,0.1,0)
 
 		leadershipForce = {}
-		leadershipForce[1] = 1
+		leadershipForce[1] = 0
 		leadershipForce[2] = 0
-		leadershipForce[3] = 0
+		leadershipForce[3] = -1
 
 
 		--SYNTHESIS OF ALL THE FORCES
@@ -118,18 +118,18 @@ function verticalLeader (agentID, position, strength, maxStrength, velocity, sta
 	--STATE PARALLELGOINGLEFT
 	function verticalGoingDown(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
-		if (position.z < -20)
+		if (position.z > 40)
 		then
-			return {0,0,0},{0,0,0},strength,"verticalGoingDown",{}
+			return {0,0,0},{0,0,0},strength,"verticalGoingUp",{}
 		end
 
 		
-		flockForce = captainFlockForce(position,attributes,neighbours,0.1,0.1,0)
+		flockForce = verticalFlockForce(position,attributes,neighbours,0.1,0.1,0)
 
 		leadershipForce = {}
-		leadershipForce[1] = -1
+		leadershipForce[1] = 0
 		leadershipForce[2] = 0
-		leadershipForce[3] = 0
+		leadershipForce[3] = 1
 
 
 		--SYNTHESIS OF ALL THE FORCES

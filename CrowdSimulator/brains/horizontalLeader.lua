@@ -86,7 +86,7 @@ function horizontalLeader (agentID, position, strength, maxStrength, velocity, s
 	--STATE HORIZONTALGOINGRIGHT
 	function horizontalGoingRight(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
-		if (position.x > 20)
+		if (position.x > 40)
 		then
 			return {0,0,0},{0,0,0},strength,"horizontalGoingLeft",{}
 		end
@@ -102,7 +102,7 @@ function horizontalLeader (agentID, position, strength, maxStrength, velocity, s
 
 		--SYNTHESIS OF ALL THE FORCES
 		force = {}
-		leaderW = 0.3
+		leaderW = 0.5
 		flockW = 0.1
 		force[1] = leadershipForce[1]*leaderW + flockForce[1]*flockW
 		force[2] = leadershipForce[2]*leaderW + flockForce[2]*flockW
@@ -115,10 +115,10 @@ function horizontalLeader (agentID, position, strength, maxStrength, velocity, s
 	
 	stateAction.horizontalGoingRight = horizontalGoingRight
 
-	--STATE PARALLELGOINGLEFT
+	--STATE HORIZONTALGOINGLEFT
 	function horizontalGoingLeft(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
-		if (position.x < -20)
+		if (position.x < -40)
 		then
 			return {0,0,0},{0,0,0},strength,"horizontalGoingRight",{}
 		end
@@ -146,8 +146,8 @@ function horizontalLeader (agentID, position, strength, maxStrength, velocity, s
 	end
 	
 	stateAction.horizontalGoingLeft = horizontalGoingLeft
-	
-		--FIRE TRANSITION	
+
+	--FIRE TRANSITION	
 	if not (stateAction[state])
 	then
 		print("HorizontalLeader behaviour: WARNING: unknown state "..state)
