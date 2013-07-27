@@ -98,6 +98,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     //TIMER FOR THE UPDATING OF THE CROWDENGINE
     m_updateCrowdEngineTimer = new QTimer(this);
     connect(m_updateCrowdEngineTimer,SIGNAL(timeout()),this,SLOT(updateSimulation()));
+    m_updateCrowdEngineTimer->setInterval(20);
 
     //TIMER FOR THE UPDATING OF THE FPS
     m_updateFPSTimer = new QTimer(this);
