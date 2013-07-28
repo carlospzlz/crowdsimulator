@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::Mai
     // create our GLWindow
     m_gl = new GLWindow(this);
 
-    m_ui->s_windowLayout->addWidget(m_gl,0,0,6,3);
+    m_ui->s_windowLayout->addWidget(m_gl,0,0,2,3);
 
     // WIRE UP THE COMPONENST OF THE GUI TO THE FUNCTIONALITIES
 
