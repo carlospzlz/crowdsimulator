@@ -9,15 +9,13 @@
 #include "ngl/VAOPrimitives.h"
 #include "ngl/ShaderLib.h"
 
+const QString GLWindow::s_dummiesPath = "dummies";
 const QString GLWindow::s_brainsPath = "brains";
 const QString GLWindow::s_crowdsPath = "crowds";
 const float GLWindow::s_rotationIncrement = 0.5;
 const float GLWindow::s_translationIncrement = 0.05;
 const float GLWindow::s_zoomIncrement = 1;
 const int GLWindow::s_groundSize = 100;
-
-//timer = 20 ms => 50 fps ~ 48
-const int GLWindow::s_timerValue = 0;
 
 /**
  * in this ctor we need to call the CreateCoreGLContext class, this is mainly for the MacOS Lion version as
@@ -55,45 +53,6 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 
     //ADD PHYSICS ENGINE TO THE CROWDENGINE!
     m_crowdEngine.setPhysicsEngine(new RadialPE());
-
-    // PLAYING WITH AGENTS
-    //m_crowdEngine.loadBrain("warrior");
-    //m_crowdEngine.loadBrain("boid");
-
-    //m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,20),"flock1",2,"army1");
-    //m_crowdEngine.loadBrain("warrior");
-    //m_crowdEngine.createRandomFlock(10,10,ngl::Vec2(0,-20),"flock2",1,"army2");
-
-    //Captain 1
-    /*
-    Agent *captain1 = new Agent();
-    m_crowdEngine.loadBrain("captain");
-    captain1->setBrain("warrior");
-    captain1->addAttribute("flock","flock1");
-    captain1->addAttribute("army","army1");
-    captain1->setMaxStrength(2);
-    captain1->setMaxSpeed(10);
-    captain1->setPosition(ngl::Vec3(1,0,18));
-    captain1->setVisionRadius(8);
-    captain1->setState("holdCaptain");
-    m_crowdEngine.addAgent(captain1);*/
-
-    //Captain 2
-    /*
-    Agent *captain2 = new Agent();
-    m_crowdEngine.loadBrain("captain");
-    captain2->setBrain("captain");
-    captain2->addAttribute("flock","flock2");
-    captain2->addAttribute("army","army2");
-    captain2->setMaxStrength(2);
-    captain2->setMaxSpeed(1);
-    captain2->setPosition(ngl::Vec3(-1,0,-18));
-    captain2->setVisionRadius(8);
-    captain2->setState("holdCaptain");
-    m_crowdEngine.addAgent(captain2);
-    */
-
-    //m_crowdEngine.addAgent(troll);
 
     //TIMER FOR THE UPDATING OF THE CROWDENGINE
     m_updateCrowdEngineTimer = new QTimer(this);
@@ -206,27 +165,27 @@ void GLWindow::initializeGL()
     // The index 0 is reserved for the boidVAO
     ngl::Obj *obj;
 
-    obj = new ngl::Obj("dummies/legoman.obj");
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/legoman.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
 
-    obj = new ngl::Obj("dummies/human.obj");
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/human.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
 
-    obj = new ngl::Obj("dummies/teddy.obj");
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/teddy.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
 
-    obj = new ngl::Obj("dummies/cow.obj");
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/cow.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
 
-    obj = new ngl::Obj("terrains/terrain.obj");
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/speedboat.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);

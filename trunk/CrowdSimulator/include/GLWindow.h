@@ -30,13 +30,14 @@ class GLWindow : public QGLWidget
 Q_OBJECT
 
 private :
+    static const QString s_dummiesPath;
     static const QString s_brainsPath;
     static const QString s_crowdsPath;
     static const float s_rotationIncrement;
     static const float s_translationIncrement;
     static const float s_zoomIncrement;
     static const int s_groundSize;
-    static const int s_timerValue;
+
     QTimer *m_updateCrowdEngineTimer;
     QTimer *m_updateFPSTimer;
     int m_fps;
