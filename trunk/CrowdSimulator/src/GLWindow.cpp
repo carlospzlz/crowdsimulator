@@ -226,7 +226,7 @@ void GLWindow::initializeGL()
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
 
-    obj = new ngl::Obj("dummies/speedboat.obj");
+    obj = new ngl::Obj("terrains/terrain.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
     m_dummies.push_back(obj);
