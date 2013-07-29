@@ -233,16 +233,16 @@
         <string>Advanced</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QGroupBox" name="cellPartitionGroupBox">
           <property name="title">
            <string>Cell Partition</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="3" column="1">
+           <item row="2" column="1">
             <widget class="QSpinBox" name="s_cellSizeSpinbox">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -254,11 +254,11 @@
               <number>50</number>
              </property>
              <property name="value">
-              <number>2</number>
+              <number>4</number>
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="2" column="0">
             <widget class="QLabel" name="label_3">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -271,7 +271,7 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="0" column="0">
             <widget class="QCheckBox" name="s_drawCells">
              <property name="text">
               <string>Cells</string>
@@ -281,37 +281,16 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QCheckBox" name="checkBox">
-             <property name="text">
-              <string>Axis</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QGroupBox" name="collisionsGroupBox">
           <property name="title">
            <string>Collisions</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="6" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="text">
-              <string>Side length</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="2">
-            <widget class="QCheckBox" name="s_drawBoundingSphere">
-             <property name="text">
-              <string>Collision Radius</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0">
             <widget class="QLabel" name="label_4">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -324,8 +303,14 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="1">
+           <item row="6" column="1">
             <widget class="QDoubleSpinBox" name="s_radiusMass">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="singleStep">
               <double>0.010000000000000</double>
              </property>
@@ -334,20 +319,50 @@
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
-           </item>
-           <item row="5" column="0" colspan="2">
-            <widget class="QCheckBox" name="checkBox_2">
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_6">
              <property name="text">
-              <string>Bounding volume</string>
+              <string>Size</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="s_boundingBoxSize">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="maximum">
+              <double>999.990000000000009</double>
+             </property>
+             <property name="value">
+              <double>100.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <widget class="QCheckBox" name="s_drawBoundingSphere">
+             <property name="text">
+              <string>Collision Radius</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QCheckBox" name="s_drawBoundingBox">
+             <property name="text">
+              <string>Bounding Box</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
           </layout>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="3" column="0">
          <spacer name="verticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -359,6 +374,39 @@
            </size>
           </property>
          </spacer>
+        </item>
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>Origin</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Scale</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="s_drawAxis">
+             <property name="text">
+              <string>Axis</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="s_axisScale">
+             <property name="value">
+              <double>1.000000000000000</double>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -474,7 +522,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

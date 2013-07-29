@@ -32,6 +32,7 @@ public:
 
     std::vector<Agent*>::const_iterator getAgentsBegin() { return m_agents.begin(); }
     std::vector<Agent*>::const_iterator getAgentsEnd() { return m_agents.end(); }
+    float getBoundingBoxSize() const { return m_physicsEngine->getBoundingBoxSize(); }
     int getCellSize() const { return m_cellPartition->getCellSize(); }
 
     void loadBrain(std::string _brain);
@@ -45,6 +46,7 @@ public:
     void clear();
     void restart();
     void scaleCollisionRadius(float _scale);
+    void setBoundingBoxSize(float _boundingBoxSize) { m_physicsEngine->setBoundingBoxSize(_boundingBoxSize); }
 
 };
 

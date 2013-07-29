@@ -141,14 +141,21 @@ void CrowdEngine::update()
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     std::vector<Agent*>::iterator currentAgent;
 
-    //EXECUTION
+    // EXECUTION
     for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
         (*currentAgent)->execute();
     }
 
-    //COLLISIONS
+    // COLLISIONS
 
+    // WITH BOUNDING BOX
+    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        m_physicsEngine->checkCollisionBoundingBox(*currentAgent);
+    }
+
+    // WITH OTHER AGENTS
     std::set<int> collisionPair;
     std::set<std::set<int> > checkedAgents;
     std::vector<Agent*> neighbours;
@@ -171,7 +178,6 @@ void CrowdEngine::update()
             collisionPair.clear();
         }
     }
-
 
 }
 
