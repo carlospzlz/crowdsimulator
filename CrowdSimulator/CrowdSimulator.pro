@@ -35,7 +35,8 @@ SOURCES += \
     src/QuadraticGridCP.cpp \
     src/TXTParser.cpp \
     src/Parser.cpp \
-    src/RadialPE.cpp
+    src/RadialPE.cpp \
+    src/PhysicsEngine.cpp
 
 FORMS += \
     ui/MainWindow.ui

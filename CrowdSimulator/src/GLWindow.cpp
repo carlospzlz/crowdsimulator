@@ -15,7 +15,6 @@ const QString GLWindow::s_crowdsPath = "crowds";
 const float GLWindow::s_rotationIncrement = 0.5;
 const float GLWindow::s_translationIncrement = 0.05;
 const float GLWindow::s_zoomIncrement = 1;
-const int GLWindow::s_groundSize = 100;
 
 /**
  * in this ctor we need to call the CreateCoreGLContext class, this is mainly for the MacOS Lion version as
@@ -37,10 +36,15 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_previousMousePosition.first = 0;
     m_previousMousePosition.second = 0;
 
+    m_wireframeMode = false;
+
+    m_drawBoundingBox = true;
+    m_drawAxis = true;
+    m_axisScale = 1;
+    m_drawCells = true;
     // the default might be 1, but for human fits better narrower
     m_collisionRadiusScale = 0.5;
     m_drawCollisionRadius = false;
-    m_drawCells = true;
     m_drawVelocityVector = false;
     m_drawVisionRadius = false;
     m_drawStrength = false;
@@ -49,7 +53,8 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_parser = new TXTParser();
 
     //ADD CELLPARTITION TO THE CROWDENGINE!
-    m_crowdEngine.setCellPartition(new QuadraticGridCP(2));
+    m_crowdEngine.setCellPartition(new QuadraticGridCP(4));
+    m_groundSteps = 100/4;
 
     //ADD PHYSICS ENGINE TO THE CROWDENGINE!
     m_crowdEngine.setPhysicsEngine(new RadialPE());
@@ -72,9 +77,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
 GLWindow::~GLWindow()
 {
   ngl::NGLInit *Init = ngl::NGLInit::instance();
-  std::cout<<"GLWindow: removing camera, light and quitting NGL" << std::endl;
-  //delete m_camera;
-  //delete m_light;
+  std::cout<<"GLWindow: Quitting NGL" << std::endl;
   Init->NGLQuit();
 }
 
@@ -150,12 +153,15 @@ void GLWindow::initializeGL()
     // load these values to the shader as well
     m_light.loadToShader("light");
 
+    // BOUNDING BOX
+    m_boundingBox = new ngl::BBox(ngl::Vec3(0,0,0),1,1,1);
+
     // PRIMITIVES FOR GUIDELINES
     m_primitives = ngl::VAOPrimitives::instance();
-    m_primitives->createLineGrid("ground",s_groundSize, s_groundSize, s_groundSize);
+    m_primitives->createLineGrid("ground",m_groundSteps, m_groundSteps, m_groundSteps);
     m_primitives->createCylinder("collisionRadius",1,1,16,1);
     m_primitives->createTorus("visionRadius",0.01,1,3,16);
-    m_primitives->createCylinder("vectorModulus",0.04,2,6,1);
+    m_primitives->createCylinder("vectorModulus",0.04,1,6,1);
     m_primitives->createCone("vectorSense",0.1,0.4,6,1);
 
     // BOID VAO
@@ -284,14 +290,43 @@ void GLWindow::paintGL()
     //Drawing the grid
     if (m_drawCells)
     {
-        ngl::Transformation transform;
+        //ngl::Transformation transform;
         int cellSize;
         cellSize = m_crowdEngine.getCellSize();
-        transform.setScale(cellSize,1,cellSize);
-        m_transformStack.setCurrent(transform);
+        m_transformStack.setScale(cellSize,1,cellSize);
         loadMatricesToShader(m_transformStack);
         m_shader->setShaderParam4f("Colour",1,1,1,1);
         m_primitives->draw("ground");
+        m_transformStack.setScale(1,1,1);
+    }
+
+    //Drawing axis
+    if (m_drawAxis)
+    {
+        ngl::Vec4 vector;
+        // X
+        vector = ngl::Vec4(1,0,0,0);
+        m_shader->setShaderParam4f("Colour",1,0,0,1);
+        drawVector(vector,m_axisScale);
+        // Y
+        vector = ngl::Vec4(0,1,0,0);
+        m_shader->setShaderParam4f("Colour",0,1,0,1);
+        drawVector(vector,m_axisScale);
+        // Z
+        vector = ngl::Vec4(0,0,1,0);
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
+        drawVector(vector,m_axisScale);
+
+    }
+
+    //Drawing the bounding box
+    if (m_drawBoundingBox)
+    {
+        float boundingBoxSize = m_crowdEngine.getBoundingBoxSize();
+        m_transformStack.setScale(boundingBoxSize,boundingBoxSize,boundingBoxSize);
+        loadMatricesToShader(m_transformStack);
+        m_shader->setShaderParam4f("Colour",1,1,1,1);
+        m_boundingBox->draw();
     }
 
     //DRAWING AGENTS
@@ -320,18 +355,20 @@ void GLWindow::paintGL()
         if (m_drawCollisionRadius)
             drawCollisionRadius(agent->getCollisionRadius());
         if (m_drawVelocityVector)
-            drawVector(agent->getVelocity());
+            drawVector(agent->getVelocity(),2);
         if (m_drawVisionRadius)
             drawRadius(agent->getVisionRadius());
         if (m_drawStrength)
             drawStrength(agent->getStrength(),agent->getMass());
     }
 
+    m_transformStack.setPosition(0,0,0);
+    m_transformStack.setRotation(0,0,0);
+    m_transformStack.setScale(1,1,1);
+
     //DRAWING TEXT WITH THE FPS
     QString text = QString("%1 FPS").arg(m_fps);
     m_text->renderText(20,10,text);
-
-
 
 }
 
@@ -339,14 +376,16 @@ inline void GLWindow::drawCollisionRadius(float _collisionRadius)
 {
     if (_collisionRadius>0)
     {
-        glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+        if (!m_wireframeMode)
+            glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
         m_transformStack.setScale(_collisionRadius,_collisionRadius,2);
         m_transformStack.setRotation(90,0,0);
         loadMatricesToShader(m_transformStack);
         m_primitives->draw("collisionRadius");
         m_transformStack.setScale(1,1,1);
         m_transformStack.setRotation(-90,0,0);
-        glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+        if (!m_wireframeMode)
+            glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
     }
 }
 
@@ -361,42 +400,43 @@ inline void GLWindow::drawStrength(float _strength, float _mass)
         m_transformStack.setRotation(0,90,0);
         loadMatricesToShader(m_transformStack);
         m_primitives->draw("cube");
-        m_transformation.addPosition(-_strength/2.0,-_mass*scaleHeight,0);
+        m_transformStack.addPosition(0.02,-_mass*scaleHeight,0);
         m_transformStack.setScale(1,1,1);
         m_transformStack.setRotation(0,-90,0);
     }
 }
 
-inline void GLWindow::drawVector(ngl::Vec4 _vector)
+inline void GLWindow::drawVector(ngl::Vec4 _vector, float _scale)
 {
     float magnitude = _vector.length();
 
+    float xRot=0;
+    float yRot=0;
+    //_scale = 2;
+
+    xRot = atan2(_vector.m_y,sqrt(_vector.m_x*_vector.m_x+_vector.m_z*_vector.m_z)) * (180/M_PI);
+    yRot = atan2(-_vector.m_z,_vector.m_x) * 180/M_PI;
+
+    m_transformStack.setRotation(xRot,yRot-90,0);
+
+    //MODULUS
     // without this check we get ngl determinat 0
     // because of the scale
-    if (magnitude>0)
+    if (magnitude>0 && _scale>0)
     {
-        int scale=2;
-        float yRot=0;
-
-        yRot = atan2(-_vector.m_z,_vector.m_x) * 180/M_PI;
-        m_transformStack.setRotation(0,yRot-90,0);
-
-        //MODULUS
-        m_transformStack.setScale(1,1,scale*_vector.length());
+        m_transformStack.setScale(1,1,_scale*_vector.length());
         loadMatricesToShader(m_transformStack);
         m_primitives->draw("vectorModulus");
-
-        //SENSE
-        // why x2?!!
-        m_transformStack.setScale(1,1,-1);
-        m_transformStack.addPosition(2*scale*_vector.m_x,0,2*scale*_vector.m_z);
-        loadMatricesToShader(m_transformStack);
-        m_primitives->draw("vectorSense");
-
-        //UNDO POSITION
-        m_transformStack.addPosition(-2*scale*_vector.m_x,0,-2*scale*_vector.m_z);
     }
 
+    //SENSE
+    m_transformStack.setScale(1,1,-1);
+    m_transformStack.addPosition(_scale*_vector.m_x,_scale*_vector.m_y,_scale*_vector.m_z);
+    loadMatricesToShader(m_transformStack);
+    m_primitives->draw("vectorSense");
+
+    //UNDO POSITION
+    m_transformStack.addPosition(-_scale*_vector.m_x,-_scale*_vector.m_y,-_scale*_vector.m_z);
 }
 
 inline void GLWindow::drawRadius(float _radius)
@@ -420,7 +460,7 @@ inline void GLWindow::setStateColour(std::string _state)
     else if (_state=="warriorDefend")
         m_shader->setShaderParam4f("Colour",0,0,1,1);
     else if (_state=="warriorDead")
-        m_shader->setShaderParam4f("Colour",0,0,0,0);
+        m_shader->setShaderParam4f("Colour",0,0,0,1);
 
     //captain states
     else if (_state=="captainRun")
@@ -430,7 +470,9 @@ inline void GLWindow::setStateColour(std::string _state)
     else if (_state=="captainDefend")
         m_shader->setShaderParam4f("Colour",0,0,1,1);
     else if (_state=="captainDead")
-        m_shader->setShaderParam4f("Colour",0,0,0,0);
+        m_shader->setShaderParam4f("Colour",0,0,0,1);
+    else
+        m_shader->setShaderParam4f("Colour",1,1,1,1);
 }
 
 void GLWindow::mouseMoveEvent(QMouseEvent * _event)
@@ -488,7 +530,6 @@ void GLWindow::mousePressEvent(QMouseEvent * _event)
 
 }
 
-
 void GLWindow::mouseReleaseEvent(QMouseEvent * _event)
 {
     if (_event->button() == Qt::LeftButton)
@@ -500,7 +541,6 @@ void GLWindow::mouseReleaseEvent(QMouseEvent * _event)
         m_translate=false;
     }
 }
-
 
 void GLWindow::wheelEvent(QWheelEvent *_event)
 {
@@ -556,15 +596,48 @@ void GLWindow::updateFPS()
     updateGL();
 }
 
+void GLWindow::setDrawAxis(bool _pressed)
+{
+    m_drawAxis = _pressed;
+    updateGL();
+}
+
+void GLWindow::scaleAxis(double _scale)
+{
+    m_axisScale = _scale;
+    updateGL();
+}
+
 void GLWindow::setDrawCells(bool _pressed)
 {
     m_drawCells = _pressed;
     updateGL();
 }
 
+void GLWindow::setDrawBoundingBox(bool _pressed)
+{
+    m_drawBoundingBox = _pressed;
+    updateGL();
+}
+
+void GLWindow::setBoundingBoxSize(double _size)
+{
+    m_crowdEngine.setBoundingBoxSize(_size);
+    m_groundSteps = ceil(ceil(_size/2.0)/(float)m_crowdEngine.getCellSize()) * 2;
+    m_primitives->createLineGrid("ground",m_groundSteps,m_groundSteps,m_groundSteps);
+    updateGL();
+}
+
 void GLWindow::setDrawCollisionRadius(bool _pressed)
 {
     m_drawCollisionRadius = _pressed;
+    updateGL();
+}
+
+void GLWindow::scaleCollisionRadius(double _scale)
+{
+    m_collisionRadiusScale = _scale;
+    m_crowdEngine.scaleCollisionRadius(_scale);
     updateGL();
 }
 
@@ -616,6 +689,8 @@ void GLWindow::rearrangeCellPartition(int _cellSize)
     {
         m_crowdEngine.rearrangePartition(_cellSize);
     }
+    m_groundSteps = ceil(ceil(m_crowdEngine.getBoundingBoxSize()/2.0)/(float)_cellSize) * 2;
+    m_primitives->createLineGrid("ground",m_groundSteps,m_groundSteps,m_groundSteps);
     updateGL();
 }
 
@@ -678,12 +753,5 @@ void GLWindow::restart()
     {
         m_crowdEngine.restart();
     }
-    updateGL();
-}
-
-void GLWindow::scaleCollisionRadius(double _scale)
-{
-    m_collisionRadiusScale = _scale;
-    m_crowdEngine.scaleCollisionRadius(_scale);
     updateGL();
 }

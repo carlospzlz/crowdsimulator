@@ -36,10 +36,12 @@ private :
     static const float s_rotationIncrement;
     static const float s_translationIncrement;
     static const float s_zoomIncrement;
-    static const int s_groundSize;
+
 
     QTimer *m_updateCrowdEngineTimer;
     QTimer *m_updateFPSTimer;
+    ngl::BBox *m_boundingBox;
+    int m_groundSteps;
     int m_fps;
     int m_frameCounter;
     ngl::Text *m_text;
@@ -49,7 +51,6 @@ private :
     ngl::Vec2 m_globalRotation;
     ngl::Vec3 m_globalTranslation;
     ngl::TransformStack m_transformStack;
-    ngl::Transformation m_transformation;
     ngl::VAOPrimitives *m_primitives;
     ngl::ShaderLib *m_shader;
     int m_shaderIndex;
@@ -59,11 +60,15 @@ private :
     int m_dummyIndex;
     ngl::VertexArrayObject *m_boidVAO;
     float m_collisionRadiusScale;
+    bool m_drawBoundingBox;
     bool m_drawCollisionRadius;
     bool m_drawCells;
     bool m_drawVelocityVector;
     bool m_drawVisionRadius;
     bool m_drawStrength;
+    bool m_drawAxis;
+    float m_axisScale;
+    bool m_wireframeMode;
 
     Parser* m_parser;
     CrowdEngine m_crowdEngine;
@@ -71,7 +76,7 @@ private :
     void buildBoidVAO();
     void loadMatricesToShader(ngl::TransformStack &_tx);
     void inline drawCollisionRadius(float _collisionRadius);
-    void inline drawVector(ngl::Vec4 _vector);
+    void inline drawVector(ngl::Vec4 _vector, float _scale);
     void inline drawRadius(float _radius);
     void inline drawStrength(float _strength, float _mass);
     void inline setStateColour(std::string _state);
@@ -95,10 +100,13 @@ public :
     GLWindow(QWidget *_parent);
     ~GLWindow();
     void setTimerInterval(int _interval) { m_updateCrowdEngineTimer->setInterval(_interval); }
+    void setWireframeMode(bool _wireframeMode) { m_wireframeMode = _wireframeMode; }
 
 public slots:
     void toggleSimulation(bool _pressed);
+    void setDrawAxis(bool _pressed);
     void setDrawCells(bool _pressed);
+    void setDrawBoundingBox(bool _pressed);
     void setDrawCollisionRadius(bool _pressed);
     void setDrawVelocityVector(bool _pressed);
     void setDrawVisionRadius(bool _pressed);
@@ -113,6 +121,8 @@ public slots:
     void restart();
     void clear();
     void scaleCollisionRadius(double _scale);
+    void scaleAxis(double _scale);
+    void setBoundingBoxSize(double _size);
 
 protected:
 
