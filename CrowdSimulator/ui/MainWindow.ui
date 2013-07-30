@@ -38,29 +38,6 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="terrainGroupBox">
-          <property name="title">
-           <string>Terrain</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_8">
-           <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_5">
-             <property name="text">
-              <string>Process</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_6">
-             <property name="text">
-              <string>Load</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="0">
          <widget class="QGroupBox" name="crowdGroupBox">
           <property name="title">
            <string>Crowd</string>
@@ -83,7 +60,7 @@
           </layout>
          </widget>
         </item>
-        <item row="2" column="0">
+        <item row="1" column="0">
          <widget class="QGroupBox" name="simulationGroupBox">
           <property name="title">
            <string>Simulation</string>
@@ -158,13 +135,6 @@
              </item>
             </layout>
            </item>
-           <item row="3" column="0" colspan="2">
-            <widget class="QCheckBox" name="s_drawStrength">
-             <property name="text">
-              <string>Strength</string>
-             </property>
-            </widget>
-           </item>
            <item row="7" column="0" colspan="2">
             <widget class="QLabel" name="label_2">
              <property name="text">
@@ -172,10 +142,24 @@
              </property>
             </widget>
            </item>
+           <item row="3" column="0" colspan="2">
+            <widget class="QCheckBox" name="s_drawStrength">
+             <property name="text">
+              <string>Strength</string>
+             </property>
+            </widget>
+           </item>
+           <item row="24" column="0">
+            <widget class="QLabel" name="label_5">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
            <item row="8" column="0" colspan="2">
             <widget class="QComboBox" name="s_dummyComboBox">
              <property name="currentIndex">
-              <number>1</number>
+              <number>11</number>
              </property>
              <item>
               <property name="text">
@@ -199,6 +183,31 @@
              </item>
              <item>
               <property name="text">
+               <string>Minion</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Aragorn</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Legolas</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>R2D2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Droid</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string>Cow</string>
               </property>
              </item>
@@ -207,20 +216,11 @@
                <string>Speedboat</string>
               </property>
              </item>
-            </widget>
-           </item>
-           <item row="24" column="0">
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="25" column="0" colspan="2">
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string>Save</string>
-             </property>
+             <item>
+              <property name="text">
+               <string>Customized</string>
+              </property>
+             </item>
             </widget>
            </item>
           </layout>

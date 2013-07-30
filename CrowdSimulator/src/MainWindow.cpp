@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::Mai
     connect(m_ui->s_drawVisionRadius,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVisionRadius(bool)));
     connect(m_ui->s_drawStrength,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawStrength(bool)));
     connect(m_ui->s_shaderComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setShader(int)));
-    connect(m_ui->s_dummyComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setDummyIndex(int)));
+    connect(m_ui->s_dummyComboBox,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setCurrentDummy(int)));
     connect(m_ui->s_simulateButton,SIGNAL(clicked(bool)),m_gl,SLOT(toggleSimulation(bool)));
     connect(m_ui->s_restartButton,SIGNAL(clicked()),m_gl,SLOT(restart()));
     connect(m_ui->s_clearButton,SIGNAL(clicked()),m_gl,SLOT(clear()));
