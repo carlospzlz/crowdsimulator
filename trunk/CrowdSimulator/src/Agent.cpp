@@ -22,6 +22,7 @@ Agent::Agent()
     m_previousTransform = m_transformation;
     m_state = "unknown";
     m_brain = "no brain";
+    m_dummy = NULL;
 }
 
 Agent::Agent(ngl::Vec4 _pos, std::string _flock, std::string _brain)
@@ -39,6 +40,7 @@ Agent::Agent(ngl::Vec4 _pos, std::string _flock, std::string _brain)
     m_attributes["flock"] = _flock;
     m_state = "unknown";
     m_brain = _brain;
+    m_dummy = NULL;
 }
 
 Agent::Agent(const Agent &_agent)
@@ -58,6 +60,7 @@ Agent::Agent(const Agent &_agent)
     m_attributes = _agent.getAttributes();
     m_collisionRadius = _agent.getCollisionRadius();
     m_heading = _agent.getHeading();
+    m_dummy = _agent.getDummy();
 }
 
 void Agent::setMass(float _mass)

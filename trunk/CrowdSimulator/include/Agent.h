@@ -6,6 +6,7 @@
 #include <math.h>
 #include "ngl/Vec3.h"
 #include "ngl/Transformation.h"
+#include "ngl/Obj.h"
 
 extern "C"
 {
@@ -48,6 +49,7 @@ private:
     std::map<std::string,std::string> m_attributes;
     std::vector<Agent*> m_neighbours;
     float m_collisionRadius;
+    ngl::Obj* m_dummy;
 
 public:
     Agent();
@@ -71,6 +73,7 @@ public:
     void setNeighbours(const std::vector<Agent*> &_neighbours) { m_neighbours = _neighbours; }
     void setBrain(std::string _brain) { m_brain = _brain; }
     void setState(std::string _state) { m_state = _state; }
+    void setDummy(ngl::Obj *_dummy) { m_dummy = _dummy; }
     void addAttribute(std::string _key, std::string _value) { m_attributes[_key] = _value; }
 
     float getAgentID() const { return m_agentID; }
@@ -89,6 +92,7 @@ public:
     float getCollisionRadius() const { return m_collisionRadius; }
     std::vector<Agent*> getNeighbours() const { return m_neighbours; }
     ngl::Vec4 getHeading() const { return m_heading; }
+    ngl::Obj* getDummy() const { return m_dummy; }
 
     void execute();
     void sendMessage(message _message) { m_inbox.push_back(_message); }

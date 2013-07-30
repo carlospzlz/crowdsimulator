@@ -1,6 +1,6 @@
 #include "TXTParser.h"
 
-bool TXTParser::loadCrowd(std::string _filename, std::vector<Agent*> &_agents)
+bool TXTParser::loadCrowd(std::string _filename, const std::map<std::string, ngl::Obj *> &_dummies, std::vector<Agent*> &_agents)
 {
 
     std::ifstream crowdFile;
@@ -79,7 +79,14 @@ bool TXTParser::loadCrowd(std::string _filename, std::vector<Agent*> &_agents)
                     ++currentToken;
                     heading.m_z = boost::lexical_cast<float>(*currentToken);
                     agent->setHeading(heading);
+                    ++currentToken;
 
+                    //DUMMY INDEX
+                    std::string dummyName = boost::lexical_cast<std::string>(*currentToken);
+                    if (_dummies.count(dummyName)==1)
+                        agent->setDummy(_dummies.at(dummyName));
+                    else
+                        std::cout << "TXTParser: Dummy " << dummyName << " not found" << std::endl;
 
                     //NUMBER OF ATTRIBUTES
                     std::getline(crowdFile,lineBuffer,'\n');

@@ -56,8 +56,9 @@ private :
     int m_shaderIndex;
     ngl::Camera m_camera;
     ngl::Light m_light;
-    std::vector<ngl::Obj*> m_dummies;
-    int m_dummyIndex;
+    std::map<std::string,ngl::Obj*> m_dummies;
+    ngl::Obj* m_currentDummy;
+    bool m_customDummy;
     ngl::VertexArrayObject *m_boidVAO;
     float m_collisionRadiusScale;
     bool m_drawBoundingBox;
@@ -111,7 +112,7 @@ public slots:
     void setDrawVelocityVector(bool _pressed);
     void setDrawVisionRadius(bool _pressed);
     void setDrawStrength(bool _pressed);
-    void setDummyIndex(int _index);
+    void setCurrentDummy(int _index);
     void setShader(int _index);
     void setStep(float _step) { m_crowdEngine.setStep(_step); }
     void setFriction(float _friction) { m_crowdEngine.setFriction(_friction);}

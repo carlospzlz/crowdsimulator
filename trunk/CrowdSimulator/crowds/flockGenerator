@@ -1,6 +1,6 @@
 #!/bin/bash
 
-fileName=flock2_circular_100cohesiveBoid.txt
+fileName=generatedFlock.txt
 
 touch $fileName
 
@@ -10,12 +10,13 @@ echo >> $fileName
 xCentre=0
 zCentre=0
 
-flock=flock2
+flock=flock3
 rows=10
 columns=10
 brain=cohesiveBoid
+dummy=teddy
 
-echo "0 0 0 1 2 0.5 8 state circularLeader 0 0 1" >> $fileName
+echo "0 0 0 1 2 0.5 8 state verticalLeader 0 0 -1 $dummy" >> $fileName
 echo "1" >> $fileName
 echo "flock $flock" >> $fileName
 echo >> $fileName
@@ -35,7 +36,7 @@ do
 		maxSpeed=$(echo "scale=2; 0.75 + $rand / 100" | bc)
 		x=$(($startingX + i))
 		z=$(($startingZ + j))
-		echo "$x 0 $z $mass $maxStrength $maxSpeed 4 state $brain 0 0 1" >> $fileName
+		echo "$x 0 $z $mass $maxStrength $maxSpeed 4 state $brain 0 0 -1 $dummy" >> $fileName
 		echo "1" >> $fileName
 		echo "flock $flock" >> $fileName
 		echo >> $fileName

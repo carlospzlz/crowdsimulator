@@ -49,6 +49,8 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_drawVisionRadius = false;
     m_drawStrength = false;
 
+    m_customDummy = true;
+
     //PARSER
     m_parser = new TXTParser();
 
@@ -168,36 +170,62 @@ void GLWindow::initializeGL()
     buildBoidVAO();
 
     // DUMMIES
-    // The index 0 is reserved for the boidVAO
     ngl::Obj *obj;
+
+    std::cout << "GLWindow: Loading dummies" << std::endl;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/legoman.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
-    m_dummies.push_back(obj);
+    m_dummies["legoman"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/human.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
-    m_dummies.push_back(obj);
+    m_dummies["human"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/teddy.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
-    m_dummies.push_back(obj);
+    m_dummies ["teddy"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/minion.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies["minion"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/cow.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
-    m_dummies.push_back(obj);
+    m_dummies["cow"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/speedboat.obj");
     obj->createVAO();
     obj->calcBoundingSphere();
-    m_dummies.push_back(obj);
+    m_dummies["speedboat"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/r2d2.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies["r2d2"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/droid.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies["droid"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/aragorn.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies["aragorn"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/legolas.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies["legolas"] = obj;
 
     //DEFAULT LEGOMAN
-    m_dummyIndex = 1;
+    m_currentDummy = m_dummies.at("legoman");
 
 }
 
@@ -342,16 +370,19 @@ void GLWindow::paintGL()
         m_transformStack.setCurrent(agent->getTransform());
         setStateColour(agent->getState());
         loadMatricesToShader(m_transformStack);
-        if (m_dummyIndex == 0)
+
+        //DUMMY
+        if (m_customDummy)
+            agent->getDummy()->draw();
+        else if (m_currentDummy)
+            m_currentDummy->draw();
+        else
         {
             m_boidVAO->bind();
             m_boidVAO->draw();
             m_boidVAO->unbind();
         }
-        else
-        {
-            m_dummies[m_dummyIndex-1]->draw();
-        }
+
         if (m_drawCollisionRadius)
             drawCollisionRadius(agent->getCollisionRadius());
         if (m_drawVelocityVector)
@@ -659,9 +690,41 @@ void GLWindow::setDrawStrength(bool _pressed)
     updateGL();
 }
 
-void GLWindow::setDummyIndex(int _index)
+void GLWindow::setCurrentDummy(int _index)
 {
-    m_dummyIndex = _index;
+    if (_index == 11)
+        m_customDummy = true;
+    else
+    {
+        /**
+         * If you try to set a dummy that was not
+         * loaded it will throw an exception
+         */
+        if (_index == 0)
+            m_currentDummy = NULL;
+        else if (_index == 1)
+            m_currentDummy = m_dummies.at("legoman");
+        else if (_index == 2)
+            m_currentDummy = m_dummies.at("human");
+        else if (_index == 3)
+            m_currentDummy = m_dummies.at("teddy");
+        else if (_index == 4)
+            m_currentDummy = m_dummies.at("minion");
+        else if (_index == 5)
+            m_currentDummy = m_dummies.at("aragorn");
+        else if (_index == 6)
+            m_currentDummy = m_dummies.at("legolas");
+        else if (_index == 7)
+            m_currentDummy = m_dummies.at("r2d2");
+        else if (_index == 8)
+            m_currentDummy = m_dummies.at("droid");
+        else if (_index == 9)
+            m_currentDummy = m_dummies.at("cow");
+        else if (_index == 10)
+            m_currentDummy = m_dummies.at("speedboat");
+        m_customDummy = false;
+    }
+
     updateGL();
 }
 
@@ -714,7 +777,7 @@ void GLWindow::loadCrowds()
     QStringList::iterator currentFilename;
     for (currentFilename = filenames.begin(); currentFilename!=filenameEnd; ++currentFilename)
     {
-        if ( m_parser->loadCrowd((*currentFilename).toStdString(), agents) )
+        if ( m_parser->loadCrowd((*currentFilename).toStdString(), m_dummies, agents) )
         {
             m_crowdEngine.addAgents(agents);
             m_crowdEngine.scaleCollisionRadius(m_collisionRadiusScale);
