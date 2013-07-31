@@ -48,6 +48,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_drawVelocityVector = false;
     m_drawVisionRadius = false;
     m_drawStrength = false;
+    m_drawStateColour = false;
 
     m_customDummy = true;
 
@@ -365,11 +366,17 @@ void GLWindow::paintGL()
     for(currentAgent = m_crowdEngine.getAgentsBegin(); currentAgent!=endAgent; ++currentAgent)
     {
         agent = *currentAgent;
-
         //agent->print();
+
+        //TRANSFORMATION
         m_transformStack.setCurrent(agent->getTransform());
-        setStateColour(agent->getState());
         loadMatricesToShader(m_transformStack);
+
+        //COLOUR
+        if (m_drawStateColour)
+            setStateColour(agent->getState());
+        else
+            m_shader->setShaderParam4f("Colour",1,1,1,1);
 
         //DUMMY
         if (m_customDummy)
@@ -502,6 +509,20 @@ inline void GLWindow::setStateColour(std::string _state)
         m_shader->setShaderParam4f("Colour",0,0,1,1);
     else if (_state=="captainDead")
         m_shader->setShaderParam4f("Colour",0,0,0,1);
+
+    //shooter states
+    else if (_state=="shooterRun")
+        m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="shooterShoot")
+        m_shader->setShaderParam4f("Colour",1,0,0,1);
+    else if (_state=="shooterGoBack")
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
+
+    //target states
+    else if (_state=="targetDead")
+        m_shader->setShaderParam4f("Colour",0,0,0,1);
+
+    //default colour
     else
         m_shader->setShaderParam4f("Colour",1,1,1,1);
 }
@@ -690,6 +711,12 @@ void GLWindow::setDrawStrength(bool _pressed)
     updateGL();
 }
 
+void GLWindow::setDrawStateColour(bool _pressed)
+{
+    m_drawStateColour = _pressed;
+    updateGL();
+}
+
 void GLWindow::setCurrentDummy(int _index)
 {
     if (_index == 11)
@@ -780,6 +807,12 @@ void GLWindow::loadCrowds()
         if ( m_parser->loadCrowd((*currentFilename).toStdString(), m_dummies, agents) )
         {
             m_crowdEngine.addAgents(agents);
+            //YOU FORGOT THIS LINE, DUMBASS
+            /**
+             * Without clearing the agents, if you load more than one file at the same time
+             * you add agents twice, provoking a memory corruption when deleting them twice
+             */
+            agents.clear();
             m_crowdEngine.scaleCollisionRadius(m_collisionRadiusScale);
         }
         else

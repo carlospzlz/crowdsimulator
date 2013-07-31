@@ -395,7 +395,16 @@ void Agent::execute()
 
 
     // Take a lot of care here (func+10)
-    lua_call(s_luaState,9,5);
+    int errfunc = 0;
+    int errorCode = lua_pcall(s_luaState,9,5,errfunc);
+
+    if (errorCode)
+    {
+        std::cout << "Agent: LUA RUNTIME ERROR! :" << lua_tostring(s_luaState,-1) << std::endl;
+        lua_remove(s_luaState,-1);
+        return;
+    }
+
 
     /*
     std::cout << lua_typename(s_luaState,lua_type(s_luaState,1))
@@ -457,13 +466,21 @@ void Agent::execute()
 
     // Messages to send at Stack[5]
     message msg;
-    int neighbourIndex = 0;
+    int neighbourIndex;
     msg.agentID = m_agentID;
     msg.position = m_transformation.getPosition();
     msg.strength = m_strength;
     lua_pushnil(s_luaState);
     while (lua_next(s_luaState,5))
     {
+        /* One bug found here:
+         * next does not iterate over nil entries on a table,
+         * thus you cannot count the iterations
+         * And one extra one!
+         * In C++ index start in 0, but in lua they do in 1..
+         * cIndex = luaIndex -1
+         */
+        neighbourIndex = lua_tointeger(s_luaState,-2)-1;
         lua_pushnil(s_luaState);
         while (lua_next(s_luaState,7))
         {

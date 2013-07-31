@@ -68,6 +68,7 @@ private :
     bool m_drawVisionRadius;
     bool m_drawStrength;
     bool m_drawAxis;
+    bool m_drawStateColour;
     float m_axisScale;
     bool m_wireframeMode;
 
@@ -112,6 +113,7 @@ public slots:
     void setDrawVelocityVector(bool _pressed);
     void setDrawVisionRadius(bool _pressed);
     void setDrawStrength(bool _pressed);
+    void setDrawStateColour(bool _pressed);
     void setCurrentDummy(int _index);
     void setShader(int _index);
     void setStep(float _step) { m_crowdEngine.setStep(_step); }

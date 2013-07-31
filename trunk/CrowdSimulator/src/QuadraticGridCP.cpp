@@ -84,7 +84,7 @@ void QuadraticGridCP::updateNeighbours(const std::vector<Agent *> &_agents)
 
     endAgent1 = _agents.end();
 
-    // std::cout << "CellPartition: updating neighbours" << std::endl;
+    //std::cout << "CellPartition: updating neighbours" << std::endl;
 
     for(std::vector<Agent*>::const_iterator currentAgent1 = _agents.begin(); currentAgent1!=endAgent1; ++currentAgent1)
     {
@@ -102,7 +102,7 @@ void QuadraticGridCP::updateNeighbours(const std::vector<Agent *> &_agents)
             agent1->setNeighbours(neighbours1);
 
             // FLAG for agent1
-            //std::cout << agent1 << std::endl;
+            //std::cout << agent1->getAgentID() << "("<< visionRadius << ")" << std::endl;
 
             checkedAgents.insert(agent1);
 
@@ -132,7 +132,7 @@ void QuadraticGridCP::updateNeighbours(const std::vector<Agent *> &_agents)
                         agent2->setNeighbours(neighbours2);
 
                         //FLAG for agent2
-                        //std::cout << "\t" << agent2 << std::endl;
+                        //std::cout << "\t" << agent2->getAgentID() << "("<< visionRadius << ")" << std::endl;
 
                         neighbours2.clear();
                         checkedAgents.insert(agent2);
@@ -176,7 +176,13 @@ void QuadraticGridCP::findNeighboursInAgents(const Agent* _agent, const std::vec
     {
         agent = *currentAgent;
 
-        if ( agent != _agent && agent->distance(_agent) < agent->getVisionRadius() )
+        /**
+         * Take care with who was the neighbour of who...
+         * Previously, it was an important bug here because
+         * it was used the visionRadious of the neighbour(agent)
+         * instead of the _agent
+         */
+        if ( _agent != agent && _agent->distance(agent) < _agent->getVisionRadius() )
             _neighbours.push_back(agent);
     }
 
