@@ -194,6 +194,13 @@ void CrowdEngine::restart()
     std::vector<Agent*>::iterator currentAgent;
     for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
+        /**
+         * One bug here:
+         * memory corruption for double delete ¿?
+         * GOT IT
+         * When loading agents from more than one file, the vector wasn't cleared,
+         * therefore some agents were added twice
+         */
         delete *currentAgent;
     }
     m_agents.clear();

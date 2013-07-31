@@ -10,13 +10,21 @@ echo >> $fileName
 xCentre=0
 zCentre=0
 
-flock=flock3
-rows=10
-columns=10
-brain=cohesiveBoid
-dummy=teddy
+flock=flock4
+rows=4
+columns=4
+brain=shooter
+state=shooterRun
+dummy=droid
+xHeading=0
+yHeading=0
+zHeading=-1
+visionRadius=10
 
-echo "0 0 0 1 2 0.5 8 state verticalLeader 0 0 -1 $dummy" >> $fileName
+#percentage over 1
+randomRatio=0
+
+echo "0 0 0 1 2 0.5 8 state verticalLeader $xHeading $yHeading $zHeading $dummy" >> $fileName
 echo "1" >> $fileName
 echo "flock $flock" >> $fileName
 echo >> $fileName
@@ -28,15 +36,33 @@ for ((i=0;i<$columns;++i))
 do
 	for ((j=0;j<$rows;++j))
 	do
-		rand=$(($RANDOM%50))
-		mass=$(echo "scale=2; 0.75 + $rand / 100" | bc)
-		rand=$(($RANDOM%50))
-		maxStrength=$(echo "scale=2; 0.75 + $rand / 100" | bc)
-		rand=$(($RANDOM%50))
-		maxSpeed=$(echo "scale=2; 0.75 + $rand / 100" | bc)
+		if [ "$randomRatio" -eq 0 ]
+		then
+			rand=0
+		else
+			rand=$(($RANDOM%$randomRatio))
+		fi
+		mass=$(echo "scale=2; 1-($randomRatio/2/100) + $rand / 100" | bc)
+		
+		if [ "$randomRatio" -eq 0 ]
+		then
+			rand=0
+		else
+			rand=$(($RANDOM%$randomRatio))
+		fi
+		maxStrength=$(echo "scale=2; 1 -($randomRatio/2/100) / 100" | bc)
+		
+		if [ "$randomRatio" -eq 0 ]
+		then
+			rand=0
+		else
+			rand=$(($RANDOM%$randomRatio))
+		fi
+		maxSpeed=$(echo "scale=2; 1 -($randomRatio/2/100) + $rand / 100" | bc)
+		
 		x=$(($startingX + i))
 		z=$(($startingZ + j))
-		echo "$x 0 $z $mass $maxStrength $maxSpeed 4 state $brain 0 0 -1 $dummy" >> $fileName
+		echo "$x 0 $z $mass $maxStrength $maxSpeed $visionRadius $state $brain $xHeading $yHeading $zHeading $dummy" >> $fileName
 		echo "1" >> $fileName
 		echo "flock $flock" >> $fileName
 		echo >> $fileName
