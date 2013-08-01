@@ -1,17 +1,17 @@
-#include "RadialPE.h"
+#include "CylinderPE.h"
 
-void RadialPE::checkCollision(Agent *a1, Agent *a2)
+void CylinderPE::checkCollision(Agent *_a1, Agent *_a2)
 {
-    float distance = a1->distance(a2);
-    float radiusSum = a1->getCollisionRadius()+a2->getCollisionRadius();
+    float distance = _a1->distance(_a2);
+    float radiusSum = _a1->getCollisionRadius()+_a2->getCollisionRadius();
 
     if (distance < radiusSum)
     {
         //THERE IS COLLISION
 
         ngl::Vec4 distanceVector;
-        distanceVector.m_x = a2->getPosition().m_x - a1->getPosition().m_x;
-        distanceVector.m_z = a2->getPosition().m_z - a1->getPosition().m_z;
+        distanceVector.m_x = _a2->getPosition().m_x - _a1->getPosition().m_x;
+        distanceVector.m_z = _a2->getPosition().m_z - _a1->getPosition().m_z;
         //vector tangent to the collision
         ngl::Vec4 tangentVector;
         tangentVector.m_x = - distanceVector.m_z;
@@ -27,7 +27,7 @@ void RadialPE::checkCollision(Agent *a1, Agent *a2)
 
         //FIXING AGENT1
         ngl::Vec4 velocityA1;
-        velocityA1 = a1->getVelocity();
+        velocityA1 = _a1->getVelocity();
 
         if (velocityA1.length() > 0)
         {
@@ -39,15 +39,15 @@ void RadialPE::checkCollision(Agent *a1, Agent *a2)
                 // fixing velocity of Agent1
                 magnitude= velocityA1.dot(tangentVector);
                 velocityA1 = magnitude*tangentVector;
-                a1->setVelocity(velocityA1);
+                _a1->setVelocity(velocityA1);
                 // fixing position of Agent1
-                a1->setPosition(a1->getPreviousPos()+velocityA1*step);
+                _a1->setPosition(_a1->getPreviousPos()+velocityA1*step);
             }
         }
 
         //FIXING AGENT2
         ngl::Vec4 velocityA2;
-        velocityA2 = a2->getVelocity();
+        velocityA2 = _a2->getVelocity();
 
         if (velocityA2.length() > 0)
         {
@@ -59,9 +59,9 @@ void RadialPE::checkCollision(Agent *a1, Agent *a2)
                 //fixing velocity of Agent2
                 magnitude = velocityA2.dot(tangentVector);
                 velocityA2 = magnitude*tangentVector;
-                a2->setVelocity(velocityA2);
+                _a2->setVelocity(velocityA2);
                 // fixing position of Agent2
-                a2->setPosition(a2->getPreviousPos()+velocityA2*step);
+                _a2->setPosition(_a2->getPreviousPos()+velocityA2*step);
             }
         }
 

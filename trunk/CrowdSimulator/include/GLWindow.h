@@ -19,9 +19,13 @@
 #include "TXTParser.h"
 #include "CrowdEngine.h"
 #include "QuadraticGridCP.h"
-#include "RadialPE.h"
+#include "CylinderPE.h"
+#include "SpherePE.h"
 
-enum shader{phong,colour};
+enum shader{
+    SHADER_PHONG,
+    SHADER_COLOUR
+};
 
 class GLWindow : public QGLWidget
 {
@@ -77,7 +81,8 @@ private :
 
     void buildBoidVAO();
     void loadMatricesToShader(ngl::TransformStack &_tx);
-    void inline drawCollisionRadius(float _collisionRadius);
+    void inline drawCollisionCylinder(float _collisionRadius);
+    void inline drawCollisionSphere(float _mass, float _collisionRadius);
     void inline drawVector(ngl::Vec4 _vector, float _scale);
     void inline drawRadius(float _radius);
     void inline drawStrength(float _strength, float _mass);
@@ -103,6 +108,7 @@ public :
     ~GLWindow();
     void setTimerInterval(int _interval) { m_updateCrowdEngineTimer->setInterval(_interval); }
     void setWireframeMode(bool _wireframeMode) { m_wireframeMode = _wireframeMode; }
+    void setStep(float _step) { m_crowdEngine.setStep(_step); }
 
 public slots:
     void toggleSimulation(bool _pressed);
@@ -116,8 +122,8 @@ public slots:
     void setDrawStateColour(bool _pressed);
     void setCurrentDummy(int _index);
     void setShader(int _index);
-    void setStep(float _step) { m_crowdEngine.setStep(_step); }
-    void setFriction(float _friction) { m_crowdEngine.setFriction(_friction);}
+    void setFriction(double _friction) { m_crowdEngine.setFriction(_friction);}
+    void setGravity(double _gravity) { m_crowdEngine.setGravity(_gravity); }
     void rearrangeCellPartition(int _cellSize);
     void loadBrains();
     void loadCrowds();
@@ -126,6 +132,7 @@ public slots:
     void scaleCollisionRadius(double _scale);
     void scaleAxis(double _scale);
     void setBoundingBoxSize(double _size);
+    void setPhysicsEngine(int _index);
 
 protected:
 

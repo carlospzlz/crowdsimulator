@@ -13,7 +13,6 @@ CrowdEngine::CrowdEngine()
     luaL_openlibs(s_luaState);
 
     Agent::setStep(0.05);
-    Agent::setFriction(0.01);
 }
 
 CrowdEngine::~CrowdEngine()
@@ -141,21 +140,16 @@ void CrowdEngine::update()
     std::vector<Agent*>::iterator endAgent = m_agents.end();
     std::vector<Agent*>::iterator currentAgent;
 
-    // EXECUTION
+    // EXTERNAL FORCES AND EXECUTION
     for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
+        m_physicsEngine->applyGravity(*currentAgent);
+        m_physicsEngine->applyFriction(*currentAgent);
+
         (*currentAgent)->execute();
     }
 
-    // COLLISIONS
-
-    // WITH BOUNDING BOX
-    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
-    {
-        m_physicsEngine->checkCollisionBoundingBox(*currentAgent);
-    }
-
-    // WITH OTHER AGENTS
+    // COLLISIONS WITH OTHER AGENTS
     std::set<int> collisionPair;
     std::set<std::set<int> > checkedAgents;
     std::vector<Agent*> neighbours;
@@ -177,6 +171,13 @@ void CrowdEngine::update()
             }
             collisionPair.clear();
         }
+    }
+
+    //COLLISIONS WITH GROUND AND BOUNDING BOX (THESE RULE OVER THE PREVIOUS ONES)
+    for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
+    {
+        m_physicsEngine->checkCollisionGround(*currentAgent);
+        m_physicsEngine->checkCollisionBoundingBox(*currentAgent);
     }
 
 }
