@@ -3,20 +3,37 @@
 
 #include "Agent.h"
 
+enum physicsEngineType
+{
+    PE_CYLINDER,
+    PE_SPHERE
+};
+
 class PhysicsEngine
 {
 
 private:
+    physicsEngineType m_type;
     float m_boundingBoxSize;
+    float m_friction;
+    float m_gravity;
 
 public:
-    PhysicsEngine();
-    void setBoundingBoxSize(float _boxSize) { m_boundingBoxSize=_boxSize; }
+    PhysicsEngine(physicsEngineType _type);
+
+    void setBoundingBoxSize(float _boxSize) { m_boundingBoxSize = _boxSize; }
+    void setFriction(float _friction) { m_friction = _friction; }
+    void setGravity(float _gravity) { m_gravity = _gravity; }
 
     float getBoundingBoxSize() const { return m_boundingBoxSize; }
+    physicsEngineType getType() const { return m_type; }
 
-    virtual void checkCollision(Agent* a1, Agent* a2) = 0;
+    virtual void checkCollision(Agent* _a1, Agent* _a2) = 0;
+
     void checkCollisionBoundingBox(Agent* _agent);
+    void checkCollisionGround(Agent* _agent);
+    void applyFriction(Agent* _agent);
+    void applyGravity(Agent* _agent);
 
 };
 

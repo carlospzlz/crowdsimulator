@@ -28,12 +28,15 @@ public:
     void setCellPartition(CellPartition* _cellPartition) { m_cellPartition = _cellPartition; }
     void setPhysicsEngine(PhysicsEngine* _physicsEngine) { m_physicsEngine = _physicsEngine; }
     void setStep(float _step) { Agent::setStep(_step); }
-    void setFriction(float _friction) {Agent::setFriction(_friction); }
+    void setFriction(float _friction) { m_physicsEngine->setFriction(_friction); }
+    void setGravity(float _gravity) { m_physicsEngine->setGravity(_gravity); }
 
     std::vector<Agent*>::const_iterator getAgentsBegin() { return m_agents.begin(); }
     std::vector<Agent*>::const_iterator getAgentsEnd() { return m_agents.end(); }
     float getBoundingBoxSize() const { return m_physicsEngine->getBoundingBoxSize(); }
     int getCellSize() const { return m_cellPartition->getCellSize(); }
+    physicsEngineType getPEType() const { return m_physicsEngine->getType(); }
+    int getAgentsNumber() const { return m_agents.size(); }
 
     void loadBrain(std::string _brain);
     void addAgent(Agent *_agent);

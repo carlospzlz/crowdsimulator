@@ -30,7 +30,6 @@ private:
     static lua_State* s_luaState;
     static int s_numberOfAgents;
     static float s_step;
-    static float s_friction;
 
     int m_agentID;
     float m_mass;
@@ -59,7 +58,6 @@ public:
 
     void static setLuaState(lua_State* _luaState) { s_luaState = _luaState; }
     void static setStep(float _step) { s_step = _step; }
-    void static setFriction(float _friction) { s_friction = _friction; }
 
     float static getStep() { return s_step; }
 
@@ -95,6 +93,7 @@ public:
     ngl::Obj* getDummy() const { return m_dummy; }
 
     void execute();
+    void applyForce(ngl::Vec4 _force) {m_totalForce += _force; }
     void sendMessage(message _message) { m_inbox.push_back(_message); }
     float distance(const Agent *_agent) const;
     void scaleCollisionRadius(float _scale) { m_collisionRadius = m_mass*_scale; }

@@ -60,7 +60,7 @@ GLWindow::GLWindow(QWidget *_parent): QGLWidget( new CreateCoreGLContext(QGLForm
     m_groundSteps = 100/4;
 
     //ADD PHYSICS ENGINE TO THE CROWDENGINE!
-    m_crowdEngine.setPhysicsEngine(new RadialPE());
+    m_crowdEngine.setPhysicsEngine(new CylinderPE());
 
     //TIMER FOR THE UPDATING OF THE CROWDENGINE
     m_updateCrowdEngineTimer = new QTimer(this);
@@ -133,11 +133,11 @@ void GLWindow::initializeGL()
     m_shader->linkProgramObject("Colour");
 
     //INITIALIZE TEXT FOR DRAWING FPS ON SCREEN
-    m_text = new ngl::Text(QFont("Arial",18));
+    m_text = new ngl::Text(QFont("Arial",16));
     m_text->setColour(1,1,0);
 
     //BY DEFAULT PHONG (text loads nglTextShader)
-    m_shaderIndex = phong;
+    m_shaderIndex = SHADER_PHONG;
     (*m_shader)["Phong"]->use();
 
     //CAMERA
@@ -162,7 +162,8 @@ void GLWindow::initializeGL()
     // PRIMITIVES FOR GUIDELINES
     m_primitives = ngl::VAOPrimitives::instance();
     m_primitives->createLineGrid("ground",m_groundSteps, m_groundSteps, m_groundSteps);
-    m_primitives->createCylinder("collisionRadius",1,1,16,1);
+    m_primitives->createCylinder("collisionCylinder",1,1,16,1);
+    m_primitives->createSphere("collisionSphere",1,16);
     m_primitives->createTorus("visionRadius",0.01,1,3,16);
     m_primitives->createCylinder("vectorModulus",0.04,1,6,1);
     m_primitives->createCone("vectorSense",0.1,0.4,6,1);
@@ -225,6 +226,11 @@ void GLWindow::initializeGL()
     obj->calcBoundingSphere();
     m_dummies["legolas"] = obj;
 
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/zoombie.obj");
+    obj->createVAO();
+    obj->calcBoundingSphere();
+    m_dummies["zoombie"] = obj;
+
     //DEFAULT LEGOMAN
     m_currentDummy = m_dummies.at("legoman");
 
@@ -274,7 +280,7 @@ inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
     ngl::Mat4 MV;
     ngl::Mat4 MVP;
 
-    if (m_shaderIndex==phong)
+    if (m_shaderIndex==SHADER_PHONG)
     {
 
         ngl::Mat3 normalMatrix;
@@ -288,7 +294,7 @@ inline void GLWindow::loadMatricesToShader(ngl::TransformStack &_tx)
         m_shader->setShaderParamFromMat3("normalMatrix",normalMatrix);
         m_shader->setShaderParamFromMat4("M",M);
     }
-    else if (m_shaderIndex==colour)
+    else if (m_shaderIndex==SHADER_COLOUR)
     {
         M=_tx.getCurrAndGlobal().getMatrix();
         MV= _tx.getCurrAndGlobal().getMatrix()*m_camera.getViewMatrix();
@@ -311,9 +317,9 @@ void GLWindow::paintGL()
      * The shader needs to be set each time
      * because the ngl::text leaves nglTextShader
      */
-    if (m_shaderIndex==phong)
+    if (m_shaderIndex==SHADER_PHONG)
         (*m_shader)["Phong"]->use();
-    else if (m_shaderIndex==colour)
+    else if (m_shaderIndex==SHADER_COLOUR)
         (*m_shader)["Colour"]->use();
 
     //Drawing the grid
@@ -391,7 +397,13 @@ void GLWindow::paintGL()
         }
 
         if (m_drawCollisionRadius)
-            drawCollisionRadius(agent->getCollisionRadius());
+        {
+            if (m_crowdEngine.getPEType()==PE_CYLINDER)
+                drawCollisionCylinder(agent->getCollisionRadius());
+            else if (m_crowdEngine.getPEType()==PE_SPHERE)
+                drawCollisionSphere(agent->getMass(),agent->getCollisionRadius());
+        }
+
         if (m_drawVelocityVector)
             drawVector(agent->getVelocity(),2);
         if (m_drawVisionRadius)
@@ -406,11 +418,13 @@ void GLWindow::paintGL()
 
     //DRAWING TEXT WITH THE FPS
     QString text = QString("%1 FPS").arg(m_fps);
-    m_text->renderText(20,10,text);
+    m_text->renderText(20,15,text);
+    text = QString("%1 agents").arg(m_crowdEngine.getAgentsNumber());
+    m_text->renderText(20,40,text);
 
 }
 
-inline void GLWindow::drawCollisionRadius(float _collisionRadius)
+inline void GLWindow::drawCollisionCylinder(float _collisionRadius)
 {
     if (_collisionRadius>0)
     {
@@ -419,9 +433,26 @@ inline void GLWindow::drawCollisionRadius(float _collisionRadius)
         m_transformStack.setScale(_collisionRadius,_collisionRadius,2);
         m_transformStack.setRotation(90,0,0);
         loadMatricesToShader(m_transformStack);
-        m_primitives->draw("collisionRadius");
+        m_primitives->draw("collisionCylinder");
         m_transformStack.setScale(1,1,1);
         m_transformStack.setRotation(-90,0,0);
+        if (!m_wireframeMode)
+            glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+    }
+}
+
+inline void GLWindow::drawCollisionSphere(float _mass, float _collisionRadius)
+{
+    if (_collisionRadius>0)
+    {
+        if (!m_wireframeMode)
+            glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+        m_transformStack.setScale(_collisionRadius,_collisionRadius,_collisionRadius);
+        m_transformStack.addPosition(0,_mass,0);
+        loadMatricesToShader(m_transformStack);
+        m_primitives->draw("collisionSphere");
+        m_transformStack.setScale(1,1,1);
+        m_transformStack.addPosition(0,-_mass,0);
         if (!m_wireframeMode)
             glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
     }
@@ -746,8 +777,10 @@ void GLWindow::setCurrentDummy(int _index)
         else if (_index == 8)
             m_currentDummy = m_dummies.at("droid");
         else if (_index == 9)
-            m_currentDummy = m_dummies.at("cow");
+            m_currentDummy = m_dummies.at("zoombie");
         else if (_index == 10)
+            m_currentDummy = m_dummies.at("cow");
+        else if (_index == 11)
             m_currentDummy = m_dummies.at("speedboat");
         m_customDummy = false;
     }
@@ -759,9 +792,9 @@ void GLWindow::setShader(int _index)
 {
     m_shaderIndex = _index;
 
-    if (m_shaderIndex==phong)
+    if (m_shaderIndex==SHADER_PHONG)
         (*m_shader)["Phong"]->use();
-    else if (m_shaderIndex==colour)
+    else if (m_shaderIndex==SHADER_COLOUR)
         (*m_shader)["Colour"]->use();
 
     updateGL();
@@ -849,5 +882,16 @@ void GLWindow::restart()
     {
         m_crowdEngine.restart();
     }
+    updateGL();
+}
+
+void GLWindow::setPhysicsEngine(int _index)
+{
+    if (_index==PE_CYLINDER && m_crowdEngine.getPEType()!=PE_CYLINDER)
+        m_crowdEngine.setPhysicsEngine(new CylinderPE());
+
+    if (_index==PE_SPHERE && m_crowdEngine.getPEType()!=PE_SPHERE)
+        m_crowdEngine.setPhysicsEngine(new SpherePE());
+
     updateGL();
 }

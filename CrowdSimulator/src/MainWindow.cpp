@@ -48,10 +48,13 @@ MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::Mai
     connect(m_ui->s_cellSizeSpinbox,SIGNAL(valueChanged(int)),m_gl,SLOT(rearrangeCellPartition(int)));
 
     // collisions
-    connect(m_ui->s_drawBoundingSphere,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawCollisionRadius(bool)));
-    connect(m_ui->s_radiusMass,SIGNAL(valueChanged(double)),m_gl,SLOT(scaleCollisionRadius(double)));
+    connect(m_ui->s_frictionValue,SIGNAL(valueChanged(double)),m_gl,SLOT(setFriction(double)));
+    connect(m_ui->s_gravityValue,SIGNAL(valueChanged(double)),m_gl,SLOT(setGravity(double)));
     connect(m_ui->s_drawBoundingBox,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawBoundingBox(bool)));
     connect(m_ui->s_boundingBoxSize,SIGNAL(valueChanged(double)),m_gl,SLOT(setBoundingBoxSize(double)));
+    connect(m_ui->s_physicsEngine,SIGNAL(currentIndexChanged(int)),m_gl,SLOT(setPhysicsEngine(int)));
+    connect(m_ui->s_drawCollisionRadius,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawCollisionRadius(bool)));
+    connect(m_ui->s_radiusMass,SIGNAL(valueChanged(double)),m_gl,SLOT(scaleCollisionRadius(double)));
 
 }
 

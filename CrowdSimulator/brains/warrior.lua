@@ -239,11 +239,6 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	function warriorDefend(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 	
 		-- CHECK FOR THE CHANGE OF STATE
-		if (strength < 0)
-		then
-			return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
-		end	
-
 		enemiesCounter = 0
 		for key,neighbour in pairs(neighbours)
 		do
@@ -290,6 +285,12 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 			heading[2] = enemyPositionsSum[2] / enemyCounter - position.y
 			heading[3] = enemyPositionsSum[3] / enemyCounter - position.z
 		end
+		
+		--Now we have the heading check the strength
+		if (strength < 0)
+		then
+			return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+		end	
 
 		--SYNTHESIS OF THE FORCE
 		force = {}

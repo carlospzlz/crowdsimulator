@@ -3,8 +3,7 @@
 
 lua_State* Agent::s_luaState;
 
-float Agent::s_step = 0.01;
-float Agent::s_friction = 0.1;
+float Agent::s_step = 0.05;
 
 int Agent::s_numberOfAgents = 0;
 
@@ -496,7 +495,7 @@ void Agent::execute()
     lua_pop(s_luaState,5);
 
     // SUBSTRACTING FRICTION FORCE
-    m_totalForce -= s_friction*m_velocity;
+    //m_totalForce -= s_friction*m_velocity;
 
     // CALCULATE NEW VELOCITY WITH THE FORCE
     ngl::Vec4 acceleration = m_totalForce/m_mass;
@@ -509,11 +508,13 @@ void Agent::execute()
         m_velocity = m_velocity/speed * m_maxSpeed;
     }
 
-    // CALCULATE NEW ROTATION WITH THE VELOCITY
+    /**
+     * CALCULATE NEW ROTATION
+     * It is calculated just in Y, for other specific rotations
+     * it should handled by the behaviour with the heading
+     */
     ngl::Vec4 rotation = 0;
 
-    // Make it work in any direction...
-    // Rotation in Y
     ngl::Vec3 heading;
     if (m_heading.length()>0)
         heading = m_heading;

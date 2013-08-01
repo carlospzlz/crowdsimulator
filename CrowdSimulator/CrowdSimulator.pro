@@ -24,7 +24,8 @@ HEADERS += \
     include/Parser.h \
     include/TXTParser.h \
     include/PhysicsEngine.h \
-    include/RadialPE.h
+    include/SpherePE.h \
+    include/CylinderPE.h
 
 SOURCES += \
     src/main.cpp \
@@ -35,8 +36,9 @@ SOURCES += \
     src/QuadraticGridCP.cpp \
     src/TXTParser.cpp \
     src/Parser.cpp \
-    src/RadialPE.cpp \
-    src/PhysicsEngine.cpp
+    src/PhysicsEngine.cpp \
+    src/CylinderPE.cpp \
+    src/SpherePE.cpp
 
 FORMS += \
     ui/MainWindow.ui
