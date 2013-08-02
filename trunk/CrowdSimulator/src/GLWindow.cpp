@@ -178,58 +178,68 @@ void GLWindow::initializeGL()
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/legoman.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["legoman"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/human.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["human"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/teddy.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies ["teddy"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/minion.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["minion"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/cow.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["cow"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/speedboat.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["speedboat"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/r2d2.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["r2d2"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/droid.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["droid"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/aragorn.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["aragorn"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/legolas.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["legolas"] = obj;
 
     obj = new ngl::Obj(s_dummiesPath.toStdString()+"/zoombie.obj");
     obj->createVAO();
-    obj->calcBoundingSphere();
+    //obj->calcBoundingSphere();
     m_dummies["zoombie"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/victor.obj");
+    obj->createVAO();
+    //obj->calcBoundingSphere();
+    m_dummies["victor"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/victoria.obj");
+    obj->createVAO();
+    //obj->calcBoundingSphere();
+    m_dummies["victoria"] = obj;
 
     //DEFAULT LEGOMAN
     m_currentDummy = m_dummies.at("legoman");
@@ -553,6 +563,22 @@ inline void GLWindow::setStateColour(std::string _state)
     else if (_state=="targetDead")
         m_shader->setShaderParam4f("Colour",0,0,0,1);
 
+    //dancerLeader states
+    else if (_state=="danceLeaderSearch")
+        m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="danceLeaderSwing")
+        m_shader->setShaderParam4f("Colour",1,1,0,1);
+    else if (_state=="danceLeaderWaitForSpin")
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
+
+    //dander states
+    else if (_state=="dancerFree")
+        m_shader->setShaderParam4f("Colour",1,0,1,1);
+    else if (_state=="dancerEngaged")
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
+    else if (_state=="dancerSpin")
+        m_shader->setShaderParam4f("Colour",1,1,0,1);
+
     //default colour
     else
         m_shader->setShaderParam4f("Colour",1,1,1,1);
@@ -750,7 +776,8 @@ void GLWindow::setDrawStateColour(bool _pressed)
 
 void GLWindow::setCurrentDummy(int _index)
 {
-    if (_index == 11)
+    if (_index == 14)
+        // THIS IS THE LAST INDEX FOR CUSTOM DUMMY
         m_customDummy = true;
     else
     {
@@ -779,8 +806,12 @@ void GLWindow::setCurrentDummy(int _index)
         else if (_index == 9)
             m_currentDummy = m_dummies.at("zoombie");
         else if (_index == 10)
-            m_currentDummy = m_dummies.at("cow");
+            m_currentDummy = m_dummies.at("victoria");
         else if (_index == 11)
+            m_currentDummy = m_dummies.at("victor");
+        else if (_index == 12)
+            m_currentDummy = m_dummies.at("cow");
+        else if (_index == 13)
             m_currentDummy = m_dummies.at("speedboat");
         m_customDummy = false;
     }
