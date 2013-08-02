@@ -13,34 +13,69 @@ function dancer (agentID, position, strength, maxStrength, velocity, state, attr
 			end
 		end
 
-		--MOVING LOST
-		speed = math.sqrt(velocity.x*velocity.x+velocity.y*velocity.y+velocity.z*velocity.z)
+		--CIRCULAR 
+		distance = 99
+		tmpDistance = 0
+		distanceVector = {0,0,0}
+		separation = {0,0,0}
+		for key,neighbour in pairs(neighbours)
+		do
+			if (neighbour.state=="dancerFree" or
+			    neighbour.state=="dancerEngaged" or
+			    neighbour.state=="dancerSpin")
+			then
+				distanceVector[1] = position.x - neighbour.position.x
+				distanceVector[2] = position.y - neighbour.position.y
+				distanceVector[3] = position.z - neighbour.position.z
 
+				distance = math.sqrt(distanceVector[1]^2 + distanceVector[2]^2 + distanceVector[3]^2)
+
+				separation[1] = separation[1] + distanceVector[1] / distance^2
+				separation[2] = separation[2] + distanceVector[2] / distance^2
+				separation[3] = separation[3] + distanceVector[3] / distance^2
+			end
+		end
+	
+		--NORMALIZE SEPARATION
+		magnitude = math.sqrt(separation[1]^2 + separation[2]^2 + separation[3]^2)
+		
+		if (magnitude > 0)
+		then
+			separation[1] = separation[1] / magnitude
+			separation[2] = separation[2] / magnitude
+			separation[3] = separation[3] / magnitude
+		end	
+		
+		--CIRCULAR FORCE
 		direction = {}
+
+		speed = math.sqrt(velocity.x^2+velocity.y^2+velocity.z^2)
 		if (speed==0)
 		then
-			direction.x = math.cos(agentID*math.pi/4)
-			direction.y = 0
-			direction.z = math.sin(agentID*math.pi/4)
+			direction[1] = math.cos(agentID*math.pi/4)
+			direction[2] = 0
+			direction[3] = math.sin(agentID*math.pi/4)
 		else
-			direction.x = velocity.x/speed
-			direction.y = velocity.y/speed
-			direction.z = velocity.z/speed
+			direction[1] = velocity.x/speed
+			direction[2] = velocity.y/speed
+			direction[3] = velocity.z/speed
 		end
 
 		angle = (math.pi/400)
 
-		direction.x = direction.x*math.cos(angle)-direction.z*math.sin(angle);
-		direction.z = direction.x*math.sin(angle)+direction.z*math.cos(angle);
+		circularForce = {0,0,0}
+		circularForce[1] = direction[1]*math.cos(angle)-direction[3]*math.sin(angle);
+		circularForce[3] = direction[1]*math.sin(angle)+direction[3]*math.cos(angle);
 
 		--FORCE
 		force = {}
-		tw = 0.5
-		force[1] = direction.x*tw
-		force[2] = 0
-		force[3] = direction.z*tw
+		cw = 0.5
+		sw = 0.5
+		force[1] = circularForce[1]*cw + separation[1]*sw
+		force[2] = circularForce[2]*cw + separation[2]*sw
+		force[3] = circularForce[3]*cw + separation[3]*sw
 
-		return force, {0,0,0}, strength, "dancerFree", {}
+		return force, {0,0,0}, strength, state, {}
 	end
 	
 	stateAction.dancerFree = dancerFree
@@ -48,33 +83,64 @@ function dancer (agentID, position, strength, maxStrength, velocity, state, attr
 
 	function dancerEngaged(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
+		--PICK PARTNER
 		distanceVector = {}
 		distance= 99
 		tmpDistance = 0
-		partner = {}
 		neighbourCounter = 0
+		partner = nil
+		separation = {0,0,0}
+
 		for key,neighbour in pairs(neighbours)
 		do
 			neighbourCounter = neighbourCounter + 1
 			
-			distanceVector[1] = neighbour.position.x - position.x
-			distanceVector[2] = neighbour.position.y - position.y
-			distanceVector[3] = neighbour.position.z - position.z
-
-			tmpDistance = math.sqrt(distanceVector[1]^2 +
-						distanceVector[2]^2 +
-						distanceVector[3]^2)
-
-			if (tmpDistance < distance)
+			if (neighbour.state=="danceLeaderSwing" or neighbour.state=="danceLeaderWaitForSpin")
 			then
-				partner = neighbours[neighbourCounter]
+				distanceVector[1] = neighbour.position.x - position.x
+				distanceVector[2] = neighbour.position.y - position.y
+				distanceVector[3] = neighbour.position.z - position.z
+
+				tmpDistance = math.sqrt(distanceVector[1]^2 +
+							distanceVector[2]^2 +
+							distanceVector[3]^2)
+
+				if (tmpDistance < distance)
+				then
+					partner = neighbour
+				end
+			end
+
+			if (neighbour.state=="dancerFree" or
+			    neighbour.state=="dancerEngaged" or
+			    neighbour.state=="dancerSpin")
+			then
+				distanceVector[1] = position.x - neighbour.position.x
+				distanceVector[2] = position.y - neighbour.position.y
+				distanceVector[3] = position.z - neighbour.position.z
+
+				distance = math.sqrt(distanceVector[1]^2 + distanceVector[2]^2 + distanceVector[3]^2)
+
+				separation[1] = separation[1] + distanceVector[1] / distance^2
+				separation[2] = separation[2] + distanceVector[2] / distance^2
+				separation[3] = separation[3] + distanceVector[3] / distance^2
 			end
 		end
+	
+		--NORMALIZE SEPARATION
+		magnitude = math.sqrt(separation[1]^2 + separation[2]^2 + separation[3]^2)
+		
+		if (magnitude > 0)
+		then
+			separation[1] = separation[1] / magnitude
+			separation[2] = separation[2] / magnitude
+			separation[3] = separation[3] / magnitude
+		end	
 
 		--HEADING
 		heading = {}
 
-		if (neighbourCounter==0)
+		if (partner==nil)
 		then
 			return {0,0,0}, {0,0,0}, strength, "dancerFree", {}
 		end
@@ -96,7 +162,7 @@ function dancer (agentID, position, strength, maxStrength, velocity, state, attr
 			if (message.label=="spin")
 			then
 				force = {0,0,0}
-				fw = 2
+				fw = 0
 				force[1] = -heading[1]*fw
 				force[2] = -heading[2]*fw
 				force[3] = -heading[3]*fw
@@ -125,10 +191,11 @@ function dancer (agentID, position, strength, maxStrength, velocity, state, attr
 		--SYNTHESIS OF ALL THE FORCES
 		force = {}
 		aw = 0.05
-		fw = 0.03
-		force[1] = attractingForce[1]*aw + followingForce[1]*fw
-		force[2] = attractingForce[2]*aw + followingForce[2]*fw
-		force[3] = attractingForce[3]*aw + followingForce[3]*fw
+		fw = 0.02
+		sw = 0.5
+		force[1] = attractingForce[1]*aw + followingForce[1]*fw + separation[1]*sw 
+		force[2] = attractingForce[2]*aw + followingForce[2]*fw + separation[2]*sw
+		force[3] = attractingForce[3]*aw + followingForce[3]*fw + separation[3]*sw
 
 		--print(attractingForce[1], attractingForce[2], attractingForce[3])
 		--print(followingForce[1], followingForce[2], followingForce[3])
@@ -149,27 +216,30 @@ function dancer (agentID, position, strength, maxStrength, velocity, state, attr
 			tmpDistance = 0
 			for key,neighbour in pairs(neighbours)
 			do
-				tmpDistance = math.sqrt(neighbour.position.x^2 +
-							neighbour.position.y^2 +
-							neighbour.position.z^2)
-				if (tmpDistance<distance)
+				if (neighbour.state=="danceLeaderWaitForSpin")
 				then
-					partnerIndex = key
-					distance = tmpDistance
+					tmpDistance = math.sqrt(neighbour.position.x^2 +
+								neighbour.position.y^2 +
+								neighbour.position.z^2)
+					if (tmpDistance<distance)
+					then
+						partnerIndex = key
+						distance = tmpDistance
+					end
 				end
 			end
-
-			messages = {}
-			messages[partnerIndex] = {}
-			messages[partnerIndex][0] = "dance"
 			
-			return {0,0,0}, {0,0,0}, maxStrength, "dancerEngaged", messages
+			if (partnerIndex==0)
+			then
+				return {0,0,0}, {0,0,0}, maxStrength, "dancerFree", {}
+			else
+				messages = {}
+				messages[partnerIndex] = {}
+				messages[partnerIndex][0] = "dance"
+			
+				return {0,0,0}, {0,0,0}, maxStrength, "dancerEngaged", messages
+			end
 		end
-		
-		repulsionForce = {0,0,0}
-		repulsionForce[1] = (position.x - partner.position.x) / distance
-		repulsionForce[2] = (position.y - partner.position.y) / distance
-		repulsionForce[3] = (position.z - partner.position.z) / distance
 
 		-- HEADING 
 		angleScale = 10;
