@@ -5,6 +5,13 @@ void CylinderPE::checkCollision(Agent *_a1, Agent *_a2)
     float distance = _a1->distance(_a2);
     float radiusSum = _a1->getCollisionRadius()+_a2->getCollisionRadius();
 
+    if (distance < s_epsilon)
+    {
+        std::cout << "CylinderPE: WARNING: Agent " << _a1->getAgentID()
+                  << " and " << _a2->getAgentID() << " are overlapped" << std::endl;
+        return;
+    }
+
     if (distance < radiusSum)
     {
         //THERE IS COLLISION

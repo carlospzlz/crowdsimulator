@@ -18,6 +18,9 @@ private:
     float m_friction;
     float m_gravity;
 
+protected:
+    static const float s_epsilon;
+
 public:
     PhysicsEngine(physicsEngineType _type);
 

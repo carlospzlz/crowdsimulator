@@ -32,6 +32,12 @@ void SpherePE::checkCollision(Agent *_a1, Agent *_a2)
     radiusSum = _a1->getCollisionRadius() + _a2->getCollisionRadius();
 
     //if distance is 0 failed assert is recieved from Vec4::normalize (len!=0) ¿?
+    if (distance < s_epsilon)
+    {
+        std::cout << "SpherePE: WARNING: Agent " << _a1->getAgentID()
+                  << " and " << _a2->getAgentID() << " are overlapped" << std::endl;
+        return;
+    }
 
     if (distance < radiusSum)
     {
