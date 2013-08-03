@@ -1,5 +1,7 @@
 #include <PhysicsEngine.h>
 
+const float PhysicsEngine::s_epsilon = 1E-10;
+
 PhysicsEngine::PhysicsEngine(physicsEngineType _type)
 {
     m_type = _type;

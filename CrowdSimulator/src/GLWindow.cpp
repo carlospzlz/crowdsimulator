@@ -571,13 +571,21 @@ inline void GLWindow::setStateColour(std::string _state)
     else if (_state=="danceLeaderWaitForSpin")
         m_shader->setShaderParam4f("Colour",0,0,1,1);
 
-    //dander states
+    //dancer states
     else if (_state=="dancerFree")
         m_shader->setShaderParam4f("Colour",1,0,1,1);
     else if (_state=="dancerEngaged")
         m_shader->setShaderParam4f("Colour",0,0,1,1);
     else if (_state=="dancerSpin")
         m_shader->setShaderParam4f("Colour",1,1,0,1);
+
+    //persecutor states
+    else if (_state=="persecutorGoCentre")
+        m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="persecutorPersecute")
+        m_shader->setShaderParam4f("Colour",1,0,0,1);
+    else if (_state=="persecutorFlying")
+        m_shader->setShaderParam4f("Colour",0,0,1,1);
 
     //default colour
     else

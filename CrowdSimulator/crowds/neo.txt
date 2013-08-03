@@ -4,6 +4,7 @@
 # ..
 #
 
-0 0 0 3 3 1 4 targetMove target 0 0 -1 teddy
+0 0 0 0.9 1 4 10 state hero 0 0 -1 legoman
 1
 target yes
+
