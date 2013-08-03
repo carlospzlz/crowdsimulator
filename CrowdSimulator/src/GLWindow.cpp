@@ -241,6 +241,16 @@ void GLWindow::initializeGL()
     //obj->calcBoundingSphere();
     m_dummies["victoria"] = obj;
 
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/neo.obj");
+    obj->createVAO();
+    //obj->calcBoundingSphere();
+    m_dummies["neo"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/smith.obj");
+    obj->createVAO();
+    //obj->calcBoundingSphere();
+    m_dummies["smith"] = obj;
+
     //DEFAULT LEGOMAN
     m_currentDummy = m_dummies.at("legoman");
 
@@ -784,7 +794,7 @@ void GLWindow::setDrawStateColour(bool _pressed)
 
 void GLWindow::setCurrentDummy(int _index)
 {
-    if (_index == 14)
+    if (_index == 16)
         // THIS IS THE LAST INDEX FOR CUSTOM DUMMY
         m_customDummy = true;
     else
@@ -818,8 +828,12 @@ void GLWindow::setCurrentDummy(int _index)
         else if (_index == 11)
             m_currentDummy = m_dummies.at("victor");
         else if (_index == 12)
-            m_currentDummy = m_dummies.at("cow");
+            m_currentDummy = m_dummies.at("neo");
         else if (_index == 13)
+            m_currentDummy = m_dummies.at("smith");
+        else if (_index == 14)
+            m_currentDummy = m_dummies.at("cow");
+        else if (_index == 15)
             m_currentDummy = m_dummies.at("speedboat");
         m_customDummy = false;
     }

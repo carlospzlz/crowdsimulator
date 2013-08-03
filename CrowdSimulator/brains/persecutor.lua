@@ -174,7 +174,7 @@ function persecutor(agentID, position, strength, maxStrength, velocity, state, a
 	--FIRE TRANSITION	
 	if not (stateAction[state])
 	then
-		print("Catcher behaviour: WARNING: unknown state "..state)
+		print("Prosecutor behaviour: WARNING: unknown state "..state)
 		return stateAction.persecutorGoCentre(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
 	else
 		return stateAction[state](agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
