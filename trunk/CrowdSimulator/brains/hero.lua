@@ -29,19 +29,19 @@ function hero(agentID, position, strength, maxStrength, velocity, state, attribu
 
 	--MESSAGES (TTACKS)
 	messages = {}
-	enemiesForSuperHit = 40
-	attackDistance = 4
+	enemiesForSuperHit = 50
+	attackDistance = 3
 	if (neighbourCounter > enemiesForSuperHit and strength > 0.9*maxStrength)
 	then
 		for key,neighbour in pairs(neighbours)
 		do
-			print("SUPERATTACK")
+			--print("SUPERATTACK")
 			messages[key] = {}
 			messages[key][0] = "superattack"
 		end
 	else if (distance < attackDistance)
 		then
-		print("ATTACK")
+		--print("ATTACK")
 		messages[targetIndex] = {}
 		messages[targetIndex][0] = "attack"
 		end
@@ -75,9 +75,10 @@ function hero(agentID, position, strength, maxStrength, velocity, state, attribu
 	--CENTRE FORCE
 	centreForce = {0,0,0}
 
-	centreForce[1] = -position.x
-	centreForce[2] = -position.y
-	centreForce[3] = -position.z
+	distance = math.sqrt(position.x^2 + position.y^2 + position.z^2)
+	centreForce[1] = -position.x * distance
+	centreForce[2] = -position.y * distance 
+	centreForce[3] = -position.z * distance
 
 	--SYNTHESIS OF ALL THE FORCES
 	force = {}

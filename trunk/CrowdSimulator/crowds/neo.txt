@@ -4,7 +4,7 @@
 # ..
 #
 
-0 0 0 0.9 1 4 10 state hero 0 0 -1 legoman
+0 0 0 0.9 1 4 10 state hero 0 0 1 neo
 1
 target yes
 
