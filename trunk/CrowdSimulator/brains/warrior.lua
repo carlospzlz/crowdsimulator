@@ -134,6 +134,15 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	--ATTACK STATE
 	function warriorAttack(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
+		-- CHECKING FOR ARROW
+		for key, message in pairs(inbox)
+		do
+			if (message.label=="arrow")
+			then
+				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+			end
+		end
+		
 		--CHECKING IF THERES IS CHANGE OF STATE
 		if (strength<0)
 		then
@@ -192,9 +201,9 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 						messages[neighboursCounter][0] = "attack"
 					end
 				end
-				enemiesCounter = counter + 1
+				enemiesCounter = enemiesCounter + 1
 			end
-			neighbours = neighboursCounter + 1
+			neighboursCounter = neighboursCounter + 1
 		end
 		
 		movementForce = {0,0,0}
@@ -212,20 +221,40 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 			heading[2] = movementForce[2] / magnitude
 			heading[3] = movementForce[3] / magnitude
 		end
+		
+		--SEPARATION FORCE
+		separationForce = {0,0,0}
+		distanceVector = {0,0,0}
+		distance = 0
+		for key,neighbour in pairs(neighbours)
+		do
+			distanceVector[1] = position.x - neighbour.position.x
+			distanceVector[2] = position.y - neighbour.position.y
+			distanceVector[3] = position.z - neighbour.position.z
+
+			distance = math.sqrt(distanceVector[1]^2 + 
+					     distanceVector[2]^2 +
+					     distanceVector[3]^2)
+
+			separationForce[1] = separationForce[1] + distanceVector[1] / distance^2
+			separationForce[2] = separationForce[2] + distanceVector[2] / distance^2
+			separationForce[3] = separationForce[3] + distanceVector[3] / distance^2
+		end
 
 		--INTEGRATE FORCES
 		force = {}
 		aw = 2
-		mw = 0.01
+		mw = 0.1
+		sw = 0.1
 		--print(enemiesAttackForce[1],enemiesAttackForce[2],enemiesAttackForce[3])
-		force[1] = attackForce[1]*aw + movementForce[1]*strength*mw
-		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw
-		force[3] = attackForce[3]*aw + movementForce[3]*strength*mw
+		force[1] = attackForce[1]*aw + movementForce[1]*strength*mw + separationForce[1]*sw
+		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw + separationForce[2]*sw
+		force[3] = attackForce[3]*aw + movementForce[3]*strength*mw + separationForce[3]*sw
 
 		--CALCULATING STRENGTH
 		--Damage and cost of attack
 		wd = 0.01
-		strength = strength - 0.001 - damage*wd
+		strength = strength - 0.005 - damage*wd
 
 		--print(attributes.army,"STRENGTH AND DAMAGE", strength,damage)
 
@@ -238,6 +267,15 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	--DEFEND STATE
 	function warriorDefend(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 	
+		-- CHECKING FOR ARROW
+		for key, message in pairs(inbox)
+		do
+			if (message.label=="arrow")
+			then
+				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+			end
+		end
+		
 		-- CHECK FOR THE CHANGE OF STATE
 		enemiesCounter = 0
 		for key,neighbour in pairs(neighbours)
@@ -295,14 +333,14 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		--SYNTHESIS OF THE FORCE
 		force = {}
 		aw = 2
-		resistance = 0.01
+		resistance = 0.001
 		force[1] = attackForce[1]*aw - velocity.x*resistance*strength
 		force[2] = attackForce[2]*aw - velocity.y*resistance*strength
 		force[3] = attackForce[3]*aw - velocity.z*resistance*strength
 
 		--CALCULATING STRENGTH
 		wd = 0.0001
-		strength = strength + 0.005 - damage*wd
+		strength = strength + 0.01 - damage*wd
 
 		--if you don't put this messages are sent
 		messages = {}
@@ -344,6 +382,15 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	--RUN STATE
 	function warriorRun(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
+		-- CHECKING FOR ARROW
+		for key, message in pairs(inbox)
+		do
+			if (message.label=="arrow")
+			then
+				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+			end
+		end
+
 		-- CHECKING CHANGE OF STATE
 		enemiesCounter = 0
 		for key,neighbour in pairs(neighbours)
@@ -361,10 +408,10 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		end
 		
 		--FLOCK BEHAVIOUR
-		flockForce = warriorFlockForce(position,attributes,neighbours,0.1,0.05,0.1)
+		flockForce = warriorFlockForce(position,attributes,neighbours,0.1,0.1,0.5)
 
 		--NO FLOCKING		
-		force = {}
+		force = {0,0,0}
 		magnitude = math.sqrt(flockForce[1]^2+flockForce[2]^2+flockForce[3]^2)
 		if (magnitude==0)
 		then
@@ -384,7 +431,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		force[3] = force[3] * tw * strength
 
 		--RECOVERING
-		strength = strength + 0.001
+		strength = strength + 0.005
 		
 		--print(force[1].." "..force[2].." "..force[3]);
 
