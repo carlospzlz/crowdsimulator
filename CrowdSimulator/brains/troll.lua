@@ -17,7 +17,7 @@ function troll (agentID, position, strength, maxStrength, velocity, state, attri
 			end
 		end
 		
-		if (enemiesCounter>0)
+		if (enemiesCounter==0)
 		then
 			return {0,0,0}, {0,0,0}, strength, "trollRun", {}
 		end	
@@ -26,50 +26,51 @@ function troll (agentID, position, strength, maxStrength, velocity, state, attri
 		closestEnemyPosition = {0,0,0}
 		messages = {}
 		distance = 99
+		tmpDistance = 0
 		attackDistance = 5
+		local target = nil
 
-		enemiesCounter = 1
 		neighboursCounter = 1
 		for key, neighbour in pairs(neighbours)
 		do
 			if (attributes.army~=neighbour.attributes.army)
 			then
 				tmpDistance = math.sqrt( (neighbour.position.x-position.x)^2 +
-							 (neighbour.position.y-position.y)^2 +
-							 (neighbour.position.z-position.z)^2 )
-				if (tmpDistance<distance)
+						      (neighbour.position.y-position.y)^2 +
+						      (neighbour.position.z-position.z)^2 )
+				
+				if (tmpDistance < attackDistance)
 				then
-					closestEnemyPosition[1]= neighbour.position.x
-					closestEnemyPosition[2]= neighbour.position.y
-					closestEnemyPosition[3]= neighbour.position.z
-
-					distance = tmpDistance
-
-					if (distance<attackDistance)
-					then
-						messages[neighboursCounter] = {}
-						messages[neighboursCounter][0] = "superattack"
-					end	
+					messages[neighboursCounter] = {}
+					messages[neighboursCounter][0] = "superattack"
 				end
-				enemiesCounter = counter + 1
+
+				if (tmpDistance < distance)
+				then
+					target=neighbour
+					distance=tmpDistance
+				end
 			end
-			neighbours = neighboursCounter + 1
+			neighboursCounter = neighboursCounter + 1
+		end
+
+		if (target==nil)
+		then
+			return {0,0,0}, {0,0,0}, strength, "trollRun", {}
 		end
 		
 		movementForce = {0,0,0}
 		magnitude = 0
 		heading = {0,0,0}
-		if (enemiesCounter > 0)
-		then
-			movementForce[1] = (closestEnemyPosition[1] - position.x) - velocity.x
-			movementForce[2] = (closestEnemyPosition[2] - position.y) - velocity.y
-			movementForce[3] = (closestEnemyPosition[3] - position.z) - velocity.z
-
-			magnitude = math.sqrt(movementForce[1]^2+movementForce[2]^2+movementForce[3]^2)
-			heading[1] = movementForce[1] / magnitude
-			heading[2] = movementForce[2] / magnitude
-			heading[3] = movementForce[3] / magnitude
-		end
+			
+		movementForce[1] = target.position.x - position.x
+		movementForce[2] = target.position.y - position.y
+		movementForce[3] = target.position.z - position.z
+		
+		magnitude = math.sqrt(movementForce[1]^2+movementForce[2]^2+movementForce[3]^2)
+		heading[1] = movementForce[1] / magnitude
+		heading[2] = movementForce[2] / magnitude
+		heading[3] = movementForce[3] / magnitude
 
 		--INTEGRATE FORCES
 		force = {}

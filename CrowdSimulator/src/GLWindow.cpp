@@ -251,6 +251,16 @@ void GLWindow::initializeGL()
     //obj->calcBoundingSphere();
     m_dummies["smith"] = obj;
 
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/urukhai.obj");
+    obj->createVAO();
+    //obj->calcBoundingSphere();
+    m_dummies["urukhai"] = obj;
+
+    obj = new ngl::Obj(s_dummiesPath.toStdString()+"/troll.obj");
+    obj->createVAO();
+    //obj->calcBoundingSphere();
+    m_dummies["troll"] = obj;
+
     //DEFAULT LEGOMAN
     m_currentDummy = m_dummies.at("legoman");
 
@@ -550,6 +560,8 @@ inline void GLWindow::setStateColour(std::string _state)
         m_shader->setShaderParam4f("Colour",0,0,1,1);
     else if (_state=="warriorDead")
         m_shader->setShaderParam4f("Colour",0,0,0,1);
+    else if (_state=="warriorFlying")
+        m_shader->setShaderParam4f("Colour",1,0,1,1);
 
     //captain states
     else if (_state=="captainRun")
@@ -560,6 +572,8 @@ inline void GLWindow::setStateColour(std::string _state)
         m_shader->setShaderParam4f("Colour",0,0,1,1);
     else if (_state=="captainDead")
         m_shader->setShaderParam4f("Colour",0,0,0,1);
+    else if (_state=="captainFlying")
+        m_shader->setShaderParam4f("Colour",1,0,1,1);
 
     //shooter states
     else if (_state=="shooterRun")
@@ -596,6 +610,29 @@ inline void GLWindow::setStateColour(std::string _state)
         m_shader->setShaderParam4f("Colour",1,0,0,1);
     else if (_state=="persecutorFlying")
         m_shader->setShaderParam4f("Colour",0,0,1,1);
+
+    //jumper states
+    else if (_state=="jumperOnGround")
+       m_shader->setShaderParam4f("Colour",0,0,1,1);
+    else if (_state=="jumperFlying")
+       m_shader->setShaderParam4f("Colour",1,1,0,1);
+
+    //archer states
+    else if (_state=="archerRun")
+       m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="archerShoot")
+       m_shader->setShaderParam4f("Colour",1,0,0,1);
+    else if (_state=="archerGoBack")
+       m_shader->setShaderParam4f("Colour",0,0,1,1);
+    else if (_state=="archerFlying")
+        m_shader->setShaderParam4f("Colour",1,0,1,1);
+
+    //troll states
+    else if (_state=="trollRun")
+       m_shader->setShaderParam4f("Colour",0,1,0,1);
+    else if (_state=="trollAttack")
+       m_shader->setShaderParam4f("Colour",1,0,0,1);
+
 
     //default colour
     else
@@ -794,7 +831,7 @@ void GLWindow::setDrawStateColour(bool _pressed)
 
 void GLWindow::setCurrentDummy(int _index)
 {
-    if (_index == 16)
+    if (_index == 18)
         // THIS IS THE LAST INDEX FOR CUSTOM DUMMY
         m_customDummy = true;
     else
@@ -818,22 +855,26 @@ void GLWindow::setCurrentDummy(int _index)
         else if (_index == 6)
             m_currentDummy = m_dummies.at("legolas");
         else if (_index == 7)
-            m_currentDummy = m_dummies.at("r2d2");
+            m_currentDummy = m_dummies.at("urukhai");
         else if (_index == 8)
-            m_currentDummy = m_dummies.at("droid");
+            m_currentDummy = m_dummies.at("troll");
         else if (_index == 9)
-            m_currentDummy = m_dummies.at("zoombie");
+            m_currentDummy = m_dummies.at("r2d2");
         else if (_index == 10)
-            m_currentDummy = m_dummies.at("victoria");
+            m_currentDummy = m_dummies.at("droid");
         else if (_index == 11)
-            m_currentDummy = m_dummies.at("victor");
+            m_currentDummy = m_dummies.at("zoombie");
         else if (_index == 12)
-            m_currentDummy = m_dummies.at("neo");
+            m_currentDummy = m_dummies.at("victoria");
         else if (_index == 13)
-            m_currentDummy = m_dummies.at("smith");
+            m_currentDummy = m_dummies.at("victor");
         else if (_index == 14)
-            m_currentDummy = m_dummies.at("cow");
+            m_currentDummy = m_dummies.at("neo");
         else if (_index == 15)
+            m_currentDummy = m_dummies.at("smith");
+        else if (_index == 16)
+            m_currentDummy = m_dummies.at("cow");
+        else if (_index == 17)
             m_currentDummy = m_dummies.at("speedboat");
         m_customDummy = false;
     }
@@ -940,11 +981,20 @@ void GLWindow::restart()
 
 void GLWindow::setPhysicsEngine(int _index)
 {
+    int boundingBoxSize;
     if (_index==PE_CYLINDER && m_crowdEngine.getPEType()!=PE_CYLINDER)
+    {
+        boundingBoxSize = m_crowdEngine.getBoundingBoxSize();
         m_crowdEngine.setPhysicsEngine(new CylinderPE());
+        m_crowdEngine.setBoundingBoxSize(boundingBoxSize);
+    }
 
     if (_index==PE_SPHERE && m_crowdEngine.getPEType()!=PE_SPHERE)
+    {
+        boundingBoxSize = m_crowdEngine.getBoundingBoxSize();
         m_crowdEngine.setPhysicsEngine(new SpherePE());
+        m_crowdEngine.setBoundingBoxSize(boundingBoxSize);
+    }
 
     updateGL();
 }

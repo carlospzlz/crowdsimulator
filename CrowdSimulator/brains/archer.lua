@@ -2,8 +2,15 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 	
 	--SHOOTER
 	stateAction = {}
+	
+	maxSpeed = 1
+	
 	shootMaxDistance = 15
 	shootMinDistance = 5
+	
+	superAttackW = 3
+	superAttackY = 3
+
 
 	--SHOOTERFLOCKFORCE AUXILIAR FUNCTION
 	function archerFlockForce(position,attributes,neighbours,wc,ws,wa)
@@ -105,7 +112,25 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 		if (targetsCounter==0)
 		then
 			return {0,0,0}, {0,0,0}, strength, "archerRun", {}
-		end	
+		end
+
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "archerFlying", {}
+			end	
+		end
 
 		--SHOOT
 		closestTargetPosition = {0,0,0}
@@ -175,6 +200,13 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 			force[3] = force[3]*strength*tw
 		end
 
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
+
 		return force, heading, strength, state, messages
 
 	end
@@ -201,6 +233,24 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 		if (targetsCounter == 0)
 		then
 			return {0,0,0}, {0,0,0}, strength, "archerRun", {}
+		end
+
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "archerFlying", {}
+			end	
 		end
 
 		closestTargetPosition = {0,0,0}
@@ -248,6 +298,13 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 		force[1] = force[1] * strength * tw
 		force[2] = force[2] * strength * tw
 		force[3] = force[3] * strength * tw
+
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
 		
 		return force, {0,0,0}, strength, state, {}
 
@@ -278,12 +335,31 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 		then
 			return {0,0,0}, {0,0,0}, strength, "archerShoot", {}
 		end
-		
+	
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "archerFlying", {}
+			end	
+		end
+
+
 		--FLOCK BEHAVIOUR
 		flockForce = archerFlockForce(position,attributes,neighbours,0.05,0.1,0.05)
 
 		--NO FLOCKING		
-		force = {}
+		force = {0,0,-1}
 		magnitude = math.sqrt(flockForce[1]^2+flockForce[2]^2+flockForce[3]^2)
 		if (magnitude~=0)
 		then
@@ -294,8 +370,14 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 			force[2] = force[2] * tw * strength
 			force[3] = force[3] * tw * strength
 		end
-		
 
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
+		
 		messages = {}
 
 		return force, {0,0,0}, strength, state, messages
@@ -303,6 +385,21 @@ function archer (agentID, position, strength, maxStrength, velocity, state, attr
 	end
 
 	stateAction.archerRun = archerRun
+
+
+	function archerFlying(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
+
+		if (position.y > 0.05)
+		then
+			return {0,0,0}, {0,0,0}, strength, state, {}
+		else
+			return {0,0,0}, {0,0,0}, strength, "archerRun", {}
+		end
+
+	end
+
+	stateAction.archerFlying = archerFlying
+
 
 	--FIRE TRANSITION	
 	if not (stateAction[state])

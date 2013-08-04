@@ -2,6 +2,11 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	
 	--WARRIOR
 	stateAction = {}
+	
+	maxSpeed = 1
+	
+	superAttackW = 2
+	superAttackY = 3
 
 	--WARRIORFLOCKFORCE AUXILIAR FUNCTION
 	function warriorFlockForce(position,attributes,neighbours,wc,ws,wa)
@@ -142,6 +147,24 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
 			end
 		end
+
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "warriorFlying", {}
+			end	
+		end
 		
 		--CHECKING IF THERES IS CHANGE OF STATE
 		if (strength<0)
@@ -167,7 +190,7 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 			end
 		else	
 			return {0,0,0}, {0,0,0}, strength, "warriorRun", {}
-		end	
+		end
 
 		--AttackForce
 		attackForce, damage = warriorAttackForce(position,inbox)
@@ -251,6 +274,13 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw + separationForce[2]*sw
 		force[3] = attackForce[3]*aw + movementForce[3]*strength*mw + separationForce[3]*sw
 
+		--MAKING FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
+
 		--CALCULATING STRENGTH
 		--Damage and cost of attack
 		wd = 0.01
@@ -274,6 +304,24 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 			then
 				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
 			end
+		end
+
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "warriorFlying", {}
+			end	
 		end
 		
 		-- CHECK FOR THE CHANGE OF STATE
@@ -337,6 +385,13 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		force[1] = attackForce[1]*aw - velocity.x*resistance*strength
 		force[2] = attackForce[2]*aw - velocity.y*resistance*strength
 		force[3] = attackForce[3]*aw - velocity.z*resistance*strength
+		
+		--MAKING FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
 
 		--CALCULATING STRENGTH
 		wd = 0.0001
@@ -391,6 +446,24 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 			end
 		end
 
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "warriorFlying", {}
+			end	
+		end
+
 		-- CHECKING CHANGE OF STATE
 		enemiesCounter = 0
 		for key,neighbour in pairs(neighbours)
@@ -429,6 +502,13 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		force[1] = force[1] * tw * strength
 		force[2] = force[2] * tw * strength
 		force[3] = force[3] * tw * strength
+		
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
 
 		--RECOVERING
 		strength = strength + 0.005
@@ -442,6 +522,21 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 	end
 
 	stateAction.warriorRun = warriorRun
+
+
+	function warriorFlying(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
+
+		if (position.y > 0.05)
+		then
+			return {0,0,0}, {0,0,0}, strength, state, {}
+		else
+			return {0,0,0}, {0,0,0}, strength, "warriorRun", {}
+		end
+
+	end
+
+	stateAction.warriorFlying = warriorFlying
+
 	
 	--FIRE TRANSITION	
 	if not (stateAction[state])
