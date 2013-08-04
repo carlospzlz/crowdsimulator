@@ -3,6 +3,11 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 	--WARRIOR
 	stateAction = {}
 
+	supperAttackW = 3
+	supperAttackY = 3
+
+	maxSpeed = 1
+
 	--WARRIORFLOCKFORCE AUXILIAR FUNCTION
 	function captainFlockForce(position,attributes,neighbours,wc,ws,wa)
 
@@ -131,6 +136,25 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 	--ATTACK STATE
 	function captainAttack(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "captainFlying", {}
+			end	
+		end		
+
+
 		--CHECKING IF THERES IS CHANGE OF STATE
 		if (strength<0)
 		then
@@ -218,6 +242,13 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		force[2] = attackForce[2]*aw + movementForce[2]*strength*mw
 		force[3] = attackForce[3]*aw + movementForce[3]*strength*mw
 
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
+
 		--CALCULATING STRENGTH
 		--Damage and cost of attack
 		wd = 0.01
@@ -234,6 +265,24 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 	--DEFEND STATE
 	function captainDefend(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 	
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "captainFlying", {}
+			end	
+		end
+
 		-- CHECK FOR THE CHANGE OF STATE
 		if (strength < 0)
 		then
@@ -295,6 +344,13 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		force[2] = attackForce[2]*aw - velocity.y*resistance*strength
 		force[3] = attackForce[3]*aw - velocity.z*resistance*strength
 
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
+
 		--CALCULATING STRENGTH
 		dw = 0.0001
 		strength = strength + 0.005 - damage*dw
@@ -339,6 +395,24 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 
 	--RUN STATE
 	function captainRun(agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
+
+		--CHECK TROLLSUPERATTACK
+		for key,message in pairs(inbox)
+		do
+			if (message.label=="superattack")
+			then
+				attackForce = {0,0,0}
+				
+				attackForce[1] = position.x - message.position.x
+				attackForce[3] = position.z - message.position.z
+
+				attackForce[1] = attackForce[1] * superAttackW
+				attackForce[2] = superAttackY * superAttackW
+				attackForce[3] = attackForce[3] * superAttackW
+
+				return attackForce, {0,0,0}, strength, "captainFlying", {}
+			end	
+		end
 
 		-- CHECKING CHANGE OF STATE
 		enemiesCounter = 0
@@ -390,6 +464,13 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 		force[2] = force[2] * tw * strength
 		force[3] = force[3] * tw * strength
 
+		--MAKING THE FORCE NIL FOR MAXSPEED
+		speed = math.sqrt(velocity.x^2 + velocity.y^2 + velocity.z^2)
+		if (speed > maxSpeed)
+		then
+			force = {0,0,0}
+		end
+
 		--RECOVERING
 		strength = strength + 0.001
 		
@@ -402,6 +483,20 @@ function captain (agentID, position, strength, maxStrength, velocity, state, att
 	end
 
 	stateAction.captainRun = captainRun
+
+
+	function captainFlying(agentID,position,strength,maxStrength,velocity,state,attributes,inbox,neighbours)
+
+		if (position.y > 0.5)
+		then
+			return {0,0,0}, {0,0,0}, strength, state, {}
+		else
+			return {0,0,0}, {0,0,0}, strength, "captainRun", {}
+		end
+
+	end
+
+	stateAction.captainFlying = captainFlying
 
 	--FIRE TRANSITION	
 	if not (stateAction[state])

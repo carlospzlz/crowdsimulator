@@ -11,11 +11,11 @@ xCentre=0
 zCentre=0
 
 flock=flock4
-rows=4
-columns=4
-brain=danceLeader
-state=danceLeaderSearch
-dummy=victor
+rows=7
+columns=7
+brain=jumper
+state=jumperFlying
+dummy=minion
 xHeading=0
 yHeading=0
 zHeading=-1
@@ -29,7 +29,7 @@ randomRatio=30
 #echo "flock $flock" >> $fileName
 #echo >> $fileName
 
-stride=3
+stride=4
 
 startingX=$((xCentre-($columns*$stride/2) + $stride/2))
 startingZ=$((zCentre-($rows*$stride/2) + $stride/2))
@@ -60,12 +60,12 @@ do
 		else
 			rand=$(($RANDOM%$randomRatio))
 		fi
-		maxSpeed=$(echo "scale=2; 1 -($randomRatio/2/100) + $rand / 100" | bc)
+		maxSpeed=$(echo "scale=2; 2 -($randomRatio/2/100) + $rand / 100" | bc)
 		
 		x=$(($startingX + i*$stride))
 		z=$(($startingZ + j*$stride))
 		echo $x $z
-		echo "$x 0 $z $mass $maxStrength $maxSpeed $visionRadius $state $brain $xHeading $yHeading $zHeading $dummy" >> $fileName
+		echo "$x 10 $z $mass $maxStrength $maxSpeed $visionRadius $state $brain $xHeading $yHeading $zHeading $dummy" >> $fileName
 		echo "0" >> $fileName
 		#echo "1" >> $fileName
 		#echo "flock $flock" >> $fileName
