@@ -109,7 +109,7 @@ function persecutor(agentID, position, strength, maxStrength, velocity, state, a
 			return {0,0,0}, {0,0,0}, strength, "persecutorPersecute", {}
 		end
 
-		return {0,0,0}, {0,0,0}, strenght, state, {}
+		return {0,0,0}, {0,0,0}, strength, state, {}
 	end
 
 	stateAction.persecutorFlying = persecutorFlying
