@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: transfer.aux
 The style file: ref/harvard.bst
 Database file #1: ref/master.bib
-You've used 1 entry,
+You've used 7 entries,
             2330 wiz_defined-function locations,
-            521 strings with 4068 characters,
-and the built_in function-call counts, 330 in all, are:
-= -- 35
-> -- 11
-< -- 2
-+ -- 3
-- -- 3
-* -- 20
-:= -- 68
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 5
-chr.to.int$ -- 1
-cite$ -- 1
-duplicate$ -- 13
-empty$ -- 18
-format.name$ -- 5
-if$ -- 60
+            562 strings with 5173 characters,
+and the built_in function-call counts, 3355 in all, are:
+= -- 367
+> -- 135
+< -- 12
++ -- 38
+- -- 38
+* -- 256
+:= -- 571
+add.period$ -- 23
+call.type$ -- 7
+change.case$ -- 44
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 141
+empty$ -- 217
+format.name$ -- 60
+if$ -- 692
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 8
-num.names$ -- 5
-pop$ -- 3
+missing$ -- 5
+newline$ -- 38
+num.names$ -- 35
+pop$ -- 49
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 51
 quote$ -- 0
-skip$ -- 13
+skip$ -- 118
 stack$ -- 0
-substring$ -- 12
-swap$ -- 2
-text.length$ -- 0
+substring$ -- 186
+swap$ -- 37
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 12
+type$ -- 84
 warning$ -- 0
-while$ -- 3
+while$ -- 30
 width$ -- 0
-write$ -- 15
+write$ -- 103

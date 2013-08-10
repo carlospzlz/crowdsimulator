@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  10 AUG 2013 09:00
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  10 AUG 2013 17:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,7 +590,11 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip68
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count127
-)) (./transfer.aux)
+)) (./transfer.aux
+
+LaTeX Warning: Label `fig:massive' multiply defined.
+
+)
 \openout1 = `transfer.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
@@ -611,8 +615,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
-
-(/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
+ (/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
 )
 Package caption Info: wrapfig package is loaded.
@@ -677,7 +680,7 @@ to.pdf img/bu_logo.eps>
 (epstopdf)             \includegraphics on input line 23.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/bu_logo-eps-converted-to.pdf, id=63, 268.00125pt x 191.71625pt>
+<img/bu_logo-eps-converted-to.pdf, id=75, 268.00125pt x 191.71625pt>
 File: img/bu_logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/bu_logo-eps-converted-to.pdf>
@@ -725,7 +728,7 @@ erted-to.pdf ./img/crowd_train.eps>
 (epstopdf)             \includegraphics on input line 23.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/crowd_train-eps-converted-to.pdf, id=105, 622.325pt x 389.455pt>
+<./img/crowd_train-eps-converted-to.pdf, id=120, 622.325pt x 389.455pt>
 File: ./img/crowd_train-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/crowd_train-eps-converted-to.pdf>
@@ -743,7 +746,7 @@ Package epstopdf Info: Source file: <./img/droids.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/droids-eps-converted-to.pdf, id=106, 1278.7775pt x 544.0325pt>
+<./img/droids-eps-converted-to.pdf, id=121, 1278.7775pt x 544.0325pt>
 File: ./img/droids-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/droids-eps-converted-to.pdf>
@@ -761,7 +764,7 @@ d-to.pdf ./img/zombies.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/zombies-eps-converted-to.pdf, id=107, 1606.0pt x 908.39375pt>
+<./img/zombies-eps-converted-to.pdf, id=122, 1606.0pt x 908.39375pt>
 File: ./img/zombies-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/zombies-eps-converted-to.pdf>
@@ -779,7 +782,7 @@ erted-to.pdf ./img/battlefield.eps>
 (epstopdf)             \includegraphics on input line 26.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/battlefield-eps-converted-to.pdf, id=108, 154.5775pt x 65.24374pt>
+<./img/battlefield-eps-converted-to.pdf, id=123, 154.5775pt x 65.24374pt>
 File: ./img/battlefield-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/battlefield-eps-converted-to.pdf>
@@ -797,7 +800,7 @@ ed-to.pdf ./img/ballroom.eps>
 (epstopdf)             \includegraphics on input line 27.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/ballroom-eps-converted-to.pdf, id=109, 501.875pt x 333.245pt>
+<./img/ballroom-eps-converted-to.pdf, id=124, 501.875pt x 333.245pt>
 File: ./img/ballroom-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/ballroom-eps-converted-to.pdf>
@@ -815,7 +818,7 @@ Package epstopdf Info: Source file: <./img/matrix.eps>
 (epstopdf)             \includegraphics on input line 28.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/matrix-eps-converted-to.pdf, id=110, 433.62pt x 182.6825pt>
+<./img/matrix-eps-converted-to.pdf, id=125, 433.62pt x 182.6825pt>
 File: ./img/matrix-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/matrix-eps-converted-to.pdf>
@@ -835,25 +838,131 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
  [3]) (./chap/related-work.tex
 [4]
 Chapter 2.
-) (./chap/approximate-sdf.tex [5
+Package epstopdf Info: Source file: <./img/navigation_fields.eps>
+(epstopdf)                    date: 2013-08-10 16:46:53
+(epstopdf)                    size: 2240780 bytes
+(epstopdf)             Output file: <./img/navigation_fields-eps-converted-to.p
+df>
+(epstopdf)                    date: 2013-08-10 16:53:31
+(epstopdf)                    size: 195085 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/navigation_fields-ep
+s-converted-to.pdf ./img/navigation_fields.eps>
+(epstopdf)             \includegraphics on input line 18.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/navigation_fields-eps-converted-to.pdf, id=174, 989.6975pt x 374.39874pt
+>
+File: ./img/navigation_fields-eps-converted-to.pdf Graphic file (type pdf)
+ <use ./img/navigation_fields-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/navigation_fields-eps-converted-to.pdf used on i
+nput line 18.
+(pdftex.def)             Requested size: 395.87198pt x 149.75684pt.
+ [5
 
 ]
+
+LaTeX Warning: Reference `chap:agent' on page 6 undefined on input line 29.
+
+[6 <./img/navigation_fields-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./img/reynolds_flocking.eps>
+(epstopdf)                    date: 2013-08-10 17:35:55
+(epstopdf)                    size: 1646603 bytes
+(epstopdf)             Output file: <./img/reynolds_flocking-eps-converted-to.p
+df>
+(epstopdf)                    date: 2013-08-10 17:37:42
+(epstopdf)                    size: 95408 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/reynolds_flocking-ep
+s-converted-to.pdf ./img/reynolds_flocking.eps>
+(epstopdf)             \includegraphics on input line 39.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/reynolds_flocking-eps-converted-to.pdf, id=201, 542.025pt x 180.675pt>
+File: ./img/reynolds_flocking-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/reynolds_flocking-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/reynolds_flocking-eps-converted-to.pdf used on i
+nput line 39.
+(pdftex.def)             Requested size: 352.31207pt x 117.43735pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 40.
+See the caption package documentation for explanation.
+
+! Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.42 \end{figure}
+                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Misplaced alignment tab character &.
+l.44 ... crowd simulation. For instance, C. Wang &
+                                                   T. Li suggest an evolving...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+[7 <./img/reynolds_flocking-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./img/rohan_army.eps>
+(epstopdf)                    date: 2013-08-10 16:06:25
+(epstopdf)                    size: 2513023 bytes
+(epstopdf)             Output file: <./img/rohan_army-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-08-10 16:11:05
+(epstopdf)                    size: 133967 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/rohan_army-eps-conve
+rted-to.pdf ./img/rohan_army.eps>
+(epstopdf)             \includegraphics on input line 54.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/rohan_army-eps-converted-to.pdf, id=220, 708.6475pt x 304.13625pt>
+File: ./img/rohan_army-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/rohan_army-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/rohan_army-eps-converted-to.pdf used on input li
+ne 54.
+(pdftex.def)             Requested size: 354.32289pt x 152.06775pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 55.
+See the caption package documentation for explanation.
+
+! Extra }, or forgotten \endgroup.
+\@endfloatbox ...pagefalse \outer@nobreak \egroup 
+                                                  \color@endbox 
+l.57 \end{figure}
+                 
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+) (./chap/approximate-sdf.tex [8 <./img/rohan_army-eps-converted-to.pdf>]
 Chapter 3.
-) (./chap/attribute-set.tex [6
+) (./chap/attribute-set.tex [9
 
 ]
 Chapter 4.
-) (./chap/applications.tex [7
+) (./chap/applications.tex [10
 
 ]
 Chapter 5.
-) (./chap/conclusion.tex [8
+) (./chap/conclusion.tex [11
 
 ]
 Chapter 6.
-[9
+[12
 
-]) (./transfer.bbl [10]
+]) (./transfer.bbl [13]
 Underfull \hbox (badness 3000) in paragraph at lines 4--9
 []\OT1/cmr/m/n/12 L. Klein-rock (2011).  `What is emer-gent be-haviour?'.  Avai
 l-able from:
@@ -865,37 +974,50 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--9
 essed
  []
 
-) [11
+
+Underfull \hbox (badness 4981) in paragraph at lines 36--40
+[]\OT1/cmr/m/n/12 C. W. Reynolds (1999).  `Individual-Based Mod-els'.  Avail-ab
+le from:
+ []
+
+) [14
 
 ] (./chap/appendix.tex)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
- [12]
+ [15]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
  (./transfer.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 86.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
 Package rerunfilecheck Info: File `transfer.out' has not changed.
-(rerunfilecheck)             Checksum: AFCCF19313C03CEAC09DA34A60B3B479;807.
+(rerunfilecheck)             Checksum: F4FE0B780F5C4C56AC8A5079FDC580F4;1012.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 8502 strings out of 493488
- 124080 string characters out of 3146892
+ 8560 strings out of 493488
+ 125235 string characters out of 3146892
  211772 words of memory out of 3000000
- 11583 multiletter control sequences out of 15000+200000
+ 11621 multiletter control sequences out of 15000+200000
  11711 words of font info for 43 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,16n,45p,773b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,45p,846b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></u
 sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on transfer.pdf (16 pages, 975199 bytes).
+Output written on transfer.pdf (19 pages, 1413766 bytes).
 PDF statistics:
- 229 PDF objects out of 1000 (max. 8388607)
- 188 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 156 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 248 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
+ 195 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -7,4 +7,41 @@ L.~Kleinrock (2011).
   http://curiosity.discovery.com/question/emergent-behavior [Accessed
   10.08.2013].
 
+\harvarditem[Musse \& Thalmann]{Musse \& Thalmann}{2001}{musse1}
+S.~R. Musse \& D.~Thalmann (2001).
+\newblock `Hierarchical Model for Real Time Simulation of Virtual Human
+  Crowds'.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics} {\bf
+  7}(2):152--164.
+
+\harvarditem[Musse et~al.]{Musse, et~al.}{2005}{musse2}
+S.~R. Musse, et~al. (2005).
+\newblock `Groups and crowd simulation'.
+\newblock In {\em ACM SIGGRAPH 2005 Courses}, SIGGRAPH '05, New York, NY, USA.
+  ACM.
+
+\harvarditem[Patil et~al.]{Patil, et~al.}{2011}{patil}
+S.~Patil, et~al. (2011).
+\newblock `Directing Crowd Simulations Using Navigation Fields.'.
+\newblock {\em IEEE Trans. Vis. Comput. Graph.} {\bf 17}(2):244--254.
+
+\harvarditem[Reynolds]{Reynolds}{1987}{reynolds}
+C.~W. Reynolds (1987).
+\newblock `Flocks, herds and schools: A distributed behavioral model'.
+\newblock In {\em Proceedings of the 14th annual conference on Computer
+  graphics and interactive techniques}, SIGGRAPH '87, pp. 25--34, New York, NY,
+  USA. ACM.
+
+\harvarditem[Reynolds]{Reynolds}{1999}{red3D}
+C.~W. Reynolds (1999).
+\newblock `Individual-Based Models'.
+\newblock Available from: http://www.red3d.com/cwr/ibm.html [Accessed
+  10.08.2013].
+
+\harvarditem[Wang \& Li]{Wang \& Li}{2006}{wang}
+C.-C. Wang \& T.-Y. Li (2006).
+\newblock `Evolving Crowd Motion Simulation with Genetic Algorithm'.
+\newblock In {\em Proc. 3rd Intl. Conf. on Autonomous Robots and Agents -
+  ICARA’2006, Palmerston North, New Zealand}, pp. 443--448.
+
 \end{thebibliography}
