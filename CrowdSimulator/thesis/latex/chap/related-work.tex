@@ -1,0 +1,19 @@
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\graphicspath{{../img/}}
+\begin{document}
+\fi
+
+\chapter{Related work}
+\label{chap:related}
+
+Include your literature review here. Be critical: find pros and cons of the different methods, explore the applications etc...
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{../ref/harvard}
+\bibliography{../ref/master}
+\pagebreak
+\end{document}
+\fi

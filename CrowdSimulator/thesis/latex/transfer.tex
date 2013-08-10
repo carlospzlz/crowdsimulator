@@ -1,0 +1,86 @@
+%------------------------------------------
+% README
+%------------------------------------------
+% MSc. CAVE latex template
+%
+% This is a modification of my thesis template, so there may be some things you want to remove.
+% Each chapter is in a separate latex file. Those files are included using \input
+% You can keep everything in one file by replacing the line "\input{...}" by the content of your chapter 
+% Separate files are made so that you can compile chapters independently. Latex can be long to compile large documents
+% if your thesis is not too long, then you should probably keep everything in one file.
+
+% I use a lot of margin and padding. Feel free to change it in format-setup. If you have additional package, you can add them in format-setup.
+% You can change practically everything in latex, just google it, there are always plenty of answers.
+
+
+\newcommand{\isEmbedded}{true}
+
+\input{format/format-setup}
+
+\begin{document}
+
+% Front page
+\input{format/front}
+% Copyrights
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+% You dont need copyright declaration for your thesis
+%\input{format/copyright}
+%\pagebreak
+
+% Table of contents, figures and tables.
+% You NEED a table of contents
+\addcontentsline{toc}{section}{Table of contents}
+\tableofcontents
+\pagebreak
+% You can comment out list of figures and tables, it could be too much
+%\addcontentsline{toc}{section}{List of figures}
+%\listoffigures
+%\pagebreak
+% You can comment out list of figures and tables, it could be too much
+%\addcontentsline{toc}{section}{List of tables}
+%\listoftables
+%\pagebreak
+% No need for abbreviations, but if you use any, define them first (e.g.: We use parametric surfaces such as Non-uniform rational B-spline (NURBS). NURBS are defined by...)
+%\input{format/abbreviations}
+%\pagebreak
+
+\graphicspath{{./img/}}
+
+% Abstract
+\input{chap/abstract}
+\pagebreak
+% Acknoedledgements
+\input{format/acknowledgements}
+% Declaration -> Dont include it, unless you have something important to put in there. 
+%\input{format/declaration}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+% Chapters
+\input{chap/introduction}
+\input{chap/related-work}
+\input{chap/approximate-sdf}
+\input{chap/attribute-set}
+\input{chap/applications}
+\input{chap/conclusion}
+
+% References
+% For my references I use JabRef.
+% You can also use a simple text editor.
+% Empty my file and fill it with your references
+% Most publications have a bibtex "entry" available. 
+% ACM Portal has a little beige box on the right which contains a link "Bibtex". This is what you copy paste in your file.
+% ALL journal websites have something like this.
+% I have left my references in case you need to reference a website or something else.
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{ref/harvard}
+\bibliography{ref/master}
+\pagebreak
+
+% Appendices
+% This is the boring and lengthy stuff.
+\input{chap/appendix}
+
+\end{document}

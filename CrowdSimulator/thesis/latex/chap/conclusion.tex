@@ -1,0 +1,46 @@
+
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\graphicspath{{../img/}}
+\begin{document}
+%\maketitle
+\fi
+
+\chapter{Conclusion}
+\label{chap:conclusion}
+
+Your conclusion should be structured like this. An introductory sentence then:
+
+\section{Summary}
+
+A summary of what has been achieved.
+
+\begin{itemize}
+\item Bullet points are good to clarify
+\item Bullet points are fun
+\item I ran out of ideas
+\end{itemize}
+
+\section{Known bugs and issues}
+
+This is optional, some people put it in future work, I think it is better to have a separate section for it. Issues and bugs are different. Bugs are unexpected behaviour in the program, something not running as it should. Issues are more due to algorithm limitations. If the algorithm only works for meshes of less than 100k polygons, it is a limitation, not a bug. A program crashing if you move around in a particular order is a bug. A render becoming ugly just on that particular spot in space, is a bug too.
+
+\section{Future work}
+
+What should be done in the future, what you would like to do.
+
+\begin{itemize}
+\item Become an astronaut
+\item Go out
+\item Make it work for real
+\end{itemize}
+
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{../ref/harvard}
+\bibliography{../ref/master}
+\pagebreak
+\end{document}
+\fi

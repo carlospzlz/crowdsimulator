@@ -1,0 +1,27 @@
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\graphicspath{{../img/}}
+\begin{document}
+\fi
+
+\chapter{Cooking chickens}
+\label{chap:cooking}
+
+This is your next chapter. 
+\section{Section title}
+\subsection{Sub Section title}
+\subsubsection{sub sub Section title}
+As if you ever need sub sub section
+\paragraph{Paragraph title}
+But if subsubsection isnt enough, you can use paragraph
+
+All those commands have the "star" equivalent to get rid of numbering.
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{../ref/harvard}
+\bibliography{../ref/master}
+\pagebreak
+\end{document}
+\fi
