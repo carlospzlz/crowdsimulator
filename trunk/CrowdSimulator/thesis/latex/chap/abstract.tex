@@ -1,0 +1,29 @@
+
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\begin{document}
+%\maketitle
+\fi
+
+% The begin{abstract} seems to bug the page counter
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\label{sec:abstract}
+%\begin{abstract}
+
+{
+\color{red}
+Abstract is the last thing you write, it should be concise. Spend time to write it correctly, it has to be perfect. Google how to write an abstract, it is not just summary!
+}
+
+%\end{abstract}
+
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{ref/harvard}
+\bibliography{ref/master}
+\pagebreak
+\end{document}
+\fi
