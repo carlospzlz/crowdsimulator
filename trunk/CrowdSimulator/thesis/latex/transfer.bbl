@@ -1,5 +1,10 @@
 \begin{thebibliography}{}
 
+\harvarditem[Buckland]{Buckland}{2005}{buckland}
+M.~Buckland (2005).
+\newblock {\em Programming Game AI by Example}.
+\newblock Wordware game developer's library. Wordware Pub.
+
 \harvarditem[Kleinrock]{Kleinrock}{2011}{kleinrock}
 L.~Kleinrock (2011).
 \newblock `What is emergent behaviour?'.

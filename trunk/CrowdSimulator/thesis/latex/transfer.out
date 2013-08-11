@@ -6,13 +6,41 @@
 \BOOKMARK [1][-]{section.2.1}{Motion Planning for Crowd}{chapter.2}% 6
 \BOOKMARK [1][-]{section.2.2}{Crowd Motion Simulation}{chapter.2}% 7
 \BOOKMARK [1][-]{section.2.3}{MASSIVE Software}{chapter.2}% 8
-\BOOKMARK [0][-]{chapter.3}{Killing chickens}{}% 9
-\BOOKMARK [0][-]{chapter.4}{Cooking chickens}{}% 10
-\BOOKMARK [1][-]{section.4.1}{Section title}{chapter.4}% 11
-\BOOKMARK [2][-]{subsection.4.1.1}{Sub Section title}{section.4.1}% 12
-\BOOKMARK [0][-]{chapter.5}{Applications and results}{}% 13
-\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 14
-\BOOKMARK [1][-]{section.6.1}{Summary}{chapter.6}% 15
-\BOOKMARK [1][-]{section.6.2}{Known bugs and issues}{chapter.6}% 16
-\BOOKMARK [1][-]{section.6.3}{Future work}{chapter.6}% 17
-\BOOKMARK [0][-]{section.6.3}{References}{}% 18
+\BOOKMARK [0][-]{chapter.3}{Technical Background}{}% 9
+\BOOKMARK [1][-]{section.3.1}{Physics}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.2}{Reynold's Flocking Algorithm}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.3}{Finite State Machine \(FSM\)}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter.4}{Agent-Based Model}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Agent Body}{chapter.4}% 14
+\BOOKMARK [2][-]{subsection.4.1.1}{Definition}{section.4.1}% 15
+\BOOKMARK [2][-]{subsection.4.1.2}{Physical Properties}{section.4.1}% 16
+\BOOKMARK [1][-]{section.4.2}{Agent Brain}{chapter.4}% 17
+\BOOKMARK [2][-]{subsection.4.2.1}{Capacity of Decision}{section.4.2}% 18
+\BOOKMARK [2][-]{subsection.4.2.2}{The Illusion of Intelligence}{section.4.2}% 19
+\BOOKMARK [1][-]{section.4.3}{Interaction among agents. Message passing}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.4}{Overview of Possible Behaviours}{chapter.4}% 21
+\BOOKMARK [0][-]{chapter.5}{Crowd Engine}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Modelling the World}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Handling Large Amounts of Agents}{chapter.5}% 24
+\BOOKMARK [2][-]{subsection.5.2.1}{Cell Partition}{section.5.2}% 25
+\BOOKMARK [1][-]{section.5.3}{Virtual Force Model}{chapter.5}% 26
+\BOOKMARK [2][-]{subsection.5.3.1}{Prime Mover Force}{section.5.3}% 27
+\BOOKMARK [2][-]{subsection.5.3.2}{Gravity Force}{section.5.3}% 28
+\BOOKMARK [2][-]{subsection.5.3.3}{Friction Force}{section.5.3}% 29
+\BOOKMARK [1][-]{section.5.4}{Handling Messages}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.5}{Collision Detection}{chapter.5}% 31
+\BOOKMARK [2][-]{subsection.5.5.1}{Bounding Cylinder}{section.5.5}% 32
+\BOOKMARK [2][-]{subsection.5.5.2}{Bounding Sphere}{section.5.5}% 33
+\BOOKMARK [0][-]{chapter.6}{Technical Background}{}% 34
+\BOOKMARK [1][-]{section.6.1}{Physics}{chapter.6}% 35
+\BOOKMARK [1][-]{section.6.2}{Reynold's Flocking Algorithm}{chapter.6}% 36
+\BOOKMARK [1][-]{section.6.3}{Finite State Machine \(FSM\)}{chapter.6}% 37
+\BOOKMARK [0][-]{chapter.7}{Technical Background}{}% 38
+\BOOKMARK [1][-]{section.7.1}{Physics}{chapter.7}% 39
+\BOOKMARK [1][-]{section.7.2}{Reynold's Flocking Algorithm}{chapter.7}% 40
+\BOOKMARK [1][-]{section.7.3}{Finite State Machine \(FSM\)}{chapter.7}% 41
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 42
+\BOOKMARK [1][-]{section.8.1}{Summary}{chapter.8}% 43
+\BOOKMARK [1][-]{section.8.2}{Known bugs and issues}{chapter.8}% 44
+\BOOKMARK [1][-]{section.8.3}{Future work}{chapter.8}% 45
+\BOOKMARK [0][-]{section.8.3}{References}{}% 46
