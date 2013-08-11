@@ -3,44 +3,47 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: transfer.aux
 The style file: ref/harvard.bst
 Database file #1: ref/master.bib
-You've used 7 entries,
+`editor' is a missing field, not a string, for entry buckland
+while executing---line 2471 of file ref/harvard.bst
+You've used 8 entries,
             2330 wiz_defined-function locations,
-            562 strings with 5173 characters,
-and the built_in function-call counts, 3355 in all, are:
-= -- 367
-> -- 135
-< -- 12
-+ -- 38
-- -- 38
-* -- 256
-:= -- 571
-add.period$ -- 23
-call.type$ -- 7
-change.case$ -- 44
-chr.to.int$ -- 7
-cite$ -- 7
-duplicate$ -- 141
-empty$ -- 217
-format.name$ -- 60
-if$ -- 692
+            567 strings with 5269 characters,
+and the built_in function-call counts, 3704 in all, are:
+= -- 403
+> -- 146
+< -- 14
++ -- 41
+- -- 41
+* -- 277
+:= -- 637
+add.period$ -- 27
+call.type$ -- 8
+change.case$ -- 49
+chr.to.int$ -- 8
+cite$ -- 8
+duplicate$ -- 158
+empty$ -- 243
+format.name$ -- 65
+if$ -- 763
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 5
-newline$ -- 38
-num.names$ -- 35
-pop$ -- 49
+missing$ -- 7
+newline$ -- 43
+num.names$ -- 40
+pop$ -- 55
 preamble$ -- 1
-purify$ -- 51
+purify$ -- 57
 quote$ -- 0
-skip$ -- 118
+skip$ -- 131
 stack$ -- 0
-substring$ -- 186
-swap$ -- 37
+substring$ -- 198
+swap$ -- 39
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 84
+type$ -- 92
 warning$ -- 0
-while$ -- 30
+while$ -- 33
 width$ -- 0
-write$ -- 103
+write$ -- 117
+(There was 1 error message)

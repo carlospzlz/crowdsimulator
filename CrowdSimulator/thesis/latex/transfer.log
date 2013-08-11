@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  10 AUG 2013 17:42
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=latex 2013.5.29)  12 AUG 2013 00:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -289,7 +289,7 @@ Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -302,7 +302,7 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
 Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
 )
@@ -374,12 +374,20 @@ LaTeX Info: Redefining \pageref on input line 6369.
 \c@Hfootnote=\count96
 )
 
-Package hyperref Message: Driver (autodetected): hpdftex.
+Package hyperref Message: Driver (default): hdvips.
 
-(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count97
-\c@bookmark@seq@number=\count98
+(/usr/share/texmf-dist/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2012/11/06 v6.83m Hyperref driver for dvips
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2012/11/06 v6.83m Hyperref definitions for pdfmark specials
+\pdf@docset=\toks17
+\pdf@box=\box26
+\pdf@toks=\toks18
+\pdf@defaulttoks=\toks19
+\HyField@AnnotCount=\count97
+\Fld@listcount=\count98
+\c@bookmark@seq@number=\count99
 
 (/usr/share/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
@@ -387,7 +395,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip43
-)
+))
 (/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip44
 \f@ncyO@elh=\skip45
@@ -408,12 +416,12 @@ Package: suffix 2006/07/15 1.5 Variant command support
 (/usr/share/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/share/texmf-dist/tex/generic/xstring/xstring.tex
 \@xs@message=\write3
-\integerpart=\count99
-\decimalpart=\count100
+\integerpart=\count100
+\decimalpart=\count101
 )
 Package: xstring 2013/2/28  v1.7a  String manipulations (C Tellechea)
 )
-\AC@clearlist=\toks17
+\AC@clearlist=\toks20
 )
 (/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
@@ -427,11 +435,10 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 (/usr/share/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: dvips.def on input line 91.
 
-(/usr/share/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-\Gread@gobject=\count101
+(/usr/share/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen114
 \Gin@req@width=\dimen115
@@ -459,8 +466,8 @@ Package: subfig 2005/06/28 ver: 1.3 subfig package
 \wrapoverhang=\dimen117
 \WF@size=\dimen118
 \c@WF@wrappedlines=\count109
-\WF@box=\box26
-\WF@everypar=\toks18
+\WF@box=\box27
+\WF@everypar=\toks21
 Package: wrapfig 2003/01/31  v 3.6
 )
 (/usr/share/texmf-dist/tex/latex/subfloat/subfloat.sty
@@ -480,7 +487,7 @@ Package subfloat Warning: Numbers of floats not counted:
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen119
 \extrarowheight=\dimen120
-\NC@list=\toks19
+\NC@list=\toks22
 \extratabsurround=\skip58
 \backup@length=\skip59
 )
@@ -490,8 +497,11 @@ Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 (/usr/share/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
-Package color Info: Driver file: pdftex.def on input line 130.
-)
+Package color Info: Driver file: dvips.def on input line 130.
+
+(/usr/share/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
 (/usr/share/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 )
@@ -503,15 +513,15 @@ Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTpost=\skip63
 \LTchunksize=\count110
 \LTcapwidth=\dimen121
-\LT@head=\box27
-\LT@firsthead=\box28
-\LT@foot=\box29
-\LT@lastfoot=\box30
+\LT@head=\box28
+\LT@firsthead=\box29
+\LT@foot=\box30
+\LT@lastfoot=\box31
 \LT@cols=\count111
 \LT@rows=\count112
 \c@LT@tables=\count113
 \c@LT@chunks=\count114
-\LT@p@ftn=\toks20
+\LT@p@ftn=\toks23
 )
 (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen122
@@ -526,7 +536,7 @@ Package: amstext 2000/06/29 v2.01
 
 (/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks21
+\@emptytoks=\toks24
 \ex@=\dimen123
 ))
 (/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
@@ -546,8 +556,8 @@ LaTeX Info: Redefining \overline on input line 306.
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box31
-\strutbox@=\box32
+\Mathstrutbox@=\box32
+\strutbox@=\box33
 \big@size=\dimen125
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
@@ -556,21 +566,21 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \dotsspace@=\muskip11
 \c@parentequation=\count122
 \dspbrk@lvl=\count123
-\tag@help=\toks22
+\tag@help=\toks25
 \row@=\count124
 \column@=\count125
 \maxfields@=\count126
-\andhelp@=\toks23
+\andhelp@=\toks26
 \eqnshift@=\dimen126
 \alignsep@=\dimen127
 \tagshift@=\dimen128
 \tagwidth@=\dimen129
 \totwidth@=\dimen130
 \lineht@=\dimen131
-\@envbody=\toks24
+\@envbody=\toks27
 \multlinegap=\skip65
 \multlinetaggap=\skip66
-\mathdisplay@stack=\toks25
+\mathdisplay@stack=\toks28
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
@@ -593,6 +603,15 @@ LaTeX Info: Redefining \cite on input line 694.
 )) (./transfer.aux
 
 LaTeX Warning: Label `fig:massive' multiply defined.
+
+
+LaTeX Warning: Label `fig:crowds' multiply defined.
+
+
+LaTeX Warning: Label `chap:technical_background' multiply defined.
+
+
+LaTeX Warning: Label `chap:technical_background' multiply defined.
 
 )
 \openout1 = `transfer.aux'.
@@ -620,7 +639,7 @@ Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
 )
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box33
+\AtBeginShipoutBox=\box34
 Package hyperref Info: Link coloring OFF on input line 20.
 
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -639,195 +658,46 @@ LaTeX Info: Redefining \nameref on input line 20.
 \@outlinefile=\write4
 \openout4 = `transfer.out'.
 
+ (./format/front.tex
+File: img/bu_logo.eps Graphic file (type eps)
+ <img/bu_logo.eps>
+[1
 
-(/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count129
-\scratchdimen=\dimen132
-\scratchbox=\box34
-\nofMPsegments=\count130
-\nofMParguments=\count131
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count132
-\MPscratchDim=\dimen133
-\MPnumerator=\count133
-\makeMPintoPDFobject=\count134
-\everyMPtoPDFconversion=\toks27
-) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-)
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 452.
-
-(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
-(./format/front.tex
-Package epstopdf Info: Source file: <img/bu_logo.eps>
-(epstopdf)                    date: 2013-08-10 07:33:55
-(epstopdf)                    size: 89007 bytes
-(epstopdf)             Output file: <img/bu_logo-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:22
-(epstopdf)                    size: 17403 bytes
-(epstopdf)             Command: <repstopdf --outfile=img/bu_logo-eps-converted-
-to.pdf img/bu_logo.eps>
-(epstopdf)             \includegraphics on input line 23.
-Package epstopdf Info: Output file is already uptodate.
-
-<img/bu_logo-eps-converted-to.pdf, id=75, 268.00125pt x 191.71625pt>
-File: img/bu_logo-eps-converted-to.pdf Graphic file (type pdf)
-
-<use img/bu_logo-eps-converted-to.pdf>
-Package pdftex.def Info: img/bu_logo-eps-converted-to.pdf used on input line 23
-.
-(pdftex.def)             Requested size: 128.0387pt x 91.59271pt.
- [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./img/bu_logo-eps-converte
-d-to.pdf>]) (./transfer.toc
+]) (./transfer.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 1.
-
-(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 1.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+) [1
+
+])
 \tf@toc=\write5
 \openout5 = `transfer.toc'.
 
- [1
-
-] (./chap/abstract.tex)
-[2] (./format/acknowledgements.tex) [3] (./chap/introduction.tex
+ [2]
+(./chap/abstract.tex) [3] (./format/acknowledgements.tex) [4]
+(./chap/introduction.tex
 Chapter 1.
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.19 
-      [1
+[1
 
 ]
-Package epstopdf Info: Source file: <./img/crowd_train.eps>
-(epstopdf)                    date: 2013-08-10 07:50:39
-(epstopdf)                    size: 1467612 bytes
-(epstopdf)             Output file: <./img/crowd_train-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:23
-(epstopdf)                    size: 161295 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/crowd_train-eps-conv
-erted-to.pdf ./img/crowd_train.eps>
-(epstopdf)             \includegraphics on input line 23.
-Package epstopdf Info: Output file is already uptodate.
+File: ./img/crowd_train.eps Graphic file (type eps)
+ <./img/crowd_train.eps>
+File: ./img/droids.eps Graphic file (type eps)
+ <./img/droids.eps>
+File: ./img/zombies.eps Graphic file (type eps)
+ <./img/zombies.eps>
+File: ./img/battlefield.eps Graphic file (type eps)
 
-<./img/crowd_train-eps-converted-to.pdf, id=120, 622.325pt x 389.455pt>
-File: ./img/crowd_train-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/crowd_train-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/crowd_train-eps-converted-to.pdf used on input l
-ine 23.
-(pdftex.def)             Requested size: 155.58086pt x 97.36351pt.
-Package epstopdf Info: Source file: <./img/droids.eps>
-(epstopdf)                    date: 2013-08-10 07:50:44
-(epstopdf)                    size: 4201921 bytes
-(epstopdf)             Output file: <./img/droids-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:24
-(epstopdf)                    size: 214506 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/droids-eps-converted
--to.pdf ./img/droids.eps>
-(epstopdf)             \includegraphics on input line 24.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/droids-eps-converted-to.pdf, id=121, 1278.7775pt x 544.0325pt>
-File: ./img/droids-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/droids-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/droids-eps-converted-to.pdf used on input line 2
-4.
-(pdftex.def)             Requested size: 230.17001pt x 97.92162pt.
-Package epstopdf Info: Source file: <./img/zombies.eps>
-(epstopdf)                    date: 2013-08-10 07:50:57
-(epstopdf)                    size: 8805133 bytes
-(epstopdf)             Output file: <./img/zombies-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:26
-(epstopdf)                    size: 272888 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/zombies-eps-converte
-d-to.pdf ./img/zombies.eps>
-(epstopdf)             \includegraphics on input line 25.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/zombies-eps-converted-to.pdf, id=122, 1606.0pt x 908.39375pt>
-File: ./img/zombies-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/zombies-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/zombies-eps-converted-to.pdf used on input line 
-25.
-(pdftex.def)             Requested size: 160.6094pt x 90.8447pt.
-Package epstopdf Info: Source file: <./img/battlefield.eps>
-(epstopdf)                    date: 2013-08-10 07:50:34
-(epstopdf)                    size: 1063621 bytes
-(epstopdf)             Output file: <./img/battlefield-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:27
-(epstopdf)                    size: 62764 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/battlefield-eps-conv
-erted-to.pdf ./img/battlefield.eps>
-(epstopdf)             \includegraphics on input line 26.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/battlefield-eps-converted-to.pdf, id=123, 154.5775pt x 65.24374pt>
-File: ./img/battlefield-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/battlefield-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/battlefield-eps-converted-to.pdf used on input l
-ine 26.
-(pdftex.def)             Requested size: 231.86565pt x 97.86536pt.
-Package epstopdf Info: Source file: <./img/ballroom.eps>
-(epstopdf)                    date: 2013-08-10 07:50:26
-(epstopdf)                    size: 1033160 bytes
-(epstopdf)             Output file: <./img/ballroom-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:27
-(epstopdf)                    size: 114115 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/ballroom-eps-convert
-ed-to.pdf ./img/ballroom.eps>
-(epstopdf)             \includegraphics on input line 27.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/ballroom-eps-converted-to.pdf, id=124, 501.875pt x 333.245pt>
-File: ./img/ballroom-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/ballroom-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/ballroom-eps-converted-to.pdf used on input line
- 27.
-(pdftex.def)             Requested size: 150.56366pt x 99.97426pt.
-Package epstopdf Info: Source file: <./img/matrix.eps>
-(epstopdf)                    date: 2013-08-10 07:50:49
-(epstopdf)                    size: 928222 bytes
-(epstopdf)             Output file: <./img/matrix-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 08:07:28
-(epstopdf)                    size: 42734 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/matrix-eps-converted
--to.pdf ./img/matrix.eps>
-(epstopdf)             \includegraphics on input line 28.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/matrix-eps-converted-to.pdf, id=125, 433.62pt x 182.6825pt>
-File: ./img/matrix-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/matrix-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/matrix-eps-converted-to.pdf used on input line 2
-8.
-(pdftex.def)             Requested size: 238.49173pt x 100.47568pt.
- [2 <./img/crowd_train-eps-converted-to.pdf> <./img/droids-eps-converted-to.pdf
-> <./img/zombies-eps-converted-to.pdf> <./img/battlefield-eps-converted-to.pdf>
- <./img/ballroom-eps-converted-to.pdf> <./img/matrix-eps-converted-to.pdf>]
+<./img/battlefield.eps>
+File: ./img/ballroom.eps Graphic file (type eps)
+ <./img/ballroom.eps>
+File: ./img/matrix.eps Graphic file (type eps)
+ <./img/matrix.eps> [2]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 44.
 
 (/usr/share/texmf-dist/tex/latex/base/omscmr.fd
@@ -838,159 +708,109 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
  [3]) (./chap/related-work.tex
 [4]
 Chapter 2.
-Package epstopdf Info: Source file: <./img/navigation_fields.eps>
-(epstopdf)                    date: 2013-08-10 16:46:53
-(epstopdf)                    size: 2240780 bytes
-(epstopdf)             Output file: <./img/navigation_fields-eps-converted-to.p
-df>
-(epstopdf)                    date: 2013-08-10 16:53:31
-(epstopdf)                    size: 195085 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/navigation_fields-ep
-s-converted-to.pdf ./img/navigation_fields.eps>
-(epstopdf)             \includegraphics on input line 18.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/navigation_fields-eps-converted-to.pdf, id=174, 989.6975pt x 374.39874pt
->
-File: ./img/navigation_fields-eps-converted-to.pdf Graphic file (type pdf)
- <use ./img/navigation_fields-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/navigation_fields-eps-converted-to.pdf used on i
-nput line 18.
-(pdftex.def)             Requested size: 395.87198pt x 149.75684pt.
- [5
+File: ./img/navigation_fields.eps Graphic file (type eps)
+<./img/navigation_fields.eps> [5
 
 ]
 
-LaTeX Warning: Reference `chap:agent' on page 6 undefined on input line 29.
+LaTeX Warning: Reference `chap:agent-based_model' on page 6 undefined on input 
+line 29.
 
-[6 <./img/navigation_fields-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <./img/reynolds_flocking.eps>
-(epstopdf)                    date: 2013-08-10 17:35:55
-(epstopdf)                    size: 1646603 bytes
-(epstopdf)             Output file: <./img/reynolds_flocking-eps-converted-to.p
-df>
-(epstopdf)                    date: 2013-08-10 17:37:42
-(epstopdf)                    size: 95408 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/reynolds_flocking-ep
-s-converted-to.pdf ./img/reynolds_flocking.eps>
-(epstopdf)             \includegraphics on input line 39.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/reynolds_flocking-eps-converted-to.pdf, id=201, 542.025pt x 180.675pt>
-File: ./img/reynolds_flocking-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/reynolds_flocking-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/reynolds_flocking-eps-converted-to.pdf used on i
-nput line 39.
-(pdftex.def)             Requested size: 352.31207pt x 117.43735pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 40.
-See the caption package documentation for explanation.
-
-! Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.42 \end{figure}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-! Misplaced alignment tab character &.
-l.44 ... crowd simulation. For instance, C. Wang &
-                                                   T. Li suggest an evolving...
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-[7 <./img/reynolds_flocking-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <./img/rohan_army.eps>
-(epstopdf)                    date: 2013-08-10 16:06:25
-(epstopdf)                    size: 2513023 bytes
-(epstopdf)             Output file: <./img/rohan_army-eps-converted-to.pdf>
-(epstopdf)                    date: 2013-08-10 16:11:05
-(epstopdf)                    size: 133967 bytes
-(epstopdf)             Command: <repstopdf --outfile=./img/rohan_army-eps-conve
-rted-to.pdf ./img/rohan_army.eps>
-(epstopdf)             \includegraphics on input line 54.
-Package epstopdf Info: Output file is already uptodate.
-
-<./img/rohan_army-eps-converted-to.pdf, id=220, 708.6475pt x 304.13625pt>
-File: ./img/rohan_army-eps-converted-to.pdf Graphic file (type pdf)
-
-<use ./img/rohan_army-eps-converted-to.pdf>
-Package pdftex.def Info: ./img/rohan_army-eps-converted-to.pdf used on input li
-ne 54.
-(pdftex.def)             Requested size: 354.32289pt x 152.06775pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 55.
-See the caption package documentation for explanation.
-
-! Extra }, or forgotten \endgroup.
-\@endfloatbox ...pagefalse \outer@nobreak \egroup 
-                                                  \color@endbox 
-l.57 \end{figure}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-) (./chap/approximate-sdf.tex [8 <./img/rohan_army-eps-converted-to.pdf>]
+[6]
+File: ./img/reynolds_flocking.eps Graphic file (type eps)
+ <./img/reynolds_flocking.eps> [7]
+File: ./img/rohan_army.eps Graphic file (type eps)
+ <./img/rohan_army.eps>)
+(./chap/technical_background.tex [8]
 Chapter 3.
-) (./chap/attribute-set.tex [9
+[9
 
 ]
+
+LaTeX Warning: Reference `chap:application_design_implementation' on page 10 un
+defined on input line 22.
+
+[10] [11]
+File: ./img/cohesion.eps Graphic file (type eps)
+ <./img/cohesion.eps>
+File: ./img/separation.eps Graphic file (type eps)
+ <./img/separation.eps>
+File: ./img/alignment.eps Graphic file (type eps)
+ <./img/alignment.eps>
+Overfull \hbox (1.27734pt too wide) in paragraph at lines 72--77
+ [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+ []
+
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+
+ []
+
+[13]
+File: ./img/fsm.eps Graphic file (type eps)
+ <./img/fsm.eps>) (./chap/agent-based_model.tex [14] [15]
 Chapter 4.
-) (./chap/applications.tex [10
+) (./chap/crowd_engine.tex [16
 
 ]
 Chapter 5.
-) (./chap/conclusion.tex [11
+) (./chap/applications_and_results.tex [17
 
 ]
-Chapter 6.
-[12
+Overfull \vbox (88.8597pt too high) has occurred while \output is active []
 
-]) (./transfer.bbl [13]
-Underfull \hbox (badness 3000) in paragraph at lines 4--9
+
+[18]
+Chapter 6.
+) (./chap/application_design_implementation.tex [19
+
+]
+Chapter 7.
+) (./chap/conclusion.tex [20
+
+]
+Chapter 8.
+[21
+
+]) (./transfer.bbl [22]
+Underfull \hbox (badness 3000) in paragraph at lines 9--14
 []\OT1/cmr/m/n/12 L. Klein-rock (2011).  `What is emer-gent be-haviour?'.  Avai
 l-able from:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--9
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
 \OT1/cmr/m/n/12 http://curiosity.discovery.com/question/emergent-behavior [Ac-c
 essed
  []
 
 
-Underfull \hbox (badness 4981) in paragraph at lines 36--40
+Underfull \hbox (badness 4981) in paragraph at lines 41--45
 []\OT1/cmr/m/n/12 C. W. Reynolds (1999).  `Individual-Based Mod-els'.  Avail-ab
 le from:
  []
 
-) [14
+) [23
 
 ] (./chap/appendix.tex)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
- [15]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
+ [24]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (./transfer.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 86.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 88.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
 Package rerunfilecheck Info: File `transfer.out' has not changed.
-(rerunfilecheck)             Checksum: F4FE0B780F5C4C56AC8A5079FDC580F4;1012.
+(rerunfilecheck)             Checksum: C6C46410EEBF31CCB471DDF80C1C8145;2927.
 
 
 LaTeX Warning: There were undefined references.
@@ -998,26 +818,15 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
  ) 
 Here is how much of TeX's memory you used:
- 8560 strings out of 493488
- 125235 string characters out of 3146892
- 211772 words of memory out of 3000000
- 11621 multiletter control sequences out of 15000+200000
+ 8159 strings out of 493489
+ 119250 string characters out of 3146915
+ 211718 words of memory out of 3000000
+ 11291 multiletter control sequences out of 15000+200000
  11711 words of font info for 43 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,16n,45p,846b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></u
-sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on transfer.pdf (19 pages, 1413766 bytes).
-PDF statistics:
- 303 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
- 58 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 38i,16n,46p,850b,474s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on transfer.dvi (29 pages, 93000 bytes).
