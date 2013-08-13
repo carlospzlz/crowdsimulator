@@ -15,12 +15,12 @@ dummy=aragorn
 xArmyCentre=0
 zArmyCentre=30
 
-armyHorizontalStep=15
-armyVerticalStep=15
+armyHorizontalStep=25
+armyVerticalStep=20
 stride=2
 
-armyRows=1
-armyColumns=1
+armyRows=3
+armyColumns=6
 
 flockRows=7
 flockColumns=10

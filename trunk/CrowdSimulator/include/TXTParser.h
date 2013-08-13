@@ -15,7 +15,7 @@ class TXTParser : public Parser
 {
 
 public:
-    bool loadCrowd(std::string _filename, const std::map<std::string,ngl::Obj*> &_dummies, std::vector<Agent*> &_agents);
+    bool loadAgents(std::string _filename, const std::map<std::string,ngl::Obj*> &_dummies, std::vector<Agent*> &_agents);
 
 };
 

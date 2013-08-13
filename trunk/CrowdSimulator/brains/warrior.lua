@@ -144,7 +144,8 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		do
 			if (message.label=="arrow")
 			then
-				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+				--return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+				strength = strength - 0.01
 			end
 		end
 
@@ -302,7 +303,8 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		do
 			if (message.label=="arrow")
 			then
-				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+				--return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+				strength = strength-0.01
 			end
 		end
 
@@ -442,7 +444,8 @@ function warrior (agentID, position, strength, maxStrength, velocity, state, att
 		do
 			if (message.label=="arrow")
 			then
-				return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+				--return {0,0,0}, {0,0,0}, 0, "warriorDead", {}
+				strength = strength - 0.01
 			end
 		end
 

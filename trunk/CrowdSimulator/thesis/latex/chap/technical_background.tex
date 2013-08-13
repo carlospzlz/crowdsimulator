@@ -15,13 +15,13 @@ The bibliography resource consulted to write this section was the chapter A Math
 
 \section{Physics}
 
-In any research that involves Artificial Intelligence (AI) and modelling the real world, physical rules will acquire a fundamental role, particularly the ones concerned with motion. Next, the key concepts to understand the virtual force model will be presented.
+In any research that involves modelling the real world, physical rules will acquire a fundamental role, particularly the ones concerned with motion. Next, the key concepts to understand the virtual force model will be presented.
 
 \begin{itemize}
 
-\item{{\bf Time.} This is a concept that everybody has in mind. Physically speaking, time is a dimension in which events can be ordered from the past through the present into the future. It is a continuous scalar quantity with no direction measured in seconds. Time in computer simulations and computer games might be measured in seconds, like in the real world, or in \emph{virtual seconds} or \emph{ticks}. This will be discussed more in depth in Section \ref{chap:application_design_implementation}: Application Design and Implementation.}
+\item{{\bf Time.} This is a concept that everybody has in mind. Physically speaking, time is a dimension in which events can be ordered from the past through the present into the future. It is a continuous scalar quantity with no direction measured in seconds. Time in computer simulations and computer games might be measured in seconds, like in the real world, or in \emph{virtual seconds} or \emph{ticks}. This will be discussed more in depth in Chapter \ref{chap:application_design_implementation}: Application Design and Implementation.}
 
-\item{{\bf Mass.} It is a scalar quantity measured in kilograms, and it is the measure of an amount of something. This property is directly linked to how fast bodies change of state. For example, if we imagine two people with the same properties except mass, the one with higher mass will require more time to change from standing to running.}
+\item{{\bf Mass.} It is a scalar quantity measured in grams, and it is the measure of an amount of something. This property is directly linked to how fast bodies change of state. For example, if we imagine two people with the same properties except mass, the one with higher mass will require more time to change from standing to running.}
 
 \item{{\bf Strength.} It is the scalar quantity which defines the physical power a person or animal has. Notice that this property is inherent to an individual and does not have direction, if it had, we would be talking about \emph{force}, concept that will be introduced later. And again, this is related with how fast bodies change of state. The bigger strength, the faster change.}
 
@@ -140,9 +140,9 @@ Historically, a FSM is a rigidly formalized device used by mathematicians to sol
   \label{fig:light}
 \end{figure}
 
-As mentioned above, one of the main advantages of FSM is that they are very intuitive. It's human nature to think about things as being in one state or another. Humans do not really work like FSM but sometimes it is useful to think our behaviour in this way. It is fairly easy to break down an agent's behaviour into a number of states and to create rules to transit among them actions associated to each state.
+As mentioned above, one of the main advantages of FSM is that they are very intuitive. It is human nature to think about things as being in one state or another. Humans do not really work like FSM but sometimes it is useful to think our behaviour in this way. It is fairly easy to break down an agent's behaviour into a number of states with associated actions and to create rules to transit among them.
 
-MESSAGE CAPABILITIES!!
+One feature that notably enhance the power of FSM and allow intercommunication among agents is the message passing support. Intelligent agents can send and receive information to each other, and act upon it. This is a model which reflects quite accurately how real interactions work. This messages are sent in the form of packets of data to other agents, which might influence their behaviour triggering a transition to a different state. If an archer sends an ``arrow'' message to an enemy, this might respond changing his state from alive to dead.
 
 \ifx\isEmbedded\undefined
 % References

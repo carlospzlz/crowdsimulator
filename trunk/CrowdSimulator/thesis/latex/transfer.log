@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=latex 2013.5.29)  12 AUG 2013 00:46
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=latex 2013.5.29)  13 AUG 2013 01:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -608,7 +608,7 @@ LaTeX Warning: Label `fig:massive' multiply defined.
 LaTeX Warning: Label `fig:crowds' multiply defined.
 
 
-LaTeX Warning: Label `chap:technical_background' multiply defined.
+LaTeX Warning: Label `fig:navigation' multiply defined.
 
 
 LaTeX Warning: Label `chap:technical_background' multiply defined.
@@ -658,14 +658,18 @@ LaTeX Info: Redefining \nameref on input line 20.
 \@outlinefile=\write4
 \openout4 = `transfer.out'.
 
- (./format/front.tex
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+(./format/front.tex
 File: img/bu_logo.eps Graphic file (type eps)
- <img/bu_logo.eps>
-[1
+ <img/bu_logo.eps> [1
 
 ]) (./transfer.toc
 LaTeX Font Info:    Try loading font information for U+msa on input line 1.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 1.
@@ -725,18 +729,14 @@ File: ./img/rohan_army.eps Graphic file (type eps)
 Chapter 3.
 [9
 
-]
-
-LaTeX Warning: Reference `chap:application_design_implementation' on page 10 un
-defined on input line 22.
-
-[10] [11]
+] [10] [11]
 File: ./img/cohesion.eps Graphic file (type eps)
  <./img/cohesion.eps>
 File: ./img/separation.eps Graphic file (type eps)
  <./img/separation.eps>
 File: ./img/alignment.eps Graphic file (type eps)
- <./img/alignment.eps>
+
+<./img/alignment.eps>
 Overfull \hbox (1.27734pt too wide) in paragraph at lines 72--77
  [][] 
  []
@@ -758,31 +758,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 107--108
 
 [13]
 File: ./img/fsm.eps Graphic file (type eps)
- <./img/fsm.eps>) (./chap/agent-based_model.tex [14] [15]
+ <./img/fsm.eps> [14]) (./chap/agent-based_model.tex [15]
 Chapter 4.
-) (./chap/crowd_engine.tex [16
+[16
 
-]
+] [17]
+File: ./img/agent.eps Graphic file (type eps)
+ <./img/agent.eps> [18] [19] [20]) (./chap/crowd_engine.tex [21]
 Chapter 5.
-) (./chap/applications_and_results.tex [17
+) (./chap/applications_and_results.tex [22
 
 ]
 Overfull \vbox (88.8597pt too high) has occurred while \output is active []
 
 
-[18]
+[23]
 Chapter 6.
-) (./chap/application_design_implementation.tex [19
+) (./chap/application_design_implementation.tex [24
 
 ]
 Chapter 7.
-) (./chap/conclusion.tex [20
+) (./chap/conclusion.tex [25
 
 ]
 Chapter 8.
-[21
+[26
 
-]) (./transfer.bbl [22]
+]) (./transfer.bbl [27]
 Underfull \hbox (badness 3000) in paragraph at lines 9--14
 []\OT1/cmr/m/n/12 L. Klein-rock (2011).  `What is emer-gent be-haviour?'.  Avai
 l-able from:
@@ -800,18 +802,24 @@ Underfull \hbox (badness 4981) in paragraph at lines 41--45
 le from:
  []
 
-) [23
+) [28
 
 ] (./chap/appendix.tex)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
- [24]
+ [29]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (./transfer.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 88.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
-Package rerunfilecheck Info: File `transfer.out' has not changed.
-(rerunfilecheck)             Checksum: C6C46410EEBF31CCB471DDF80C1C8145;2927.
 
+
+Package rerunfilecheck Warning: File `transfer.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `transfer.out':
+(rerunfilecheck)             Before: C28BDF58AAB269F6A66DFB935FF2A11F;2930
+(rerunfilecheck)             After:  A2D141F47EB6836BC21FF66D112D6780;2863.
 
 LaTeX Warning: There were undefined references.
 
@@ -821,12 +829,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
  ) 
 Here is how much of TeX's memory you used:
- 8159 strings out of 493489
- 119250 string characters out of 3146915
+ 8174 strings out of 493489
+ 119461 string characters out of 3146915
  211718 words of memory out of 3000000
- 11291 multiletter control sequences out of 15000+200000
- 11711 words of font info for 43 fonts, out of 3000000 for 9000
+ 11303 multiletter control sequences out of 15000+200000
+ 13410 words of font info for 51 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,16n,46p,850b,474s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,46p,1073b,474s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on transfer.dvi (29 pages, 93000 bytes).
+Output written on transfer.dvi (34 pages, 109724 bytes).

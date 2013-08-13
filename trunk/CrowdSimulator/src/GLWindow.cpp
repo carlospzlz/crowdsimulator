@@ -922,16 +922,16 @@ void GLWindow::loadBrains()
 
 }
 
-void GLWindow::loadCrowds()
+void GLWindow::loadAgents()
 {
-    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Load Crowds"), s_crowdsPath, tr("Text Files (*.txt)"));
+    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Load Agents"), s_crowdsPath, tr("Text Files (*.txt)"));
     std::vector<Agent*> agents;
 
     QStringList::iterator filenameEnd = filenames.end();
     QStringList::iterator currentFilename;
     for (currentFilename = filenames.begin(); currentFilename!=filenameEnd; ++currentFilename)
     {
-        if ( m_parser->loadCrowd((*currentFilename).toStdString(), m_dummies, agents) )
+        if ( m_parser->loadAgents((*currentFilename).toStdString(), m_dummies, agents) )
         {
             m_crowdEngine.addAgents(agents);
             //YOU FORGOT THIS LINE, DUMBASS

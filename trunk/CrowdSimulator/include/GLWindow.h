@@ -126,7 +126,7 @@ public slots:
     void setGravity(double _gravity) { m_crowdEngine.setGravity(_gravity); }
     void rearrangeCellPartition(int _cellSize);
     void loadBrains();
-    void loadCrowds();
+    void loadAgents();
     void restart();
     void clear();
     void scaleCollisionRadius(double _scale);
