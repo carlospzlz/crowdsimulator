@@ -35,7 +35,6 @@ SOURCES += \
     src/MainWindow.cpp \
     src/QuadraticGridCP.cpp \
     src/TXTParser.cpp \
-    src/Parser.cpp \
     src/PhysicsEngine.cpp \
     src/CylinderPE.cpp \
     src/SpherePE.cpp
