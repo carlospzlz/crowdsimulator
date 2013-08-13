@@ -1,6 +1,12 @@
 #ifndef __GL_WINDOW_H__
 #define __GL_WINDOW_H__
 
+/**
+ * @file GLWindow.h
+ * @brief Class in charge to handle the OpenGL Window and
+ * pass the user input to the CrowdEngine
+ */
+
 #include <ngl/Camera.h>
 #include <ngl/Colour.h>
 #include <ngl/SpotLight.h>
@@ -22,11 +28,20 @@
 #include "CylinderPE.h"
 #include "SpherePE.h"
 
+/**
+ * @enum shader
+ * @brief enum that identifies the current shader in use
+ */
 enum shader{
     SHADER_PHONG,
     SHADER_COLOUR
 };
 
+/**
+ * @class GLWindow
+ * @brief Class in charge to handle the OpenGL Window and
+ * pass the user input to the CrowdEngine
+ */
 class GLWindow : public QGLWidget
 {
 
@@ -34,49 +49,175 @@ class GLWindow : public QGLWidget
 Q_OBJECT
 
 private :
+    /**
+     * @brief Path for the dummies in the filesystem
+     */
     static const QString s_dummiesPath;
+    /**
+     * @brief Path for the brains in the filesystem
+     */
     static const QString s_brainsPath;
-    static const QString s_crowdsPath;
+    /**
+     * @brief Path for the agents in the filesystem
+     */
+    static const QString s_agentsPath;
+    /**
+     * @brief Rotation step when the user rotates with the mouse
+     */
     static const float s_rotationIncrement;
+    /**
+     * @brief Translation step when the user translates with the mouse
+     */
     static const float s_translationIncrement;
+    /**
+     * @brief Zoom step when the user makes zoom with the mouse wheel
+     */
     static const float s_zoomIncrement;
 
-
+    /**
+     * @brief The timer for updating the crowd engine
+     */
     QTimer *m_updateCrowdEngineTimer;
+    /**
+     * @brief The timer for checking the FPS of the system
+     */
     QTimer *m_updateFPSTimer;
+    /**
+     * @brief Bounding box that wraps the world to be drawn
+     */
     ngl::BBox *m_boundingBox;
+    /**
+     * @brief Steps of the grip which represents the ground.
+     * This is calculated as boundingBoxSize / CellSize
+     */
     int m_groundSteps;
+    /**
+     * @brief Current FPS of the system
+     */
     int m_fps;
+    /**
+     * @brief Counter of the frames to calculate the FPS
+     * of the system each second.
+     */
     int m_frameCounter;
+    /**
+     * @brief Text to render onto the screen
+     */
     ngl::Text *m_text;
+    /**
+     * @brief To know if the user is currently rotating
+     */
     bool m_rotate;
+    /**
+     * @brief To know if the user is currently translating
+     */
     bool m_translate;
+    /**
+     * @brief Stores the previous mouse position
+     */
     std::pair<int,int> m_previousMousePosition;
+    /**
+     * @brief Stores the global rotation
+     */
     ngl::Vec2 m_globalRotation;
+    /**
+     * @brief Stores the global translation
+     */
     ngl::Vec3 m_globalTranslation;
+    /**
+     * @brief Transformation Stack which holds the transformations
+     */
     ngl::TransformStack m_transformStack;
+    /**
+     * @brief Instance of ngl::VAOPrimitives to access to its functionalities
+     */
     ngl::VAOPrimitives *m_primitives;
+    /**
+     * @brief Instance of ngl::ShaderLib to access to its functionalities
+     */
     ngl::ShaderLib *m_shader;
+    /**
+     * @brief Index of the current shader in use
+     */
     int m_shaderIndex;
+    /**
+     * @brief Stores the camera of the scene
+     */
     ngl::Camera m_camera;
+    /**
+     * @brief Stores the light of the scene
+     */
     ngl::Light m_light;
+    /**
+     * @brief Vector which stores the VAO's of the dummies availables
+     * for representing the agents of the simulation
+     */
     std::map<std::string,ngl::Obj*> m_dummies;
+    /**
+     * @brief Current dummy in use, in case it is no customized
+     */
     ngl::Obj* m_currentDummy;
+    /**
+     * @brief To know if the customized dummy should be used or not
+     */
     bool m_customDummy;
+    /**
+     * @brief VAO of a simple boid
+     */
     ngl::VertexArrayObject *m_boidVAO;
+    /**
+     * @brief Remember the last collision radius scale used
+     * in case new agents are loaded
+     */
     float m_collisionRadiusScale;
+    /**
+     * @brief To know if the bounding box has to be drawn
+     */
     bool m_drawBoundingBox;
+    /**
+     * @brief To know if the collision radius has to be drawn
+     */
     bool m_drawCollisionRadius;
+    /**
+     * @brief To know if the cells have to be drawn
+     */
     bool m_drawCells;
+    /**
+     * @brief To know if the velocity vector has to be drawn
+     */
     bool m_drawVelocityVector;
+    /**
+     * @brief To know if the vision radius has to be drawn
+     */
     bool m_drawVisionRadius;
+    /**
+     * @brief To know if the strength has to be drawn
+     */
     bool m_drawStrength;
+    /**
+     * @brief To know if the axis have to be drawn
+     */
     bool m_drawAxis;
+    /**
+     * @brief To know if the state colour code has to be drawn
+     */
     bool m_drawStateColour;
+    /**
+     * @brief The scale value of the axis in the origin
+     */
     float m_axisScale;
+    /**
+     * @brief To know if the wireframe mode is active
+     */
     bool m_wireframeMode;
 
+    /**
+     * @brief The parser used to load agents
+     */
     Parser* m_parser;
+    /**
+     * @brief The crowd engine used to perform the simulation
+     */
     CrowdEngine m_crowdEngine;
 
     void buildBoidVAO();
@@ -106,8 +247,17 @@ public :
      */
     GLWindow(QWidget *_parent);
     ~GLWindow();
+    /**
+     * @brief Set the timer interval for updating the crowd engine
+     */
     void setTimerInterval(int _interval) { m_updateCrowdEngineTimer->setInterval(_interval); }
+    /**
+     * @brief Set the wireframe mode on
+     */
     void setWireframeMode(bool _wireframeMode) { m_wireframeMode = _wireframeMode; }
+    /**
+     * @brief Set the step for the simulation
+     */
     void setStep(float _step) { m_crowdEngine.setStep(_step); }
 
 public slots:
@@ -136,8 +286,17 @@ public slots:
 
 protected:
 
+    /**
+     * @brief Initialize the OpenGL context
+     */
     void initializeGL();
+    /**
+     * @brief Resize the Opengl window
+     */
     void resizeGL(const int _w,const int _h);
+    /**
+     * @brief Render the current content of the OpenGL window
+     */
     void paintGL();
 
 };

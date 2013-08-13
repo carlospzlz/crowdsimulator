@@ -1,6 +1,14 @@
 #ifndef AGENT_H
 #define AGENT_H
 
+/**
+ * @file Agent.h
+ * @brief This implements the body of the agent, which includes all the
+ * physical properties, neighbourhood, messages, transformation, etc.
+ * and knows about the brain, a lua function which is called
+ * every time an update occurs
+ */
+
 #include <set>
 #include <sstream>
 #include <math.h>
@@ -15,6 +23,11 @@ extern "C"
     #include "lauxlib.h"
 }
 
+/**
+ * @struct message
+ * @brief Specifies the packet of data that conforms a message,
+ * and which allows the communication among agents
+ */
 struct message
 {
     int agentID;
@@ -23,31 +36,109 @@ struct message
     float strength;
 };
 
+/**
+ * @class Agent
+ * @brief This class implements the body of the agent, which includes all the
+ * physical properties, neighbourhood, messages, transformation, etc.
+ * and knows about the brain, a lua function which is called
+ * every time an update occurs
+ */
 class Agent
 {
 
 private:
+    /**
+     * @brief Lua state which holds the scripted brain functions
+     */
     static lua_State* s_luaState;
+    /**
+     * @brief Number of the current agents, used to associate an
+     * agent identifier
+     */
     static int s_numberOfAgents;
+    /**
+     * @brief This controls the rate of change of the position of the agent.
+     * This attribute is very important and influences the simulation
+     * very much
+     */
     static float s_step;
 
+    /**
+     * @brief The unique agent ID which differentiates it from any other
+     */
     int m_agentID;
+    /**
+     * @brief The mass of the agent
+     */
     float m_mass;
+    /**
+     * @brief The current strength of the agent. This attribute is mutable
+     */
     float m_strength;
+    /**
+     * @brief The maximum strength the agent has in full recovery state
+     */
     float m_maxStrength;
+    /**
+     * @brief This determines the portion of the world the agent is aware of
+     */
     float m_visionRadius;
+    /**
+     * @brief Stores the total force applied on this agent
+     */
     ngl::Vec4 m_totalForce;
+    /**
+     * @brief Current velocity of the agent
+     */
     ngl::Vec4 m_velocity;
+    /**
+     * @brief Current heading of the agent. It often points the same direction
+     * than the velocity, but this does not have to happen always
+     */
     ngl::Vec4 m_heading;
+    /**
+     * @brief Maximum speed this agent can move with
+     */
     float m_maxSpeed;
+    /**
+     * @brief Current transformation of the agent. This includes translation
+     * rotation and scale
+     */
     ngl::Transformation m_transformation;
+    /**
+     * @brief Transformation of the agent in the previous tick
+     */
     ngl::Transformation m_previousTransform;
+    /**
+     * @brief State of the agent. Information needed for the brain in order
+     * to take decisions
+     */
     std::string m_state;
+    /**
+     * @brief Name of the brain, which correspondes with the lua function
+     * that encapsulates the "intelligent" routine
+     */
     std::string m_brain;
+    /**
+     * @brief Vector with all the incoming messages from other agents
+     */
     std::vector<message> m_inbox;
+    /**
+     * @brief Map which stores extra attributes to provide more information
+     * to the brain
+     */
     std::map<std::string,std::string> m_attributes;
+    /**
+     * @brief Vector with the current neighbours of the agent
+     */
     std::vector<Agent*> m_neighbours;
+    /**
+     * @brief Radius of the agent in order to handle the collisions
+     */
     float m_collisionRadius;
+    /**
+     * @brief Dummy used when drawing the agent
+     */
     ngl::Obj* m_dummy;
 
 public:
@@ -92,11 +183,30 @@ public:
     ngl::Vec4 getHeading() const { return m_heading; }
     ngl::Obj* getDummy() const { return m_dummy; }
 
+    /**
+     * @brief Executes and therefore updates the state of the agent.
+     * This is where the routine of the brain is called
+     */
     void execute();
+    /**
+     * @brief Requests to apply a force on this agent
+     */
     void applyForce(ngl::Vec4 _force) {m_totalForce += _force; }
+    /**
+     * @brief Sends a message to this agent
+     */
     void sendMessage(message _message) { m_inbox.push_back(_message); }
+    /**
+     * @brief Calculates the distance with _agent
+     */
     float distance(const Agent *_agent) const;
+    /**
+     * @brief Multiply the collision radius by _scale
+     */
     void scaleCollisionRadius(float _scale) { m_collisionRadius = m_mass*_scale; }
+    /**
+     * @brief print in the standard output information about the agent
+     */
     void print() const;
 
 };

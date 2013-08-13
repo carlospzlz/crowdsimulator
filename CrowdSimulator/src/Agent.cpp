@@ -153,7 +153,7 @@ void Agent::execute()
     // This is the funny part, playing with lua
 
     // Push all the data on the stack
-    /**
+    /*
      * function: global
      * m_agentID: number
      * m_position: table
@@ -252,7 +252,7 @@ void Agent::execute()
     for(std::vector<message>::const_iterator currentMessage = m_inbox.begin();
         currentMessage!=endMessage; ++currentMessage)
     {
-        /**
+        /*
          * Each message is gonna be a table stored temporaly at Stack[10],
          * but then it will be added to the table of message at Stack[9]
          */
@@ -301,7 +301,7 @@ void Agent::execute()
     std::vector<Agent*>::const_iterator endAgent = m_neighbours.end();
     for(std::vector<Agent*>::const_iterator currentAgent = m_neighbours.begin(); currentAgent!=endAgent; ++currentAgent)
     {
-        /**
+        /*
          * Each agent is gonna be a table stored temporaly at Stack[11],
          * but then it will be added to the table of neightbours at Stack[10]
          */
@@ -413,7 +413,7 @@ void Agent::execute()
               */
 
     // Returned values
-    /**
+    /*
      * force: table
      * heading: table
      * strength: number
@@ -508,7 +508,7 @@ void Agent::execute()
         m_velocity = m_velocity/speed * m_maxSpeed;
     }
 
-    /**
+    /*
      * CALCULATE NEW ROTATION
      * It is calculated just in Y, for other specific rotations
      * it should handled by the behaviour with the heading

@@ -1,7 +1,6 @@
 #include "CrowdEngine.h"
 
 
-const float CrowdEngine::s_initStride = 1;
 std::set<std::string> CrowdEngine::s_loadedBrains;
 lua_State* CrowdEngine::s_luaState;
 
@@ -74,54 +73,6 @@ void CrowdEngine::addAgents(const std::vector<Agent*> &_agents)
     }
 }
 
-void CrowdEngine::createRandomFlock(int _rows, int _columns, ngl::Vec2 _position, std::string _flock, float _maxStrength, std::string _army)
-{
-    if (_rows<=0 || _columns<=0)
-    {
-        std::cout << "CrowdEngine: ERROR: Impossible to create flock "<<_rows << "x" << _columns << std::endl;
-        return;
-    }
-
-    if (s_loadedBrains.empty())
-    {
-        std::cout << "CrowdEngine: ERROR: Impossible to create flock: No brains loaded" << std::endl;
-        return;
-    }
-
-    Agent* myAgent;
-    float startingX = _position.m_x - (_columns-1)/2.0 * s_initStride;
-    float startingZ = _position.m_y - (_rows-1)/2.0 * s_initStride;
-
-    ngl::Vec3 agentPosition;
-    std::string brain;
-    std::set<std::string>::const_iterator firstBrain;
-    std::vector<Agent*> flockAgents;
-
-    std::cout << "CrowdEngine: Creating flock " << _flock << " " << _rows << "x"
-              << _columns <<" (" << _rows*_columns << " agents)" << std::endl;
-
-    for (int i=0; i<_columns; ++i)
-        for (int j=0; j<_rows; ++j)
-        {
-            agentPosition.m_x = startingX+i*s_initStride;
-            agentPosition.m_y = 0;
-            agentPosition.m_z = startingZ+j*s_initStride;
-
-            firstBrain = s_loadedBrains.begin();
-            std::advance(firstBrain,rand() % s_loadedBrains.size());
-            brain = *firstBrain;
-
-            myAgent = new Agent(agentPosition,_flock,brain);
-            myAgent->addAttribute("army",_army);
-            myAgent->setMaxStrength(_maxStrength);
-
-            m_agents.push_back(myAgent);
-            flockAgents.push_back(myAgent);
-        }
-
-    m_cellPartition->addAgents(flockAgents);
-}
-
 void CrowdEngine::printAgents()
 {
     std::vector<Agent*>::iterator endAgent = m_agents.end();
@@ -129,7 +80,6 @@ void CrowdEngine::printAgents()
     {
         (*currentAgent)->print();
     }
-
 }
 
 void CrowdEngine::update()
@@ -195,13 +145,7 @@ void CrowdEngine::restart()
     std::vector<Agent*>::iterator currentAgent;
     for(currentAgent = m_agents.begin(); currentAgent!=endAgent; ++currentAgent)
     {
-        /**
-         * One bug here:
-         * memory corruption for double delete ¿?
-         * GOT IT
-         * When loading agents from more than one file, the vector wasn't cleared,
-         * therefore some agents were added twice
-         */
+        //clear the vector...
         delete *currentAgent;
     }
     m_agents.clear();

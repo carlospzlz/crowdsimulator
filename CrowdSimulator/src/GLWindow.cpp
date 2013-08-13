@@ -11,7 +11,7 @@
 
 const QString GLWindow::s_dummiesPath = "dummies";
 const QString GLWindow::s_brainsPath = "brains";
-const QString GLWindow::s_crowdsPath = "crowds";
+const QString GLWindow::s_agentsPath = "crowds";
 const float GLWindow::s_rotationIncrement = 0.5;
 const float GLWindow::s_translationIncrement = 0.05;
 const float GLWindow::s_zoomIncrement = 1;
@@ -924,7 +924,7 @@ void GLWindow::loadBrains()
 
 void GLWindow::loadAgents()
 {
-    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Load Agents"), s_crowdsPath, tr("Text Files (*.txt)"));
+    QStringList filenames = QFileDialog::getOpenFileNames(this, tr("Load Agents"), s_agentsPath, tr("Text Files (*.txt)"));
     std::vector<Agent*> agents;
 
     QStringList::iterator filenameEnd = filenames.end();
@@ -934,11 +934,6 @@ void GLWindow::loadAgents()
         if ( m_parser->loadAgents((*currentFilename).toStdString(), m_dummies, agents) )
         {
             m_crowdEngine.addAgents(agents);
-            //YOU FORGOT THIS LINE, DUMBASS
-            /**
-             * Without clearing the agents, if you load more than one file at the same time
-             * you add agents twice, provoking a memory corruption when deleting them twice
-             */
             agents.clear();
             m_crowdEngine.scaleCollisionRadius(m_collisionRadiusScale);
         }
