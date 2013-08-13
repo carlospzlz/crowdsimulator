@@ -44,14 +44,14 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="1" column="1">
-            <widget class="QPushButton" name="s_loadCrowdButton">
+            <widget class="QPushButton" name="s_loadAgentsButton">
              <property name="text">
-              <string>Load Crowds</string>
+              <string>Load Agents</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QPushButton" name="s_loadBrainButton">
+            <widget class="QPushButton" name="s_loadBrainsButton">
              <property name="text">
               <string>Load Brains</string>
              </property>

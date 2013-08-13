@@ -19,8 +19,8 @@ MainWindow::MainWindow(QWidget *_parent): QMainWindow(_parent), m_ui(new Ui::Mai
     // terrain
 
     // crowd
-    connect(m_ui->s_loadBrainButton,SIGNAL(clicked()),m_gl,SLOT(loadBrains()));
-    connect(m_ui->s_loadCrowdButton,SIGNAL(clicked()),m_gl,SLOT(loadCrowds()));
+    connect(m_ui->s_loadBrainsButton,SIGNAL(clicked()),m_gl,SLOT(loadBrains()));
+    connect(m_ui->s_loadAgentsButton,SIGNAL(clicked()),m_gl,SLOT(loadAgents()));
 
     // simulation
     connect(m_ui->s_drawVelocityVector,SIGNAL(toggled(bool)),m_gl,SLOT(setDrawVelocityVector(bool)));

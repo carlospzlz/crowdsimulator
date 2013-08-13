@@ -1,13 +1,13 @@
 #include "TXTParser.h"
 
-bool TXTParser::loadCrowd(std::string _filename, const std::map<std::string, ngl::Obj *> &_dummies, std::vector<Agent*> &_agents)
+bool TXTParser::loadAgents(std::string _filename, const std::map<std::string, ngl::Obj *> &_dummies, std::vector<Agent*> &_agents)
 {
 
-    std::ifstream crowdFile;
+    std::ifstream agentsFile;
 
-    crowdFile.open(_filename.c_str(),std::ifstream::in);
+    agentsFile.open(_filename.c_str(),std::ifstream::in);
 
-    if (!crowdFile.is_open())
+    if (!agentsFile.is_open())
     {
         std::cout << "TXTParser: ERROR: " << _filename << " not found" << std::endl;
         return false;
@@ -23,9 +23,9 @@ bool TXTParser::loadCrowd(std::string _filename, const std::map<std::string, ngl
     std::string attributeKey, attributeValue;
     int numberOfAttributes;
     int lineNumber = 1;
-    while (!crowdFile.eof())
+    while (!agentsFile.eof())
     {
-        std::getline(crowdFile,lineBuffer,'\n');
+        std::getline(agentsFile,lineBuffer,'\n');
         //std::cout << lineNumber << " " << lineBuffer << std::endl;
         if (lineBuffer.size()!=0)
         {
@@ -89,7 +89,7 @@ bool TXTParser::loadCrowd(std::string _filename, const std::map<std::string, ngl
                         std::cout << "TXTParser: Dummy " << dummyName << " not found" << std::endl;
 
                     //NUMBER OF ATTRIBUTES
-                    std::getline(crowdFile,lineBuffer,'\n');
+                    std::getline(agentsFile,lineBuffer,'\n');
                     ++lineNumber;
                     numberOfAttributes = atoi(lineBuffer.c_str());
 
@@ -97,7 +97,7 @@ bool TXTParser::loadCrowd(std::string _filename, const std::map<std::string, ngl
                     {
                         ++lineNumber;
 
-                        std::getline(crowdFile,lineBuffer,'\n');
+                        std::getline(agentsFile,lineBuffer,'\n');
                         //std::cout << lineNumber << " " << lineBuffer << std::endl;
                         boost::tokenizer<boost::char_separator<char> > attributeTokens(lineBuffer,sep);
 
@@ -124,7 +124,7 @@ bool TXTParser::loadCrowd(std::string _filename, const std::map<std::string, ngl
         ++lineNumber;
     }
 
-    crowdFile.close();
+    agentsFile.close();
 
     return true;
 
