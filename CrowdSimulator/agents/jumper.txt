@@ -1,0 +1,8 @@
+# posX posY posZ mass maxStrength maxSpeed visionRadius state brain headX headY headZ
+# number of attributes
+# key value
+# ..
+#
+
+0 0 0 1 2 2 6 jumperOnGround jumper 0 0 1 minion
+0
