@@ -1,0 +1,10 @@
+# posX posY posZ mass maxStrength maxSpeed visionRadius state brain headX headY headZ
+# number of attributes
+# key value
+# ..
+#
+
+0 0 0 0.9 1 4 10 state hero 0 0 1 neo
+1
+target yes
+

@@ -11,7 +11,7 @@
 
 const QString GLWindow::s_dummiesPath = "dummies";
 const QString GLWindow::s_brainsPath = "brains";
-const QString GLWindow::s_agentsPath = "crowds";
+const QString GLWindow::s_agentsPath = "agents";
 const float GLWindow::s_rotationIncrement = 0.5;
 const float GLWindow::s_translationIncrement = 0.05;
 const float GLWindow::s_zoomIncrement = 1;
@@ -408,7 +408,6 @@ void GLWindow::paintGL()
     {
         agent = *currentAgent;
         //agent->print();
-        std::cout << m_wireframeMode << std::endl;
 
         //TRANSFORMATION
         m_transformStack.setCurrent(agent->getTransform());
