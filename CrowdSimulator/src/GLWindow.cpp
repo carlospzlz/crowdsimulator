@@ -393,6 +393,11 @@ void GLWindow::paintGL()
         m_shader->setShaderParam4f("Colour",1,1,1,1);
         m_boundingBox->draw();
     }
+    //The bounding box change the wireframe state, so it needs to be restored
+    if (m_wireframeMode)
+        glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+    else
+        glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 
     //DRAWING AGENTS
     std::vector<Agent*>::const_iterator endAgent = m_crowdEngine.getAgentsEnd();
@@ -403,6 +408,7 @@ void GLWindow::paintGL()
     {
         agent = *currentAgent;
         //agent->print();
+        std::cout << m_wireframeMode << std::endl;
 
         //TRANSFORMATION
         m_transformStack.setCurrent(agent->getTransform());
@@ -447,10 +453,13 @@ void GLWindow::paintGL()
     m_transformStack.setScale(1,1,1);
 
     //DRAWING TEXT WITH THE FPS
+    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
     QString text = QString("%1 FPS").arg(m_fps);
     m_text->renderText(20,15,text);
     text = QString("%1 agents").arg(m_crowdEngine.getAgentsNumber());
     m_text->renderText(20,40,text);
+    if (m_wireframeMode)
+        glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 
 }
 

@@ -75,6 +75,7 @@ void Agent::print() const
     std::cout << "position = " << m_transformation.getPosition() << std::endl;
     std::cout << "mass = " << m_mass << std::endl;
     std::cout << "strength = " << m_strength << "/" << m_maxStrength << std::endl;
+    std::cout << "force = " << m_totalForce << std::endl;
     std::cout << "velocity =" << m_velocity << "("<< m_velocity.length() << ")" << std::endl;
     std::cout << "maxSpeed = " << m_maxSpeed << std::endl;
     std::cout << "vision radius = " << m_visionRadius << std::endl;

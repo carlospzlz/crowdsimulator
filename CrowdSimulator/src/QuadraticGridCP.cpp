@@ -32,7 +32,7 @@ void QuadraticGridCP::updateCells(const std::vector<Agent *> &_agents)
     Agent* agent;
     std::pair<int,int> currentCell, previousCell;
 
-    // std::cout << "CellPartition: updating cells" << std::endl;
+    //std::cout << "CellPartition: updating cells" << std::endl;
 
     std::vector<Agent*>::const_iterator endAgent = _agents.end();
     for(std::vector<Agent*>::const_iterator currentAgent = _agents.begin(); currentAgent!=endAgent; ++currentAgent)
@@ -72,6 +72,7 @@ void QuadraticGridCP::printCells() const
 
 void QuadraticGridCP::updateNeighbours(const std::vector<Agent *> &_agents)
 {
+
     std::set<Agent*> checkedAgents;
 
     ngl::Vec3 leftDownCornerBox, rightUpCornerBox;
@@ -185,7 +186,6 @@ void QuadraticGridCP::findNeighboursInAgents(const Agent* _agent, const std::vec
         if ( _agent != agent && _agent->distance(agent) < _agent->getVisionRadius() )
             _neighbours.push_back(agent);
     }
-
 }
 
 void QuadraticGridCP::rearrangePartition(int _cellSize, const std::vector<Agent *> &_agents)
