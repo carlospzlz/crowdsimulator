@@ -1,9 +1,0 @@
-# posX posY posZ mass maxStrength maxSpeed visionRadius state brain headX headY headZ
-# number of attributes
-# key value
-# ..
-#
-
-0 0 0 3 3 0.5 8 trollRun troll 0 0 1 troll
-1
-army army2
