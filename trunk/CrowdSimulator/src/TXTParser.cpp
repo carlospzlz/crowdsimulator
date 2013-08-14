@@ -47,6 +47,8 @@ bool TXTParser::loadAgents(std::string _filename, const std::map<std::string, ng
                     position.m_z = boost::lexical_cast<float>(*currentToken);
                     ++currentToken;
                     agent->setPosition(position);
+                    //this line avoids duplicated agents in first add in cellPartition
+                    agent->setPreviousPos(position);
 
                     //MASS
                     agent->setMass(boost::lexical_cast<float>(*currentToken));

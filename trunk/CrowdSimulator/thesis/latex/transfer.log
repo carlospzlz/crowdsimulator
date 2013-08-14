@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  14 AUG 2013 01:55
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  14 AUG 2013 12:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -611,6 +611,14 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \ALC@tlm=\skip67
 \algorithmicindent=\skip68
 )
+(/usr/share/texmf-dist/tex/latex/oberdiek/pdflscape.sty
+Package: pdflscape 2008/08/11 v0.10 Display of landscape pages in PDF (HO)
+
+(/usr/share/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 80.
+)
 (/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip69
@@ -647,6 +655,51 @@ LaTeX Warning: Label `fig:navigation' multiply defined.
 
 
 LaTeX Warning: Label `fig:navigation' multiply defined.
+
+
+LaTeX Warning: Label `fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `fig:crowds' multiply defined.
+
+
+LaTeX Warning: Label `fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `fig:crowds' multiply defined.
+
+
+LaTeX Warning: Label `fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `fig:crowds' multiply defined.
 
 )
 \openout1 = `transfer.aux'.
@@ -1182,20 +1235,177 @@ Package pdftex.def Info: ./img/cellPartition2-eps-converted-to.pdf used on inpu
 t line 88.
 (pdftex.def)             Requested size: 156.08273pt x 156.58461pt.
  [27 <./img/cellPartition1-eps-converted-to.pdf> <./img/cellPartition2-eps-conv
-erted-to.pdf>])
-(./chap/applications_and_results.tex [28]
+erted-to.pdf>]
+Package epstopdf Info: Source file: <./img/narrowCylinder.eps>
+(epstopdf)                    date: 2013-08-14 11:52:18
+(epstopdf)                    size: 855087 bytes
+(epstopdf)             Output file: <./img/narrowCylinder-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2013-08-14 12:01:45
+(epstopdf)                    size: 328445 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/narrowCylinder-eps-c
+onverted-to.pdf ./img/narrowCylinder.eps>
+(epstopdf)             \includegraphics on input line 115.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/narrowCylinder-eps-converted-to.pdf, id=588, 1049.9225pt x 656.4525pt>
+File: ./img/narrowCylinder-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/narrowCylinder-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/narrowCylinder-eps-converted-to.pdf used on inpu
+t line 115.
+(pdftex.def)             Requested size: 209.98077pt x 131.28816pt.
+Package epstopdf Info: Source file: <./img/wideCylinder.eps>
+(epstopdf)                    date: 2013-08-14 11:58:05
+(epstopdf)                    size: 864362 bytes
+(epstopdf)             Output file: <./img/wideCylinder-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-08-14 12:01:47
+(epstopdf)                    size: 338659 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/wideCylinder-eps-con
+verted-to.pdf ./img/wideCylinder.eps>
+(epstopdf)             \includegraphics on input line 116.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/wideCylinder-eps-converted-to.pdf, id=589, 1049.9225pt x 656.4525pt>
+File: ./img/wideCylinder-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/wideCylinder-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/wideCylinder-eps-converted-to.pdf used on input 
+line 116.
+(pdftex.def)             Requested size: 209.98077pt x 131.28816pt.
+
+Overfull \hbox (17.17021pt too wide) in paragraph at lines 114--118
+ [][] 
+ []
+
+Package epstopdf Info: Source file: <./img/closeDancers.eps>
+(epstopdf)                    date: 2013-08-14 12:12:06
+(epstopdf)                    size: 497553 bytes
+(epstopdf)             Output file: <./img/closeDancers-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-08-14 12:13:45
+(epstopdf)                    size: 216304 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/closeDancers-eps-con
+verted-to.pdf ./img/closeDancers.eps>
+(epstopdf)             \includegraphics on input line 125.
+Package epstopdf Info: Output file is already uptodate.
+<./img/closeDancers-eps-converted-to.pdf, id=590, 1049.9225pt x 656.4525pt>
+File: ./img/closeDancers-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/closeDancers-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/closeDancers-eps-converted-to.pdf used on input 
+line 125.
+(pdftex.def)             Requested size: 209.98077pt x 131.28816pt.
+Package epstopdf Info: Source file: <./img/farDancers.eps>
+(epstopdf)                    date: 2013-08-14 12:05:53
+(epstopdf)                    size: 551799 bytes
+(epstopdf)             Output file: <./img/farDancers-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-08-14 12:13:43
+(epstopdf)                    size: 266271 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/farDancers-eps-conve
+rted-to.pdf ./img/farDancers.eps>
+(epstopdf)             \includegraphics on input line 126.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/farDancers-eps-converted-to.pdf, id=591, 1049.9225pt x 656.4525pt>
+File: ./img/farDancers-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/farDancers-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/farDancers-eps-converted-to.pdf used on input li
+ne 126.
+(pdftex.def)             Requested size: 209.98077pt x 131.28816pt.
+
+Overfull \hbox (17.17021pt too wide) in paragraph at lines 124--128
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Package epstopdf Info: Source file: <./img/sphereZombies.eps>
+(epstopdf)                    date: 2013-08-14 12:21:21
+(epstopdf)                    size: 1426776 bytes
+(epstopdf)             Output file: <./img/sphereZombies-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-08-14 12:23:37
+(epstopdf)                    size: 200271 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/sphereZombies-eps-co
+nverted-to.pdf ./img/sphereZombies.eps>
+(epstopdf)             \includegraphics on input line 137.
+Package epstopdf Info: Output file is already uptodate.
+<./img/sphereZombies-eps-converted-to.pdf, id=592, 899.36pt x 560.0925pt>
+File: ./img/sphereZombies-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/sphereZombies-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/sphereZombies-eps-converted-to.pdf used on input
+ line 137.
+(pdftex.def)             Requested size: 206.84845pt x 128.81856pt.
+Package epstopdf Info: Source file: <./img/sphereZombiesMountain.eps>
+(epstopdf)                    date: 2013-08-14 12:19:29
+(epstopdf)                    size: 1810937 bytes
+(epstopdf)             Output file: <./img/sphereZombiesMountain-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2013-08-14 12:23:55
+(epstopdf)                    size: 316500 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/sphereZombiesMountai
+n-eps-converted-to.pdf ./img/sphereZombiesMountain.eps>
+(epstopdf)             \includegraphics on input line 138.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/sphereZombiesMountain-eps-converted-to.pdf, id=593, 900.36375pt x 560.09
+25pt>
+File: ./img/sphereZombiesMountain-eps-converted-to.pdf Graphic file (type pdf)
+ <use ./img/sphereZombiesMountain-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/sphereZombiesMountain-eps-converted-to.pdf used 
+on input line 138.
+(pdftex.def)             Requested size: 207.0793pt x 128.81856pt.
+
+Overfull \hbox (11.13641pt too wide) in paragraph at lines 136--140
+ [][] 
+ []
+
+[28 <./img/narrowCylinder-eps-converted-to.pdf> <./img/wideCylinder-eps-convert
+ed-to.pdf>]) (./chap/applications_and_results.tex [29 <./img/closeDancers-eps-c
+onverted-to.pdf> <./img/farDancers-eps-converted-to.pdf> <./img/sphereZombies-e
+ps-converted-to.pdf> <./img/sphereZombiesMountain-eps-converted-to.pdf>]
 Chapter 6.
-) (./chap/application_design_implementation.tex [29
+) (./chap/application_design_implementation.tex [30
 
 ]
 Chapter 7.
-) (./chap/conclusion.tex [30
+[31
+
+]
+Package epstopdf Info: Source file: <./img/classDiagram.eps>
+(epstopdf)                    date: 2013-08-14 11:23:38
+(epstopdf)                    size: 6742283 bytes
+(epstopdf)             Output file: <./img/classDiagram-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-08-14 11:23:47
+(epstopdf)                    size: 101934 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/classDiagram-eps-con
+verted-to.pdf ./img/classDiagram.eps>
+(epstopdf)             \includegraphics on input line 16.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/classDiagram-eps-converted-to.pdf, id=638, 3498.06876pt x 1922.18124pt>
+File: ./img/classDiagram-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/classDiagram-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/classDiagram-eps-converted-to.pdf used on input 
+line 16.
+(pdftex.def)             Requested size: 629.62521pt x 345.97769pt.
+
+Overfull \hbox (32.11734pt too wide) in paragraph at lines 16--17
+ [][] 
+ []
+
+[32
+
+ <./img/classDiagram-eps-converted-to.pdf>]) (./chap/conclusion.tex [33
 
 ]
 Chapter 8.
-[31
+[34
 
-]) (./transfer.bbl [32]
+]) (./transfer.bbl [35]
 Underfull \hbox (badness 3000) in paragraph at lines 9--14
 []\OT1/cmr/m/n/12 L. Klein-rock (2011).  `What is emer-gent be-haviour?'.  Avai
 l-able from:
@@ -1207,7 +1417,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--14
 essed
  []
 
-[33
+[36
 
 ]
 Underfull \hbox (badness 4981) in paragraph at lines 57--61
@@ -1215,9 +1425,9 @@ Underfull \hbox (badness 4981) in paragraph at lines 57--61
 le from:
  []
 
-) [34] (./chap/appendix.tex)
+) [37] (./chap/appendix.tex)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
- [35]
+ [38]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (./transfer.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
@@ -1234,10 +1444,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
  ) 
 Here is how much of TeX's memory you used:
- 9048 strings out of 493488
- 132584 string characters out of 3146892
- 220185 words of memory out of 3000000
- 11979 multiletter control sequences out of 15000+200000
+ 9125 strings out of 493488
+ 134680 string characters out of 3146892
+ 220706 words of memory out of 3000000
+ 12030 multiletter control sequences out of 15000+200000
  13410 words of font info for 51 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,16n,45p,1074b,879s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1256,10 +1466,10 @@ public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti12.pfb>
-Output written on transfer.pdf (41 pages, 1807962 bytes).
+Output written on transfer.pdf (44 pages, 3563698 bytes).
 PDF statistics:
- 706 PDF objects out of 1000 (max. 8388607)
- 602 compressed objects within 7 object streams
- 157 named destinations out of 1000 (max. 500000)
- 496 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 759 PDF objects out of 1000 (max. 8388607)
+ 638 compressed objects within 7 object streams
+ 170 named destinations out of 1000 (max. 500000)
+ 531 words of extra memory for PDF output out of 10000 (max. 10000000)
 

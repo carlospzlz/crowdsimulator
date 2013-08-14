@@ -158,6 +158,7 @@ public:
     void setHeading(ngl::Vec4 _heading);
     void setVisionRadius(float _visionRadius) { m_visionRadius = _visionRadius; }
     void setPosition(ngl::Vec4 _pos) { m_transformation.setPosition(_pos); }
+    void setPreviousPos(ngl::Vec4 _pos) { m_previousTransform.setPosition(_pos); }
     void setVelocity(ngl::Vec4 _vel) { m_velocity = _vel; }
     void setNeighbours(const std::vector<Agent*> &_neighbours) { m_neighbours = _neighbours; }
     void setBrain(std::string _brain) { m_brain = _brain; }
