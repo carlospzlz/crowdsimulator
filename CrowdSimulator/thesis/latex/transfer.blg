@@ -5,45 +5,45 @@ The style file: ref/harvard.bst
 Database file #1: ref/master.bib
 `editor' is a missing field, not a string, for entry buckland
 while executing---line 2471 of file ref/harvard.bst
-You've used 8 entries,
+You've used 10 entries,
             2330 wiz_defined-function locations,
-            567 strings with 5269 characters,
-and the built_in function-call counts, 3704 in all, are:
-= -- 403
-> -- 146
-< -- 14
-+ -- 41
-- -- 41
-* -- 277
-:= -- 637
-add.period$ -- 27
-call.type$ -- 8
-change.case$ -- 49
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 158
-empty$ -- 243
-format.name$ -- 65
-if$ -- 763
+            586 strings with 5871 characters,
+and the built_in function-call counts, 4760 in all, are:
+= -- 521
+> -- 180
+< -- 19
++ -- 54
+- -- 50
+* -- 360
+:= -- 804
+add.period$ -- 34
+call.type$ -- 10
+change.case$ -- 60
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 204
+empty$ -- 317
+format.name$ -- 82
+if$ -- 986
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 43
-num.names$ -- 40
-pop$ -- 55
+missing$ -- 9
+newline$ -- 53
+num.names$ -- 50
+pop$ -- 66
 preamble$ -- 1
-purify$ -- 57
+purify$ -- 70
 quote$ -- 0
-skip$ -- 131
+skip$ -- 170
 stack$ -- 0
-substring$ -- 198
-swap$ -- 39
-text.length$ -- 2
+substring$ -- 275
+swap$ -- 53
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 92
+type$ -- 116
 warning$ -- 0
-while$ -- 33
+while$ -- 44
 width$ -- 0
-write$ -- 117
+write$ -- 148
 (There was 1 error message)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  13 AUG 2013 12:55
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2013.5.29)  14 AUG 2013 01:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -584,12 +584,39 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 )
+(/usr/share/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count127
+\float@exts=\toks26
+\float@box=\box33
+\@float@everytoks=\toks27
+\@floatcapt=\box34
+)
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\@float@every@algorithm=\toks28
+\c@algorithm=\count128
+)
+(/usr/share/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+\c@ALC@unique=\count129
+\c@ALC@line=\count130
+\c@ALC@rem=\count131
+\c@ALC@depth=\count132
+\ALC@tlm=\skip67
+\algorithmicindent=\skip68
+)
 (/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip67
-\bibsep=\skip68
+\bibhang=\skip69
+\bibsep=\skip70
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count127
+\c@NAT@ctr=\count133
 )) (./transfer.aux
 
 LaTeX Warning: Label `fig:massive' multiply defined.
@@ -616,7 +643,10 @@ LaTeX Warning: Label `sub@fig:f2' multiply defined.
 LaTeX Warning: Label `fig:crowds' multiply defined.
 
 
-LaTeX Warning: Label `chap:technical_background' multiply defined.
+LaTeX Warning: Label `fig:navigation' multiply defined.
+
+
+LaTeX Warning: Label `fig:navigation' multiply defined.
 
 )
 \openout1 = `transfer.aux'.
@@ -637,6 +667,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
 LaTeX Font Info:    ... okay on input line 20.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
  (/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
@@ -644,7 +675,7 @@ Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
 )
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box33
+\AtBeginShipoutBox=\box35
 Package hyperref Info: Link coloring OFF on input line 20.
 
 (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -653,7 +684,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count128
+\c@section@level=\count134
 )
 LaTeX Info: Redefining \ref on input line 20.
 LaTeX Info: Redefining \pageref on input line 20.
@@ -666,17 +697,17 @@ LaTeX Info: Redefining \nameref on input line 20.
 
 (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count129
+\scratchcounter=\count135
 \scratchdimen=\dimen132
-\scratchbox=\box34
-\nofMPsegments=\count130
-\nofMParguments=\count131
-\everyMPshowfont=\toks26
-\MPscratchCnt=\count132
+\scratchbox=\box36
+\nofMPsegments=\count136
+\nofMParguments=\count137
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count138
 \MPscratchDim=\dimen133
-\MPnumerator=\count133
-\makeMPintoPDFobject=\count134
-\everyMPtoPDFconversion=\toks27
+\MPnumerator=\count139
+\makeMPintoPDFobject=\count140
+\everyMPtoPDFconversion=\toks30
 ) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -704,7 +735,7 @@ to.pdf img/bu_logo.eps>
 (epstopdf)             \includegraphics on input line 23.
 Package epstopdf Info: Output file is already uptodate.
 
-<img/bu_logo-eps-converted-to.pdf, id=183, 268.00125pt x 191.71625pt>
+<img/bu_logo-eps-converted-to.pdf, id=204, 268.00125pt x 191.71625pt>
 File: img/bu_logo-eps-converted-to.pdf Graphic file (type pdf)
 
 <use img/bu_logo-eps-converted-to.pdf>
@@ -726,12 +757,12 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 1.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-])
+] [2])
 \tf@toc=\write5
 \openout5 = `transfer.toc'.
 
- [2]
-(./chap/abstract.tex) [3] (./format/acknowledgements.tex) [4]
+ [3]
+(./chap/abstract.tex) [4] (./format/acknowledgements.tex) [5]
 (./chap/introduction.tex
 Chapter 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
@@ -753,7 +784,7 @@ erted-to.pdf ./img/crowd_train.eps>
 (epstopdf)             \includegraphics on input line 23.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/crowd_train-eps-converted-to.pdf, id=260, 622.325pt x 389.455pt>
+<./img/crowd_train-eps-converted-to.pdf, id=290, 622.325pt x 389.455pt>
 File: ./img/crowd_train-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/crowd_train-eps-converted-to.pdf>
@@ -771,7 +802,7 @@ Package epstopdf Info: Source file: <./img/droids.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/droids-eps-converted-to.pdf, id=261, 1278.7775pt x 544.0325pt>
+<./img/droids-eps-converted-to.pdf, id=291, 1278.7775pt x 544.0325pt>
 File: ./img/droids-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/droids-eps-converted-to.pdf>
@@ -789,7 +820,7 @@ d-to.pdf ./img/zombies.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/zombies-eps-converted-to.pdf, id=262, 1606.0pt x 908.39375pt>
+<./img/zombies-eps-converted-to.pdf, id=292, 1606.0pt x 908.39375pt>
 File: ./img/zombies-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/zombies-eps-converted-to.pdf>
@@ -807,7 +838,7 @@ erted-to.pdf ./img/battlefield.eps>
 (epstopdf)             \includegraphics on input line 26.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/battlefield-eps-converted-to.pdf, id=263, 154.5775pt x 65.24374pt>
+<./img/battlefield-eps-converted-to.pdf, id=293, 154.5775pt x 65.24374pt>
 File: ./img/battlefield-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/battlefield-eps-converted-to.pdf>
@@ -825,7 +856,7 @@ ed-to.pdf ./img/ballroom.eps>
 (epstopdf)             \includegraphics on input line 27.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/ballroom-eps-converted-to.pdf, id=264, 501.875pt x 333.245pt>
+<./img/ballroom-eps-converted-to.pdf, id=294, 501.875pt x 333.245pt>
 File: ./img/ballroom-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/ballroom-eps-converted-to.pdf>
@@ -843,7 +874,7 @@ Package epstopdf Info: Source file: <./img/matrix.eps>
 (epstopdf)             \includegraphics on input line 28.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/matrix-eps-converted-to.pdf, id=265, 433.62pt x 182.6825pt>
+<./img/matrix-eps-converted-to.pdf, id=295, 433.62pt x 182.6825pt>
 File: ./img/matrix-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/matrix-eps-converted-to.pdf>
@@ -875,7 +906,7 @@ s-converted-to.pdf ./img/navigation_fields.eps>
 (epstopdf)             \includegraphics on input line 18.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/navigation_fields-eps-converted-to.pdf, id=313, 989.6975pt x 374.39874pt
+<./img/navigation_fields-eps-converted-to.pdf, id=343, 989.6975pt x 374.39874pt
 >
 File: ./img/navigation_fields-eps-converted-to.pdf Graphic file (type pdf)
  <use ./img/navigation_fields-eps-converted-to.pdf>
@@ -902,7 +933,7 @@ s-converted-to.pdf ./img/reynolds_flocking.eps>
 (epstopdf)             \includegraphics on input line 39.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/reynolds_flocking-eps-converted-to.pdf, id=341, 542.025pt x 180.675pt>
+<./img/reynolds_flocking-eps-converted-to.pdf, id=370, 542.025pt x 180.675pt>
 File: ./img/reynolds_flocking-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/reynolds_flocking-eps-converted-to.pdf>
@@ -921,7 +952,7 @@ rted-to.pdf ./img/rohan_army.eps>
 (epstopdf)             \includegraphics on input line 54.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/rohan_army-eps-converted-to.pdf, id=359, 708.6475pt x 304.13625pt>
+<./img/rohan_army-eps-converted-to.pdf, id=389, 708.6475pt x 304.13625pt>
 File: ./img/rohan_army-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/rohan_army-eps-converted-to.pdf>
@@ -945,7 +976,7 @@ ed-to.pdf ./img/cohesion.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/cohesion-eps-converted-to.pdf, id=397, 217.81375pt x 145.54375pt>
+<./img/cohesion-eps-converted-to.pdf, id=426, 217.81375pt x 145.54375pt>
 File: ./img/cohesion-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/cohesion-eps-converted-to.pdf>
@@ -963,7 +994,7 @@ rted-to.pdf ./img/separation.eps>
 (epstopdf)             \includegraphics on input line 74.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/separation-eps-converted-to.pdf, id=398, 217.81375pt x 145.54375pt>
+<./img/separation-eps-converted-to.pdf, id=427, 217.81375pt x 145.54375pt>
 File: ./img/separation-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/separation-eps-converted-to.pdf>
@@ -981,7 +1012,7 @@ ted-to.pdf ./img/alignment.eps>
 (epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/alignment-eps-converted-to.pdf, id=399, 217.81375pt x 145.54375pt>
+<./img/alignment-eps-converted-to.pdf, id=428, 217.81375pt x 145.54375pt>
 File: ./img/alignment-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/alignment-eps-converted-to.pdf>
@@ -1020,7 +1051,7 @@ Package epstopdf Info: Source file: <./img/fsm.eps>
 .pdf ./img/fsm.eps>
 (epstopdf)             \includegraphics on input line 138.
 Package epstopdf Info: Output file is already uptodate.
- <./img/fsm-eps-converted-to.pdf, id=427, 219.82124pt x 233.87375pt>
+ <./img/fsm-eps-converted-to.pdf, id=457, 219.82124pt x 233.87375pt>
 File: ./img/fsm-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/fsm-eps-converted-to.pdf>
@@ -1044,7 +1075,7 @@ to.pdf ./img/agent.eps>
 (epstopdf)             \includegraphics on input line 43.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/agent-eps-converted-to.pdf, id=451, 1060.96375pt x 655.44875pt>
+<./img/agent-eps-converted-to.pdf, id=481, 1060.96375pt x 655.44875pt>
 File: ./img/agent-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/agent-eps-converted-to.pdf>
@@ -1063,7 +1094,7 @@ Package epstopdf Info: Source file: <./img/seek_01.eps>
 d-to.pdf ./img/seek_01.eps>
 (epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
- <./img/seek_01-eps-converted-to.pdf, id=481, 240.9pt x 160.6pt>
+ <./img/seek_01-eps-converted-to.pdf, id=510, 240.9pt x 160.6pt>
 File: ./img/seek_01-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/seek_01-eps-converted-to.pdf>
@@ -1081,7 +1112,7 @@ d-to.pdf ./img/seek_02.eps>
 (epstopdf)             \includegraphics on input line 112.
 Package epstopdf Info: Output file is already uptodate.
 
-<./img/seek_02-eps-converted-to.pdf, id=482, 275.0275pt x 184.69pt>
+<./img/seek_02-eps-converted-to.pdf, id=511, 275.0275pt x 184.69pt>
 File: ./img/seek_02-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ./img/seek_02-eps-converted-to.pdf>
@@ -1100,25 +1131,71 @@ n input line 132.
 ) (./chap/crowd_engine.tex [23 <./img/seek_01-eps-converted-to.pdf> <./img/seek
 _02-eps-converted-to.pdf>]
 Chapter 5.
-) (./chap/applications_and_results.tex [24
+[24
 
 ]
-Overfull \vbox (88.8597pt too high) has occurred while \output is active []
+Overfull \hbox (8.6007pt too wide) in paragraph at lines 58--59
+[] []$\OML/cmm/m/it/12 neighbours\OT1/cmr/m/n/12 2 = \OML/cmm/m/it/12 findNeigh
+boursInAgents\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 agent\OT1/cmr/m/n/12 2\OML/cmm/m
+/it/12 ; r\OT1/cmr/m/n/12 2\OML/cmm/m/it/12 ; agentsInCells\OT1/cmr/m/n/12 )$
+ []
 
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 72.
+[25] [26]
+Package epstopdf Info: Source file: <./img/cellPartition1.eps>
+(epstopdf)                    date: 2013-08-13 23:02:49
+(epstopdf)                    size: 6375 bytes
+(epstopdf)             Output file: <./img/cellPartition1-eps-converted-to.pdf>
 
-[25]
+(epstopdf)                    date: 2013-08-13 23:26:02
+(epstopdf)                    size: 4208 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/cellPartition1-eps-c
+onverted-to.pdf ./img/cellPartition1.eps>
+(epstopdf)             \includegraphics on input line 79.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/cellPartition1-eps-converted-to.pdf, id=573, 312.16624pt x 313.17pt>
+File: ./img/cellPartition1-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/cellPartition1-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/cellPartition1-eps-converted-to.pdf used on inpu
+t line 79.
+(pdftex.def)             Requested size: 156.08273pt x 156.58461pt.
+Package epstopdf Info: Source file: <./img/cellPartition2.eps>
+(epstopdf)                    date: 2013-08-13 23:24:59
+(epstopdf)                    size: 6669 bytes
+(epstopdf)             Output file: <./img/cellPartition2-eps-converted-to.pdf>
+
+(epstopdf)                    date: 2013-08-13 23:26:03
+(epstopdf)                    size: 4311 bytes
+(epstopdf)             Command: <repstopdf --outfile=./img/cellPartition2-eps-c
+onverted-to.pdf ./img/cellPartition2.eps>
+(epstopdf)             \includegraphics on input line 88.
+Package epstopdf Info: Output file is already uptodate.
+
+<./img/cellPartition2-eps-converted-to.pdf, id=576, 312.16624pt x 313.17pt>
+File: ./img/cellPartition2-eps-converted-to.pdf Graphic file (type pdf)
+
+<use ./img/cellPartition2-eps-converted-to.pdf>
+Package pdftex.def Info: ./img/cellPartition2-eps-converted-to.pdf used on inpu
+t line 88.
+(pdftex.def)             Requested size: 156.08273pt x 156.58461pt.
+ [27 <./img/cellPartition1-eps-converted-to.pdf> <./img/cellPartition2-eps-conv
+erted-to.pdf>])
+(./chap/applications_and_results.tex [28]
 Chapter 6.
-) (./chap/application_design_implementation.tex [26
+) (./chap/application_design_implementation.tex [29
 
 ]
 Chapter 7.
-) (./chap/conclusion.tex [27
+) (./chap/conclusion.tex [30
 
 ]
 Chapter 8.
-[28
+[31
 
-]) (./transfer.bbl [29]
+]) (./transfer.bbl [32]
 Underfull \hbox (badness 3000) in paragraph at lines 9--14
 []\OT1/cmr/m/n/12 L. Klein-rock (2011).  `What is emer-gent be-haviour?'.  Avai
 l-able from:
@@ -1130,23 +1207,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--14
 essed
  []
 
+[33
 
-Underfull \hbox (badness 4981) in paragraph at lines 41--45
+]
+Underfull \hbox (badness 4981) in paragraph at lines 57--61
 []\OT1/cmr/m/n/12 C. W. Reynolds (1999).  `Individual-Based Mod-els'.  Avail-ab
 le from:
  []
 
-) [30
-
-] (./chap/appendix.tex)
+) [34] (./chap/appendix.tex)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
- [31]
+ [35]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (./transfer.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
 Package rerunfilecheck Info: File `transfer.out' has not changed.
-(rerunfilecheck)             Checksum: A2D141F47EB6836BC21FF66D112D6780;2863.
+(rerunfilecheck)             Checksum: 6DB32B2CAA186BEF95AF67A392499005;3178.
 
 
 LaTeX Warning: There were undefined references.
@@ -1157,13 +1234,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
  ) 
 Here is how much of TeX's memory you used:
- 8712 strings out of 493488
- 128121 string characters out of 3146892
- 212772 words of memory out of 3000000
- 11694 multiletter control sequences out of 15000+200000
+ 9048 strings out of 493488
+ 132584 string characters out of 3146892
+ 220185 words of memory out of 3000000
+ 11979 multiletter control sequences out of 15000+200000
  13410 words of font info for 51 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,16n,45p,1074b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,45p,1074b,879s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1179,10 +1256,10 @@ public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts
 sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmti12.pfb>
-Output written on transfer.pdf (36 pages, 1789947 bytes).
+Output written on transfer.pdf (41 pages, 1807962 bytes).
 PDF statistics:
- 613 PDF objects out of 1000 (max. 8388607)
- 517 compressed objects within 6 object streams
- 122 named destinations out of 1000 (max. 500000)
- 446 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 706 PDF objects out of 1000 (max. 8388607)
+ 602 compressed objects within 7 object streams
+ 157 named destinations out of 1000 (max. 500000)
+ 496 words of extra memory for PDF output out of 10000 (max. 10000000)
 

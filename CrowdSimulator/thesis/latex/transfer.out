@@ -30,16 +30,21 @@
 \BOOKMARK [1][-]{section.5.5}{Collision Detection}{chapter.5}% 30
 \BOOKMARK [2][-]{subsection.5.5.1}{Bounding Cylinder}{section.5.5}% 31
 \BOOKMARK [2][-]{subsection.5.5.2}{Bounding Sphere}{section.5.5}% 32
-\BOOKMARK [0][-]{chapter.6}{Technical Background}{}% 33
-\BOOKMARK [1][-]{section.6.1}{Physics}{chapter.6}% 34
-\BOOKMARK [1][-]{section.6.2}{Reynold's Flocking Algorithm}{chapter.6}% 35
-\BOOKMARK [1][-]{section.6.3}{Finite State Machine \(FSM\)}{chapter.6}% 36
-\BOOKMARK [0][-]{chapter.7}{Technical Background}{}% 37
-\BOOKMARK [1][-]{section.7.1}{Physics}{chapter.7}% 38
-\BOOKMARK [1][-]{section.7.2}{Reynold's Flocking Algorithm}{chapter.7}% 39
-\BOOKMARK [1][-]{section.7.3}{Finite State Machine \(FSM\)}{chapter.7}% 40
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 41
-\BOOKMARK [1][-]{section.8.1}{Summary}{chapter.8}% 42
-\BOOKMARK [1][-]{section.8.2}{Known bugs and issues}{chapter.8}% 43
-\BOOKMARK [1][-]{section.8.3}{Future work}{chapter.8}% 44
-\BOOKMARK [0][-]{section.8.3}{References}{}% 45
+\BOOKMARK [0][-]{chapter.6}{Applications and Results}{}% 33
+\BOOKMARK [1][-]{section.6.1}{Possible real production pipeline}{chapter.6}% 34
+\BOOKMARK [1][-]{section.6.2}{Test Behaviours}{chapter.6}% 35
+\BOOKMARK [2][-]{subsection.6.2.1}{Crowds}{section.6.2}% 36
+\BOOKMARK [2][-]{subsection.6.2.2}{Droid Wars}{section.6.2}% 37
+\BOOKMARK [2][-]{subsection.6.2.3}{Zombie Apocalipse}{section.6.2}% 38
+\BOOKMARK [2][-]{subsection.6.2.4}{A Battlefield}{section.6.2}% 39
+\BOOKMARK [2][-]{subsection.6.2.5}{A Ballroom}{section.6.2}% 40
+\BOOKMARK [2][-]{subsection.6.2.6}{One vs Many}{section.6.2}% 41
+\BOOKMARK [2][-]{subsection.6.2.7}{Jumping Party}{section.6.2}% 42
+\BOOKMARK [0][-]{chapter.7}{Application Design and Implementation}{}% 43
+\BOOKMARK [1][-]{section.7.1}{Design}{chapter.7}% 44
+\BOOKMARK [1][-]{section.7.2}{Implementation}{chapter.7}% 45
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 46
+\BOOKMARK [1][-]{section.8.1}{Summary}{chapter.8}% 47
+\BOOKMARK [1][-]{section.8.2}{Drawbacks}{chapter.8}% 48
+\BOOKMARK [1][-]{section.8.3}{Future work}{chapter.8}% 49
+\BOOKMARK [0][-]{section.8.3}{References}{}% 50
