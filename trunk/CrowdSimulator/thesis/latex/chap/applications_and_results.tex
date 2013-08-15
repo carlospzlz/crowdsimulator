@@ -157,15 +157,14 @@ Firstly, we have the brain of a \emph{dancer}, which acts a passive dancer most 
 \begin{figure}[!h]
   \centering
   \begin{tabular}{c c}
-  	\subfloat[danceLeader FSM]{\includegraphics[scale=0.27]{danceLeaderFSM.eps}} &
- 	\subfloat[dancer FSM]{\includegraphics[scale=0.27]{dancerFSM.eps}} \\
+  	\subfloat[danceLeader FSM]{\includegraphics[scale=0.35]{danceLeaderFSM.eps}} &
+ 	\subfloat[dancer FSM]{\includegraphics[scale=0.35]{dancerFSM.eps}} \\
  \end{tabular}
   \caption{FSM's for A Ballroom Simulation}
 \end{figure}
 
 
-The behaviour may have two stages. First, danceLeaders try to find free dancers and then
-
+The individual behaviour here may have two stages. First, danceLeaders try to find free dancers around the room and, once they find one, a couple dancing starts. Thus, the emergent group behaviour that can be observed here is very interesting; there will be many couples dancing and swinging graciously meanwhile some others are still finding or waiting to be found.
 
 \begin{figure}[!h]
   \centering
@@ -177,7 +176,12 @@ The behaviour may have two stages. First, danceLeaders try to find free dancers 
   \label{fig:ballroomCaptures}
 \end{figure}
 
+\newpage
 \subsection{One vs Many}
+
+In this scenario, there is one agent who has to avoid many other agents that try to reach him. Combining forces which keep him anchored to the centre and which attacks to the incoming enemies this brain was written. If this agent, feels surrounded, he uses a super-attack to get rid of many enemies at the same time.
+
+The brain of the enemies uses a simple state machine which distinguishes among the states of goingToTheMiddle, attacking and onAir. This last state allows to the enemies to know if they are in the air falling after a super attack.
 
 \begin{figure}[!h]
   \centering
@@ -190,6 +194,8 @@ The behaviour may have two stages. First, danceLeaders try to find free dancers 
 \end{figure}
 
 \subsection{Jumping Party}
+
+This is another simple behaviour which includes 2 state FSM. One of the states is onFloor, which will produce an impulse to generate a jump, and the other is onAir, which works as in the last example.
 
 \begin{figure}[!h]
   \centering

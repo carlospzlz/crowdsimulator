@@ -1,6 +1,7 @@
 \contentsline {section}{Table of contents}{i}{Doc-Start}
-\contentsline {section}{Abstract}{iv}{section*.2}
-\contentsline {section}{Acknowledgements}{v}{section*.3}
+\contentsline {section}{List of figures}{iv}{chapter*.1}
+\contentsline {section}{Abstract}{vi}{section*.3}
+\contentsline {section}{Acknowledgements}{vii}{section*.4}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {chapter}{\numberline {2}Related work}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Motion Planning for Crowd}{5}{section.2.1}
@@ -38,13 +39,13 @@
 \contentsline {subsection}{\numberline {6.2.3}Zombie Apocalypse}{37}{subsection.6.2.3}
 \contentsline {subsection}{\numberline {6.2.4}A Battlefield}{38}{subsection.6.2.4}
 \contentsline {subsection}{\numberline {6.2.5}A Ballroom}{41}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}One vs Many}{41}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}Jumping Party}{41}{subsection.6.2.7}
-\contentsline {chapter}{\numberline {7}Application Design and Implementation}{43}{chapter.7}
-\contentsline {section}{\numberline {7.1}Design}{43}{section.7.1}
-\contentsline {section}{\numberline {7.2}Implementation}{45}{section.7.2}
-\contentsline {chapter}{\numberline {8}Conclusion}{46}{chapter.8}
-\contentsline {section}{\numberline {8.1}Summary}{46}{section.8.1}
-\contentsline {section}{\numberline {8.2}Drawbacks}{46}{section.8.2}
-\contentsline {section}{\numberline {8.3}Future work}{47}{section.8.3}
-\contentsline {chapter}{References}{47}{section.8.3}
+\contentsline {subsection}{\numberline {6.2.6}One vs Many}{42}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Jumping Party}{43}{subsection.6.2.7}
+\contentsline {chapter}{\numberline {7}Application Design and Implementation}{44}{chapter.7}
+\contentsline {section}{\numberline {7.1}Design}{44}{section.7.1}
+\contentsline {section}{\numberline {7.2}Implementation}{46}{section.7.2}
+\contentsline {chapter}{\numberline {8}Conclusion}{47}{chapter.8}
+\contentsline {section}{\numberline {8.1}Summary}{47}{section.8.1}
+\contentsline {section}{\numberline {8.2}Drawbacks}{47}{section.8.2}
+\contentsline {section}{\numberline {8.3}Future work}{48}{section.8.3}
+\contentsline {chapter}{References}{48}{section.8.3}
