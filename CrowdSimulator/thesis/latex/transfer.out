@@ -1,50 +1,51 @@
 \BOOKMARK [1][-]{Doc-Start}{Table of contents}{}% 1
-\BOOKMARK [1][-]{section*.2}{Abstract}{}% 2
-\BOOKMARK [1][-]{section*.3}{Acknowledgements}{}% 3
-\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 4
-\BOOKMARK [0][-]{chapter.2}{Related work}{}% 5
-\BOOKMARK [1][-]{section.2.1}{Motion Planning for Crowd}{chapter.2}% 6
-\BOOKMARK [1][-]{section.2.2}{Crowd Motion Simulation}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.3}{MASSIVE Software}{chapter.2}% 8
-\BOOKMARK [0][-]{chapter.3}{Technical Background}{}% 9
-\BOOKMARK [1][-]{section.3.1}{Physics}{chapter.3}% 10
-\BOOKMARK [1][-]{section.3.2}{Reynold's Flocking Algorithm}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.3}{Finite State Machine \(FSM\)}{chapter.3}% 12
-\BOOKMARK [0][-]{chapter.4}{Agent-Based Model}{}% 13
-\BOOKMARK [1][-]{section.4.1}{Agent Body}{chapter.4}% 14
-\BOOKMARK [2][-]{subsection.4.1.1}{Physical Properties}{section.4.1}% 15
-\BOOKMARK [1][-]{section.4.2}{Agent Brain}{chapter.4}% 16
-\BOOKMARK [2][-]{subsection.4.2.1}{Capacity of Decision}{section.4.2}% 17
-\BOOKMARK [2][-]{subsection.4.2.2}{The Illusion of Intelligence}{section.4.2}% 18
-\BOOKMARK [1][-]{section.4.3}{Interaction among agents. Message passing}{chapter.4}% 19
-\BOOKMARK [1][-]{section.4.4}{Overview of Possible Behaviours}{chapter.4}% 20
-\BOOKMARK [0][-]{chapter.5}{Crowd Engine}{}% 21
-\BOOKMARK [1][-]{section.5.1}{Modelling the World}{chapter.5}% 22
-\BOOKMARK [1][-]{section.5.2}{Handling Large Amounts of Agents}{chapter.5}% 23
-\BOOKMARK [2][-]{subsection.5.2.1}{Cell Partition}{section.5.2}% 24
-\BOOKMARK [1][-]{section.5.3}{Virtual Force Model}{chapter.5}% 25
-\BOOKMARK [2][-]{subsection.5.3.1}{Prime Mover Force}{section.5.3}% 26
-\BOOKMARK [2][-]{subsection.5.3.2}{Gravity Force}{section.5.3}% 27
-\BOOKMARK [2][-]{subsection.5.3.3}{Friction Force}{section.5.3}% 28
-\BOOKMARK [1][-]{section.5.4}{Handling Messages}{chapter.5}% 29
-\BOOKMARK [1][-]{section.5.5}{Collision Detection}{chapter.5}% 30
-\BOOKMARK [2][-]{subsection.5.5.1}{Bounding Cylinder}{section.5.5}% 31
-\BOOKMARK [2][-]{subsection.5.5.2}{Bounding Sphere}{section.5.5}% 32
-\BOOKMARK [0][-]{chapter.6}{Applications and Results}{}% 33
-\BOOKMARK [1][-]{section.6.1}{Possible real production pipeline}{chapter.6}% 34
-\BOOKMARK [1][-]{section.6.2}{Test Behaviours}{chapter.6}% 35
-\BOOKMARK [2][-]{subsection.6.2.1}{Crowds}{section.6.2}% 36
-\BOOKMARK [2][-]{subsection.6.2.2}{Droid Wars}{section.6.2}% 37
-\BOOKMARK [2][-]{subsection.6.2.3}{Zombie Apocalypse}{section.6.2}% 38
-\BOOKMARK [2][-]{subsection.6.2.4}{A Battlefield}{section.6.2}% 39
-\BOOKMARK [2][-]{subsection.6.2.5}{A Ballroom}{section.6.2}% 40
-\BOOKMARK [2][-]{subsection.6.2.6}{One vs Many}{section.6.2}% 41
-\BOOKMARK [2][-]{subsection.6.2.7}{Jumping Party}{section.6.2}% 42
-\BOOKMARK [0][-]{chapter.7}{Application Design and Implementation}{}% 43
-\BOOKMARK [1][-]{section.7.1}{Design}{chapter.7}% 44
-\BOOKMARK [1][-]{section.7.2}{Implementation}{chapter.7}% 45
-\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 46
-\BOOKMARK [1][-]{section.8.1}{Summary}{chapter.8}% 47
-\BOOKMARK [1][-]{section.8.2}{Drawbacks}{chapter.8}% 48
-\BOOKMARK [1][-]{section.8.3}{Future work}{chapter.8}% 49
-\BOOKMARK [0][-]{section.8.3}{References}{}% 50
+\BOOKMARK [1][-]{chapter*.1}{List of figures}{}% 2
+\BOOKMARK [1][-]{section*.3}{Abstract}{}% 3
+\BOOKMARK [1][-]{section*.4}{Acknowledgements}{}% 4
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 5
+\BOOKMARK [0][-]{chapter.2}{Related work}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Motion Planning for Crowd}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Crowd Motion Simulation}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{MASSIVE Software}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Technical Background}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Physics}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{Reynold's Flocking Algorithm}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.3}{Finite State Machine \(FSM\)}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{Agent-Based Model}{}% 14
+\BOOKMARK [1][-]{section.4.1}{Agent Body}{chapter.4}% 15
+\BOOKMARK [2][-]{subsection.4.1.1}{Physical Properties}{section.4.1}% 16
+\BOOKMARK [1][-]{section.4.2}{Agent Brain}{chapter.4}% 17
+\BOOKMARK [2][-]{subsection.4.2.1}{Capacity of Decision}{section.4.2}% 18
+\BOOKMARK [2][-]{subsection.4.2.2}{The Illusion of Intelligence}{section.4.2}% 19
+\BOOKMARK [1][-]{section.4.3}{Interaction among agents. Message passing}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.4}{Overview of Possible Behaviours}{chapter.4}% 21
+\BOOKMARK [0][-]{chapter.5}{Crowd Engine}{}% 22
+\BOOKMARK [1][-]{section.5.1}{Modelling the World}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Handling Large Amounts of Agents}{chapter.5}% 24
+\BOOKMARK [2][-]{subsection.5.2.1}{Cell Partition}{section.5.2}% 25
+\BOOKMARK [1][-]{section.5.3}{Virtual Force Model}{chapter.5}% 26
+\BOOKMARK [2][-]{subsection.5.3.1}{Prime Mover Force}{section.5.3}% 27
+\BOOKMARK [2][-]{subsection.5.3.2}{Gravity Force}{section.5.3}% 28
+\BOOKMARK [2][-]{subsection.5.3.3}{Friction Force}{section.5.3}% 29
+\BOOKMARK [1][-]{section.5.4}{Handling Messages}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.5}{Collision Detection}{chapter.5}% 31
+\BOOKMARK [2][-]{subsection.5.5.1}{Bounding Cylinder}{section.5.5}% 32
+\BOOKMARK [2][-]{subsection.5.5.2}{Bounding Sphere}{section.5.5}% 33
+\BOOKMARK [0][-]{chapter.6}{Applications and Results}{}% 34
+\BOOKMARK [1][-]{section.6.1}{Possible real production pipeline}{chapter.6}% 35
+\BOOKMARK [1][-]{section.6.2}{Test Behaviours}{chapter.6}% 36
+\BOOKMARK [2][-]{subsection.6.2.1}{Crowds}{section.6.2}% 37
+\BOOKMARK [2][-]{subsection.6.2.2}{Droid Wars}{section.6.2}% 38
+\BOOKMARK [2][-]{subsection.6.2.3}{Zombie Apocalypse}{section.6.2}% 39
+\BOOKMARK [2][-]{subsection.6.2.4}{A Battlefield}{section.6.2}% 40
+\BOOKMARK [2][-]{subsection.6.2.5}{A Ballroom}{section.6.2}% 41
+\BOOKMARK [2][-]{subsection.6.2.6}{One vs Many}{section.6.2}% 42
+\BOOKMARK [2][-]{subsection.6.2.7}{Jumping Party}{section.6.2}% 43
+\BOOKMARK [0][-]{chapter.7}{Application Design and Implementation}{}% 44
+\BOOKMARK [1][-]{section.7.1}{Design}{chapter.7}% 45
+\BOOKMARK [1][-]{section.7.2}{Implementation}{chapter.7}% 46
+\BOOKMARK [0][-]{chapter.8}{Conclusion}{}% 47
+\BOOKMARK [1][-]{section.8.1}{Summary}{chapter.8}% 48
+\BOOKMARK [1][-]{section.8.2}{Drawbacks}{chapter.8}% 49
+\BOOKMARK [1][-]{section.8.3}{Future work}{chapter.8}% 50
+\BOOKMARK [0][-]{section.8.3}{References}{}% 51
