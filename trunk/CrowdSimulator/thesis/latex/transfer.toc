@@ -25,26 +25,26 @@
 \contentsline {section}{\numberline {5.3}Virtual Force Model}{27}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Prime Mover Force}{28}{subsection.5.3.1}
 \contentsline {subsection}{\numberline {5.3.2}Gravity Force}{28}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Friction Force}{28}{subsection.5.3.3}
-\contentsline {section}{\numberline {5.4}Handling Messages}{28}{section.5.4}
-\contentsline {section}{\numberline {5.5}Collision Detection}{28}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Bounding Cylinder}{28}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Bounding Sphere}{29}{subsection.5.5.2}
-\contentsline {chapter}{\numberline {6}Applications and Results}{30}{chapter.6}
-\contentsline {section}{\numberline {6.1}Possible real production pipeline}{30}{section.6.1}
-\contentsline {section}{\numberline {6.2}Test Behaviours}{30}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Crowds}{30}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Droid Wars}{30}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Zombie Apocalipse}{30}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}A Battlefield}{30}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}A Ballroom}{30}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}One vs Many}{30}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}Jumping Party}{30}{subsection.6.2.7}
-\contentsline {chapter}{\numberline {7}Application Design and Implementation}{31}{chapter.7}
-\contentsline {section}{\numberline {7.1}Design}{31}{section.7.1}
-\contentsline {section}{\numberline {7.2}Implementation}{33}{section.7.2}
-\contentsline {chapter}{\numberline {8}Conclusion}{34}{chapter.8}
-\contentsline {section}{\numberline {8.1}Summary}{34}{section.8.1}
-\contentsline {section}{\numberline {8.2}Drawbacks}{34}{section.8.2}
-\contentsline {section}{\numberline {8.3}Future work}{35}{section.8.3}
-\contentsline {chapter}{References}{35}{section.8.3}
+\contentsline {subsection}{\numberline {5.3.3}Friction Force}{29}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Handling Messages}{29}{section.5.4}
+\contentsline {section}{\numberline {5.5}Collision Detection}{30}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Bounding Cylinder}{30}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Bounding Sphere}{31}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Applications and Results}{32}{chapter.6}
+\contentsline {section}{\numberline {6.1}Possible real production pipeline}{32}{section.6.1}
+\contentsline {section}{\numberline {6.2}Test Behaviours}{34}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Crowds}{34}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Droid Wars}{35}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Zombie Apocalypse}{37}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}A Battlefield}{38}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}A Ballroom}{41}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}One vs Many}{41}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Jumping Party}{41}{subsection.6.2.7}
+\contentsline {chapter}{\numberline {7}Application Design and Implementation}{43}{chapter.7}
+\contentsline {section}{\numberline {7.1}Design}{43}{section.7.1}
+\contentsline {section}{\numberline {7.2}Implementation}{45}{section.7.2}
+\contentsline {chapter}{\numberline {8}Conclusion}{46}{chapter.8}
+\contentsline {section}{\numberline {8.1}Summary}{46}{section.8.1}
+\contentsline {section}{\numberline {8.2}Drawbacks}{46}{section.8.2}
+\contentsline {section}{\numberline {8.3}Future work}{47}{section.8.3}
+\contentsline {chapter}{References}{47}{section.8.3}
