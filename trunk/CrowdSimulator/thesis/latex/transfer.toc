@@ -1,51 +1,51 @@
-\contentsline {section}{Table of contents}{i}{Doc-Start}
-\contentsline {section}{List of figures}{iv}{chapter*.1}
-\contentsline {section}{Abstract}{vi}{section*.3}
-\contentsline {section}{Acknowledgements}{vii}{section*.4}
-\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}Related work}{5}{chapter.2}
-\contentsline {section}{\numberline {2.1}Motion Planning for Crowd}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}Crowd Motion Simulation}{6}{section.2.2}
+\contentsline {section}{Table of contents}{i}{section*.1}
+\contentsline {section}{List of figures}{v}{chapter*.2}
+\contentsline {section}{Abstract}{vii}{section*.4}
+\contentsline {section}{Acknowledgements}{1}{section*.5}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {chapter}{\numberline {2}Related work}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}Motion Planning for Crowd}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Crowd Motion Simulation}{7}{section.2.2}
 \contentsline {section}{\numberline {2.3}MASSIVE Software}{8}{section.2.3}
-\contentsline {chapter}{\numberline {3}Technical Background}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}Physics}{9}{section.3.1}
-\contentsline {section}{\numberline {3.2}Reynold's Flocking Algorithm}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}Finite State Machine (FSM)}{13}{section.3.3}
-\contentsline {chapter}{\numberline {4}Agent-Based Model}{16}{chapter.4}
-\contentsline {section}{\numberline {4.1}Agent Body}{17}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Physical Properties}{17}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Agent Brain}{19}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Capacity of Decision}{20}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}The Illusion of Intelligence}{21}{subsection.4.2.2}
-\contentsline {section}{\numberline {4.3}Interaction among agents. Message passing}{21}{section.4.3}
-\contentsline {section}{\numberline {4.4}Overview of Possible Behaviours}{22}{section.4.4}
-\contentsline {chapter}{\numberline {5}Crowd Engine}{24}{chapter.5}
-\contentsline {section}{\numberline {5.1}Modelling the World}{24}{section.5.1}
-\contentsline {section}{\numberline {5.2}Handling Large Amounts of Agents}{24}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Cell Partition}{25}{subsection.5.2.1}
-\contentsline {section}{\numberline {5.3}Virtual Force Model}{27}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Prime Mover Force}{28}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Gravity Force}{28}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Friction Force}{29}{subsection.5.3.3}
-\contentsline {section}{\numberline {5.4}Handling Messages}{29}{section.5.4}
-\contentsline {section}{\numberline {5.5}Collision Detection}{30}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Bounding Cylinder}{30}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Bounding Sphere}{31}{subsection.5.5.2}
-\contentsline {chapter}{\numberline {6}Applications and Results}{32}{chapter.6}
-\contentsline {section}{\numberline {6.1}Possible real production pipeline}{32}{section.6.1}
-\contentsline {section}{\numberline {6.2}Test Behaviours}{34}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Crowds}{34}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Droid Wars}{35}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Zombie Apocalypse}{37}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}A Battlefield}{38}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}A Ballroom}{41}{subsection.6.2.5}
-\contentsline {subsection}{\numberline {6.2.6}One vs Many}{42}{subsection.6.2.6}
-\contentsline {subsection}{\numberline {6.2.7}Jumping Party}{43}{subsection.6.2.7}
-\contentsline {chapter}{\numberline {7}Application Design and Implementation}{44}{chapter.7}
-\contentsline {section}{\numberline {7.1}Design}{44}{section.7.1}
-\contentsline {section}{\numberline {7.2}Implementation}{46}{section.7.2}
-\contentsline {chapter}{\numberline {8}Conclusion}{47}{chapter.8}
-\contentsline {section}{\numberline {8.1}Summary}{47}{section.8.1}
-\contentsline {section}{\numberline {8.2}Drawbacks}{47}{section.8.2}
-\contentsline {section}{\numberline {8.3}Future work}{48}{section.8.3}
-\contentsline {chapter}{References}{48}{section.8.3}
+\contentsline {chapter}{\numberline {3}Technical Background}{10}{chapter.3}
+\contentsline {section}{\numberline {3.1}Physics}{10}{section.3.1}
+\contentsline {section}{\numberline {3.2}Reynold's Flocking Algorithm}{13}{section.3.2}
+\contentsline {section}{\numberline {3.3}Finite State Machine (FSM)}{14}{section.3.3}
+\contentsline {chapter}{\numberline {4}Agent-Based Model}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Agent Body}{18}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Physical Properties}{18}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Agent Brain}{20}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Capacity of Decision}{21}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}The Illusion of Intelligence}{22}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Interaction among agents. Message passing}{22}{section.4.3}
+\contentsline {section}{\numberline {4.4}Overview of Possible Behaviours}{23}{section.4.4}
+\contentsline {chapter}{\numberline {5}Crowd Engine}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Modelling the World}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Handling Large Amounts of Agents}{25}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Cell Partition}{26}{subsection.5.2.1}
+\contentsline {section}{\numberline {5.3}Virtual Force Model}{28}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Prime Mover Force}{29}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Gravity Force}{29}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Friction Force}{30}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Handling Messages}{30}{section.5.4}
+\contentsline {section}{\numberline {5.5}Collision Detection}{31}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Bounding Cylinder}{31}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Bounding Sphere}{32}{subsection.5.5.2}
+\contentsline {chapter}{\numberline {6}Applications and Results}{33}{chapter.6}
+\contentsline {section}{\numberline {6.1}Possible real production pipeline}{33}{section.6.1}
+\contentsline {section}{\numberline {6.2}Test Behaviours}{35}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Crowds}{35}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Droid Wars}{36}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Zombie Apocalypse}{38}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}A Battlefield}{39}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}A Ballroom}{42}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}One vs Many}{43}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Jumping Party}{44}{subsection.6.2.7}
+\contentsline {chapter}{\numberline {7}Application Design and Implementation}{45}{chapter.7}
+\contentsline {section}{\numberline {7.1}Design}{45}{section.7.1}
+\contentsline {section}{\numberline {7.2}Implementation}{47}{section.7.2}
+\contentsline {chapter}{\numberline {8}Conclusion}{48}{chapter.8}
+\contentsline {section}{\numberline {8.1}Summary}{48}{section.8.1}
+\contentsline {section}{\numberline {8.2}Drawbacks}{48}{section.8.2}
+\contentsline {section}{\numberline {8.3}Future work}{49}{section.8.3}
+\contentsline {chapter}{References}{49}{section.8.3}
