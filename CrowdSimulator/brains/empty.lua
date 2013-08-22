@@ -1,4 +1,4 @@
-function empty (agentID, position, strength, velocity, state, attributes, inbox, neighbours)
+function empty (agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 
 	force = {}
 
@@ -9,5 +9,5 @@ function empty (agentID, position, strength, velocity, state, attributes, inbox,
 	messages = {}
 
 
-	return force, strength, state, messages
+	return force, {0,0,0}, strength, state, messages
 end

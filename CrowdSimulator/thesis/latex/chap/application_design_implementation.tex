@@ -9,7 +9,7 @@
 
 \section{Design}
 
-The application based on this approach was designed employing the Object Oriented Paradigm, aiming for a scalable and flexible system. It counts with a master class called \emph{CrowdEngine} which is the heart of the application. The abstract class \emph{CrowdEngine} stores all the agents and make use of different class in charge of other functions. The \emph{CellPartition} divides the space for an efficient handling. Right now, there is an unique specialized \emph{CellPartition}, the \emph{QuadraticGridCP}, but a \emph{CubicGridCP} might be included. The abstract class \emph{PhysicsEngine} is the responsible of collisions and applying external physical forces such as gravity or friction. So far there are two \emph{PhysicsEngine}: \emph{CylinderPE} and \emph{SpherePE}. Finally, we count with an auxiliar specialized \emph{Parser} class to load agents from .txt files called \emph{TXTParser}.
+The application based on this approach was designed employing the Object Oriented Paradigm, aiming for a scalable and flexible system. It counts with a master class called \emph{CrowdEngine} which is the heart of the application. The abstract class \emph{CrowdEngine} stores all the agents and makes use of different classes in charge of other functions. The \emph{CellPartition} divides the space for an efficient handling. Currently, there is an unique specialized \emph{CellPartition}, the \emph{QuadraticGridCP}, but a \emph{CubicGridCP} might be included. The abstract class \emph{PhysicsEngine} is the responsible of collisions and applying external physical forces such as gravity or friction. So far, there are two \emph{PhysicsEngine}: \emph{CylinderPE} and \emph{SpherePE}. Finally, we count with an auxiliar specialized \emph{Parser} class to load agents from .txt files called \emph{TXTParser}.
 
 \begin{landscape}
 
@@ -23,9 +23,9 @@ The application based on this approach was designed employing the Object Oriente
 \end{landscape}
 
 \section{Implementation}
-The complete engine was implemented in the compiled language C++, employing NGL and some QT functions. Nevertheless, the brains of the agents were implemented in the scripted language Lua. In this way, it is not needed to recompile the whole application to load and run a new behaviour.
+The complete engine was implemented in the compiled language C++, employing the NGL library and some QT functions. Nevertheless, the brains of the agents were implemented in the scripted language Lua. In this way, it is not needed to recompile the whole application to load and run a new behaviour.
 
-The LuaAPI was used in order to exchange data from the state of the application to the lua state which holds the brain-functions. Lua works using a stack, so the when an agent is executed, it pushes on the stack all the information the brain needs and calls the brain-function. The brain pops the data and process it, and then it will push onto the stack all the information relative to the new tick.
+The LuaAPI was used in order to exchange data from the state of the application to the lua state which holds the brain-functions. Lua works using a stack, so when an agent is executed, it pushes on the stack all the information the brain needs and calls the brain-function. The brain pops the data and process it, and then it will push onto the stack all the information relative to the new tick. \citep{lua}
 
 One of the greatest advantages of this approach is the ability of script behaviours and test them in a quick and comfortable way. Due to this, infinite emergent behaviours can be created.
 

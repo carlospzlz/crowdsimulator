@@ -5,6 +5,12 @@ M.~Buckland (2005).
 \newblock {\em Programming Game AI by Example}.
 \newblock Wordware game developer's library. Wordware Pub.
 
+\harvarditem[Ierusalimschy \& Celes]{Ierusalimschy \& Celes}{2006}{lua}
+L.~H. Ierusalimschy, Roberto; de~Figueiredo \& W.~Celes (2006).
+\newblock `Lua 5.1 Manual Reference'.
+\newblock Available from: http://www.lua.org/manual/5.1/manual.html [Accessed
+  10.08.2013].
+
 \harvarditem[Kleinrock]{Kleinrock}{2011}{kleinrock}
 L.~Kleinrock (2011).
 \newblock `What is emergent behaviour?'.
