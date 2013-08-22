@@ -1,0 +1,6 @@
+digraph "Agent"
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="{Agent\n|- m_agentID\l- m_mass\l- m_strength\l- m_maxStrength\l- m_visionRadius\l- m_totalForce\l- m_velocity\l- m_heading\l- m_maxSpeed\l- m_transformation\land 8 more...\l- s_luaState\l- s_numberOfAgents\l- s_step\l|+ Agent()\l+ Agent()\l+ Agent()\l+ ~Agent()\l+ setMass()\l+ setMaxStrength()\l+ setMaxSpeed()\l+ setHeading()\l+ setVisionRadius()\l+ setPosition()\land 30 more...\l+ setLuaState()\l+ setStep()\l+ getStep()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+}

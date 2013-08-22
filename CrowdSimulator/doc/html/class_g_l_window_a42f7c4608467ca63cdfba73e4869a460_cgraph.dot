@@ -1,0 +1,9 @@
+digraph "GLWindow::loadBrains"
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="GLWindow::loadBrains",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 [label="CrowdEngine::loadBrain",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_crowd_engine.html#a30db10b38b7427e30f9c02701536f48c",tooltip="Brings a brain (lua function) to the memory. "];
+}

@@ -1,0 +1,24 @@
+digraph "GLWindow::loadMatricesToShader"
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="GLWindow::loadMatricesTo\lShader",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 [label="GLWindow::paintGL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403",tooltip="Render the current content of the OpenGL window. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node3 [label="GLWindow::drawCollisionCylinder",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_window.html#af9a05fbe4f0f65a57b8e4eb1cc098f93"];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node4 [label="GLWindow::drawCollisionSphere",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_window.html#acf119c86c7983aec6732e82c32d34c3a"];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node5 [label="GLWindow::drawStrength",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_window.html#ab1024c3600ebea19a55b458cfedc312d"];
+  Node5 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node6 [label="GLWindow::drawVector",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_window.html#a68b44e9cb0a9b29a220973d714adb3d5"];
+  Node6 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node7 [label="GLWindow::drawRadius",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_g_l_window.html#a779e118f6fed3fe8c878eeec6c895edb"];
+  Node7 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+}
