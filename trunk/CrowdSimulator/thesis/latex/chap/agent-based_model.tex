@@ -5,13 +5,13 @@
 \fi
 
 \chapter{Agent-Based Model}
-\label{chap:agent-based model}
+\label{chap:agent-based_model}
 
 After an introductory chapter and a background overview, this is where this document starts dealing with the particular approach studied in this thesis. The solution will be presented following a bottom-up explanation line, since the author believes that it will be clearer for the reader and is the way behaviours emerge. Thus, in this chapter the abstract model for an individual which belongs to a crowd, and which lives in the virtual world, is explained into details. This individual, which will be referred as \emph{agent} from now on, is the element that will encapsulate the intelligence of the system. Therefore, this approach is based on individual intelligent agents rather than any global mechanism, from whose interactions a group behaviour will arise. As stated before, the crowd behaviour will have as much quality as the agent behaviours have.
 
 Next Chapter will take a wider vision presenting the concept of crowd and the world which holds the complete simulation.
 
-``An agent autonomous agent is a system situated within and a part of an environment that senses that environment and acts on it, over time, in pursuit of its own agenda and so as to effect what it senses in the future'' \cite{buckland}
+``An autonomous agent is a system situated within and a part of an environment that senses that environment and acts on it, over time, in pursuit of its own agenda and so as to effect what it senses in the future'' \citep{buckland}
 
 Since the old Greece, some philosophers argued about a spiritual division between soul and body, other scientists consider the ability of thinking something that escapes the bounds of the physical body. Without going such further, this thesis presents an abstract agent model divided in two parts: a body and a brain.
 
@@ -26,11 +26,11 @@ This part is the one which is materially in the world, and there is no intellige
 \item{{\bf Mass.} The mass of an agent determines how much acceleration a force produces on it.
 Taking the assumption that agents have comparable densities, it is also employed to visualize their size}
 
-\item{{\bf Strength.} This will influence in the \emph{prime mover force}, which is the force an agent applies on itself to move in the space. Therefore, having agents with the same mass, the strong ones will have the ability of opposing to external forces easily or to produce more self-acceleration, changing their velocity faster. The strength might vary if, for example, the agent gets tired or receives any sort of damage.}
+\item{{\bf Strength.} This will influence in the \emph{prime mover force}, which is the force an agent applies on itself to move in the space. Therefore, having agents with the same mass, the strong ones will have the ability of opposing to external forces easily and to produce more self-acceleration, changing their velocity faster. The strength might vary if, for example, the agent gets tired or receives any sort of damage.}
 
 \item{{\bf Maximum Strength.} This is the amount of strength that an agent has when it is fully recovered.}
 
-\item{{\bf Velocity.} This is the current velocity that an agent possesses and, contrary to the strength, this attribute has both magnitude and direction. This is the rate of change of the agent's location; thus, it is used to obtain the next position. It is calculated with the acceleration that the total force produce on the agent.}
+\item{{\bf Velocity.} This is the current velocity that an agent possesses and, contrary to the strength, this attribute has both magnitude and direction. This is the rate of change of the agent's location; thus, it is used to obtain the next position. It is calculated with the acceleration that the total force produces on the agent.}
 
 \item{{\bf Maximum Speed.} This is the higher punctual speed that an agent can move in the world with. Do not confuse this with how fast an agent can change of physical state, which is related with forces and mass (acceleration). Consider the next example: a cheetah can change from 0 to 100 km/h in a matter of seconds (high acceleration); on the other hand, a high-speed train, which needs a lot of force (strength with direction) to move such a big mass, has much smaller acceleration, but it can travel at 200 km/h (high maximum speed).}
 
@@ -45,16 +45,16 @@ Taking the assumption that agents have comparable densities, it is also employed
   \label{fig:navigation}
 \end{figure}
 
-At this point, a comment regarding to the development of this method might be pertinent. How an agent's body behaves in the virtual world is uniquely ruled by physical laws. The brain might say ``move up'' and apply a force towards the sky but if this force is smaller than the gravity, then the agent will descend. Hence, the piece of this system relative to the physical simulation or the physical properties of an agent is something static, a fixed and solid structure which works. That is why it is implemented in a compiled language. Nevertheless, somebody's way of thinking or acting, might be so diverse that it needs a flexibility that a compiled language cannot provide.\footnote{Although the design and implementation of the approach are treated in chapter \ref{chap:application_design_implementation}, the author believes that it is convenient to mention some implementations details which are important to understand how much flexibility or scalability this approach offers.}
+At this point, a comment regarding to the development of this method might be pertinent. How an agent's body behaves in the virtual world is uniquely ruled by physical laws. The brain might say ``move up'' and apply a force towards the sky but if this force is smaller than the gravity, then the agent will descend. Hence, the piece of this system relative to the physical simulation or the physical properties of an agent is something static, a fixed and solid structure which works. That is why it is implemented in a compiled language. Nevertheless, somebody's way of thinking or acting, might be so diverse that it needs a flexibility that a compiled language cannot provide.\footnote{Although the design and implementation of the approach are treated in chapter \ref{chap:application_design_implementation}, the author believes that it is convenient to mention some implementations details which are important to understand how much flexibility and scalability this approach offers.}
 
 \section{Agent Brain}
 This is where resides the ``intelligence'' of the agent. This piece has the responsability of determining which motion an agent describes, how to interact with the world and how to interact with other agents.
 
-The main mechanism used to model a brain is a FSM, although any other device might be used such as an artificial neural network, which is the closer to reality. This computational box receives a set of information both from the body and from the environment. This includes the physical properties, the current state of the agent, a table of own attributes, a list with its neighbours and their information and a list of the incoming messages. After processing, the brain will communicate to the body what to do by returning certain parameters.
+The main mechanism used to model a brain is a FSM, although any other device might be used such as an artificial neural network, which is the closest to reality. This computational box receives a set of information both from the body and from the environment. This includes the physical properties, the current state of the agent, a table of own attributes, a list with its neighbours and their information and a list of the incoming messages. After processing, the brain will communicate to the body what to do by returning certain parameters.
 
 \begin{itemize}
 
-\item{{\bf Prime Mover Force.} This is the instruction the brain sends to the body in order to perform a specific displacement. This will be explained into details in the next chapter during the section of forces, but it is basically the force that the muscles should apply on the body to move it in a certain direction and with certain acceleration. The direction is a free choice, but the magnitude should be influenced by the current strength to acquire a realistic motion}
+\item{{\bf Prime Mover Force.} This is the instruction the brain sends to the body in order to perform a specific displacement. This will be explained into details in the next chapter during the section of forces, but it is basically the force that the muscles should apply on the body to move it in a certain direction and with certain acceleration. The direction is a free choice, but the magnitude should be influenced by the current strength to acquire a realistic motion.}
 
 \item{{\bf Heading.} The brain can set the heading of the agent too; this is normally established by the velocity, but there are some kind of motions, such as lateral movements, where the heading does not point in the same direction than the velocity.}
 
@@ -70,7 +70,7 @@ This is where the usability and beauty of the approach arises. The behaviours ar
 
 \subsection{Capacity of Decision}
 
-This is what, under a physical consistency, drives the simulation. The ability that an agent has to take decisions is the main input to produce a simulation. If we have in mind any simple video game in where we control a character to interact with a world, we are taking decisions, tons of them. They might be long term ones (reach a target) or short term ones (this way seems a shortcut). Thus, the idea is automate this task. An infinite amount of things might influence every decision we take in real life: in which state we feel, where we are, how tired we are, which is our physical shape, who is surrounding us, what we know about who is surrounding us, etc. In order to take accurate decisions a large amount of information needs to be taken into account, besides all the different possibilities available; that could produce extremely complex FSM's or other artifacts very difficult to handle.
+This is what, under a physical consistency, drives the simulation. The ability that an agent has to take decisions is the main input to produce a simulation. If we have in mind any simple video game in where we control a character to interact with a world, we are taking decisions, tons of them. They might be long term ones (reach a target) or short term ones (this way seems a shortcut). Thus, the idea is automate this task. An infinite amount of things might influence every decision we take in real life: in which state we feel, where we are, how tired we are, which is our physical shape, who is surrounding us, what we know about who is surrounding us, etc. In order to take accurate decisions, a large amount of information needs to be taken into account, besides all the different possibilities available; that could produce extremely complex FSM's or other artifacts very difficult to handle.
 
 \subsection{The Illusion of Intelligence}
 
@@ -107,10 +107,7 @@ Many of some basic behaviours, which are thought as standard ones in the field o
 
 \begin{figure}[!h]
   \centering
-  \begin{tabular}{c    c}
-  	\subfloat[Calculating vector force]{\label{fig:f1}\includegraphics[scale=0.6]{seek_01.eps}} &
- 	\subfloat[Shown behaviour]{\label{fig:f2}\includegraphics[scale=0.6]{seek_02.eps}} \\
- \end{tabular}
+  \label{fig:f2}\includegraphics[scale=0.7]{seek_02.eps}
   \caption{Seek Steering Behaviour}
   \label{fig:crowds}
 \end{figure}
@@ -118,11 +115,11 @@ Many of some basic behaviours, which are thought as standard ones in the field o
 Let $pos$ be the position, $velocity$ the velocity, and $maxSpeed$ the maximum speed of the agent; and $targetPos$ the position of the target:
 
 \begin{equation}
-	desiredVelocity=normalize(targetPos-pos)maxSpeed 
+	desiredDirection=normalize(targetPos-pos) 
 \end{equation}
 
 \begin{equation}
-	seekForce=desiredVelocity-velocity 
+	seekForce=desiredDirection-normalize(velocity)
 \end{equation}
 
 This is one example among many other simple behaviours such as flee, arrive, pursuit, evade or wander \citep{buckland}. 

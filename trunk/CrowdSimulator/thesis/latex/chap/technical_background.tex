@@ -25,7 +25,7 @@ In any research that involves modelling the real world, physical rules will acqu
 
 \item{{\bf Strength.} It is the scalar quantity which defines the physical power a person or animal has. Notice that this property is inherent to an individual and does not have direction, if it had, we would be talking about \emph{force}, concept that will be introduced later. And again, this is related with how fast bodies change of state. The bigger strength, the faster change.}
 
-\item{{\bf Position.} These are the location coordinates of a specific point related to an origin. This is not as simple as it might seem, because bodies have a volume, so which the exact position is, is a controversial discussion. Normally it is used the centre of mass, but other points can be used depending on the approach. In order to calculate the movement, we need to know the rate of change of the position, both the magnitude and the direction.}
+\item{{\bf Position.} These are the location coordinates of a specific point related to an origin. This is not as simple as it might seem, because bodies have a volume, so which exact position a body has, is a controversial discussion. Normally it is used the centre of mass, but other points can be used depending on the approach. In order to calculate the movement, we need to know the rate of change of the position, both the magnitude and the direction.}
 
 \item{{\bf Velocity.} This is the vector which defines the rate of change of distance over time. Its standard unit of measurement is $m/s$. Mathematically it can be expressed as follows:}
 
@@ -47,7 +47,7 @@ In any research that involves modelling the real world, physical rules will acqu
 
 We know that to change the position of an object (to move it), it is needed to make its velocity greater than 0, and in order to achieve that, there has to exist an acceleration. Basically, what the object is experimenting is a change of state due to an acceleration produced by forces.
 
-Newton's second law states the relatioship between an object's mass m, its acceleration a, and the applied force F by the equation:
+Newton's second law states the relatioship between an object's mass $m$, its acceleration $a$, and the applied force $F$ by the equation:
 
 \begin{equation}
   F=ma
@@ -78,7 +78,7 @@ Craig W. Reynolds proposed in 1987 a model to simulate natural group behaviours 
   \label{fig:crowds}
 \end{figure}
 
-Each boid knows a set of neighbours in the flock which influence its movement. Only the ones that are within a certain distance are considered neighbours, and the rest are ignored; thus, boids has local conscience of the flock. According to the virtual force model, those simple rules produce these three steering forces:
+Each boid knows a set of neighbours in the flock which influences its movement. Only the ones that are within a certain distance are considered neighbours, and the rest are ignored; thus, boids have local conscience of the flock. According to the virtual force model, those simple rules produce these three steering forces:
 
 \begin{itemize}
 
@@ -91,7 +91,7 @@ Let $p$ be the position and $v$ the velocity of the current boid, $p_i$ the posi
 \end{equation}
 
 \begin{equation}
-  cohesionForce=normalize(centreOfMass-p)maxSpeed-v
+  cohesionForce=normalize(centreOfMass-p)-normalize(v)
 \end{equation}
 }
 
