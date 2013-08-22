@@ -1,0 +1,74 @@
+\begin{thebibliography}{}
+
+\harvarditem[Buckland]{Buckland}{2005}{buckland}
+M.~Buckland (2005).
+\newblock {\em Programming Game AI by Example}.
+\newblock Wordware game developer's library. Wordware Pub.
+
+\harvarditem[Ierusalimschy \& Celes]{Ierusalimschy \& Celes}{2006}{lua}
+L.~H. Ierusalimschy, Roberto; de~Figueiredo \& W.~Celes (2006).
+\newblock `Lua 5.1 Manual Reference'.
+\newblock Available from: http://www.lua.org/manual/5.1/manual.html [Accessed
+  10.08.2013].
+
+\harvarditem[Kleinrock]{Kleinrock}{2011}{kleinrock}
+L.~Kleinrock (2011).
+\newblock `What is emergent behaviour?'.
+\newblock Available from:
+  http://curiosity.discovery.com/question/emergent-behavior [Accessed
+  10.08.2013].
+
+\harvarditem[Lee]{Lee}{2010}{lee2}
+J.~M. Lee (2010).
+\newblock `An efficient algorithm to find k-nearest neighbors in flocking
+  behavior'.
+\newblock {\em Inf. Process. Lett.} {\bf 110}(14-15):576--579.
+
+\harvarditem[Lee \& Cho]{Lee \& Cho}{2012}{lee1}
+J.~M. Lee \& H.-K. Cho (2012).
+\newblock `A simple heuristic to find efficiently k-nearest neighbors in
+  flocking behaviors'.
+\newblock In {\em Proceedings of the 6th WSEAS international conference on
+  Computer Engineering and Applications, and Proceedings of the 2012 American
+  conference on Applied Mathematics}, AMERICAN-MATH'12/CEA'12, pp. 60--64,
+  Stevens Point, Wisconsin, USA. World Scientific and Engineering Academy and
+  Society (WSEAS).
+
+\harvarditem[Musse \& Thalmann]{Musse \& Thalmann}{2001}{musse1}
+S.~R. Musse \& D.~Thalmann (2001).
+\newblock `Hierarchical Model for Real Time Simulation of Virtual Human
+  Crowds'.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics} {\bf
+  7}(2):152--164.
+
+\harvarditem[Musse et~al.]{Musse, et~al.}{2005}{musse2}
+S.~R. Musse, et~al. (2005).
+\newblock `Groups and crowd simulation'.
+\newblock In {\em ACM SIGGRAPH 2005 Courses}, SIGGRAPH '05, New York, NY, USA.
+  ACM.
+
+\harvarditem[Patil et~al.]{Patil, et~al.}{2011}{patil}
+S.~Patil, et~al. (2011).
+\newblock `Directing Crowd Simulations Using Navigation Fields.'.
+\newblock {\em IEEE Trans. Vis. Comput. Graph.} {\bf 17}(2):244--254.
+
+\harvarditem[Reynolds]{Reynolds}{1987}{reynolds}
+C.~W. Reynolds (1987).
+\newblock `Flocks, herds and schools: A distributed behavioral model'.
+\newblock In {\em Proceedings of the 14th annual conference on Computer
+  graphics and interactive techniques}, SIGGRAPH '87, pp. 25--34, New York, NY,
+  USA. ACM.
+
+\harvarditem[Reynolds]{Reynolds}{1999}{red3D}
+C.~W. Reynolds (1999).
+\newblock `Individual-Based Models'.
+\newblock Available from: http://www.red3d.com/cwr/ibm.html [Accessed
+  10.08.2013].
+
+\harvarditem[Wang \& Li]{Wang \& Li}{2006}{wang}
+C.-C. Wang \& T.-Y. Li (2006).
+\newblock `Evolving Crowd Motion Simulation with Genetic Algorithm'.
+\newblock In {\em Proc. 3rd Intl. Conf. on Autonomous Robots and Agents -
+  ICARA’2006, Palmerston North, New Zealand}, pp. 443--448.
+
+\end{thebibliography}

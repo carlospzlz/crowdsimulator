@@ -1,0 +1,21 @@
+
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\graphicspath{{../img/}}
+\begin{document}
+%\maketitle
+\fi
+
+\chapter{Killing chickens}
+\label{chap:killingchickens}
+
+Rename the file and the chapter/label and fill it. Remember to use figures and tables. Aim at clarity! Equations are easier to read than english!
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{../ref/harvard}
+\bibliography{../ref/master}
+\pagebreak
+\end{document}
+\fi

@@ -1,0 +1,10 @@
+digraph "CrowdEngine"
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="{CrowdEngine\n|- m_agents\l- m_initialAgents\l- s_brainsPath\l- s_loadedBrains\l- s_luaState\l|+ CrowdEngine()\l+ ~CrowdEngine()\l+ setCellPartition()\l+ setPhysicsEngine()\l+ setStep()\l+ setFriction()\l+ setGravity()\l+ getAgentsBegin()\l+ getAgentsEnd()\l+ getBoundingBoxSize()\land 14 more...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" -m_physicsEngine" ,arrowhead="odiamond",fontname="FreeSans"];
+  Node2 [label="{PhysicsEngine\n|# s_epsilon\l- m_type\l- m_boundingBoxSize\l- m_friction\l- m_gravity\l|+ PhysicsEngine()\l+ setBoundingBoxSize()\l+ setFriction()\l+ setGravity()\l+ getBoundingBoxSize()\l+ getType()\l+ checkCollision()\l+ checkCollisionBoundingBox()\l+ checkCollisionGround()\l+ applyFriction()\l+ applyGravity()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_physics_engine.html",tooltip="This abstract class represents the interface of a physics engine, which is the responsible of handle ..."];
+  Node3 -> Node1 [color="grey25",fontsize="10",style="solid",label=" -m_cellPartition" ,arrowhead="odiamond",fontname="FreeSans"];
+  Node3 [label="{CellPartition\n|# m_cellSize\l|+ CellPartition()\l+ ~CellPartition()\l+ getCellSize()\l+ addAgent()\l+ addAgents()\l+ updateCells()\l+ updateNeighbours()\l+ rearrangePartition()\l+ printCells()\l+ clear()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_cell_partition.html",tooltip="Abstract class which defines the interface of a cell partition mechanism. This is essential for handl..."];
+}

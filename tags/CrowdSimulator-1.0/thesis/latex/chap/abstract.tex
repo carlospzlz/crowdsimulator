@@ -1,0 +1,28 @@
+
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\begin{document}
+%\maketitle
+\fi
+
+% The begin{abstract} seems to bug the page counter
+\section*{Abstract}
+\addcontentsline{toc}{section}{Abstract}
+\label{sec:abstract}
+%\begin{abstract}
+
+{
+The use of crowds in films and games requires time and money, either hiring extra cast or animating 3D characters by keyframing. This thesis presents an approach to simulate crowds employing an agent-based model. Although many researches have been done in this field, the method proposed here has significant differences which enhance flexibility and scalability and achieve realistic results. The simulation is entirely driven by the individual script-based behaviours. In this way, the group behaviour of the crowd will emerge from the individuals; from how they interact with each other and with the environment. Hence, very complex simulations can arise from simple behaviours.
+}
+
+%\end{abstract}
+
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{ref/harvard}
+\bibliography{ref/master}
+\pagebreak
+\end{document}
+\fi

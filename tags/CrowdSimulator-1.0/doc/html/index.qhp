@@ -1,0 +1,1292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QtHelpProject version="1.0">
+  <namespace>ac.uk.ncca</namespace>
+  <virtualFolder>ngl</virtualFolder>
+  <filterSection>
+    <filterAttribute>doxygen</filterAttribute>
+    <toc>
+      <section title="Crowd Simulator 1.0" ref="index.html">
+        <section title="Namespaces">
+          <section title="Namespace List" ref="namespaces.html">
+            <section title="Ui" ref="namespace_ui.html" />
+          </section>
+        </section>
+        <section title="Classes">
+          <section title="Class List" ref="annotated.html">
+            <section title="Ui" ref="namespace_ui.html" />
+            <section title="Agent" ref="class_agent.html">
+              <section title="Agent" ref="class_agent.html#a24a60f1d260bf19a4f7f8a5f36881d3f" />
+              <section title="Agent" ref="class_agent.html#a1d738c6ab2c6a3e50a3086f303439796" />
+              <section title="Agent" ref="class_agent.html#a645d19861c6c5ddfc0705e551b5582a0" />
+              <section title="~Agent" ref="class_agent.html#ab8dd8d152605cf1339fed595376e83cb" />
+              <section title="addAttribute" ref="class_agent.html#ad8644314536c784dafb42c89dd9d2eb6" />
+              <section title="applyForce" ref="class_agent.html#a5ce46ab9cf6c7b4109b12c48ad073a27" />
+              <section title="distance" ref="class_agent.html#a932a6271567e4905f3279f68f21c3d6c" />
+              <section title="execute" ref="class_agent.html#a676656c11355ae87ac316ee2ff6d0fb4" />
+              <section title="getAgentID" ref="class_agent.html#a0dc6f9fdb722fddfc12c20806f062cd0" />
+              <section title="getAttributes" ref="class_agent.html#a82811bf9cb1ea147d256fec31ad8c96b" />
+              <section title="getBrain" ref="class_agent.html#a2c7cb38b2b5b861123eed015cd0d6ae2" />
+              <section title="getCollisionRadius" ref="class_agent.html#a1ee4db62d5f0fee104ce3d0799c91610" />
+              <section title="getDummy" ref="class_agent.html#af7b048ccbc068f9f0004351f0f573c57" />
+              <section title="getHeading" ref="class_agent.html#a8af61b9fb46af5f3b02c1a1d424df2a4" />
+              <section title="getMass" ref="class_agent.html#a0d63e88090408db6920ea84e3012b125" />
+              <section title="getMaxSpeed" ref="class_agent.html#a7f26e6e8877596a11cb15c1bd74e1df5" />
+              <section title="getMaxStrength" ref="class_agent.html#a2e7819e1cdd3699c0d7eef1f40619bbb" />
+              <section title="getNeighbours" ref="class_agent.html#a759e777bab15a561fa9d3b4c4e6c9145" />
+              <section title="getPosition" ref="class_agent.html#a00178e547698aefa61a5644727d1ab39" />
+              <section title="getPreviousPos" ref="class_agent.html#ac3479c22d620e757cf4f8f41d0465cf6" />
+              <section title="getState" ref="class_agent.html#a77c6d7cff0852ad84bc6bf48d7dc47a5" />
+              <section title="getStep" ref="class_agent.html#a537e126032d2acd838c0b4ab6b74f4cc" />
+              <section title="getStrength" ref="class_agent.html#a9a26182d54080a9c70841faec1758431" />
+              <section title="getTransform" ref="class_agent.html#a748d0def2ed1d38573edd25fd2f28d8e" />
+              <section title="getVelocity" ref="class_agent.html#ae809b15253df2701fbf1e2148156f205" />
+              <section title="getVisionRadius" ref="class_agent.html#a0f6fa62c5ec68c21647a8c5e9a38685d" />
+              <section title="print" ref="class_agent.html#a3b3ecc599c5aa23eb6844b48e919a19a" />
+              <section title="scaleCollisionRadius" ref="class_agent.html#ac000a1a64c141750e0b84bfce25ee7b0" />
+              <section title="sendMessage" ref="class_agent.html#a866d744b03137948a0a8fa9efd722969" />
+              <section title="setBrain" ref="class_agent.html#a5cc6bd9a0a56789cffc7b37ebd6d985c" />
+              <section title="setDummy" ref="class_agent.html#a0fd788ef6611e653e6ea866d5f4925c4" />
+              <section title="setHeading" ref="class_agent.html#acbd1646da465bdc2d3cc75be97eeeb5b" />
+              <section title="setLuaState" ref="class_agent.html#afb9462a325dbc88e92d8eea1c5a2482c" />
+              <section title="setMass" ref="class_agent.html#a466e0dc7b932e233358c2b472b876460" />
+              <section title="setMaxSpeed" ref="class_agent.html#ac18b0ba696257bcb79dedf825cb3e38f" />
+              <section title="setMaxStrength" ref="class_agent.html#a41b8a1665c6adeebcee51921ae79c616" />
+              <section title="setNeighbours" ref="class_agent.html#a16784b8790c91f9b1c5c00c8ab217e08" />
+              <section title="setPosition" ref="class_agent.html#a178323b7ee20be61d8e607294632427e" />
+              <section title="setPreviousPos" ref="class_agent.html#a73b6cf0e6642c337d1b09152f1fbcf1a" />
+              <section title="setState" ref="class_agent.html#a915dd50557a7d7a3bbbd796f48a4b927" />
+              <section title="setStep" ref="class_agent.html#a0a97cadd909ee47f3e8c5d4404694314" />
+              <section title="setVelocity" ref="class_agent.html#a4fe9f9edc8483aa54c46b0cd172eb5cd" />
+              <section title="setVisionRadius" ref="class_agent.html#a50a6d81200f9f98389441f41fe662d33" />
+              <section title="m_agentID" ref="class_agent.html#a4634e9741958a6ed1fa060426f342e8a" />
+              <section title="m_attributes" ref="class_agent.html#a647ccf2cbbc627afb96277e22d2d074a" />
+              <section title="m_brain" ref="class_agent.html#a6c35857fedf18ec6f223202971e6fd39" />
+              <section title="m_collisionRadius" ref="class_agent.html#a8e6d38a50c8135e86d7c3162635dfc4d" />
+              <section title="m_dummy" ref="class_agent.html#aac7cf4072e05a53897a35267b96254f1" />
+              <section title="m_heading" ref="class_agent.html#aae784fc7c27a38f620725fde76089b9d" />
+              <section title="m_inbox" ref="class_agent.html#a89e82c1c08c7466cb9fbdec09d5b69cd" />
+              <section title="m_mass" ref="class_agent.html#a147267e7f64b2d177fbb739d8368352a" />
+              <section title="m_maxSpeed" ref="class_agent.html#a4c8bf40d79377febaf432acd38ae2f10" />
+              <section title="m_maxStrength" ref="class_agent.html#a05952baa525cfc44354bf26196fb1205" />
+              <section title="m_neighbours" ref="class_agent.html#a5b7bf9028bba3293a5938d425942733d" />
+              <section title="m_previousTransform" ref="class_agent.html#a3278cf673c8ab359693f9ef7fd625d48" />
+              <section title="m_state" ref="class_agent.html#af27aabb7917031d7fe4cc0a58c3eb4ad" />
+              <section title="m_strength" ref="class_agent.html#abadfd3b44bf54fa5a5509d385ea6c685" />
+              <section title="m_totalForce" ref="class_agent.html#a8fb428c0c1a92244766ded7ff4e56479" />
+              <section title="m_transformation" ref="class_agent.html#ab8d388444f969815cb30212bd4db7617" />
+              <section title="m_velocity" ref="class_agent.html#ac14d0c24d0aded1954053f0afcc1f6e7" />
+              <section title="m_visionRadius" ref="class_agent.html#aebea95b4cc2af8851281b11a194198dd" />
+              <section title="s_luaState" ref="class_agent.html#a52e15415e75ba3aa4fc09bfa046a7a80" />
+              <section title="s_numberOfAgents" ref="class_agent.html#a5c473d6768ef124683c4978913eb40ab" />
+              <section title="s_step" ref="class_agent.html#a9a9c5f24625ae862fbf4600845ebf422" />
+            </section>
+            <section title="CellPartition" ref="class_cell_partition.html">
+              <section title="CellPartition" ref="class_cell_partition.html#a800777adf6053f21c9506fd00bb8bac7" />
+              <section title="~CellPartition" ref="class_cell_partition.html#a36702a7f3afbfae63be09c46beed328b" />
+              <section title="addAgent" ref="class_cell_partition.html#aa9e2e1244bb0009b298b6ae5ab6d4e2f" />
+              <section title="addAgents" ref="class_cell_partition.html#ab5f91e9618a74d2d8c6c3a8240d99998" />
+              <section title="clear" ref="class_cell_partition.html#a1b30a0c72311f4b06c8b45d0514b1c8c" />
+              <section title="getCellSize" ref="class_cell_partition.html#a031f8b6ed6f39902065bfb34a0ceac73" />
+              <section title="printCells" ref="class_cell_partition.html#addc699eac5223f7e3a7c2a1ab25ebe45" />
+              <section title="rearrangePartition" ref="class_cell_partition.html#ad657f8d8ec6fd295e686ddaebf5d399d" />
+              <section title="updateCells" ref="class_cell_partition.html#a72ba1352c451752ae9243b25e06d03c2" />
+              <section title="updateNeighbours" ref="class_cell_partition.html#a3df79265cee9ad0e74786d6fd3350518" />
+              <section title="m_cellSize" ref="class_cell_partition.html#a0f3e1482db0f0f9493d2bc1d97b4d88a" />
+            </section>
+            <section title="CrowdEngine" ref="class_crowd_engine.html">
+              <section title="CrowdEngine" ref="class_crowd_engine.html#ad1cc01b065244382373fe3d77db00608" />
+              <section title="~CrowdEngine" ref="class_crowd_engine.html#a63cd9557dc58fb8159fb1a3551345a22" />
+              <section title="addAgent" ref="class_crowd_engine.html#a8f6006d7c744329acb887e85dee52675" />
+              <section title="addAgents" ref="class_crowd_engine.html#a989a5245d17f2d2174f16b6f03b2ff20" />
+              <section title="clear" ref="class_crowd_engine.html#a214aac0d123043252d78c2cd1e23c75f" />
+              <section title="getAgentsBegin" ref="class_crowd_engine.html#af9ae3c4d97abb0b1f961a7b6eb4ee47f" />
+              <section title="getAgentsEnd" ref="class_crowd_engine.html#a3efa68a20bcc0d69cd42dce73fb93fcd" />
+              <section title="getAgentsNumber" ref="class_crowd_engine.html#a71763914c950b45e4adeb483d34fe6e4" />
+              <section title="getBoundingBoxSize" ref="class_crowd_engine.html#a890a26323fdd6e00408114fabfdef4c5" />
+              <section title="getCellSize" ref="class_crowd_engine.html#a668b40335832f00bfdb22529195570dc" />
+              <section title="getPEType" ref="class_crowd_engine.html#a7b766120390a1a8d1c51d677475e05ee" />
+              <section title="loadBrain" ref="class_crowd_engine.html#a30db10b38b7427e30f9c02701536f48c" />
+              <section title="printAgents" ref="class_crowd_engine.html#a418c2ec370a694597e4ec2b0a589fe2c" />
+              <section title="printCellPartition" ref="class_crowd_engine.html#ac19a8cc49db260055f813889988895ca" />
+              <section title="rearrangePartition" ref="class_crowd_engine.html#ac057511be522c78a66147af05d39f0d0" />
+              <section title="restart" ref="class_crowd_engine.html#a10eb758fb5e24bbbf8427c2fcecb4029" />
+              <section title="scaleCollisionRadius" ref="class_crowd_engine.html#a403c4b9b8af097727a52f6243fd3933b" />
+              <section title="setBoundingBoxSize" ref="class_crowd_engine.html#a35896d1ef5fef466e86ac724a3abcb4f" />
+              <section title="setCellPartition" ref="class_crowd_engine.html#a8cdade4ade2ddbc451eca2fd63a773a6" />
+              <section title="setFriction" ref="class_crowd_engine.html#acbe1845a89a13a1a8d3c8ae9967d2d03" />
+              <section title="setGravity" ref="class_crowd_engine.html#aed5a78a01ee498356bf107e74545f310" />
+              <section title="setPhysicsEngine" ref="class_crowd_engine.html#a73d2561151382c27673bf14feec7cd89" />
+              <section title="setStep" ref="class_crowd_engine.html#a28ab0a545b2a836138690bf1ac5e1b5b" />
+              <section title="update" ref="class_crowd_engine.html#a001d4a0d6790344140a1546c84de044e" />
+              <section title="m_agents" ref="class_crowd_engine.html#a594b92a478259d1caffad73be73455e0" />
+              <section title="m_cellPartition" ref="class_crowd_engine.html#a151714f33b1317cd1a1bd2d8eed1ed00" />
+              <section title="m_initialAgents" ref="class_crowd_engine.html#a5699876869bf40fd92cea002518c0054" />
+              <section title="m_physicsEngine" ref="class_crowd_engine.html#aebe4666d4bea7759e0da41d670ac21e5" />
+              <section title="s_brainsPath" ref="class_crowd_engine.html#a6d986f6abae52fbc0fd4d31dc61fdca6" />
+              <section title="s_loadedBrains" ref="class_crowd_engine.html#af4e587d5d4c2b7b5606ad3eaa06aafaa" />
+              <section title="s_luaState" ref="class_crowd_engine.html#a315af1a2226813fdf82d4290d22f49c8" />
+            </section>
+            <section title="CylinderPE" ref="class_cylinder_p_e.html">
+              <section title="CylinderPE" ref="class_cylinder_p_e.html#ab88ffe5385a1ce9c721f8444b016239c" />
+              <section title="checkCollision" ref="class_cylinder_p_e.html#a40327d5407a81f408ac55641ab788f74" />
+            </section>
+            <section title="GLWindow" ref="class_g_l_window.html">
+              <section title="GLWindow" ref="class_g_l_window.html#a8dfc33113be0a86a53ddbea054f75292" />
+              <section title="~GLWindow" ref="class_g_l_window.html#a2eeaea2148f4f72344edd6d1bac9759b" />
+              <section title="buildBoidVAO" ref="class_g_l_window.html#a40f8997bec303f618fafdaf2a8fa926c" />
+              <section title="clear" ref="class_g_l_window.html#acf5e5a099d73bdcae25f71c142808e0d" />
+              <section title="drawCollisionCylinder" ref="class_g_l_window.html#af9a05fbe4f0f65a57b8e4eb1cc098f93" />
+              <section title="drawCollisionSphere" ref="class_g_l_window.html#acf119c86c7983aec6732e82c32d34c3a" />
+              <section title="drawRadius" ref="class_g_l_window.html#a779e118f6fed3fe8c878eeec6c895edb" />
+              <section title="drawStrength" ref="class_g_l_window.html#ab1024c3600ebea19a55b458cfedc312d" />
+              <section title="drawVector" ref="class_g_l_window.html#a68b44e9cb0a9b29a220973d714adb3d5" />
+              <section title="initializeGL" ref="class_g_l_window.html#a39e39761cd7323806917a217cc7caea5" />
+              <section title="loadAgents" ref="class_g_l_window.html#a83764b841c6a004d9e5d2ea319fcc5fd" />
+              <section title="loadBrains" ref="class_g_l_window.html#a42f7c4608467ca63cdfba73e4869a460" />
+              <section title="loadMatricesToShader" ref="class_g_l_window.html#ab78209ce50dd6820686aa05fc242eb7a" />
+              <section title="mouseMoveEvent" ref="class_g_l_window.html#a7a04e2a3400fa69d1bcb6b650425c01e" />
+              <section title="mousePressEvent" ref="class_g_l_window.html#a2c4d9af80c2a7a33a46bce46276b8409" />
+              <section title="mouseReleaseEvent" ref="class_g_l_window.html#ab9e5741b8c69d2f6447a5fc6d9d704c8" />
+              <section title="paintGL" ref="class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403" />
+              <section title="rearrangeCellPartition" ref="class_g_l_window.html#a03f30901abe2d0ac3fdaccb8e64e876d" />
+              <section title="resizeGL" ref="class_g_l_window.html#abe57c0f40e59cba4c98759121e22eb47" />
+              <section title="restart" ref="class_g_l_window.html#a12b8b90ae4a6d511f200d606355e6fef" />
+              <section title="scaleAxis" ref="class_g_l_window.html#aeb2b4ae4b13a1e89b2f53d7b84d72414" />
+              <section title="scaleCollisionRadius" ref="class_g_l_window.html#a2e83bb71578b8a46d9dd994d54118f21" />
+              <section title="setBoundingBoxSize" ref="class_g_l_window.html#a2dc76e42e38828c8f57b16843e7cbcba" />
+              <section title="setCurrentDummy" ref="class_g_l_window.html#af9c3a43d6cc58d6266ba01d86d37d88f" />
+              <section title="setDrawAxis" ref="class_g_l_window.html#ad42d283d3feefc88feb9e10e720247c5" />
+              <section title="setDrawBoundingBox" ref="class_g_l_window.html#affaa8dc9b2d281e54deeda439c179b44" />
+              <section title="setDrawCells" ref="class_g_l_window.html#a0fb13c230066f2cba983efddc98a87fb" />
+              <section title="setDrawCollisionRadius" ref="class_g_l_window.html#a889ce30d3925894e3d3750ffa06f152b" />
+              <section title="setDrawStateColour" ref="class_g_l_window.html#aa40970ec70ad2cff3629851fb1e58489" />
+              <section title="setDrawStrength" ref="class_g_l_window.html#aa08293bb3851a757ad68166aa28de7aa" />
+              <section title="setDrawVelocityVector" ref="class_g_l_window.html#aadc27cf5c333a1f2a9a42a718423da40" />
+              <section title="setDrawVisionRadius" ref="class_g_l_window.html#ae1e008ced5fefe6fab656b600670bed6" />
+              <section title="setFriction" ref="class_g_l_window.html#af8440b069f6b55904a5c48dbd8bac853" />
+              <section title="setGravity" ref="class_g_l_window.html#a6e0d44cdfb104ccfdcee1871a0f1bf20" />
+              <section title="setPhysicsEngine" ref="class_g_l_window.html#a0acf1e2e5cae72e02f1d0c26583f2e33" />
+              <section title="setShader" ref="class_g_l_window.html#a4e1180fa8158f4cbf732977392484230" />
+              <section title="setStateColour" ref="class_g_l_window.html#aa8a773ff22134f9221e7da016d2fb242" />
+              <section title="setStep" ref="class_g_l_window.html#af887a61421c8a303df83e4c35b551805" />
+              <section title="setTimerInterval" ref="class_g_l_window.html#a8346f3a699dadf0472d8301b86998856" />
+              <section title="setWireframeMode" ref="class_g_l_window.html#a23f9cf59c263b558ab3a3ed0a338086d" />
+              <section title="toggleSimulation" ref="class_g_l_window.html#a1c122bc7adc8d44392ea9ca103285e7d" />
+              <section title="updateFPS" ref="class_g_l_window.html#a5a8aca7f7efa0a164af7efbc6fb02406" />
+              <section title="updateSimulation" ref="class_g_l_window.html#a0e32095ad99ae2109ad37c2f24f1219b" />
+              <section title="wheelEvent" ref="class_g_l_window.html#a5f96a70cc4c2666b46ecfa62de7be598" />
+              <section title="m_axisScale" ref="class_g_l_window.html#a160d80e324e2ed5a20d0832881ad2d3f" />
+              <section title="m_boidVAO" ref="class_g_l_window.html#a4414d807b4b90f55e063cf0209e4123b" />
+              <section title="m_boundingBox" ref="class_g_l_window.html#a6deccef2587ac312357a19afd6bed578" />
+              <section title="m_camera" ref="class_g_l_window.html#a4dbb29267ca93367914224a415bc09cb" />
+              <section title="m_collisionRadiusScale" ref="class_g_l_window.html#a0379c622b46f1789d1531ace229f8437" />
+              <section title="m_crowdEngine" ref="class_g_l_window.html#ab00de2a161006bbb4197750dd2f4e43f" />
+              <section title="m_currentDummy" ref="class_g_l_window.html#aa5f29184ef15dbbd9724e8048aab736b" />
+              <section title="m_customDummy" ref="class_g_l_window.html#a5085da743aa7c7a311c69b28c968ab8a" />
+              <section title="m_drawAxis" ref="class_g_l_window.html#a9a56015074271cc639c9d06d33c9058d" />
+              <section title="m_drawBoundingBox" ref="class_g_l_window.html#af777f0df6d6a5f49abad457f07e86489" />
+              <section title="m_drawCells" ref="class_g_l_window.html#a455bee93f5038ca958a099deae9743f7" />
+              <section title="m_drawCollisionRadius" ref="class_g_l_window.html#a12ce24e0006ddb059b1beac5ab024f6e" />
+              <section title="m_drawStateColour" ref="class_g_l_window.html#a0b8fcfd154ecf2acb73569aba2b43723" />
+              <section title="m_drawStrength" ref="class_g_l_window.html#ad3a4e43e33d31c209db4bb170be2533d" />
+              <section title="m_drawVelocityVector" ref="class_g_l_window.html#afe3eedc580d079fdd7841e8293176003" />
+              <section title="m_drawVisionRadius" ref="class_g_l_window.html#aa8f932753690ebcf388771b5e3daf675" />
+              <section title="m_dummies" ref="class_g_l_window.html#aa0126fad90706919ef35e4394968fc74" />
+              <section title="m_fps" ref="class_g_l_window.html#a83e019efd2becc005d6bf4493fc3adb2" />
+              <section title="m_frameCounter" ref="class_g_l_window.html#ab64db2c12e86211b0efbe9bca53b1505" />
+              <section title="m_globalRotation" ref="class_g_l_window.html#a461350d9c0611b35e7399255da3cdfb8" />
+              <section title="m_globalTranslation" ref="class_g_l_window.html#a65056398ef4d8303ea639130d2831552" />
+              <section title="m_groundSteps" ref="class_g_l_window.html#a631e067927511f1c7ab19c9cf371a347" />
+              <section title="m_light" ref="class_g_l_window.html#a57c72fd1207718a4b4f567dea8c5b6ef" />
+              <section title="m_parser" ref="class_g_l_window.html#af9d321bc5a4b573772d564a2b62b7757" />
+              <section title="m_previousMousePosition" ref="class_g_l_window.html#aa4d183cf6cef1e89fbb6ca9713d8c4db" />
+              <section title="m_primitives" ref="class_g_l_window.html#a1e0d2bae64bde7b7d69989f28200384f" />
+              <section title="m_rotate" ref="class_g_l_window.html#a1b5d8b223995bc9740074c5342fe8e38" />
+              <section title="m_shader" ref="class_g_l_window.html#ac7258a666fdd64a17d2a6ff469b1ccf3" />
+              <section title="m_shaderIndex" ref="class_g_l_window.html#abe54892db2cdba174f08a1b669a6725c" />
+              <section title="m_text" ref="class_g_l_window.html#aacbacfb75d6253dfb982900d2b9e48dc" />
+              <section title="m_transformStack" ref="class_g_l_window.html#aaa941adbe7772d03588f312326100e5f" />
+              <section title="m_translate" ref="class_g_l_window.html#a3a7f7ae3fbde7c5e24ff677a6ed34563" />
+              <section title="m_updateCrowdEngineTimer" ref="class_g_l_window.html#a3cf839584eb0a601e8d0a63c93d71834" />
+              <section title="m_updateFPSTimer" ref="class_g_l_window.html#af81d3249ab4a9c3aa6bca26d32ba34d6" />
+              <section title="m_wireframeMode" ref="class_g_l_window.html#aa744b094e195dfae7238e26310e6a072" />
+              <section title="s_agentsPath" ref="class_g_l_window.html#a2d22376eb1c30db68de7d2092283e88d" />
+              <section title="s_brainsPath" ref="class_g_l_window.html#acb6824b3029b4147f1eaa5c752266af3" />
+              <section title="s_dummiesPath" ref="class_g_l_window.html#a8d2b2a46a6dba4d69faa77dbc204d09c" />
+              <section title="s_rotationIncrement" ref="class_g_l_window.html#aaf89108b36aa15cccb8273f6d73d6881" />
+              <section title="s_translationIncrement" ref="class_g_l_window.html#aab977496a699bcedd53d6f601c61bca0" />
+              <section title="s_zoomIncrement" ref="class_g_l_window.html#a5a86cd28fd83d3b34c4026d74b7e8cb5" />
+            </section>
+            <section title="MainWindow" ref="class_main_window.html">
+              <section title="MainWindow" ref="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" />
+              <section title="~MainWindow" ref="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7" />
+              <section title="keyPressEvent" ref="class_main_window.html#a3c2e352934c6318d405c3d2b0e07729c" />
+              <section title="setStep" ref="class_main_window.html#aa9c5a1718368ae03f26ef49c6f1b5af1" />
+              <section title="setTimerInterval" ref="class_main_window.html#aab62fe70e4236dabe09d8baccce1dc90" />
+              <section title="m_gl" ref="class_main_window.html#a8f18111d1b422167f8b9a688f38f8969" />
+              <section title="m_ui" ref="class_main_window.html#a5a3eb262660797d9a4d52ed16edb6d11" />
+            </section>
+            <section title="message" ref="structmessage.html">
+              <section title="agentID" ref="structmessage.html#a4f90f9535abd9b5fe7094210fddfb717" />
+              <section title="label" ref="structmessage.html#ad46f9db7f9b78096bffb9f2d17649e0e" />
+              <section title="position" ref="structmessage.html#a2da21f0219852b602cbe5f977fdae07e" />
+              <section title="strength" ref="structmessage.html#a0c2771aa291c1d45f3415cace90cb760" />
+            </section>
+            <section title="Parser" ref="class_parser.html">
+              <section title="loadAgents" ref="class_parser.html#acbee96bed7b870fd08d547f60a55f26d" />
+            </section>
+            <section title="PhysicsEngine" ref="class_physics_engine.html">
+              <section title="PhysicsEngine" ref="class_physics_engine.html#a84d9be1de76eb1172331b66d58a96a12" />
+              <section title="applyFriction" ref="class_physics_engine.html#a4b9862d2fc06fc3f1d6d2b935d722204" />
+              <section title="applyGravity" ref="class_physics_engine.html#a282e3493c5bf730a327ecc71ae34a381" />
+              <section title="checkCollision" ref="class_physics_engine.html#ab1ec7f82d879b765ba51896ac0293306" />
+              <section title="checkCollisionBoundingBox" ref="class_physics_engine.html#a593786154cf89be904989f7dc9decd5b" />
+              <section title="checkCollisionGround" ref="class_physics_engine.html#a729ebe13ac050acee07a9b714b7b6b3c" />
+              <section title="getBoundingBoxSize" ref="class_physics_engine.html#af148fb73a48e2b1bdf603739886b2fac" />
+              <section title="getType" ref="class_physics_engine.html#a0eec656c837f22fcffe9c49e9c7da381" />
+              <section title="setBoundingBoxSize" ref="class_physics_engine.html#afdc53fedd489b317ff2319bdf4dd3b8d" />
+              <section title="setFriction" ref="class_physics_engine.html#a6bed2ed3a575ecb04fb48c4d12723b49" />
+              <section title="setGravity" ref="class_physics_engine.html#adfc5c2492009e5278e1297cd976f07aa" />
+              <section title="m_boundingBoxSize" ref="class_physics_engine.html#abb423c8ab1287bfd9e2b396bf3f75fb0" />
+              <section title="m_friction" ref="class_physics_engine.html#a7779891cc51c2c9cd3e484d9506ebaa3" />
+              <section title="m_gravity" ref="class_physics_engine.html#aac07745baaaa47e949089444ecd41247" />
+              <section title="m_type" ref="class_physics_engine.html#a2799cd124cf76ac94da61bdc215236eb" />
+              <section title="s_epsilon" ref="class_physics_engine.html#a0ebf4487655301f5da5b24a4953821b9" />
+            </section>
+            <section title="QuadraticGridCP" ref="class_quadratic_grid_c_p.html">
+              <section title="QuadraticGridCP" ref="class_quadratic_grid_c_p.html#ac4bce0de07c9dbeafb949175229e2311" />
+              <section title="~QuadraticGridCP" ref="class_quadratic_grid_c_p.html#a985eb5b3f997d549ecab9f77d7b2214a" />
+              <section title="addAgent" ref="class_quadratic_grid_c_p.html#a8ea7d12bf956eb79beae4f72aa02642a" />
+              <section title="addAgents" ref="class_quadratic_grid_c_p.html#a0665be64ee9cd61e796d6ba6bd098d8d" />
+              <section title="cell" ref="class_quadratic_grid_c_p.html#a6d922e64d9870d9dcb8323d143fb2d8d" />
+              <section title="clear" ref="class_quadratic_grid_c_p.html#a0eaf24d7f9a49fb46af7d37ba7b74cfe" />
+              <section title="findAgentsInCells" ref="class_quadratic_grid_c_p.html#a9fc603778e891904457e428de8606371" />
+              <section title="findNeighboursInAgents" ref="class_quadratic_grid_c_p.html#ab5609b63f2fcb7706d4bdc071ac368ff" />
+              <section title="printCells" ref="class_quadratic_grid_c_p.html#a22c417f7cf66e24a0a1ebe44b4b3eb6a" />
+              <section title="rearrangePartition" ref="class_quadratic_grid_c_p.html#aed54958e170f5c90e6026ab847c0f48e" />
+              <section title="updateCells" ref="class_quadratic_grid_c_p.html#a4821f9fcf301bcbeb34cef3ee86e4b8e" />
+              <section title="updateNeighbours" ref="class_quadratic_grid_c_p.html#a2c3bb856105d9888f7c2d043296303f5" />
+              <section title="m_cells" ref="class_quadratic_grid_c_p.html#abaf45da84981246f5a3baf0ba8333acb" />
+            </section>
+            <section title="SpherePE" ref="class_sphere_p_e.html">
+              <section title="SpherePE" ref="class_sphere_p_e.html#a61a7521128aaa52ea519fefd0fc6d4e6" />
+              <section title="checkCollision" ref="class_sphere_p_e.html#aa153229d509d53557b872890e6a336c2" />
+            </section>
+            <section title="TXTParser" ref="class_t_x_t_parser.html">
+              <section title="loadAgents" ref="class_t_x_t_parser.html#a64f463ea8e1cdbdfff49a4003108dd19" />
+            </section>
+          </section>
+          <section title="Class Index" ref="classes.html" />
+          <section title="Class Hierarchy" ref="hierarchy.html">
+            <section title="Agent" ref="class_agent.html" />
+            <section title="CellPartition" ref="class_cell_partition.html">
+              <section title="QuadraticGridCP" ref="class_quadratic_grid_c_p.html" />
+            </section>
+            <section title="CrowdEngine" ref="class_crowd_engine.html" />
+            <section title="message" ref="structmessage.html" />
+            <section title="Parser" ref="class_parser.html">
+              <section title="TXTParser" ref="class_t_x_t_parser.html" />
+            </section>
+            <section title="PhysicsEngine" ref="class_physics_engine.html">
+              <section title="CylinderPE" ref="class_cylinder_p_e.html" />
+              <section title="SpherePE" ref="class_sphere_p_e.html" />
+            </section>
+            <section title="QGLWidget">
+              <section title="GLWindow" ref="class_g_l_window.html" />
+            </section>
+            <section title="QMainWindow">
+              <section title="MainWindow" ref="class_main_window.html" />
+            </section>
+          </section>
+          <section title="Class Members" ref="functions.html">
+            <section title="All" ref="functions.html">
+              <section title="a" ref="functions.html" />
+              <section title="b" ref="functions_0x62.html" />
+              <section title="c" ref="functions_0x63.html" />
+              <section title="d" ref="functions_0x64.html" />
+              <section title="e" ref="functions_0x65.html" />
+              <section title="f" ref="functions_0x66.html" />
+              <section title="g" ref="functions_0x67.html" />
+              <section title="i" ref="functions_0x69.html" />
+              <section title="k" ref="functions_0x6b.html" />
+              <section title="l" ref="functions_0x6c.html" />
+              <section title="m" ref="functions_0x6d.html" />
+              <section title="p" ref="functions_0x70.html" />
+              <section title="q" ref="functions_0x71.html" />
+              <section title="r" ref="functions_0x72.html" />
+              <section title="s" ref="functions_0x73.html" />
+              <section title="t" ref="functions_0x74.html" />
+              <section title="u" ref="functions_0x75.html" />
+              <section title="w" ref="functions_0x77.html" />
+              <section title="~" ref="functions_0x7e.html" />
+            </section>
+            <section title="Functions" ref="functions_func.html" />
+            <section title="Variables" ref="functions_vars.html" />
+          </section>
+        </section>
+        <section title="Files">
+          <section title="File List" ref="files.html">
+            <section title="Agent.cpp" ref="_agent_8cpp.html" />
+            <section title="Agent.h" ref="_agent_8h.html">
+              <section title="message" ref="structmessage.html">
+                <section title="agentID" ref="structmessage.html#a4f90f9535abd9b5fe7094210fddfb717" />
+                <section title="label" ref="structmessage.html#ad46f9db7f9b78096bffb9f2d17649e0e" />
+                <section title="position" ref="structmessage.html#a2da21f0219852b602cbe5f977fdae07e" />
+                <section title="strength" ref="structmessage.html#a0c2771aa291c1d45f3415cace90cb760" />
+              </section>
+              <section title="Agent" ref="class_agent.html">
+                <section title="Agent" ref="class_agent.html#a24a60f1d260bf19a4f7f8a5f36881d3f" />
+                <section title="Agent" ref="class_agent.html#a1d738c6ab2c6a3e50a3086f303439796" />
+                <section title="Agent" ref="class_agent.html#a645d19861c6c5ddfc0705e551b5582a0" />
+                <section title="~Agent" ref="class_agent.html#ab8dd8d152605cf1339fed595376e83cb" />
+                <section title="addAttribute" ref="class_agent.html#ad8644314536c784dafb42c89dd9d2eb6" />
+                <section title="applyForce" ref="class_agent.html#a5ce46ab9cf6c7b4109b12c48ad073a27" />
+                <section title="distance" ref="class_agent.html#a932a6271567e4905f3279f68f21c3d6c" />
+                <section title="execute" ref="class_agent.html#a676656c11355ae87ac316ee2ff6d0fb4" />
+                <section title="getAgentID" ref="class_agent.html#a0dc6f9fdb722fddfc12c20806f062cd0" />
+                <section title="getAttributes" ref="class_agent.html#a82811bf9cb1ea147d256fec31ad8c96b" />
+                <section title="getBrain" ref="class_agent.html#a2c7cb38b2b5b861123eed015cd0d6ae2" />
+                <section title="getCollisionRadius" ref="class_agent.html#a1ee4db62d5f0fee104ce3d0799c91610" />
+                <section title="getDummy" ref="class_agent.html#af7b048ccbc068f9f0004351f0f573c57" />
+                <section title="getHeading" ref="class_agent.html#a8af61b9fb46af5f3b02c1a1d424df2a4" />
+                <section title="getMass" ref="class_agent.html#a0d63e88090408db6920ea84e3012b125" />
+                <section title="getMaxSpeed" ref="class_agent.html#a7f26e6e8877596a11cb15c1bd74e1df5" />
+                <section title="getMaxStrength" ref="class_agent.html#a2e7819e1cdd3699c0d7eef1f40619bbb" />
+                <section title="getNeighbours" ref="class_agent.html#a759e777bab15a561fa9d3b4c4e6c9145" />
+                <section title="getPosition" ref="class_agent.html#a00178e547698aefa61a5644727d1ab39" />
+                <section title="getPreviousPos" ref="class_agent.html#ac3479c22d620e757cf4f8f41d0465cf6" />
+                <section title="getState" ref="class_agent.html#a77c6d7cff0852ad84bc6bf48d7dc47a5" />
+                <section title="getStep" ref="class_agent.html#a537e126032d2acd838c0b4ab6b74f4cc" />
+                <section title="getStrength" ref="class_agent.html#a9a26182d54080a9c70841faec1758431" />
+                <section title="getTransform" ref="class_agent.html#a748d0def2ed1d38573edd25fd2f28d8e" />
+                <section title="getVelocity" ref="class_agent.html#ae809b15253df2701fbf1e2148156f205" />
+                <section title="getVisionRadius" ref="class_agent.html#a0f6fa62c5ec68c21647a8c5e9a38685d" />
+                <section title="print" ref="class_agent.html#a3b3ecc599c5aa23eb6844b48e919a19a" />
+                <section title="scaleCollisionRadius" ref="class_agent.html#ac000a1a64c141750e0b84bfce25ee7b0" />
+                <section title="sendMessage" ref="class_agent.html#a866d744b03137948a0a8fa9efd722969" />
+                <section title="setBrain" ref="class_agent.html#a5cc6bd9a0a56789cffc7b37ebd6d985c" />
+                <section title="setDummy" ref="class_agent.html#a0fd788ef6611e653e6ea866d5f4925c4" />
+                <section title="setHeading" ref="class_agent.html#acbd1646da465bdc2d3cc75be97eeeb5b" />
+                <section title="setLuaState" ref="class_agent.html#afb9462a325dbc88e92d8eea1c5a2482c" />
+                <section title="setMass" ref="class_agent.html#a466e0dc7b932e233358c2b472b876460" />
+                <section title="setMaxSpeed" ref="class_agent.html#ac18b0ba696257bcb79dedf825cb3e38f" />
+                <section title="setMaxStrength" ref="class_agent.html#a41b8a1665c6adeebcee51921ae79c616" />
+                <section title="setNeighbours" ref="class_agent.html#a16784b8790c91f9b1c5c00c8ab217e08" />
+                <section title="setPosition" ref="class_agent.html#a178323b7ee20be61d8e607294632427e" />
+                <section title="setPreviousPos" ref="class_agent.html#a73b6cf0e6642c337d1b09152f1fbcf1a" />
+                <section title="setState" ref="class_agent.html#a915dd50557a7d7a3bbbd796f48a4b927" />
+                <section title="setStep" ref="class_agent.html#a0a97cadd909ee47f3e8c5d4404694314" />
+                <section title="setVelocity" ref="class_agent.html#a4fe9f9edc8483aa54c46b0cd172eb5cd" />
+                <section title="setVisionRadius" ref="class_agent.html#a50a6d81200f9f98389441f41fe662d33" />
+                <section title="m_agentID" ref="class_agent.html#a4634e9741958a6ed1fa060426f342e8a" />
+                <section title="m_attributes" ref="class_agent.html#a647ccf2cbbc627afb96277e22d2d074a" />
+                <section title="m_brain" ref="class_agent.html#a6c35857fedf18ec6f223202971e6fd39" />
+                <section title="m_collisionRadius" ref="class_agent.html#a8e6d38a50c8135e86d7c3162635dfc4d" />
+                <section title="m_dummy" ref="class_agent.html#aac7cf4072e05a53897a35267b96254f1" />
+                <section title="m_heading" ref="class_agent.html#aae784fc7c27a38f620725fde76089b9d" />
+                <section title="m_inbox" ref="class_agent.html#a89e82c1c08c7466cb9fbdec09d5b69cd" />
+                <section title="m_mass" ref="class_agent.html#a147267e7f64b2d177fbb739d8368352a" />
+                <section title="m_maxSpeed" ref="class_agent.html#a4c8bf40d79377febaf432acd38ae2f10" />
+                <section title="m_maxStrength" ref="class_agent.html#a05952baa525cfc44354bf26196fb1205" />
+                <section title="m_neighbours" ref="class_agent.html#a5b7bf9028bba3293a5938d425942733d" />
+                <section title="m_previousTransform" ref="class_agent.html#a3278cf673c8ab359693f9ef7fd625d48" />
+                <section title="m_state" ref="class_agent.html#af27aabb7917031d7fe4cc0a58c3eb4ad" />
+                <section title="m_strength" ref="class_agent.html#abadfd3b44bf54fa5a5509d385ea6c685" />
+                <section title="m_totalForce" ref="class_agent.html#a8fb428c0c1a92244766ded7ff4e56479" />
+                <section title="m_transformation" ref="class_agent.html#ab8d388444f969815cb30212bd4db7617" />
+                <section title="m_velocity" ref="class_agent.html#ac14d0c24d0aded1954053f0afcc1f6e7" />
+                <section title="m_visionRadius" ref="class_agent.html#aebea95b4cc2af8851281b11a194198dd" />
+                <section title="s_luaState" ref="class_agent.html#a52e15415e75ba3aa4fc09bfa046a7a80" />
+                <section title="s_numberOfAgents" ref="class_agent.html#a5c473d6768ef124683c4978913eb40ab" />
+                <section title="s_step" ref="class_agent.html#a9a9c5f24625ae862fbf4600845ebf422" />
+              </section>
+            </section>
+            <section title="CellPartition.h" ref="_cell_partition_8h.html">
+              <section title="CellPartition" ref="class_cell_partition.html">
+                <section title="CellPartition" ref="class_cell_partition.html#a800777adf6053f21c9506fd00bb8bac7" />
+                <section title="~CellPartition" ref="class_cell_partition.html#a36702a7f3afbfae63be09c46beed328b" />
+                <section title="addAgent" ref="class_cell_partition.html#aa9e2e1244bb0009b298b6ae5ab6d4e2f" />
+                <section title="addAgents" ref="class_cell_partition.html#ab5f91e9618a74d2d8c6c3a8240d99998" />
+                <section title="clear" ref="class_cell_partition.html#a1b30a0c72311f4b06c8b45d0514b1c8c" />
+                <section title="getCellSize" ref="class_cell_partition.html#a031f8b6ed6f39902065bfb34a0ceac73" />
+                <section title="printCells" ref="class_cell_partition.html#addc699eac5223f7e3a7c2a1ab25ebe45" />
+                <section title="rearrangePartition" ref="class_cell_partition.html#ad657f8d8ec6fd295e686ddaebf5d399d" />
+                <section title="updateCells" ref="class_cell_partition.html#a72ba1352c451752ae9243b25e06d03c2" />
+                <section title="updateNeighbours" ref="class_cell_partition.html#a3df79265cee9ad0e74786d6fd3350518" />
+                <section title="m_cellSize" ref="class_cell_partition.html#a0f3e1482db0f0f9493d2bc1d97b4d88a" />
+              </section>
+            </section>
+            <section title="CrowdEngine.cpp" ref="_crowd_engine_8cpp.html" />
+            <section title="CrowdEngine.h" ref="_crowd_engine_8h.html">
+              <section title="CrowdEngine" ref="class_crowd_engine.html">
+                <section title="CrowdEngine" ref="class_crowd_engine.html#ad1cc01b065244382373fe3d77db00608" />
+                <section title="~CrowdEngine" ref="class_crowd_engine.html#a63cd9557dc58fb8159fb1a3551345a22" />
+                <section title="addAgent" ref="class_crowd_engine.html#a8f6006d7c744329acb887e85dee52675" />
+                <section title="addAgents" ref="class_crowd_engine.html#a989a5245d17f2d2174f16b6f03b2ff20" />
+                <section title="clear" ref="class_crowd_engine.html#a214aac0d123043252d78c2cd1e23c75f" />
+                <section title="getAgentsBegin" ref="class_crowd_engine.html#af9ae3c4d97abb0b1f961a7b6eb4ee47f" />
+                <section title="getAgentsEnd" ref="class_crowd_engine.html#a3efa68a20bcc0d69cd42dce73fb93fcd" />
+                <section title="getAgentsNumber" ref="class_crowd_engine.html#a71763914c950b45e4adeb483d34fe6e4" />
+                <section title="getBoundingBoxSize" ref="class_crowd_engine.html#a890a26323fdd6e00408114fabfdef4c5" />
+                <section title="getCellSize" ref="class_crowd_engine.html#a668b40335832f00bfdb22529195570dc" />
+                <section title="getPEType" ref="class_crowd_engine.html#a7b766120390a1a8d1c51d677475e05ee" />
+                <section title="loadBrain" ref="class_crowd_engine.html#a30db10b38b7427e30f9c02701536f48c" />
+                <section title="printAgents" ref="class_crowd_engine.html#a418c2ec370a694597e4ec2b0a589fe2c" />
+                <section title="printCellPartition" ref="class_crowd_engine.html#ac19a8cc49db260055f813889988895ca" />
+                <section title="rearrangePartition" ref="class_crowd_engine.html#ac057511be522c78a66147af05d39f0d0" />
+                <section title="restart" ref="class_crowd_engine.html#a10eb758fb5e24bbbf8427c2fcecb4029" />
+                <section title="scaleCollisionRadius" ref="class_crowd_engine.html#a403c4b9b8af097727a52f6243fd3933b" />
+                <section title="setBoundingBoxSize" ref="class_crowd_engine.html#a35896d1ef5fef466e86ac724a3abcb4f" />
+                <section title="setCellPartition" ref="class_crowd_engine.html#a8cdade4ade2ddbc451eca2fd63a773a6" />
+                <section title="setFriction" ref="class_crowd_engine.html#acbe1845a89a13a1a8d3c8ae9967d2d03" />
+                <section title="setGravity" ref="class_crowd_engine.html#aed5a78a01ee498356bf107e74545f310" />
+                <section title="setPhysicsEngine" ref="class_crowd_engine.html#a73d2561151382c27673bf14feec7cd89" />
+                <section title="setStep" ref="class_crowd_engine.html#a28ab0a545b2a836138690bf1ac5e1b5b" />
+                <section title="update" ref="class_crowd_engine.html#a001d4a0d6790344140a1546c84de044e" />
+                <section title="m_agents" ref="class_crowd_engine.html#a594b92a478259d1caffad73be73455e0" />
+                <section title="m_cellPartition" ref="class_crowd_engine.html#a151714f33b1317cd1a1bd2d8eed1ed00" />
+                <section title="m_initialAgents" ref="class_crowd_engine.html#a5699876869bf40fd92cea002518c0054" />
+                <section title="m_physicsEngine" ref="class_crowd_engine.html#aebe4666d4bea7759e0da41d670ac21e5" />
+                <section title="s_brainsPath" ref="class_crowd_engine.html#a6d986f6abae52fbc0fd4d31dc61fdca6" />
+                <section title="s_loadedBrains" ref="class_crowd_engine.html#af4e587d5d4c2b7b5606ad3eaa06aafaa" />
+                <section title="s_luaState" ref="class_crowd_engine.html#a315af1a2226813fdf82d4290d22f49c8" />
+              </section>
+            </section>
+            <section title="CylinderPE.cpp" ref="_cylinder_p_e_8cpp.html" />
+            <section title="CylinderPE.h" ref="_cylinder_p_e_8h.html">
+              <section title="CylinderPE" ref="class_cylinder_p_e.html">
+                <section title="CylinderPE" ref="class_cylinder_p_e.html#ab88ffe5385a1ce9c721f8444b016239c" />
+                <section title="checkCollision" ref="class_cylinder_p_e.html#a40327d5407a81f408ac55641ab788f74" />
+              </section>
+            </section>
+            <section title="GLWindow.cpp" ref="_g_l_window_8cpp.html" />
+            <section title="GLWindow.h" ref="_g_l_window_8h.html">
+              <section title="GLWindow" ref="class_g_l_window.html">
+                <section title="GLWindow" ref="class_g_l_window.html#a8dfc33113be0a86a53ddbea054f75292" />
+                <section title="~GLWindow" ref="class_g_l_window.html#a2eeaea2148f4f72344edd6d1bac9759b" />
+                <section title="buildBoidVAO" ref="class_g_l_window.html#a40f8997bec303f618fafdaf2a8fa926c" />
+                <section title="clear" ref="class_g_l_window.html#acf5e5a099d73bdcae25f71c142808e0d" />
+                <section title="drawCollisionCylinder" ref="class_g_l_window.html#af9a05fbe4f0f65a57b8e4eb1cc098f93" />
+                <section title="drawCollisionSphere" ref="class_g_l_window.html#acf119c86c7983aec6732e82c32d34c3a" />
+                <section title="drawRadius" ref="class_g_l_window.html#a779e118f6fed3fe8c878eeec6c895edb" />
+                <section title="drawStrength" ref="class_g_l_window.html#ab1024c3600ebea19a55b458cfedc312d" />
+                <section title="drawVector" ref="class_g_l_window.html#a68b44e9cb0a9b29a220973d714adb3d5" />
+                <section title="initializeGL" ref="class_g_l_window.html#a39e39761cd7323806917a217cc7caea5" />
+                <section title="loadAgents" ref="class_g_l_window.html#a83764b841c6a004d9e5d2ea319fcc5fd" />
+                <section title="loadBrains" ref="class_g_l_window.html#a42f7c4608467ca63cdfba73e4869a460" />
+                <section title="loadMatricesToShader" ref="class_g_l_window.html#ab78209ce50dd6820686aa05fc242eb7a" />
+                <section title="mouseMoveEvent" ref="class_g_l_window.html#a7a04e2a3400fa69d1bcb6b650425c01e" />
+                <section title="mousePressEvent" ref="class_g_l_window.html#a2c4d9af80c2a7a33a46bce46276b8409" />
+                <section title="mouseReleaseEvent" ref="class_g_l_window.html#ab9e5741b8c69d2f6447a5fc6d9d704c8" />
+                <section title="paintGL" ref="class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403" />
+                <section title="rearrangeCellPartition" ref="class_g_l_window.html#a03f30901abe2d0ac3fdaccb8e64e876d" />
+                <section title="resizeGL" ref="class_g_l_window.html#abe57c0f40e59cba4c98759121e22eb47" />
+                <section title="restart" ref="class_g_l_window.html#a12b8b90ae4a6d511f200d606355e6fef" />
+                <section title="scaleAxis" ref="class_g_l_window.html#aeb2b4ae4b13a1e89b2f53d7b84d72414" />
+                <section title="scaleCollisionRadius" ref="class_g_l_window.html#a2e83bb71578b8a46d9dd994d54118f21" />
+                <section title="setBoundingBoxSize" ref="class_g_l_window.html#a2dc76e42e38828c8f57b16843e7cbcba" />
+                <section title="setCurrentDummy" ref="class_g_l_window.html#af9c3a43d6cc58d6266ba01d86d37d88f" />
+                <section title="setDrawAxis" ref="class_g_l_window.html#ad42d283d3feefc88feb9e10e720247c5" />
+                <section title="setDrawBoundingBox" ref="class_g_l_window.html#affaa8dc9b2d281e54deeda439c179b44" />
+                <section title="setDrawCells" ref="class_g_l_window.html#a0fb13c230066f2cba983efddc98a87fb" />
+                <section title="setDrawCollisionRadius" ref="class_g_l_window.html#a889ce30d3925894e3d3750ffa06f152b" />
+                <section title="setDrawStateColour" ref="class_g_l_window.html#aa40970ec70ad2cff3629851fb1e58489" />
+                <section title="setDrawStrength" ref="class_g_l_window.html#aa08293bb3851a757ad68166aa28de7aa" />
+                <section title="setDrawVelocityVector" ref="class_g_l_window.html#aadc27cf5c333a1f2a9a42a718423da40" />
+                <section title="setDrawVisionRadius" ref="class_g_l_window.html#ae1e008ced5fefe6fab656b600670bed6" />
+                <section title="setFriction" ref="class_g_l_window.html#af8440b069f6b55904a5c48dbd8bac853" />
+                <section title="setGravity" ref="class_g_l_window.html#a6e0d44cdfb104ccfdcee1871a0f1bf20" />
+                <section title="setPhysicsEngine" ref="class_g_l_window.html#a0acf1e2e5cae72e02f1d0c26583f2e33" />
+                <section title="setShader" ref="class_g_l_window.html#a4e1180fa8158f4cbf732977392484230" />
+                <section title="setStateColour" ref="class_g_l_window.html#aa8a773ff22134f9221e7da016d2fb242" />
+                <section title="setStep" ref="class_g_l_window.html#af887a61421c8a303df83e4c35b551805" />
+                <section title="setTimerInterval" ref="class_g_l_window.html#a8346f3a699dadf0472d8301b86998856" />
+                <section title="setWireframeMode" ref="class_g_l_window.html#a23f9cf59c263b558ab3a3ed0a338086d" />
+                <section title="toggleSimulation" ref="class_g_l_window.html#a1c122bc7adc8d44392ea9ca103285e7d" />
+                <section title="updateFPS" ref="class_g_l_window.html#a5a8aca7f7efa0a164af7efbc6fb02406" />
+                <section title="updateSimulation" ref="class_g_l_window.html#a0e32095ad99ae2109ad37c2f24f1219b" />
+                <section title="wheelEvent" ref="class_g_l_window.html#a5f96a70cc4c2666b46ecfa62de7be598" />
+                <section title="m_axisScale" ref="class_g_l_window.html#a160d80e324e2ed5a20d0832881ad2d3f" />
+                <section title="m_boidVAO" ref="class_g_l_window.html#a4414d807b4b90f55e063cf0209e4123b" />
+                <section title="m_boundingBox" ref="class_g_l_window.html#a6deccef2587ac312357a19afd6bed578" />
+                <section title="m_camera" ref="class_g_l_window.html#a4dbb29267ca93367914224a415bc09cb" />
+                <section title="m_collisionRadiusScale" ref="class_g_l_window.html#a0379c622b46f1789d1531ace229f8437" />
+                <section title="m_crowdEngine" ref="class_g_l_window.html#ab00de2a161006bbb4197750dd2f4e43f" />
+                <section title="m_currentDummy" ref="class_g_l_window.html#aa5f29184ef15dbbd9724e8048aab736b" />
+                <section title="m_customDummy" ref="class_g_l_window.html#a5085da743aa7c7a311c69b28c968ab8a" />
+                <section title="m_drawAxis" ref="class_g_l_window.html#a9a56015074271cc639c9d06d33c9058d" />
+                <section title="m_drawBoundingBox" ref="class_g_l_window.html#af777f0df6d6a5f49abad457f07e86489" />
+                <section title="m_drawCells" ref="class_g_l_window.html#a455bee93f5038ca958a099deae9743f7" />
+                <section title="m_drawCollisionRadius" ref="class_g_l_window.html#a12ce24e0006ddb059b1beac5ab024f6e" />
+                <section title="m_drawStateColour" ref="class_g_l_window.html#a0b8fcfd154ecf2acb73569aba2b43723" />
+                <section title="m_drawStrength" ref="class_g_l_window.html#ad3a4e43e33d31c209db4bb170be2533d" />
+                <section title="m_drawVelocityVector" ref="class_g_l_window.html#afe3eedc580d079fdd7841e8293176003" />
+                <section title="m_drawVisionRadius" ref="class_g_l_window.html#aa8f932753690ebcf388771b5e3daf675" />
+                <section title="m_dummies" ref="class_g_l_window.html#aa0126fad90706919ef35e4394968fc74" />
+                <section title="m_fps" ref="class_g_l_window.html#a83e019efd2becc005d6bf4493fc3adb2" />
+                <section title="m_frameCounter" ref="class_g_l_window.html#ab64db2c12e86211b0efbe9bca53b1505" />
+                <section title="m_globalRotation" ref="class_g_l_window.html#a461350d9c0611b35e7399255da3cdfb8" />
+                <section title="m_globalTranslation" ref="class_g_l_window.html#a65056398ef4d8303ea639130d2831552" />
+                <section title="m_groundSteps" ref="class_g_l_window.html#a631e067927511f1c7ab19c9cf371a347" />
+                <section title="m_light" ref="class_g_l_window.html#a57c72fd1207718a4b4f567dea8c5b6ef" />
+                <section title="m_parser" ref="class_g_l_window.html#af9d321bc5a4b573772d564a2b62b7757" />
+                <section title="m_previousMousePosition" ref="class_g_l_window.html#aa4d183cf6cef1e89fbb6ca9713d8c4db" />
+                <section title="m_primitives" ref="class_g_l_window.html#a1e0d2bae64bde7b7d69989f28200384f" />
+                <section title="m_rotate" ref="class_g_l_window.html#a1b5d8b223995bc9740074c5342fe8e38" />
+                <section title="m_shader" ref="class_g_l_window.html#ac7258a666fdd64a17d2a6ff469b1ccf3" />
+                <section title="m_shaderIndex" ref="class_g_l_window.html#abe54892db2cdba174f08a1b669a6725c" />
+                <section title="m_text" ref="class_g_l_window.html#aacbacfb75d6253dfb982900d2b9e48dc" />
+                <section title="m_transformStack" ref="class_g_l_window.html#aaa941adbe7772d03588f312326100e5f" />
+                <section title="m_translate" ref="class_g_l_window.html#a3a7f7ae3fbde7c5e24ff677a6ed34563" />
+                <section title="m_updateCrowdEngineTimer" ref="class_g_l_window.html#a3cf839584eb0a601e8d0a63c93d71834" />
+                <section title="m_updateFPSTimer" ref="class_g_l_window.html#af81d3249ab4a9c3aa6bca26d32ba34d6" />
+                <section title="m_wireframeMode" ref="class_g_l_window.html#aa744b094e195dfae7238e26310e6a072" />
+                <section title="s_agentsPath" ref="class_g_l_window.html#a2d22376eb1c30db68de7d2092283e88d" />
+                <section title="s_brainsPath" ref="class_g_l_window.html#acb6824b3029b4147f1eaa5c752266af3" />
+                <section title="s_dummiesPath" ref="class_g_l_window.html#a8d2b2a46a6dba4d69faa77dbc204d09c" />
+                <section title="s_rotationIncrement" ref="class_g_l_window.html#aaf89108b36aa15cccb8273f6d73d6881" />
+                <section title="s_translationIncrement" ref="class_g_l_window.html#aab977496a699bcedd53d6f601c61bca0" />
+                <section title="s_zoomIncrement" ref="class_g_l_window.html#a5a86cd28fd83d3b34c4026d74b7e8cb5" />
+              </section>
+              <section title="shader" ref="_g_l_window_8h.html#a1b46c5da1d9da0a437b3f552cf7df434">
+                <section title="SHADER_PHONG" ref="_g_l_window_8h.html#a1b46c5da1d9da0a437b3f552cf7df434ae735f66579b50851b4aebd1b29e4c397" />
+                <section title="SHADER_COLOUR" ref="_g_l_window_8h.html#a1b46c5da1d9da0a437b3f552cf7df434a6a0a4bc46c093b4200e0756187df46e6" />
+              </section>
+            </section>
+            <section title="main.cpp" ref="main_8cpp.html">
+              <section title="main" ref="main_8cpp.html#a7a29781a20c5dd4153c3c1cecf0ff328" />
+            </section>
+            <section title="MainWindow.cpp" ref="_main_window_8cpp.html" />
+            <section title="MainWindow.h" ref="_main_window_8h.html">
+              <section title="MainWindow" ref="class_main_window.html">
+                <section title="MainWindow" ref="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" />
+                <section title="~MainWindow" ref="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7" />
+                <section title="keyPressEvent" ref="class_main_window.html#a3c2e352934c6318d405c3d2b0e07729c" />
+                <section title="setStep" ref="class_main_window.html#aa9c5a1718368ae03f26ef49c6f1b5af1" />
+                <section title="setTimerInterval" ref="class_main_window.html#aab62fe70e4236dabe09d8baccce1dc90" />
+                <section title="m_gl" ref="class_main_window.html#a8f18111d1b422167f8b9a688f38f8969" />
+                <section title="m_ui" ref="class_main_window.html#a5a3eb262660797d9a4d52ed16edb6d11" />
+              </section>
+            </section>
+            <section title="Parser.h" ref="_parser_8h.html">
+              <section title="Parser" ref="class_parser.html">
+                <section title="loadAgents" ref="class_parser.html#acbee96bed7b870fd08d547f60a55f26d" />
+              </section>
+            </section>
+            <section title="PhysicsEngine.cpp" ref="_physics_engine_8cpp.html" />
+            <section title="PhysicsEngine.h" ref="_physics_engine_8h.html">
+              <section title="PhysicsEngine" ref="class_physics_engine.html">
+                <section title="PhysicsEngine" ref="class_physics_engine.html#a84d9be1de76eb1172331b66d58a96a12" />
+                <section title="applyFriction" ref="class_physics_engine.html#a4b9862d2fc06fc3f1d6d2b935d722204" />
+                <section title="applyGravity" ref="class_physics_engine.html#a282e3493c5bf730a327ecc71ae34a381" />
+                <section title="checkCollision" ref="class_physics_engine.html#ab1ec7f82d879b765ba51896ac0293306" />
+                <section title="checkCollisionBoundingBox" ref="class_physics_engine.html#a593786154cf89be904989f7dc9decd5b" />
+                <section title="checkCollisionGround" ref="class_physics_engine.html#a729ebe13ac050acee07a9b714b7b6b3c" />
+                <section title="getBoundingBoxSize" ref="class_physics_engine.html#af148fb73a48e2b1bdf603739886b2fac" />
+                <section title="getType" ref="class_physics_engine.html#a0eec656c837f22fcffe9c49e9c7da381" />
+                <section title="setBoundingBoxSize" ref="class_physics_engine.html#afdc53fedd489b317ff2319bdf4dd3b8d" />
+                <section title="setFriction" ref="class_physics_engine.html#a6bed2ed3a575ecb04fb48c4d12723b49" />
+                <section title="setGravity" ref="class_physics_engine.html#adfc5c2492009e5278e1297cd976f07aa" />
+                <section title="m_boundingBoxSize" ref="class_physics_engine.html#abb423c8ab1287bfd9e2b396bf3f75fb0" />
+                <section title="m_friction" ref="class_physics_engine.html#a7779891cc51c2c9cd3e484d9506ebaa3" />
+                <section title="m_gravity" ref="class_physics_engine.html#aac07745baaaa47e949089444ecd41247" />
+                <section title="m_type" ref="class_physics_engine.html#a2799cd124cf76ac94da61bdc215236eb" />
+                <section title="s_epsilon" ref="class_physics_engine.html#a0ebf4487655301f5da5b24a4953821b9" />
+              </section>
+              <section title="physicsEngineType" ref="_physics_engine_8h.html#adc9a79dbac5053fb1f32e0725de2b110">
+                <section title="PE_CYLINDER" ref="_physics_engine_8h.html#adc9a79dbac5053fb1f32e0725de2b110aa2d5e7fd412afc41fc4e8c524e36e95b" />
+                <section title="PE_SPHERE" ref="_physics_engine_8h.html#adc9a79dbac5053fb1f32e0725de2b110aa4fa9af94915a7a923e342c5d2a7e0e0" />
+              </section>
+            </section>
+            <section title="QuadraticGridCP.cpp" ref="_quadratic_grid_c_p_8cpp.html" />
+            <section title="QuadraticGridCP.h" ref="_quadratic_grid_c_p_8h.html">
+              <section title="QuadraticGridCP" ref="class_quadratic_grid_c_p.html">
+                <section title="QuadraticGridCP" ref="class_quadratic_grid_c_p.html#ac4bce0de07c9dbeafb949175229e2311" />
+                <section title="~QuadraticGridCP" ref="class_quadratic_grid_c_p.html#a985eb5b3f997d549ecab9f77d7b2214a" />
+                <section title="addAgent" ref="class_quadratic_grid_c_p.html#a8ea7d12bf956eb79beae4f72aa02642a" />
+                <section title="addAgents" ref="class_quadratic_grid_c_p.html#a0665be64ee9cd61e796d6ba6bd098d8d" />
+                <section title="cell" ref="class_quadratic_grid_c_p.html#a6d922e64d9870d9dcb8323d143fb2d8d" />
+                <section title="clear" ref="class_quadratic_grid_c_p.html#a0eaf24d7f9a49fb46af7d37ba7b74cfe" />
+                <section title="findAgentsInCells" ref="class_quadratic_grid_c_p.html#a9fc603778e891904457e428de8606371" />
+                <section title="findNeighboursInAgents" ref="class_quadratic_grid_c_p.html#ab5609b63f2fcb7706d4bdc071ac368ff" />
+                <section title="printCells" ref="class_quadratic_grid_c_p.html#a22c417f7cf66e24a0a1ebe44b4b3eb6a" />
+                <section title="rearrangePartition" ref="class_quadratic_grid_c_p.html#aed54958e170f5c90e6026ab847c0f48e" />
+                <section title="updateCells" ref="class_quadratic_grid_c_p.html#a4821f9fcf301bcbeb34cef3ee86e4b8e" />
+                <section title="updateNeighbours" ref="class_quadratic_grid_c_p.html#a2c3bb856105d9888f7c2d043296303f5" />
+                <section title="m_cells" ref="class_quadratic_grid_c_p.html#abaf45da84981246f5a3baf0ba8333acb" />
+              </section>
+            </section>
+            <section title="SpherePE.cpp" ref="_sphere_p_e_8cpp.html" />
+            <section title="SpherePE.h" ref="_sphere_p_e_8h.html">
+              <section title="SpherePE" ref="class_sphere_p_e.html">
+                <section title="SpherePE" ref="class_sphere_p_e.html#a61a7521128aaa52ea519fefd0fc6d4e6" />
+                <section title="checkCollision" ref="class_sphere_p_e.html#aa153229d509d53557b872890e6a336c2" />
+              </section>
+            </section>
+            <section title="TXTParser.cpp" ref="_t_x_t_parser_8cpp.html" />
+            <section title="TXTParser.h" ref="_t_x_t_parser_8h.html">
+              <section title="TXTParser" ref="class_t_x_t_parser.html">
+                <section title="loadAgents" ref="class_t_x_t_parser.html#a64f463ea8e1cdbdfff49a4003108dd19" />
+              </section>
+            </section>
+          </section>
+          <section title="File Members" ref="globals.html">
+            <section title="All" ref="globals.html" />
+            <section title="Functions" ref="globals_func.html" />
+            <section title="Enumerations" ref="globals_enum.html" />
+            <section title="Enumerator" ref="globals_eval.html" />
+          </section>
+        </section>
+      </section>
+    </toc>
+    <keywords>
+      <keyword name="SHADER_PHONG" id="GLWindow.h::SHADER_PHONG" ref="_g_l_window_8h.html#a1b46c5da1d9da0a437b3f552cf7df434ae735f66579b50851b4aebd1b29e4c397" />
+      <keyword name="SHADER_COLOUR" id="GLWindow.h::SHADER_COLOUR" ref="_g_l_window_8h.html#a1b46c5da1d9da0a437b3f552cf7df434a6a0a4bc46c093b4200e0756187df46e6" />
+      <keyword name="main" id="main.cpp::main" ref="main_8cpp.html#a7a29781a20c5dd4153c3c1cecf0ff328" />
+      <keyword name="PE_CYLINDER" id="PhysicsEngine.h::PE_CYLINDER" ref="_physics_engine_8h.html#adc9a79dbac5053fb1f32e0725de2b110aa2d5e7fd412afc41fc4e8c524e36e95b" />
+      <keyword name="PE_SPHERE" id="PhysicsEngine.h::PE_SPHERE" ref="_physics_engine_8h.html#adc9a79dbac5053fb1f32e0725de2b110aa4fa9af94915a7a923e342c5d2a7e0e0" />
+      <keyword name="Agent" id="Agent" ref="class_agent.html" />
+      <keyword name="Agent" id="Agent::Agent" ref="class_agent.html#a24a60f1d260bf19a4f7f8a5f36881d3f" />
+      <keyword name="Agent" id="Agent::Agent" ref="class_agent.html#a1d738c6ab2c6a3e50a3086f303439796" />
+      <keyword name="Agent" id="Agent::Agent" ref="class_agent.html#a645d19861c6c5ddfc0705e551b5582a0" />
+      <keyword name="~Agent" id="Agent::~Agent" ref="class_agent.html#ab8dd8d152605cf1339fed595376e83cb" />
+      <keyword name="setMass" id="Agent::setMass" ref="class_agent.html#a466e0dc7b932e233358c2b472b876460" />
+      <keyword name="setMaxStrength" id="Agent::setMaxStrength" ref="class_agent.html#a41b8a1665c6adeebcee51921ae79c616" />
+      <keyword name="setMaxSpeed" id="Agent::setMaxSpeed" ref="class_agent.html#ac18b0ba696257bcb79dedf825cb3e38f" />
+      <keyword name="setHeading" id="Agent::setHeading" ref="class_agent.html#acbd1646da465bdc2d3cc75be97eeeb5b" />
+      <keyword name="setVisionRadius" id="Agent::setVisionRadius" ref="class_agent.html#a50a6d81200f9f98389441f41fe662d33" />
+      <keyword name="setPosition" id="Agent::setPosition" ref="class_agent.html#a178323b7ee20be61d8e607294632427e" />
+      <keyword name="setPreviousPos" id="Agent::setPreviousPos" ref="class_agent.html#a73b6cf0e6642c337d1b09152f1fbcf1a" />
+      <keyword name="setVelocity" id="Agent::setVelocity" ref="class_agent.html#a4fe9f9edc8483aa54c46b0cd172eb5cd" />
+      <keyword name="setNeighbours" id="Agent::setNeighbours" ref="class_agent.html#a16784b8790c91f9b1c5c00c8ab217e08" />
+      <keyword name="setBrain" id="Agent::setBrain" ref="class_agent.html#a5cc6bd9a0a56789cffc7b37ebd6d985c" />
+      <keyword name="setState" id="Agent::setState" ref="class_agent.html#a915dd50557a7d7a3bbbd796f48a4b927" />
+      <keyword name="setDummy" id="Agent::setDummy" ref="class_agent.html#a0fd788ef6611e653e6ea866d5f4925c4" />
+      <keyword name="addAttribute" id="Agent::addAttribute" ref="class_agent.html#ad8644314536c784dafb42c89dd9d2eb6" />
+      <keyword name="getAgentID" id="Agent::getAgentID" ref="class_agent.html#a0dc6f9fdb722fddfc12c20806f062cd0" />
+      <keyword name="getPosition" id="Agent::getPosition" ref="class_agent.html#a00178e547698aefa61a5644727d1ab39" />
+      <keyword name="getPreviousPos" id="Agent::getPreviousPos" ref="class_agent.html#ac3479c22d620e757cf4f8f41d0465cf6" />
+      <keyword name="getMass" id="Agent::getMass" ref="class_agent.html#a0d63e88090408db6920ea84e3012b125" />
+      <keyword name="getStrength" id="Agent::getStrength" ref="class_agent.html#a9a26182d54080a9c70841faec1758431" />
+      <keyword name="getMaxStrength" id="Agent::getMaxStrength" ref="class_agent.html#a2e7819e1cdd3699c0d7eef1f40619bbb" />
+      <keyword name="getVelocity" id="Agent::getVelocity" ref="class_agent.html#ae809b15253df2701fbf1e2148156f205" />
+      <keyword name="getMaxSpeed" id="Agent::getMaxSpeed" ref="class_agent.html#a7f26e6e8877596a11cb15c1bd74e1df5" />
+      <keyword name="getState" id="Agent::getState" ref="class_agent.html#a77c6d7cff0852ad84bc6bf48d7dc47a5" />
+      <keyword name="getTransform" id="Agent::getTransform" ref="class_agent.html#a748d0def2ed1d38573edd25fd2f28d8e" />
+      <keyword name="getVisionRadius" id="Agent::getVisionRadius" ref="class_agent.html#a0f6fa62c5ec68c21647a8c5e9a38685d" />
+      <keyword name="getBrain" id="Agent::getBrain" ref="class_agent.html#a2c7cb38b2b5b861123eed015cd0d6ae2" />
+      <keyword name="getAttributes" id="Agent::getAttributes" ref="class_agent.html#a82811bf9cb1ea147d256fec31ad8c96b" />
+      <keyword name="getCollisionRadius" id="Agent::getCollisionRadius" ref="class_agent.html#a1ee4db62d5f0fee104ce3d0799c91610" />
+      <keyword name="getNeighbours" id="Agent::getNeighbours" ref="class_agent.html#a759e777bab15a561fa9d3b4c4e6c9145" />
+      <keyword name="getHeading" id="Agent::getHeading" ref="class_agent.html#a8af61b9fb46af5f3b02c1a1d424df2a4" />
+      <keyword name="getDummy" id="Agent::getDummy" ref="class_agent.html#af7b048ccbc068f9f0004351f0f573c57" />
+      <keyword name="execute" id="Agent::execute" ref="class_agent.html#a676656c11355ae87ac316ee2ff6d0fb4" />
+      <keyword name="applyForce" id="Agent::applyForce" ref="class_agent.html#a5ce46ab9cf6c7b4109b12c48ad073a27" />
+      <keyword name="sendMessage" id="Agent::sendMessage" ref="class_agent.html#a866d744b03137948a0a8fa9efd722969" />
+      <keyword name="distance" id="Agent::distance" ref="class_agent.html#a932a6271567e4905f3279f68f21c3d6c" />
+      <keyword name="scaleCollisionRadius" id="Agent::scaleCollisionRadius" ref="class_agent.html#ac000a1a64c141750e0b84bfce25ee7b0" />
+      <keyword name="print" id="Agent::print" ref="class_agent.html#a3b3ecc599c5aa23eb6844b48e919a19a" />
+      <keyword name="setLuaState" id="Agent::setLuaState" ref="class_agent.html#afb9462a325dbc88e92d8eea1c5a2482c" />
+      <keyword name="setStep" id="Agent::setStep" ref="class_agent.html#a0a97cadd909ee47f3e8c5d4404694314" />
+      <keyword name="getStep" id="Agent::getStep" ref="class_agent.html#a537e126032d2acd838c0b4ab6b74f4cc" />
+      <keyword name="m_agentID" id="Agent::m_agentID" ref="class_agent.html#a4634e9741958a6ed1fa060426f342e8a" />
+      <keyword name="m_mass" id="Agent::m_mass" ref="class_agent.html#a147267e7f64b2d177fbb739d8368352a" />
+      <keyword name="m_strength" id="Agent::m_strength" ref="class_agent.html#abadfd3b44bf54fa5a5509d385ea6c685" />
+      <keyword name="m_maxStrength" id="Agent::m_maxStrength" ref="class_agent.html#a05952baa525cfc44354bf26196fb1205" />
+      <keyword name="m_visionRadius" id="Agent::m_visionRadius" ref="class_agent.html#aebea95b4cc2af8851281b11a194198dd" />
+      <keyword name="m_totalForce" id="Agent::m_totalForce" ref="class_agent.html#a8fb428c0c1a92244766ded7ff4e56479" />
+      <keyword name="m_velocity" id="Agent::m_velocity" ref="class_agent.html#ac14d0c24d0aded1954053f0afcc1f6e7" />
+      <keyword name="m_heading" id="Agent::m_heading" ref="class_agent.html#aae784fc7c27a38f620725fde76089b9d" />
+      <keyword name="m_maxSpeed" id="Agent::m_maxSpeed" ref="class_agent.html#a4c8bf40d79377febaf432acd38ae2f10" />
+      <keyword name="m_transformation" id="Agent::m_transformation" ref="class_agent.html#ab8d388444f969815cb30212bd4db7617" />
+      <keyword name="m_previousTransform" id="Agent::m_previousTransform" ref="class_agent.html#a3278cf673c8ab359693f9ef7fd625d48" />
+      <keyword name="m_state" id="Agent::m_state" ref="class_agent.html#af27aabb7917031d7fe4cc0a58c3eb4ad" />
+      <keyword name="m_brain" id="Agent::m_brain" ref="class_agent.html#a6c35857fedf18ec6f223202971e6fd39" />
+      <keyword name="m_inbox" id="Agent::m_inbox" ref="class_agent.html#a89e82c1c08c7466cb9fbdec09d5b69cd" />
+      <keyword name="m_attributes" id="Agent::m_attributes" ref="class_agent.html#a647ccf2cbbc627afb96277e22d2d074a" />
+      <keyword name="m_neighbours" id="Agent::m_neighbours" ref="class_agent.html#a5b7bf9028bba3293a5938d425942733d" />
+      <keyword name="m_collisionRadius" id="Agent::m_collisionRadius" ref="class_agent.html#a8e6d38a50c8135e86d7c3162635dfc4d" />
+      <keyword name="m_dummy" id="Agent::m_dummy" ref="class_agent.html#aac7cf4072e05a53897a35267b96254f1" />
+      <keyword name="s_luaState" id="Agent::s_luaState" ref="class_agent.html#a52e15415e75ba3aa4fc09bfa046a7a80" />
+      <keyword name="s_numberOfAgents" id="Agent::s_numberOfAgents" ref="class_agent.html#a5c473d6768ef124683c4978913eb40ab" />
+      <keyword name="s_step" id="Agent::s_step" ref="class_agent.html#a9a9c5f24625ae862fbf4600845ebf422" />
+      <keyword name="CellPartition" id="CellPartition" ref="class_cell_partition.html" />
+      <keyword name="CellPartition" id="CellPartition::CellPartition" ref="class_cell_partition.html#a800777adf6053f21c9506fd00bb8bac7" />
+      <keyword name="~CellPartition" id="CellPartition::~CellPartition" ref="class_cell_partition.html#a36702a7f3afbfae63be09c46beed328b" />
+      <keyword name="getCellSize" id="CellPartition::getCellSize" ref="class_cell_partition.html#a031f8b6ed6f39902065bfb34a0ceac73" />
+      <keyword name="addAgent" id="CellPartition::addAgent" ref="class_cell_partition.html#aa9e2e1244bb0009b298b6ae5ab6d4e2f" />
+      <keyword name="addAgents" id="CellPartition::addAgents" ref="class_cell_partition.html#ab5f91e9618a74d2d8c6c3a8240d99998" />
+      <keyword name="updateCells" id="CellPartition::updateCells" ref="class_cell_partition.html#a72ba1352c451752ae9243b25e06d03c2" />
+      <keyword name="updateNeighbours" id="CellPartition::updateNeighbours" ref="class_cell_partition.html#a3df79265cee9ad0e74786d6fd3350518" />
+      <keyword name="rearrangePartition" id="CellPartition::rearrangePartition" ref="class_cell_partition.html#ad657f8d8ec6fd295e686ddaebf5d399d" />
+      <keyword name="printCells" id="CellPartition::printCells" ref="class_cell_partition.html#addc699eac5223f7e3a7c2a1ab25ebe45" />
+      <keyword name="clear" id="CellPartition::clear" ref="class_cell_partition.html#a1b30a0c72311f4b06c8b45d0514b1c8c" />
+      <keyword name="m_cellSize" id="CellPartition::m_cellSize" ref="class_cell_partition.html#a0f3e1482db0f0f9493d2bc1d97b4d88a" />
+      <keyword name="CrowdEngine" id="CrowdEngine" ref="class_crowd_engine.html" />
+      <keyword name="CrowdEngine" id="CrowdEngine::CrowdEngine" ref="class_crowd_engine.html#ad1cc01b065244382373fe3d77db00608" />
+      <keyword name="~CrowdEngine" id="CrowdEngine::~CrowdEngine" ref="class_crowd_engine.html#a63cd9557dc58fb8159fb1a3551345a22" />
+      <keyword name="setCellPartition" id="CrowdEngine::setCellPartition" ref="class_crowd_engine.html#a8cdade4ade2ddbc451eca2fd63a773a6" />
+      <keyword name="setPhysicsEngine" id="CrowdEngine::setPhysicsEngine" ref="class_crowd_engine.html#a73d2561151382c27673bf14feec7cd89" />
+      <keyword name="setStep" id="CrowdEngine::setStep" ref="class_crowd_engine.html#a28ab0a545b2a836138690bf1ac5e1b5b" />
+      <keyword name="setFriction" id="CrowdEngine::setFriction" ref="class_crowd_engine.html#acbe1845a89a13a1a8d3c8ae9967d2d03" />
+      <keyword name="setGravity" id="CrowdEngine::setGravity" ref="class_crowd_engine.html#aed5a78a01ee498356bf107e74545f310" />
+      <keyword name="getAgentsBegin" id="CrowdEngine::getAgentsBegin" ref="class_crowd_engine.html#af9ae3c4d97abb0b1f961a7b6eb4ee47f" />
+      <keyword name="getAgentsEnd" id="CrowdEngine::getAgentsEnd" ref="class_crowd_engine.html#a3efa68a20bcc0d69cd42dce73fb93fcd" />
+      <keyword name="getBoundingBoxSize" id="CrowdEngine::getBoundingBoxSize" ref="class_crowd_engine.html#a890a26323fdd6e00408114fabfdef4c5" />
+      <keyword name="getCellSize" id="CrowdEngine::getCellSize" ref="class_crowd_engine.html#a668b40335832f00bfdb22529195570dc" />
+      <keyword name="getPEType" id="CrowdEngine::getPEType" ref="class_crowd_engine.html#a7b766120390a1a8d1c51d677475e05ee" />
+      <keyword name="getAgentsNumber" id="CrowdEngine::getAgentsNumber" ref="class_crowd_engine.html#a71763914c950b45e4adeb483d34fe6e4" />
+      <keyword name="loadBrain" id="CrowdEngine::loadBrain" ref="class_crowd_engine.html#a30db10b38b7427e30f9c02701536f48c" />
+      <keyword name="addAgent" id="CrowdEngine::addAgent" ref="class_crowd_engine.html#a8f6006d7c744329acb887e85dee52675" />
+      <keyword name="addAgents" id="CrowdEngine::addAgents" ref="class_crowd_engine.html#a989a5245d17f2d2174f16b6f03b2ff20" />
+      <keyword name="printAgents" id="CrowdEngine::printAgents" ref="class_crowd_engine.html#a418c2ec370a694597e4ec2b0a589fe2c" />
+      <keyword name="printCellPartition" id="CrowdEngine::printCellPartition" ref="class_crowd_engine.html#ac19a8cc49db260055f813889988895ca" />
+      <keyword name="rearrangePartition" id="CrowdEngine::rearrangePartition" ref="class_crowd_engine.html#ac057511be522c78a66147af05d39f0d0" />
+      <keyword name="update" id="CrowdEngine::update" ref="class_crowd_engine.html#a001d4a0d6790344140a1546c84de044e" />
+      <keyword name="clear" id="CrowdEngine::clear" ref="class_crowd_engine.html#a214aac0d123043252d78c2cd1e23c75f" />
+      <keyword name="restart" id="CrowdEngine::restart" ref="class_crowd_engine.html#a10eb758fb5e24bbbf8427c2fcecb4029" />
+      <keyword name="scaleCollisionRadius" id="CrowdEngine::scaleCollisionRadius" ref="class_crowd_engine.html#a403c4b9b8af097727a52f6243fd3933b" />
+      <keyword name="setBoundingBoxSize" id="CrowdEngine::setBoundingBoxSize" ref="class_crowd_engine.html#a35896d1ef5fef466e86ac724a3abcb4f" />
+      <keyword name="m_agents" id="CrowdEngine::m_agents" ref="class_crowd_engine.html#a594b92a478259d1caffad73be73455e0" />
+      <keyword name="m_initialAgents" id="CrowdEngine::m_initialAgents" ref="class_crowd_engine.html#a5699876869bf40fd92cea002518c0054" />
+      <keyword name="m_cellPartition" id="CrowdEngine::m_cellPartition" ref="class_crowd_engine.html#a151714f33b1317cd1a1bd2d8eed1ed00" />
+      <keyword name="m_physicsEngine" id="CrowdEngine::m_physicsEngine" ref="class_crowd_engine.html#aebe4666d4bea7759e0da41d670ac21e5" />
+      <keyword name="s_brainsPath" id="CrowdEngine::s_brainsPath" ref="class_crowd_engine.html#a6d986f6abae52fbc0fd4d31dc61fdca6" />
+      <keyword name="s_loadedBrains" id="CrowdEngine::s_loadedBrains" ref="class_crowd_engine.html#af4e587d5d4c2b7b5606ad3eaa06aafaa" />
+      <keyword name="s_luaState" id="CrowdEngine::s_luaState" ref="class_crowd_engine.html#a315af1a2226813fdf82d4290d22f49c8" />
+      <keyword name="CylinderPE" id="CylinderPE" ref="class_cylinder_p_e.html" />
+      <keyword name="CylinderPE" id="CylinderPE::CylinderPE" ref="class_cylinder_p_e.html#ab88ffe5385a1ce9c721f8444b016239c" />
+      <keyword name="checkCollision" id="CylinderPE::checkCollision" ref="class_cylinder_p_e.html#a40327d5407a81f408ac55641ab788f74" />
+      <keyword name="PhysicsEngine" id="PhysicsEngine::PhysicsEngine" ref="class_physics_engine.html#a84d9be1de76eb1172331b66d58a96a12" />
+      <keyword name="setBoundingBoxSize" id="PhysicsEngine::setBoundingBoxSize" ref="class_physics_engine.html#afdc53fedd489b317ff2319bdf4dd3b8d" />
+      <keyword name="setFriction" id="PhysicsEngine::setFriction" ref="class_physics_engine.html#a6bed2ed3a575ecb04fb48c4d12723b49" />
+      <keyword name="setGravity" id="PhysicsEngine::setGravity" ref="class_physics_engine.html#adfc5c2492009e5278e1297cd976f07aa" />
+      <keyword name="getBoundingBoxSize" id="PhysicsEngine::getBoundingBoxSize" ref="class_physics_engine.html#af148fb73a48e2b1bdf603739886b2fac" />
+      <keyword name="getType" id="PhysicsEngine::getType" ref="class_physics_engine.html#a0eec656c837f22fcffe9c49e9c7da381" />
+      <keyword name="checkCollisionBoundingBox" id="PhysicsEngine::checkCollisionBoundingBox" ref="class_physics_engine.html#a593786154cf89be904989f7dc9decd5b" />
+      <keyword name="checkCollisionGround" id="PhysicsEngine::checkCollisionGround" ref="class_physics_engine.html#a729ebe13ac050acee07a9b714b7b6b3c" />
+      <keyword name="applyFriction" id="PhysicsEngine::applyFriction" ref="class_physics_engine.html#a4b9862d2fc06fc3f1d6d2b935d722204" />
+      <keyword name="applyGravity" id="PhysicsEngine::applyGravity" ref="class_physics_engine.html#a282e3493c5bf730a327ecc71ae34a381" />
+      <keyword name="s_epsilon" id="PhysicsEngine::s_epsilon" ref="class_physics_engine.html#a0ebf4487655301f5da5b24a4953821b9" />
+      <keyword name="GLWindow" id="GLWindow" ref="class_g_l_window.html" />
+      <keyword name="toggleSimulation" id="GLWindow::toggleSimulation" ref="class_g_l_window.html#a1c122bc7adc8d44392ea9ca103285e7d" />
+      <keyword name="setDrawAxis" id="GLWindow::setDrawAxis" ref="class_g_l_window.html#ad42d283d3feefc88feb9e10e720247c5" />
+      <keyword name="setDrawCells" id="GLWindow::setDrawCells" ref="class_g_l_window.html#a0fb13c230066f2cba983efddc98a87fb" />
+      <keyword name="setDrawBoundingBox" id="GLWindow::setDrawBoundingBox" ref="class_g_l_window.html#affaa8dc9b2d281e54deeda439c179b44" />
+      <keyword name="setDrawCollisionRadius" id="GLWindow::setDrawCollisionRadius" ref="class_g_l_window.html#a889ce30d3925894e3d3750ffa06f152b" />
+      <keyword name="setDrawVelocityVector" id="GLWindow::setDrawVelocityVector" ref="class_g_l_window.html#aadc27cf5c333a1f2a9a42a718423da40" />
+      <keyword name="setDrawVisionRadius" id="GLWindow::setDrawVisionRadius" ref="class_g_l_window.html#ae1e008ced5fefe6fab656b600670bed6" />
+      <keyword name="setDrawStrength" id="GLWindow::setDrawStrength" ref="class_g_l_window.html#aa08293bb3851a757ad68166aa28de7aa" />
+      <keyword name="setDrawStateColour" id="GLWindow::setDrawStateColour" ref="class_g_l_window.html#aa40970ec70ad2cff3629851fb1e58489" />
+      <keyword name="setCurrentDummy" id="GLWindow::setCurrentDummy" ref="class_g_l_window.html#af9c3a43d6cc58d6266ba01d86d37d88f" />
+      <keyword name="setShader" id="GLWindow::setShader" ref="class_g_l_window.html#a4e1180fa8158f4cbf732977392484230" />
+      <keyword name="setFriction" id="GLWindow::setFriction" ref="class_g_l_window.html#af8440b069f6b55904a5c48dbd8bac853" />
+      <keyword name="setGravity" id="GLWindow::setGravity" ref="class_g_l_window.html#a6e0d44cdfb104ccfdcee1871a0f1bf20" />
+      <keyword name="rearrangeCellPartition" id="GLWindow::rearrangeCellPartition" ref="class_g_l_window.html#a03f30901abe2d0ac3fdaccb8e64e876d" />
+      <keyword name="loadBrains" id="GLWindow::loadBrains" ref="class_g_l_window.html#a42f7c4608467ca63cdfba73e4869a460" />
+      <keyword name="loadAgents" id="GLWindow::loadAgents" ref="class_g_l_window.html#a83764b841c6a004d9e5d2ea319fcc5fd" />
+      <keyword name="restart" id="GLWindow::restart" ref="class_g_l_window.html#a12b8b90ae4a6d511f200d606355e6fef" />
+      <keyword name="clear" id="GLWindow::clear" ref="class_g_l_window.html#acf5e5a099d73bdcae25f71c142808e0d" />
+      <keyword name="scaleCollisionRadius" id="GLWindow::scaleCollisionRadius" ref="class_g_l_window.html#a2e83bb71578b8a46d9dd994d54118f21" />
+      <keyword name="scaleAxis" id="GLWindow::scaleAxis" ref="class_g_l_window.html#aeb2b4ae4b13a1e89b2f53d7b84d72414" />
+      <keyword name="setBoundingBoxSize" id="GLWindow::setBoundingBoxSize" ref="class_g_l_window.html#a2dc76e42e38828c8f57b16843e7cbcba" />
+      <keyword name="setPhysicsEngine" id="GLWindow::setPhysicsEngine" ref="class_g_l_window.html#a0acf1e2e5cae72e02f1d0c26583f2e33" />
+      <keyword name="GLWindow" id="GLWindow::GLWindow" ref="class_g_l_window.html#a8dfc33113be0a86a53ddbea054f75292" />
+      <keyword name="~GLWindow" id="GLWindow::~GLWindow" ref="class_g_l_window.html#a2eeaea2148f4f72344edd6d1bac9759b" />
+      <keyword name="setTimerInterval" id="GLWindow::setTimerInterval" ref="class_g_l_window.html#a8346f3a699dadf0472d8301b86998856" />
+      <keyword name="setWireframeMode" id="GLWindow::setWireframeMode" ref="class_g_l_window.html#a23f9cf59c263b558ab3a3ed0a338086d" />
+      <keyword name="setStep" id="GLWindow::setStep" ref="class_g_l_window.html#af887a61421c8a303df83e4c35b551805" />
+      <keyword name="initializeGL" id="GLWindow::initializeGL" ref="class_g_l_window.html#a39e39761cd7323806917a217cc7caea5" />
+      <keyword name="resizeGL" id="GLWindow::resizeGL" ref="class_g_l_window.html#abe57c0f40e59cba4c98759121e22eb47" />
+      <keyword name="paintGL" id="GLWindow::paintGL" ref="class_g_l_window.html#a9bd2503dd5f812c10a9481f22ecd3403" />
+      <keyword name="updateSimulation" id="GLWindow::updateSimulation" ref="class_g_l_window.html#a0e32095ad99ae2109ad37c2f24f1219b" />
+      <keyword name="updateFPS" id="GLWindow::updateFPS" ref="class_g_l_window.html#a5a8aca7f7efa0a164af7efbc6fb02406" />
+      <keyword name="buildBoidVAO" id="GLWindow::buildBoidVAO" ref="class_g_l_window.html#a40f8997bec303f618fafdaf2a8fa926c" />
+      <keyword name="loadMatricesToShader" id="GLWindow::loadMatricesToShader" ref="class_g_l_window.html#ab78209ce50dd6820686aa05fc242eb7a" />
+      <keyword name="drawCollisionCylinder" id="GLWindow::drawCollisionCylinder" ref="class_g_l_window.html#af9a05fbe4f0f65a57b8e4eb1cc098f93" />
+      <keyword name="drawCollisionSphere" id="GLWindow::drawCollisionSphere" ref="class_g_l_window.html#acf119c86c7983aec6732e82c32d34c3a" />
+      <keyword name="drawVector" id="GLWindow::drawVector" ref="class_g_l_window.html#a68b44e9cb0a9b29a220973d714adb3d5" />
+      <keyword name="drawRadius" id="GLWindow::drawRadius" ref="class_g_l_window.html#a779e118f6fed3fe8c878eeec6c895edb" />
+      <keyword name="drawStrength" id="GLWindow::drawStrength" ref="class_g_l_window.html#ab1024c3600ebea19a55b458cfedc312d" />
+      <keyword name="setStateColour" id="GLWindow::setStateColour" ref="class_g_l_window.html#aa8a773ff22134f9221e7da016d2fb242" />
+      <keyword name="mouseMoveEvent" id="GLWindow::mouseMoveEvent" ref="class_g_l_window.html#a7a04e2a3400fa69d1bcb6b650425c01e" />
+      <keyword name="mousePressEvent" id="GLWindow::mousePressEvent" ref="class_g_l_window.html#a2c4d9af80c2a7a33a46bce46276b8409" />
+      <keyword name="mouseReleaseEvent" id="GLWindow::mouseReleaseEvent" ref="class_g_l_window.html#ab9e5741b8c69d2f6447a5fc6d9d704c8" />
+      <keyword name="wheelEvent" id="GLWindow::wheelEvent" ref="class_g_l_window.html#a5f96a70cc4c2666b46ecfa62de7be598" />
+      <keyword name="m_updateCrowdEngineTimer" id="GLWindow::m_updateCrowdEngineTimer" ref="class_g_l_window.html#a3cf839584eb0a601e8d0a63c93d71834" />
+      <keyword name="m_updateFPSTimer" id="GLWindow::m_updateFPSTimer" ref="class_g_l_window.html#af81d3249ab4a9c3aa6bca26d32ba34d6" />
+      <keyword name="m_boundingBox" id="GLWindow::m_boundingBox" ref="class_g_l_window.html#a6deccef2587ac312357a19afd6bed578" />
+      <keyword name="m_groundSteps" id="GLWindow::m_groundSteps" ref="class_g_l_window.html#a631e067927511f1c7ab19c9cf371a347" />
+      <keyword name="m_fps" id="GLWindow::m_fps" ref="class_g_l_window.html#a83e019efd2becc005d6bf4493fc3adb2" />
+      <keyword name="m_frameCounter" id="GLWindow::m_frameCounter" ref="class_g_l_window.html#ab64db2c12e86211b0efbe9bca53b1505" />
+      <keyword name="m_text" id="GLWindow::m_text" ref="class_g_l_window.html#aacbacfb75d6253dfb982900d2b9e48dc" />
+      <keyword name="m_rotate" id="GLWindow::m_rotate" ref="class_g_l_window.html#a1b5d8b223995bc9740074c5342fe8e38" />
+      <keyword name="m_translate" id="GLWindow::m_translate" ref="class_g_l_window.html#a3a7f7ae3fbde7c5e24ff677a6ed34563" />
+      <keyword name="m_previousMousePosition" id="GLWindow::m_previousMousePosition" ref="class_g_l_window.html#aa4d183cf6cef1e89fbb6ca9713d8c4db" />
+      <keyword name="m_globalRotation" id="GLWindow::m_globalRotation" ref="class_g_l_window.html#a461350d9c0611b35e7399255da3cdfb8" />
+      <keyword name="m_globalTranslation" id="GLWindow::m_globalTranslation" ref="class_g_l_window.html#a65056398ef4d8303ea639130d2831552" />
+      <keyword name="m_transformStack" id="GLWindow::m_transformStack" ref="class_g_l_window.html#aaa941adbe7772d03588f312326100e5f" />
+      <keyword name="m_primitives" id="GLWindow::m_primitives" ref="class_g_l_window.html#a1e0d2bae64bde7b7d69989f28200384f" />
+      <keyword name="m_shader" id="GLWindow::m_shader" ref="class_g_l_window.html#ac7258a666fdd64a17d2a6ff469b1ccf3" />
+      <keyword name="m_shaderIndex" id="GLWindow::m_shaderIndex" ref="class_g_l_window.html#abe54892db2cdba174f08a1b669a6725c" />
+      <keyword name="m_camera" id="GLWindow::m_camera" ref="class_g_l_window.html#a4dbb29267ca93367914224a415bc09cb" />
+      <keyword name="m_light" id="GLWindow::m_light" ref="class_g_l_window.html#a57c72fd1207718a4b4f567dea8c5b6ef" />
+      <keyword name="m_dummies" id="GLWindow::m_dummies" ref="class_g_l_window.html#aa0126fad90706919ef35e4394968fc74" />
+      <keyword name="m_currentDummy" id="GLWindow::m_currentDummy" ref="class_g_l_window.html#aa5f29184ef15dbbd9724e8048aab736b" />
+      <keyword name="m_customDummy" id="GLWindow::m_customDummy" ref="class_g_l_window.html#a5085da743aa7c7a311c69b28c968ab8a" />
+      <keyword name="m_boidVAO" id="GLWindow::m_boidVAO" ref="class_g_l_window.html#a4414d807b4b90f55e063cf0209e4123b" />
+      <keyword name="m_collisionRadiusScale" id="GLWindow::m_collisionRadiusScale" ref="class_g_l_window.html#a0379c622b46f1789d1531ace229f8437" />
+      <keyword name="m_drawBoundingBox" id="GLWindow::m_drawBoundingBox" ref="class_g_l_window.html#af777f0df6d6a5f49abad457f07e86489" />
+      <keyword name="m_drawCollisionRadius" id="GLWindow::m_drawCollisionRadius" ref="class_g_l_window.html#a12ce24e0006ddb059b1beac5ab024f6e" />
+      <keyword name="m_drawCells" id="GLWindow::m_drawCells" ref="class_g_l_window.html#a455bee93f5038ca958a099deae9743f7" />
+      <keyword name="m_drawVelocityVector" id="GLWindow::m_drawVelocityVector" ref="class_g_l_window.html#afe3eedc580d079fdd7841e8293176003" />
+      <keyword name="m_drawVisionRadius" id="GLWindow::m_drawVisionRadius" ref="class_g_l_window.html#aa8f932753690ebcf388771b5e3daf675" />
+      <keyword name="m_drawStrength" id="GLWindow::m_drawStrength" ref="class_g_l_window.html#ad3a4e43e33d31c209db4bb170be2533d" />
+      <keyword name="m_drawAxis" id="GLWindow::m_drawAxis" ref="class_g_l_window.html#a9a56015074271cc639c9d06d33c9058d" />
+      <keyword name="m_drawStateColour" id="GLWindow::m_drawStateColour" ref="class_g_l_window.html#a0b8fcfd154ecf2acb73569aba2b43723" />
+      <keyword name="m_axisScale" id="GLWindow::m_axisScale" ref="class_g_l_window.html#a160d80e324e2ed5a20d0832881ad2d3f" />
+      <keyword name="m_wireframeMode" id="GLWindow::m_wireframeMode" ref="class_g_l_window.html#aa744b094e195dfae7238e26310e6a072" />
+      <keyword name="m_parser" id="GLWindow::m_parser" ref="class_g_l_window.html#af9d321bc5a4b573772d564a2b62b7757" />
+      <keyword name="m_crowdEngine" id="GLWindow::m_crowdEngine" ref="class_g_l_window.html#ab00de2a161006bbb4197750dd2f4e43f" />
+      <keyword name="s_dummiesPath" id="GLWindow::s_dummiesPath" ref="class_g_l_window.html#a8d2b2a46a6dba4d69faa77dbc204d09c" />
+      <keyword name="s_brainsPath" id="GLWindow::s_brainsPath" ref="class_g_l_window.html#acb6824b3029b4147f1eaa5c752266af3" />
+      <keyword name="s_agentsPath" id="GLWindow::s_agentsPath" ref="class_g_l_window.html#a2d22376eb1c30db68de7d2092283e88d" />
+      <keyword name="s_rotationIncrement" id="GLWindow::s_rotationIncrement" ref="class_g_l_window.html#aaf89108b36aa15cccb8273f6d73d6881" />
+      <keyword name="s_translationIncrement" id="GLWindow::s_translationIncrement" ref="class_g_l_window.html#aab977496a699bcedd53d6f601c61bca0" />
+      <keyword name="s_zoomIncrement" id="GLWindow::s_zoomIncrement" ref="class_g_l_window.html#a5a86cd28fd83d3b34c4026d74b7e8cb5" />
+      <keyword name="MainWindow" id="MainWindow" ref="class_main_window.html" />
+      <keyword name="MainWindow" id="MainWindow::MainWindow" ref="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" />
+      <keyword name="~MainWindow" id="MainWindow::~MainWindow" ref="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7" />
+      <keyword name="keyPressEvent" id="MainWindow::keyPressEvent" ref="class_main_window.html#a3c2e352934c6318d405c3d2b0e07729c" />
+      <keyword name="setTimerInterval" id="MainWindow::setTimerInterval" ref="class_main_window.html#aab62fe70e4236dabe09d8baccce1dc90" />
+      <keyword name="setStep" id="MainWindow::setStep" ref="class_main_window.html#aa9c5a1718368ae03f26ef49c6f1b5af1" />
+      <keyword name="m_gl" id="MainWindow::m_gl" ref="class_main_window.html#a8f18111d1b422167f8b9a688f38f8969" />
+      <keyword name="m_ui" id="MainWindow::m_ui" ref="class_main_window.html#a5a3eb262660797d9a4d52ed16edb6d11" />
+      <keyword name="message" id="message" ref="structmessage.html" />
+      <keyword name="agentID" id="message::agentID" ref="structmessage.html#a4f90f9535abd9b5fe7094210fddfb717" />
+      <keyword name="label" id="message::label" ref="structmessage.html#ad46f9db7f9b78096bffb9f2d17649e0e" />
+      <keyword name="position" id="message::position" ref="structmessage.html#a2da21f0219852b602cbe5f977fdae07e" />
+      <keyword name="strength" id="message::strength" ref="structmessage.html#a0c2771aa291c1d45f3415cace90cb760" />
+      <keyword name="Parser" id="Parser" ref="class_parser.html" />
+      <keyword name="loadAgents" id="Parser::loadAgents" ref="class_parser.html#acbee96bed7b870fd08d547f60a55f26d" />
+      <keyword name="PhysicsEngine" id="PhysicsEngine" ref="class_physics_engine.html" />
+      <keyword name="PhysicsEngine" id="PhysicsEngine::PhysicsEngine" ref="class_physics_engine.html#a84d9be1de76eb1172331b66d58a96a12" />
+      <keyword name="setBoundingBoxSize" id="PhysicsEngine::setBoundingBoxSize" ref="class_physics_engine.html#afdc53fedd489b317ff2319bdf4dd3b8d" />
+      <keyword name="setFriction" id="PhysicsEngine::setFriction" ref="class_physics_engine.html#a6bed2ed3a575ecb04fb48c4d12723b49" />
+      <keyword name="setGravity" id="PhysicsEngine::setGravity" ref="class_physics_engine.html#adfc5c2492009e5278e1297cd976f07aa" />
+      <keyword name="getBoundingBoxSize" id="PhysicsEngine::getBoundingBoxSize" ref="class_physics_engine.html#af148fb73a48e2b1bdf603739886b2fac" />
+      <keyword name="getType" id="PhysicsEngine::getType" ref="class_physics_engine.html#a0eec656c837f22fcffe9c49e9c7da381" />
+      <keyword name="checkCollision" id="PhysicsEngine::checkCollision" ref="class_physics_engine.html#ab1ec7f82d879b765ba51896ac0293306" />
+      <keyword name="checkCollisionBoundingBox" id="PhysicsEngine::checkCollisionBoundingBox" ref="class_physics_engine.html#a593786154cf89be904989f7dc9decd5b" />
+      <keyword name="checkCollisionGround" id="PhysicsEngine::checkCollisionGround" ref="class_physics_engine.html#a729ebe13ac050acee07a9b714b7b6b3c" />
+      <keyword name="applyFriction" id="PhysicsEngine::applyFriction" ref="class_physics_engine.html#a4b9862d2fc06fc3f1d6d2b935d722204" />
+      <keyword name="applyGravity" id="PhysicsEngine::applyGravity" ref="class_physics_engine.html#a282e3493c5bf730a327ecc71ae34a381" />
+      <keyword name="s_epsilon" id="PhysicsEngine::s_epsilon" ref="class_physics_engine.html#a0ebf4487655301f5da5b24a4953821b9" />
+      <keyword name="m_type" id="PhysicsEngine::m_type" ref="class_physics_engine.html#a2799cd124cf76ac94da61bdc215236eb" />
+      <keyword name="m_boundingBoxSize" id="PhysicsEngine::m_boundingBoxSize" ref="class_physics_engine.html#abb423c8ab1287bfd9e2b396bf3f75fb0" />
+      <keyword name="m_friction" id="PhysicsEngine::m_friction" ref="class_physics_engine.html#a7779891cc51c2c9cd3e484d9506ebaa3" />
+      <keyword name="m_gravity" id="PhysicsEngine::m_gravity" ref="class_physics_engine.html#aac07745baaaa47e949089444ecd41247" />
+      <keyword name="QuadraticGridCP" id="QuadraticGridCP" ref="class_quadratic_grid_c_p.html" />
+      <keyword name="QuadraticGridCP" id="QuadraticGridCP::QuadraticGridCP" ref="class_quadratic_grid_c_p.html#ac4bce0de07c9dbeafb949175229e2311" />
+      <keyword name="~QuadraticGridCP" id="QuadraticGridCP::~QuadraticGridCP" ref="class_quadratic_grid_c_p.html#a985eb5b3f997d549ecab9f77d7b2214a" />
+      <keyword name="addAgent" id="QuadraticGridCP::addAgent" ref="class_quadratic_grid_c_p.html#a8ea7d12bf956eb79beae4f72aa02642a" />
+      <keyword name="addAgents" id="QuadraticGridCP::addAgents" ref="class_quadratic_grid_c_p.html#a0665be64ee9cd61e796d6ba6bd098d8d" />
+      <keyword name="updateCells" id="QuadraticGridCP::updateCells" ref="class_quadratic_grid_c_p.html#a4821f9fcf301bcbeb34cef3ee86e4b8e" />
+      <keyword name="updateNeighbours" id="QuadraticGridCP::updateNeighbours" ref="class_quadratic_grid_c_p.html#a2c3bb856105d9888f7c2d043296303f5" />
+      <keyword name="rearrangePartition" id="QuadraticGridCP::rearrangePartition" ref="class_quadratic_grid_c_p.html#aed54958e170f5c90e6026ab847c0f48e" />
+      <keyword name="printCells" id="QuadraticGridCP::printCells" ref="class_quadratic_grid_c_p.html#a22c417f7cf66e24a0a1ebe44b4b3eb6a" />
+      <keyword name="clear" id="QuadraticGridCP::clear" ref="class_quadratic_grid_c_p.html#a0eaf24d7f9a49fb46af7d37ba7b74cfe" />
+      <keyword name="CellPartition" id="CellPartition::CellPartition" ref="class_cell_partition.html#a800777adf6053f21c9506fd00bb8bac7" />
+      <keyword name="~CellPartition" id="CellPartition::~CellPartition" ref="class_cell_partition.html#a36702a7f3afbfae63be09c46beed328b" />
+      <keyword name="getCellSize" id="CellPartition::getCellSize" ref="class_cell_partition.html#a031f8b6ed6f39902065bfb34a0ceac73" />
+      <keyword name="cell" id="QuadraticGridCP::cell" ref="class_quadratic_grid_c_p.html#a6d922e64d9870d9dcb8323d143fb2d8d" />
+      <keyword name="findAgentsInCells" id="QuadraticGridCP::findAgentsInCells" ref="class_quadratic_grid_c_p.html#a9fc603778e891904457e428de8606371" />
+      <keyword name="findNeighboursInAgents" id="QuadraticGridCP::findNeighboursInAgents" ref="class_quadratic_grid_c_p.html#ab5609b63f2fcb7706d4bdc071ac368ff" />
+      <keyword name="m_cells" id="QuadraticGridCP::m_cells" ref="class_quadratic_grid_c_p.html#abaf45da84981246f5a3baf0ba8333acb" />
+      <keyword name="m_cellSize" id="CellPartition::m_cellSize" ref="class_cell_partition.html#a0f3e1482db0f0f9493d2bc1d97b4d88a" />
+      <keyword name="SpherePE" id="SpherePE" ref="class_sphere_p_e.html" />
+      <keyword name="SpherePE" id="SpherePE::SpherePE" ref="class_sphere_p_e.html#a61a7521128aaa52ea519fefd0fc6d4e6" />
+      <keyword name="checkCollision" id="SpherePE::checkCollision" ref="class_sphere_p_e.html#aa153229d509d53557b872890e6a336c2" />
+      <keyword name="PhysicsEngine" id="PhysicsEngine::PhysicsEngine" ref="class_physics_engine.html#a84d9be1de76eb1172331b66d58a96a12" />
+      <keyword name="setBoundingBoxSize" id="PhysicsEngine::setBoundingBoxSize" ref="class_physics_engine.html#afdc53fedd489b317ff2319bdf4dd3b8d" />
+      <keyword name="setFriction" id="PhysicsEngine::setFriction" ref="class_physics_engine.html#a6bed2ed3a575ecb04fb48c4d12723b49" />
+      <keyword name="setGravity" id="PhysicsEngine::setGravity" ref="class_physics_engine.html#adfc5c2492009e5278e1297cd976f07aa" />
+      <keyword name="getBoundingBoxSize" id="PhysicsEngine::getBoundingBoxSize" ref="class_physics_engine.html#af148fb73a48e2b1bdf603739886b2fac" />
+      <keyword name="getType" id="PhysicsEngine::getType" ref="class_physics_engine.html#a0eec656c837f22fcffe9c49e9c7da381" />
+      <keyword name="checkCollisionBoundingBox" id="PhysicsEngine::checkCollisionBoundingBox" ref="class_physics_engine.html#a593786154cf89be904989f7dc9decd5b" />
+      <keyword name="checkCollisionGround" id="PhysicsEngine::checkCollisionGround" ref="class_physics_engine.html#a729ebe13ac050acee07a9b714b7b6b3c" />
+      <keyword name="applyFriction" id="PhysicsEngine::applyFriction" ref="class_physics_engine.html#a4b9862d2fc06fc3f1d6d2b935d722204" />
+      <keyword name="applyGravity" id="PhysicsEngine::applyGravity" ref="class_physics_engine.html#a282e3493c5bf730a327ecc71ae34a381" />
+      <keyword name="s_epsilon" id="PhysicsEngine::s_epsilon" ref="class_physics_engine.html#a0ebf4487655301f5da5b24a4953821b9" />
+      <keyword name="TXTParser" id="TXTParser" ref="class_t_x_t_parser.html" />
+      <keyword name="loadAgents" id="TXTParser::loadAgents" ref="class_t_x_t_parser.html#a64f463ea8e1cdbdfff49a4003108dd19" />
+      <keyword name="Ui" id="Ui" ref="namespace_ui.html" />
+    </keywords>
+    <files>
+      <file>tabs.css</file>
+      <file>tab_a.png</file>
+      <file>tab_b.png</file>
+      <file>tab_h.png</file>
+      <file>tab_s.png</file>
+      <file>nav_h.png</file>
+      <file>nav_f.png</file>
+      <file>bc_s.png</file>
+      <file>doxygen.png</file>
+      <file>closed.png</file>
+      <file>open.png</file>
+      <file>bdwn.png</file>
+      <file>sync_on.png</file>
+      <file>sync_off.png</file>
+      <file>ftv2blank.png</file>
+      <file>ftv2doc.png</file>
+      <file>ftv2folderclosed.png</file>
+      <file>ftv2folderopen.png</file>
+      <file>ftv2ns.png</file>
+      <file>ftv2mo.png</file>
+      <file>ftv2cl.png</file>
+      <file>ftv2lastnode.png</file>
+      <file>ftv2link.png</file>
+      <file>ftv2mlastnode.png</file>
+      <file>ftv2mnode.png</file>
+      <file>ftv2node.png</file>
+      <file>ftv2plastnode.png</file>
+      <file>ftv2pnode.png</file>
+      <file>ftv2vertline.png</file>
+      <file>ftv2splitbar.png</file>
+      <file>doxygen.css</file>
+      <file>/search/mag_sel.png</file>
+      <file>/search/search_l.png</file>
+      <file>/search/search_m.png</file>
+      <file>/search/search_r.png</file>
+      <file>/search/close.png</file>
+      <file>search/search.css</file>
+      <file>search/search.js</file>
+      <file>_agent_8cpp_source.html</file>
+      <file>_agent_8h_source.html</file>
+      <file>_cell_partition_8h_source.html</file>
+      <file>_crowd_engine_8cpp_source.html</file>
+      <file>_crowd_engine_8h_source.html</file>
+      <file>_cylinder_p_e_8cpp_source.html</file>
+      <file>_cylinder_p_e_8h_source.html</file>
+      <file>_g_l_window_8cpp_source.html</file>
+      <file>_g_l_window_8h_source.html</file>
+      <file>main_8cpp_source.html</file>
+      <file>_main_window_8cpp_source.html</file>
+      <file>_main_window_8h_source.html</file>
+      <file>_parser_8h_source.html</file>
+      <file>_physics_engine_8cpp_source.html</file>
+      <file>_physics_engine_8h_source.html</file>
+      <file>_quadratic_grid_c_p_8cpp_source.html</file>
+      <file>_quadratic_grid_c_p_8h_source.html</file>
+      <file>_sphere_p_e_8cpp_source.html</file>
+      <file>_sphere_p_e_8h_source.html</file>
+      <file>_t_x_t_parser_8cpp_source.html</file>
+      <file>_t_x_t_parser_8h_source.html</file>
+      <file>_agent_8cpp.html</file>
+      <file>_agent_8cpp__incl.png</file>
+      <file>_agent_8h.html</file>
+      <file>_agent_8h__incl.png</file>
+      <file>_agent_8h__dep__incl.png</file>
+      <file>_cell_partition_8h.html</file>
+      <file>_cell_partition_8h__incl.png</file>
+      <file>_cell_partition_8h__dep__incl.png</file>
+      <file>_crowd_engine_8cpp.html</file>
+      <file>_crowd_engine_8cpp__incl.png</file>
+      <file>_crowd_engine_8h.html</file>
+      <file>_crowd_engine_8h__incl.png</file>
+      <file>_crowd_engine_8h__dep__incl.png</file>
+      <file>_cylinder_p_e_8cpp.html</file>
+      <file>_cylinder_p_e_8cpp__incl.png</file>
+      <file>_cylinder_p_e_8h.html</file>
+      <file>_cylinder_p_e_8h__incl.png</file>
+      <file>_cylinder_p_e_8h__dep__incl.png</file>
+      <file>_g_l_window_8cpp.html</file>
+      <file>_g_l_window_8cpp__incl.png</file>
+      <file>_g_l_window_8h.html</file>
+      <file>_g_l_window_8h__incl.png</file>
+      <file>_g_l_window_8h__dep__incl.png</file>
+      <file>main_8cpp.html</file>
+      <file>main_8cpp__incl.png</file>
+      <file>_main_window_8cpp.html</file>
+      <file>_main_window_8cpp__incl.png</file>
+      <file>_main_window_8h.html</file>
+      <file>_main_window_8h__incl.png</file>
+      <file>_main_window_8h__dep__incl.png</file>
+      <file>_parser_8h.html</file>
+      <file>_parser_8h__incl.png</file>
+      <file>_parser_8h__dep__incl.png</file>
+      <file>_physics_engine_8cpp.html</file>
+      <file>_physics_engine_8cpp__incl.png</file>
+      <file>_physics_engine_8h.html</file>
+      <file>_physics_engine_8h__incl.png</file>
+      <file>_physics_engine_8h__dep__incl.png</file>
+      <file>_quadratic_grid_c_p_8cpp.html</file>
+      <file>_quadratic_grid_c_p_8cpp__incl.png</file>
+      <file>_quadratic_grid_c_p_8h.html</file>
+      <file>_quadratic_grid_c_p_8h__incl.png</file>
+      <file>_quadratic_grid_c_p_8h__dep__incl.png</file>
+      <file>_sphere_p_e_8cpp.html</file>
+      <file>_sphere_p_e_8cpp__incl.png</file>
+      <file>_sphere_p_e_8h.html</file>
+      <file>_sphere_p_e_8h__incl.png</file>
+      <file>_sphere_p_e_8h__dep__incl.png</file>
+      <file>_t_x_t_parser_8cpp.html</file>
+      <file>_t_x_t_parser_8cpp__incl.png</file>
+      <file>_t_x_t_parser_8h.html</file>
+      <file>_t_x_t_parser_8h__incl.png</file>
+      <file>_t_x_t_parser_8h__dep__incl.png</file>
+      <file>class_agent.html</file>
+      <file>class_agent__coll__graph.png</file>
+      <file>class_agent_a645d19861c6c5ddfc0705e551b5582a0_cgraph.png</file>
+      <file>class_agent_ad8644314536c784dafb42c89dd9d2eb6_icgraph.png</file>
+      <file>class_agent_a5ce46ab9cf6c7b4109b12c48ad073a27_icgraph.png</file>
+      <file>class_agent_a932a6271567e4905f3279f68f21c3d6c_cgraph.png</file>
+      <file>class_agent_a932a6271567e4905f3279f68f21c3d6c_icgraph.png</file>
+      <file>class_agent_a676656c11355ae87ac316ee2ff6d0fb4_cgraph.png</file>
+      <file>class_agent_a0dc6f9fdb722fddfc12c20806f062cd0_icgraph.png</file>
+      <file>class_agent_a82811bf9cb1ea147d256fec31ad8c96b_icgraph.png</file>
+      <file>class_agent_a2c7cb38b2b5b861123eed015cd0d6ae2_icgraph.png</file>
+      <file>class_agent_a1ee4db62d5f0fee104ce3d0799c91610_icgraph.png</file>
+      <file>class_agent_af7b048ccbc068f9f0004351f0f573c57_icgraph.png</file>
+      <file>class_agent_a8af61b9fb46af5f3b02c1a1d424df2a4_icgraph.png</file>
+      <file>class_agent_a0d63e88090408db6920ea84e3012b125_icgraph.png</file>
+      <file>class_agent_a7f26e6e8877596a11cb15c1bd74e1df5_icgraph.png</file>
+      <file>class_agent_a2e7819e1cdd3699c0d7eef1f40619bbb_icgraph.png</file>
+      <file>class_agent_a00178e547698aefa61a5644727d1ab39_icgraph.png</file>
+      <file>class_agent_ac3479c22d620e757cf4f8f41d0465cf6_icgraph.png</file>
+      <file>class_agent_a77c6d7cff0852ad84bc6bf48d7dc47a5_icgraph.png</file>
+      <file>class_agent_a537e126032d2acd838c0b4ab6b74f4cc_icgraph.png</file>
+      <file>class_agent_a9a26182d54080a9c70841faec1758431_icgraph.png</file>
+      <file>class_agent_a748d0def2ed1d38573edd25fd2f28d8e_icgraph.png</file>
+      <file>class_agent_ae809b15253df2701fbf1e2148156f205_icgraph.png</file>
+      <file>class_agent_a0f6fa62c5ec68c21647a8c5e9a38685d_icgraph.png</file>
+      <file>class_agent_a3b3ecc599c5aa23eb6844b48e919a19a_cgraph.png</file>
+      <file>class_agent_a5cc6bd9a0a56789cffc7b37ebd6d985c_icgraph.png</file>
+      <file>class_agent_a0fd788ef6611e653e6ea866d5f4925c4_icgraph.png</file>
+      <file>class_agent_acbd1646da465bdc2d3cc75be97eeeb5b_icgraph.png</file>
+      <file>class_agent_afb9462a325dbc88e92d8eea1c5a2482c_icgraph.png</file>
+      <file>class_agent_a466e0dc7b932e233358c2b472b876460_icgraph.png</file>
+      <file>class_agent_ac18b0ba696257bcb79dedf825cb3e38f_icgraph.png</file>
+      <file>class_agent_a41b8a1665c6adeebcee51921ae79c616_icgraph.png</file>
+      <file>class_agent_a16784b8790c91f9b1c5c00c8ab217e08_icgraph.png</file>
+      <file>class_agent_a178323b7ee20be61d8e607294632427e_icgraph.png</file>
+      <file>class_agent_a73b6cf0e6642c337d1b09152f1fbcf1a_icgraph.png</file>
+      <file>class_agent_a915dd50557a7d7a3bbbd796f48a4b927_icgraph.png</file>
+      <file>class_agent_a0a97cadd909ee47f3e8c5d4404694314_icgraph.png</file>
+      <file>class_agent_a4fe9f9edc8483aa54c46b0cd172eb5cd_icgraph.png</file>
+      <file>class_agent_a50a6d81200f9f98389441f41fe662d33_icgraph.png</file>
+      <file>class_agent-members.html</file>
+      <file>class_cell_partition.html</file>
+      <file>class_cell_partition__inherit__graph.png</file>
+      <file>class_cell_partition__coll__graph.png</file>
+      <file>class_cell_partition_aa9e2e1244bb0009b298b6ae5ab6d4e2f_icgraph.png</file>
+      <file>class_cell_partition_ab5f91e9618a74d2d8c6c3a8240d99998_icgraph.png</file>
+      <file>class_cell_partition_a1b30a0c72311f4b06c8b45d0514b1c8c_icgraph.png</file>
+      <file>class_cell_partition_a031f8b6ed6f39902065bfb34a0ceac73_icgraph.png</file>
+      <file>class_cell_partition_addc699eac5223f7e3a7c2a1ab25ebe45_icgraph.png</file>
+      <file>class_cell_partition_ad657f8d8ec6fd295e686ddaebf5d399d_icgraph.png</file>
+      <file>class_cell_partition_a72ba1352c451752ae9243b25e06d03c2_icgraph.png</file>
+      <file>class_cell_partition_a3df79265cee9ad0e74786d6fd3350518_icgraph.png</file>
+      <file>class_cell_partition-members.html</file>
+      <file>class_crowd_engine.html</file>
+      <file>class_crowd_engine__coll__graph.png</file>
+      <file>class_crowd_engine_ad1cc01b065244382373fe3d77db00608_cgraph.png</file>
+      <file>class_crowd_engine_a8f6006d7c744329acb887e85dee52675_cgraph.png</file>
+      <file>class_crowd_engine_a8f6006d7c744329acb887e85dee52675_icgraph.png</file>
+      <file>class_crowd_engine_a989a5245d17f2d2174f16b6f03b2ff20_cgraph.png</file>
+      <file>class_crowd_engine_a989a5245d17f2d2174f16b6f03b2ff20_icgraph.png</file>
+      <file>class_crowd_engine_a214aac0d123043252d78c2cd1e23c75f_cgraph.png</file>
+      <file>class_crowd_engine_a214aac0d123043252d78c2cd1e23c75f_icgraph.png</file>
+      <file>class_crowd_engine_af9ae3c4d97abb0b1f961a7b6eb4ee47f_icgraph.png</file>
+      <file>class_crowd_engine_a3efa68a20bcc0d69cd42dce73fb93fcd_icgraph.png</file>
+      <file>class_crowd_engine_a71763914c950b45e4adeb483d34fe6e4_icgraph.png</file>
+      <file>class_crowd_engine_a890a26323fdd6e00408114fabfdef4c5_cgraph.png</file>
+      <file>class_crowd_engine_a890a26323fdd6e00408114fabfdef4c5_icgraph.png</file>
+      <file>class_crowd_engine_a668b40335832f00bfdb22529195570dc_cgraph.png</file>
+      <file>class_crowd_engine_a668b40335832f00bfdb22529195570dc_icgraph.png</file>
+      <file>class_crowd_engine_a7b766120390a1a8d1c51d677475e05ee_cgraph.png</file>
+      <file>class_crowd_engine_a7b766120390a1a8d1c51d677475e05ee_icgraph.png</file>
+      <file>class_crowd_engine_a30db10b38b7427e30f9c02701536f48c_icgraph.png</file>
+      <file>class_crowd_engine_ac19a8cc49db260055f813889988895ca_cgraph.png</file>
+      <file>class_crowd_engine_ac057511be522c78a66147af05d39f0d0_cgraph.png</file>
+      <file>class_crowd_engine_ac057511be522c78a66147af05d39f0d0_icgraph.png</file>
+      <file>class_crowd_engine_a10eb758fb5e24bbbf8427c2fcecb4029_cgraph.png</file>
+      <file>class_crowd_engine_a10eb758fb5e24bbbf8427c2fcecb4029_icgraph.png</file>
+      <file>class_crowd_engine_a403c4b9b8af097727a52f6243fd3933b_icgraph.png</file>
+      <file>class_crowd_engine_a35896d1ef5fef466e86ac724a3abcb4f_cgraph.png</file>
+      <file>class_crowd_engine_a35896d1ef5fef466e86ac724a3abcb4f_icgraph.png</file>
+      <file>class_crowd_engine_a8cdade4ade2ddbc451eca2fd63a773a6_icgraph.png</file>
+      <file>class_crowd_engine_acbe1845a89a13a1a8d3c8ae9967d2d03_cgraph.png</file>
+      <file>class_crowd_engine_acbe1845a89a13a1a8d3c8ae9967d2d03_icgraph.png</file>
+      <file>class_crowd_engine_aed5a78a01ee498356bf107e74545f310_cgraph.png</file>
+      <file>class_crowd_engine_aed5a78a01ee498356bf107e74545f310_icgraph.png</file>
+      <file>class_crowd_engine_a73d2561151382c27673bf14feec7cd89_icgraph.png</file>
+      <file>class_crowd_engine_a28ab0a545b2a836138690bf1ac5e1b5b_cgraph.png</file>
+      <file>class_crowd_engine_a28ab0a545b2a836138690bf1ac5e1b5b_icgraph.png</file>
+      <file>class_crowd_engine_a001d4a0d6790344140a1546c84de044e_cgraph.png</file>
+      <file>class_crowd_engine_a001d4a0d6790344140a1546c84de044e_icgraph.png</file>
+      <file>class_crowd_engine-members.html</file>
+      <file>class_cylinder_p_e.html</file>
+      <file>class_cylinder_p_e__inherit__graph.png</file>
+      <file>class_cylinder_p_e__coll__graph.png</file>
+      <file>class_cylinder_p_e_a40327d5407a81f408ac55641ab788f74_cgraph.png</file>
+      <file>class_cylinder_p_e-members.html</file>
+      <file>class_g_l_window.html</file>
+      <file>class_g_l_window__inherit__graph.png</file>
+      <file>class_g_l_window__coll__graph.png</file>
+      <file>class_g_l_window_a8dfc33113be0a86a53ddbea054f75292_cgraph.png</file>
+      <file>class_g_l_window_a40f8997bec303f618fafdaf2a8fa926c_icgraph.png</file>
+      <file>class_g_l_window_acf5e5a099d73bdcae25f71c142808e0d_cgraph.png</file>
+      <file>class_g_l_window_af9a05fbe4f0f65a57b8e4eb1cc098f93_cgraph.png</file>
+      <file>class_g_l_window_af9a05fbe4f0f65a57b8e4eb1cc098f93_icgraph.png</file>
+      <file>class_g_l_window_acf119c86c7983aec6732e82c32d34c3a_cgraph.png</file>
+      <file>class_g_l_window_acf119c86c7983aec6732e82c32d34c3a_icgraph.png</file>
+      <file>class_g_l_window_a779e118f6fed3fe8c878eeec6c895edb_cgraph.png</file>
+      <file>class_g_l_window_a779e118f6fed3fe8c878eeec6c895edb_icgraph.png</file>
+      <file>class_g_l_window_ab1024c3600ebea19a55b458cfedc312d_cgraph.png</file>
+      <file>class_g_l_window_ab1024c3600ebea19a55b458cfedc312d_icgraph.png</file>
+      <file>class_g_l_window_a68b44e9cb0a9b29a220973d714adb3d5_cgraph.png</file>
+      <file>class_g_l_window_a68b44e9cb0a9b29a220973d714adb3d5_icgraph.png</file>
+      <file>class_g_l_window_a39e39761cd7323806917a217cc7caea5_cgraph.png</file>
+      <file>class_g_l_window_a83764b841c6a004d9e5d2ea319fcc5fd_cgraph.png</file>
+      <file>class_g_l_window_a42f7c4608467ca63cdfba73e4869a460_cgraph.png</file>
+      <file>class_g_l_window_ab78209ce50dd6820686aa05fc242eb7a_icgraph.png</file>
+      <file>class_g_l_window_a9bd2503dd5f812c10a9481f22ecd3403_cgraph.png</file>
+      <file>class_g_l_window_a03f30901abe2d0ac3fdaccb8e64e876d_cgraph.png</file>
+      <file>class_g_l_window_a12b8b90ae4a6d511f200d606355e6fef_cgraph.png</file>
+      <file>class_g_l_window_a2e83bb71578b8a46d9dd994d54118f21_cgraph.png</file>
+      <file>class_g_l_window_a2dc76e42e38828c8f57b16843e7cbcba_cgraph.png</file>
+      <file>class_g_l_window_af8440b069f6b55904a5c48dbd8bac853_cgraph.png</file>
+      <file>class_g_l_window_a6e0d44cdfb104ccfdcee1871a0f1bf20_cgraph.png</file>
+      <file>class_g_l_window_a0acf1e2e5cae72e02f1d0c26583f2e33_cgraph.png</file>
+      <file>class_g_l_window_aa8a773ff22134f9221e7da016d2fb242_icgraph.png</file>
+      <file>class_g_l_window_af887a61421c8a303df83e4c35b551805_cgraph.png</file>
+      <file>class_g_l_window_af887a61421c8a303df83e4c35b551805_icgraph.png</file>
+      <file>class_g_l_window_a8346f3a699dadf0472d8301b86998856_icgraph.png</file>
+      <file>class_g_l_window_a23f9cf59c263b558ab3a3ed0a338086d_icgraph.png</file>
+      <file>class_g_l_window_a5a8aca7f7efa0a164af7efbc6fb02406_icgraph.png</file>
+      <file>class_g_l_window_a0e32095ad99ae2109ad37c2f24f1219b_cgraph.png</file>
+      <file>class_g_l_window_a0e32095ad99ae2109ad37c2f24f1219b_icgraph.png</file>
+      <file>class_g_l_window-members.html</file>
+      <file>class_main_window.html</file>
+      <file>class_main_window__inherit__graph.png</file>
+      <file>class_main_window__coll__graph.png</file>
+      <file>class_main_window_a8b244be8b7b7db1b08de2a2acb9409db_cgraph.png</file>
+      <file>class_main_window_a3c2e352934c6318d405c3d2b0e07729c_cgraph.png</file>
+      <file>class_main_window_aa9c5a1718368ae03f26ef49c6f1b5af1_cgraph.png</file>
+      <file>class_main_window_aa9c5a1718368ae03f26ef49c6f1b5af1_icgraph.png</file>
+      <file>class_main_window_aab62fe70e4236dabe09d8baccce1dc90_cgraph.png</file>
+      <file>class_main_window_aab62fe70e4236dabe09d8baccce1dc90_icgraph.png</file>
+      <file>class_main_window-members.html</file>
+      <file>structmessage.html</file>
+      <file>structmessage__coll__graph.png</file>
+      <file>structmessage-members.html</file>
+      <file>class_parser.html</file>
+      <file>class_parser__inherit__graph.png</file>
+      <file>class_parser__coll__graph.png</file>
+      <file>class_parser_acbee96bed7b870fd08d547f60a55f26d_icgraph.png</file>
+      <file>class_parser-members.html</file>
+      <file>class_physics_engine.html</file>
+      <file>class_physics_engine__inherit__graph.png</file>
+      <file>class_physics_engine__coll__graph.png</file>
+      <file>class_physics_engine_a4b9862d2fc06fc3f1d6d2b935d722204_cgraph.png</file>
+      <file>class_physics_engine_a4b9862d2fc06fc3f1d6d2b935d722204_icgraph.png</file>
+      <file>class_physics_engine_a282e3493c5bf730a327ecc71ae34a381_cgraph.png</file>
+      <file>class_physics_engine_a282e3493c5bf730a327ecc71ae34a381_icgraph.png</file>
+      <file>class_physics_engine_ab1ec7f82d879b765ba51896ac0293306_icgraph.png</file>
+      <file>class_physics_engine_a593786154cf89be904989f7dc9decd5b_cgraph.png</file>
+      <file>class_physics_engine_a593786154cf89be904989f7dc9decd5b_icgraph.png</file>
+      <file>class_physics_engine_a729ebe13ac050acee07a9b714b7b6b3c_cgraph.png</file>
+      <file>class_physics_engine_a729ebe13ac050acee07a9b714b7b6b3c_icgraph.png</file>
+      <file>class_physics_engine_af148fb73a48e2b1bdf603739886b2fac_icgraph.png</file>
+      <file>class_physics_engine_a0eec656c837f22fcffe9c49e9c7da381_icgraph.png</file>
+      <file>class_physics_engine_afdc53fedd489b317ff2319bdf4dd3b8d_icgraph.png</file>
+      <file>class_physics_engine_a6bed2ed3a575ecb04fb48c4d12723b49_icgraph.png</file>
+      <file>class_physics_engine_adfc5c2492009e5278e1297cd976f07aa_icgraph.png</file>
+      <file>class_physics_engine-members.html</file>
+      <file>class_quadratic_grid_c_p.html</file>
+      <file>class_quadratic_grid_c_p__inherit__graph.png</file>
+      <file>class_quadratic_grid_c_p__coll__graph.png</file>
+      <file>class_quadratic_grid_c_p_a8ea7d12bf956eb79beae4f72aa02642a_cgraph.png</file>
+      <file>class_quadratic_grid_c_p_a0665be64ee9cd61e796d6ba6bd098d8d_cgraph.png</file>
+      <file>class_quadratic_grid_c_p_a0665be64ee9cd61e796d6ba6bd098d8d_icgraph.png</file>
+      <file>class_quadratic_grid_c_p_a6d922e64d9870d9dcb8323d143fb2d8d_icgraph.png</file>
+      <file>class_quadratic_grid_c_p_a9fc603778e891904457e428de8606371_cgraph.png</file>
+      <file>class_quadratic_grid_c_p_a9fc603778e891904457e428de8606371_icgraph.png</file>
+      <file>class_quadratic_grid_c_p_ab5609b63f2fcb7706d4bdc071ac368ff_cgraph.png</file>
+      <file>class_quadratic_grid_c_p_ab5609b63f2fcb7706d4bdc071ac368ff_icgraph.png</file>
+      <file>class_quadratic_grid_c_p_aed54958e170f5c90e6026ab847c0f48e_cgraph.png</file>
+      <file>class_quadratic_grid_c_p_a4821f9fcf301bcbeb34cef3ee86e4b8e_cgraph.png</file>
+      <file>class_quadratic_grid_c_p_a2c3bb856105d9888f7c2d043296303f5_cgraph.png</file>
+      <file>class_quadratic_grid_c_p-members.html</file>
+      <file>class_sphere_p_e.html</file>
+      <file>class_sphere_p_e__inherit__graph.png</file>
+      <file>class_sphere_p_e__coll__graph.png</file>
+      <file>class_sphere_p_e_aa153229d509d53557b872890e6a336c2_cgraph.png</file>
+      <file>class_sphere_p_e-members.html</file>
+      <file>class_t_x_t_parser.html</file>
+      <file>class_t_x_t_parser__inherit__graph.png</file>
+      <file>class_t_x_t_parser__coll__graph.png</file>
+      <file>class_t_x_t_parser_a64f463ea8e1cdbdfff49a4003108dd19_cgraph.png</file>
+      <file>class_t_x_t_parser-members.html</file>
+      <file>namespace_ui.html</file>
+      <file>graph_legend.png</file>
+      <file>graph_legend.html</file>
+      <file>dir_788896bc7341c6dba3de0c617ab6c278.html</file>
+      <file>dir_788896bc7341c6dba3de0c617ab6c278_dep.png</file>
+      <file>dir_f5b081e3d4c1d337394682449efde3f8.html</file>
+      <file>dir_f5b081e3d4c1d337394682449efde3f8_dep.png</file>
+      <file>dir_75b82e7e4a5feb05200b9ad7adf06257.html</file>
+      <file>dir_75b82e7e4a5feb05200b9ad7adf06257_dep.png</file>
+      <file>dir_91b716c4b3666e217c2a73a0d7283947.html</file>
+      <file>dir_91b716c4b3666e217c2a73a0d7283947_dep.png</file>
+      <file>dir_c8b3e015ca46ea26afdbc5358157ff04.html</file>
+      <file>dir_c8b3e015ca46ea26afdbc5358157ff04_dep.png</file>
+      <file>dir_b31fdbb6edf9375098027524a32935b0.html</file>
+      <file>dir_b31fdbb6edf9375098027524a32935b0_dep.png</file>
+      <file>dir_05608cc7c6dfefdf63ffef3d56657bb8.html</file>
+      <file>dir_05608cc7c6dfefdf63ffef3d56657bb8_dep.png</file>
+      <file>dir_000005_000006.html</file>
+      <file>index.html</file>
+      <file>namespaces.html</file>
+      <file>annotated.html</file>
+      <file>classes.html</file>
+      <file>hierarchy.html</file>
+      <file>inherits.html</file>
+      <file>inherit_graph_0.png</file>
+      <file>inherit_graph_1.png</file>
+      <file>inherit_graph_2.png</file>
+      <file>inherit_graph_3.png</file>
+      <file>inherit_graph_4.png</file>
+      <file>inherit_graph_5.png</file>
+      <file>inherit_graph_6.png</file>
+      <file>inherit_graph_7.png</file>
+      <file>functions.html</file>
+      <file>functions_0x62.html</file>
+      <file>functions_0x63.html</file>
+      <file>functions_0x64.html</file>
+      <file>functions_0x65.html</file>
+      <file>functions_0x66.html</file>
+      <file>functions_0x67.html</file>
+      <file>functions_0x69.html</file>
+      <file>functions_0x6b.html</file>
+      <file>functions_0x6c.html</file>
+      <file>functions_0x6d.html</file>
+      <file>functions_0x70.html</file>
+      <file>functions_0x71.html</file>
+      <file>functions_0x72.html</file>
+      <file>functions_0x73.html</file>
+      <file>functions_0x74.html</file>
+      <file>functions_0x75.html</file>
+      <file>functions_0x77.html</file>
+      <file>functions_0x7e.html</file>
+      <file>functions_func.html</file>
+      <file>functions_vars.html</file>
+      <file>files.html</file>
+      <file>globals.html</file>
+      <file>globals_func.html</file>
+      <file>globals_enum.html</file>
+      <file>globals_eval.html</file>
+    </files>
+  </filterSection>
+</QtHelpProject>

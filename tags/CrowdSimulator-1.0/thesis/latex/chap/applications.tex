@@ -1,0 +1,21 @@
+
+\ifx\isEmbedded\undefined
+\input{../format/format-setup}
+\graphicspath{{../img/}}
+\begin{document}
+%\maketitle
+\fi
+
+\chapter{Applications and results}
+\label{chap:appres}
+
+There is ALWAYS a chapter for applications and results. Here we want to see scenarios, images, comparisons, graphs. If your project is about speed, show graphs of speed improvements compared to other techniques. If you're doing rendering, you need to put plenty of renders, from your renderer and compare against others. This is where you show off!
+
+\ifx\isEmbedded\undefined
+% References
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{../ref/harvard}
+\bibliography{../ref/master}
+\pagebreak
+\end{document}
+\fi
