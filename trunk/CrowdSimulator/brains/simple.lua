@@ -1,4 +1,4 @@
-function simple (agentID, position, strength, velocity, state, attributes, inbox, neighbours)
+function simple (agentID, position, strength, maxStrength, velocity, state, attributes, inbox, neighbours)
 	
 	--print("AGENT "..agentID.." uses brain simple")
 	
@@ -23,5 +23,5 @@ function simple (agentID, position, strength, velocity, state, attributes, inbox
 
 	--print("sending ",force,strength,messages,"\n")
 
-	return force, strength, state, messages
+	return force, {0,0,0}, strength, state, messages
 end

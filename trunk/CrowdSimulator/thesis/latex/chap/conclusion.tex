@@ -9,30 +9,38 @@
 \chapter{Conclusion}
 \label{chap:conclusion}
 
-Your conclusion should be structured like this. An introductory sentence then:
+This chapter closes the survey, giving a wide vision of the approach and its main aspects. A synthesis of the method is explained, as well as a critique section which deals with the disadvantages of it. Finally, lines for future work are exposed.
 
 \section{Summary}
 
-A summary of what has been achieved.
+This study proposes a method to simulate crowds. The approach is based on the principle that the group behaviour and motion a crowd describes is entirely dependent on its individuals' behaviours. Therefore, the group behaviour emerge from the individuals and their interactions with themselves and the environment. Similarly as the real world works, the crowd simulation is driven by the individual actions and decisions and how realistic the crowd behaves relies on how realistic the individuals behave. This is a very interesting phenomenon where complexity emerges from simplicity.
+
+Taking into account the way this approach was faced, designed and the implementation that was proposed; it can be said that these aims were achieved successfully:
 
 \begin{itemize}
-\item Bullet points are good to clarify
-\item Bullet points are fun
-\item I ran out of ideas
+\item Flexible and scalable approach due to scripted-based behaviours.
+\item Robust and solid physically-based virtual world which holds the simulation.
+\item Scalable system which may include new cell partitions or physics engines in the future.
+\item Easy and quickly testing of new behaviours which implements any kind of AI techniques due to the brain's independence.
+\item Adaptable to any sort of simulation.
 \end{itemize}
 
 \section{Drawbacks}
 
-This is optional, some people put it in future work, I think it is better to have a separate section for it. Issues and bugs are different. Bugs are unexpected behaviour in the program, something not running as it should. Issues are more due to algorithm limitations. If the algorithm only works for meshes of less than 100k polygons, it is a limitation, not a bug. A program crashing if you move around in a particular order is a bug. A render becoming ugly just on that particular spot in space, is a bug too.
+The main disadvantage of this approach is the unpredictable nature of an emergent behaviour. It might sometimes happen that we obtain an undesired behaviour or some collateral effect. Contrary to the motion planned approaches for crowds, simulations remain empirical and often tons of tests have to be done to achieve the desirable configuration and motion of the crowd. But, on the other hand, this is how real world works, since all the intelligence and decision capacity belongs to the individuals and it is really hard if not impossible to predict how a crowd will behave.
 
+Other drawback of this approach, or at least of how it is presented, is that the final result of a crowd simulation is not shown. Due to this, it might seem an unfinished project. What is presented here is a section of a pipeline, so the simulation is just a collection of points with their transformations and states per tick. Take into account that the aim of this thesis is to show the flexibility and adaptability of this approach in order to create different crowd behaviours, not to develop a full and complete scene.
+
+\newpage
 \section{Future work}
 
-What should be done in the future, what you would like to do.
+Some future work lines which will enhance the functionality and accuracy of the approach are presented in this section:
 
 \begin{itemize}
-\item Become an astronaut
-\item Go out
-\item Make it work for real
+\item Import an environment, such as a terrain, from a 3D package.
+\item Export the simulation, allowing to associate each state to an animation, and blending them altogether to generate smooth and realistic individual motions.
+\item Include a physics engine which handles collisions accurately.
+\item Integrate it in a real pipeline.
 \end{itemize}
 
 

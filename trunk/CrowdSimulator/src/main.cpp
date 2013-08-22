@@ -19,9 +19,10 @@ int main(int argc, char **args)
     }
     else
     {
-
         std::cout << "TEXT MODE" << std::endl;
-
+	/*
+	 * For testing and debugging purpose
+	 */
     }
 
 
