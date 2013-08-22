@@ -1,0 +1,18 @@
+digraph "SpherePE.h"
+{
+  edge [fontname="FreeSans",fontsize="10",labelfontname="FreeSans",labelfontsize="10"];
+  node [fontname="FreeSans",fontsize="10",shape=record];
+  Node1 [label="SpherePE.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node2 [label="SpherePE.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_sphere_p_e_8cpp.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node3 [label="GLWindow.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_window_8h.html",tooltip="Class in charge to handle the OpenGL Window and pass the user input to the CrowdEngine. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node4 [label="GLWindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_g_l_window_8cpp.html"];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node5 [label="MainWindow.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_main_window_8h.html",tooltip="This is the full window that holds the GUI and the GLWindow. "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node6 [label="main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="FreeSans"];
+  Node7 [label="MainWindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_main_window_8cpp.html"];
+}
