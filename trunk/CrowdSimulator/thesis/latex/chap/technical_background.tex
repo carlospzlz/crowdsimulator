@@ -7,11 +7,11 @@
 \chapter{Technical Background}
 \label{chap:technical_background}
 
-The background needed for doing research on engineering or any technical discipline is extremely important, and frequently is what marks the difference between a solid, consistent and robust study from a weak one. Many mathematical and physical concepts (specially physical) are critical to understand analytically the ideas, reasoning and logical models presented in this survey.
+The background needed for doing research on engineering or any technical discipline is extremely important, and frequently is what makes the difference between a solid, consistent and robust study from a weak one. Many mathematical and physical concepts (specially physical) are critical to understand analytically the ideas, reasoning and logical models presented in this research.
 
 This chapter intends to describe formally the main ground concepts where this thesis is settled on. Although this may only be a brief glimpse of all the ideas applied directly or indirectly, and a much finer conceptual background might be developed, this should be enough for following the approach.
 
-The bibliography resource consulted to write this section was the chapter A Maths and Physics Primer, in the book Programming Game AI by Example \citep{buckland}.
+The source consulted to write this section was the chapter A Maths and Physics Primer, in the book Programming Game AI by Example \citep{buckland}.
 
 \section{Physics}
 
@@ -25,7 +25,7 @@ In any research that involves modelling the real world, physical rules will acqu
 
 \item{{\bf Strength.} It is the scalar quantity which defines the physical power a person or animal has. Notice that this property is inherent to an individual and does not have direction, if it had, we would be talking about \emph{force}, concept that will be introduced later. And again, this is related with how fast bodies change of state. The bigger strength, the faster change.}
 
-\item{{\bf Position.} These are the location coordinates of a specific point related to an origin. This is not as simple as it might seem, because bodies have a volume, so which exact position a body has, is a controversial discussion. Normally it is used the centre of mass, but other points can be used depending on the approach. In order to calculate the movement, we need to know the rate of change of the position, both the magnitude and the direction.}
+\item{{\bf Position.} These are the location coordinates of a specific point related to an origin. This is not as simple as it might seem, because bodies have a volume, so which exact position a body has, is a controversial discussion. Normally the centre of mass is used to determine the position, but other points can be used depending on the approach. In order to calculate the movement, we need to know the rate of change of the position, both the magnitude and the direction.}
 
 \item{{\bf Velocity.} This is the vector which defines the rate of change of distance over time. Its standard unit of measurement is $m/s$. Mathematically it can be expressed as follows:}
 
@@ -45,7 +45,7 @@ In any research that involves modelling the real world, physical rules will acqu
 
 \end{itemize}
 
-We know that to change the position of an object (to move it), it is needed to make its velocity greater than 0, and in order to achieve that, there has to exist an acceleration. Basically, what the object is experimenting is a change of state due to an acceleration produced by forces.
+We know that in order to change the position of an object (to move it), it is needed to make its velocity greater than 0, and to achieve that, there has to exist an acceleration. Basically, what the object is experimenting is a change of state due to an acceleration produced by forces.
 
 Newton's second law states the relatioship between an object's mass $m$, its acceleration $a$, and the applied force $F$ by the equation:
 
@@ -54,7 +54,7 @@ Newton's second law states the relatioship between an object's mass $m$, its acc
 \end{equation}
 
 %\newpage
-Therefore, this gives us the key to perform a physically based simulation. According to all mentioned before, the motion an object experiments in a physically based virtual world can be calculated after synthesizing all the forces applied over it:
+Therefore, this gives us the key to perform a physically based simulation. According to everything mentioned before, the motion an object experiments in a physically based virtual world can be calculated after synthesizing all the forces applied over it:
 
 \begin{enumerate}
 %\centering
@@ -82,7 +82,7 @@ Each boid knows a set of neighbours in the flock which influences its movement. 
 
 \begin{itemize}
 
-\item{{\bf Cohesion.} This force makes the boid move towards the centre of mass of the neighbourhood so that they remain close to each other.\\
+\item{{\bf Cohesion.} This force makes the boid to move towards the centre of mass of the neighbourhood so that they remain close to each other.\\
 
 Let $p$ be the position and $v$ the velocity of the current boid, $p_i$ the position of the neighbour i and $n$ the number of neighbours:
 
@@ -95,7 +95,7 @@ Let $p$ be the position and $v$ the velocity of the current boid, $p_i$ the posi
 \end{equation}
 }
 
-\item{{\bf Separation.} This force makes the boid move away from its neighbours, to avoid remaining too close.\\
+\item{{\bf Separation.} This force makes the boid to move away from its neighbours, to avoid remaining too close.\\
 
 Let $p$ be the position of the current boid, $p_i$ the position of the neighbour i, $d_i$ the distance to the neighbour i and $n$ the number of neighbours:
 

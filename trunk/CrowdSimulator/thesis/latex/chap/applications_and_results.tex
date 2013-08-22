@@ -20,13 +20,13 @@ This chapter has much relevance since it exposes all the different behaviours sc
 
 Any simulation takes place inside a specific environment, therefore it should be possible to import it from a 3D package. When developing this approach, the priorities were behaviours and AI, hence this was left on a second plane. Adding a specific terrain would allow to achieve concrete sequences where a crowd with a particular behaviour is involved.
 
-In order to allow to the engine handle the environment, as well as complex meshes for the agents, it would be needed an efficient physics engine able to produce an accurate collision detection. 
+In order to allow the engine handle the environment, as well as complex meshes for the agents, it would be needed an efficient physics engine able to produce an accurate collision detection. 
 
-Besides of the previous features, the strength of this approach resides in the flexibility of the behaviours. A script-based brain for a new type of agent can be written, modified and added at any time, and the limitations of a behaviour are only set by the behaviours writer. So a tool based on this approach could be used for any sort of sequence.
+Besides of the previous features, the strength of this approach resides in the flexibility of the behaviours. A script-based brain for a new type of agent can be written, modified and added at any time, and the limitations of a behaviour are only set by the behaviour writer. So a tool based on this approach could be used for any sort of sequence.
 
-The simulation might be performed in a user-assisted way, this means that the user could adjust the different parameters that will modify the simulation. The final behaviour emerges from the individual behaviours and their interconnections (this what this thesis is all about), but as mentioned in the previous chapter, there are physical properties of the virtual world which may lead the simulation in one direction or another.
+The simulation might be performed in a user-assisted way, this means that the user could adjust the different parameters that will modify the simulation. The final behaviour emerges from the individual behaviours and their interconnections (this is what this thesis is all about), but as mentioned in the previous chapter, there are physical properties of the virtual world which may lead the simulation in one direction or another.
 
-As final step, the simulation may be exported for finer manipulation and some animations might be attached to the each one of the states of the agents.
+As final step, the simulation may be exported for finer manipulation and some animations might be attached to each one of the states of the agents.
 
 Another alternative pipeline might be directly build a plugin that can be loaded at runtime by a 3D full package such as Maya or Houdini.
 
@@ -34,15 +34,15 @@ It is worthy to mention that this thesis describes an approach; a robust and sol
 
 \section{Test Behaviours}
 
-Some behaviours were scripted, in this case in Lua, which is the language chosen for this specific implementation. The behaviours are presented following a structure. First the individual behaviours are explained, in company of the FSM's used for their development if there are, and next the emergent behaviours observed are described.
+Some behaviours were scripted, in this case in Lua, which is the language chosen for this specific implementation. The behaviours are presented following a structure. First the individual behaviours are explained, in company of the FSMs used for their development if there are, and next the emergent behaviours observed are described.
 
-Notice that for the simulations some different dummies are used. They are just that, dummies to make the visualization more friendly and to provide some intuitive clues about the agent's behaviour. The simulation is about points,transformations and states; and the group behaviour that emerge.
+Notice that for the simulations some different dummies are used. They are just that, dummies to make the visualization more friendly and to provide some intuitive clues about the agent's behaviour. But the simulation is about points, transformations and states; and the group behaviour that emerge.
 
-All the videos are available in online platforms or in the master's thesis submission directory.
+All the videos are available in online platforms or in the master's thesis website.
 
 \subsection{Crowds}
 
-The first test is very basic. The brain of this agents implements the basic behaviour of a flock described by Reynolds \citep{reynolds}. Here, the boids move on the ground as group of flocks kept in union by the three basic rules. So having different flocks interacting in the same region, it is possible to distinguish if a boid belongs to one flock or another. The behaviour emerged here is similiar to the one achieved when used field of forces of navigational mechanisms.
+The first test is very basic. The brain of these agents implements the basic behaviour of a flock described by Reynolds \citep{reynolds}. Here, the boids move on the ground as a group of flocks kept in union by the three basic rules. So, having different flocks interacting in the same region, it is possible to distinguish if a boid belongs to one flock or another. The behaviour emerged here is similiar to the one achieved when used field of forces of navigational mechanisms.
 
 Many different situations might arise when there is contact among several flocks. They might adjust their directions to converge in one big mass of people, they might move parallel in opposite directions, they might diverge, etc.
 
@@ -67,7 +67,7 @@ This behaviour is a little more complex than the previous one. The brain reprodu
   \caption{Droids and targets}
 \end{figure}
 
-They patrol in flocks (green state), so that means that the three Reynolds' flocking algorithm rules are present here too (and in most behaviours). On the simulation there also are some targets which move randomly on the ground. When a droid sights a target (it enters in its vision radius), it changes of state and start attacking (res state). Targets receive the shots as messages and they decrease their strength. If a target gets too close to a droid, this permutes to a state of evasion to reach a proper distance to shot again (blue state). The FSM is presented below.
+They patrol in flocks (green state), so that means that the three Reynolds' flocking algorithm rules are present here too (and in most behaviours). In the simulation, there are also some targets which move randomly on the ground. When a droid sights a target (it enters in its vision radius), it changes of state and starts attacking (red state). Targets receive the shots as messages and they decrease their strength. If a target gets too close to a droid, the droid permutes to a state of evasion to reach a proper distance to shot again (blue state). The FSM is presented below.
 
 \begin{figure}[!h]
   \centering
@@ -88,7 +88,7 @@ In the next screen captures it can be observed the group behaviour that arises. 
 
 \subsection{Zombie Apocalypse}
 
-This brain is the less complex one. This is quite logical if we take into account that we are trying to represent zombies. It is just an obsessive behaviour which launchs the agent against the \emph{wall}, trying to reach a target point by any mean.  
+This brain is the less complex one. This is quite logical if we take into account that we are trying to represent zombies. It is just an obsessive behaviour which launches the agent against the \emph{wall}, trying to reach a target point by any mean.  
 
 \begin{figure}[!h]
   \centering
@@ -100,7 +100,7 @@ This brain is the less complex one. This is quite logical if we take into accoun
   \label{fig:zombieCaptures}
 \end{figure}
 
-What does the work in here is the sphere-based physics engine, which  projects the velocity over the tangent to spheres on the colliding point. This allows that bigger agents climb on other smaller. With a simulation with number of agents large enough, the behaviour that emerges corresponds to a group of not too smart agents, climbing on one another to desperately reach their target, creating a huge human mountain.
+What does the work in here is the sphere-based physics engine, which projects the velocity over the tangent to the spheres. This allows that bigger agents climb onto smaller ones. With a simulation with a number of agents large enough, the behaviour that emerges corresponds to a group of not too smart agents, climbing on one another to desperately reach their target, creating a huge human mountain.
 
 \begin{figure}[!h]
   \centering
@@ -112,7 +112,7 @@ What does the work in here is the sphere-based physics engine, which  projects t
 \newpage
 \subsection{A Battlefield}
 
-This example might be the more complete one, it includes several behaviours with different characteristics that, by means of message passing, can communicate among all of them. The \emph{warrior} brain, is the classical member of a battle. It moves with their troop and when it sights an enemy it attacks it. Contrary to the shooter behaviour, this is a body-to-body fight so a warrior can send attacks to the enemy stepping forward, or recieve attacks having step back. If the strength is too critical, the warrior switch to state of defense, send not attack and recovering strength. The FSM is presented below.
+This example might be the more complete one, it includes several behaviours with different characteristics that, by means of message passing, can communicate among all of them. The \emph{warrior} brain, is the classical member of a battle. It moves with their troop and when it sights an enemy it attacks it. Contrary to the shooter behaviour, this is a body-to-body fight so a warrior can send attacks to the enemy stepping forward, or receive attacks having to step back. If the strength is too critical, the warrior switches to a state of defense, sending no attack and recovering strength. The FSM is presented below.
 
 \begin{figure}[!h]
   \centering
@@ -120,9 +120,9 @@ This example might be the more complete one, it includes several behaviours with
   \caption{Warrior's FSM}
 \end{figure}
 
-In the same, it was developed a very similar brain to the warrior called \emph{captain}. The captain commands warriors and has to lead troop to the enemy. Thus, he has extra movement freedom besides the flocking properties. It is similar to a leader boid.
+In the same way, it was developed a very similar brain to the warrior called \emph{captain}. The captain commands warriors and has to lead the troop to the enemy. Thus, he has extra movement freedom besides the flocking properties. It is similar to a leader boid.
 
-The emergent behaviours that may arise in this situations are infinite. Normally after the clash of two armies, the warrior will start to join in small groups, such as couples or three or four, fighting among them. Warriors that do not sight the enemy will march together where, although the movement may be highly synchronous, their physical properties will condition their march.
+The emergent behaviours that may arise in this situations are infinite. Normally, after the clash of two armies, warriors will start to join in small groups, such as couples or three or four, fighting among them. Warriors that do not sight the enemy will march together where, although the movement may be highly synchronous, their physical properties will condition their march.
 
 \begin{figure}[!h]
   \centering
@@ -150,9 +150,9 @@ In order to enrich the battlefield, some extra behaviours were also developed. T
 \newpage
 \subsection{A Ballroom}
 
-To prove that not only war environments can be build with this approach, the next behaviour intends to represent A Ballroom. To achieve this, the mechanism was based in how an architecture of client-server works, , where the communication obtains an important role.
+To prove that not only war environments can be build with this approach, the next behaviour intends to represent A Ballroom. To achieve this, the mechanism was based in how an architecture client-server works, where the communication obtains an important role.
 
-Firstly, we have the brain of a \emph{dancer}, which acts a passive dancer most of the time. She is waiting in the ballroom, moving randomly. The other brain is the \emph{danceLeader}, who will find for free dancers. The protocol works in this way: the danceLeader may say ``Shall we dance?'' and the dancer will accept the request.
+Firstly, we have the brain of a \emph{dancer}, which acts as a passive dancer most of the time. She is waiting in the ballroom, moving randomly. The other brain is the \emph{danceLeader}, who will find for free dancers. The protocol works in this way: the danceLeader may say ``Shall we dance?'' and the dancer will accept the request.
 
 \begin{figure}[!h]
   \centering
@@ -164,7 +164,7 @@ Firstly, we have the brain of a \emph{dancer}, which acts a passive dancer most 
 \end{figure}
 
 
-The individual behaviour here may have two stages. First, danceLeaders try to find free dancers around the room and, once they find one, a couple dancing starts. Thus, the emergent group behaviour that can be observed here is very interesting; there will be many couples dancing and swinging graciously meanwhile some others are still finding or waiting to be found.
+The individual behaviour here may have two stages. First, danceLeaders try to find free dancers around the room and, once they find one, both start dancing together. Thus, the emergent group behaviour that can be observed here is very interesting; there will be many couples dancing and swinging graciously meanwhile some others are still finding or waiting to be found.
 
 \begin{figure}[!h]
   \centering
@@ -179,7 +179,7 @@ The individual behaviour here may have two stages. First, danceLeaders try to fi
 \newpage
 \subsection{One vs Many}
 
-In this scenario, there is one agent who has to avoid many other agents that try to reach him. Combining forces which keep him anchored to the centre and which attacks to the incoming enemies this brain was written. If this agent, feels surrounded, he uses a super-attack to get rid of many enemies at the same time.
+In this scenario, there is one agent who has to avoid many other agents that try to reach him. This brain was written combining forces which keep him anchored to the centre and make him attack to the incoming enemies. If this agent feels surrounded, he uses a super-attack to get rid of many enemies at the same time.
 
 The brain of the enemies uses a simple state machine which distinguishes among the states of goingToTheMiddle, attacking and onAir. This last state allows to the enemies to know if they are in the air falling after a super attack.
 
@@ -195,7 +195,7 @@ The brain of the enemies uses a simple state machine which distinguishes among t
 
 \subsection{Jumping Party}
 
-This is another simple behaviour which includes 2 state FSM. One of the states is onFloor, which will produce an impulse to generate a jump, and the other is onAir, which works as in the last example.
+This is another simple behaviour which includes two-state FSMs. One of the states is onFloor, which will produce an impulse to generate a jump, and the other is onAir, which works as in the last example.
 
 \begin{figure}[!h]
   \centering
