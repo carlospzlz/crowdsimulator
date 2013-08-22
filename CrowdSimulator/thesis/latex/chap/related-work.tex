@@ -32,7 +32,7 @@ The main idea this thesis is settled on is the simple principle stated by C. Rey
 
 One of the earliest works  in group behaviours was Craig Reynolds' flocking algorithm which was a distributed behaviour model for flocks, herds and schools \citep{reynolds}. The individuals of his flocking system are called ``Boids'' and are subjected to three simple rules: cohesion, alignment and separation.
 
-This classic research not only presents a flocking algorithm, but also marks a turning point proposing an individual virtual force model as the way to affect how each agent move. The approach presented in this thesis has adopted that model.
+This classic research not only presents a flocking algorithm, but also establishes a turning point proposing an individual virtual force model as the way to affect how each agent move. The approach presented in this thesis has adopted that model.
 
 \begin{figure}[!htb]
   \centering
@@ -43,7 +43,7 @@ This classic research not only presents a flocking algorithm, but also marks a t
 
 Starting from this robust and solid idea, tons of research paths can be taken in order to acquire and compare different approaches for crowd simulation. For instance, C. Wang \& T. Li suggest an evolving crowd motion simulation \citep{wang}. In that research, the use of genetic algorithms is proposed to generate optimal virtual forces according to the given environment and desired movement behaviour.
 
-Although Craig Reynolds presents a base-approach which models very accurately the way crowds behave in the real world, the main disadvantage is that configuring the forces in order to generate desired motion behaviours remains empirical. And again, we are witnesses of a characteristic inherent to emergent behaviours.
+Although Craig Reynolds presents a base-approach which models very accurately the way crowds behave in the real world, the main disadvantage is that configuring the forces to generate desired motion behaviours remains empirical. And again, we are witnesses of a characteristic inherent to emergent behaviours.
 
 \section{MASSIVE Software}
 
@@ -56,7 +56,7 @@ MASSIVE stands for Multiple Agent Simulation System in Virtual Environment and i
   \label{fig:massive}
 \end{figure}
 
-Massive introduces a very interesting model approach which consists in treating each agent as a combination of a body and a brain. The body defines the physical characteristics of the agent and the brain is a fuzzy logic network which controls the actions of the agent such as following an arbitrary terrain, avoiding obstacles or interacting with other agents. This thesis has adopted this natural design combined with the flexibility that scripting languages provide.
+Massive introduces a very interesting model approach which consists of treating each agent as a combination of a body and a brain. The body defines the physical characteristics of the agent and the brain is a fuzzy logic network which controls the actions of the agent such as following an arbitrary terrain, avoiding obstacles or interacting with other agents. This thesis has adopted this natural design combined with the flexibility that scripting languages provide.
 
 Each action is associated to a pre-recorded animation, rather obtained from motion captured session or hand-animated, and will be blended between them in order to achieve the movement of the character. Apart from Artificial Intelligence features, it includes other abilities such as Rigid Body Dynamics (RBD), cloth simulation or GPU rendering. 
 
