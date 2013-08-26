@@ -1,0 +1,393 @@
+%CROWD SIMULATOR
+\documentclass{beamer}
+
+%\usepackage{geometry}
+%\geometry{verbose,letterpaper}
+%\usepackage{graphicx}
+%\usepackage{movie15}
+
+\usepackage[utf8]{inputenc}
+%\usepackage[galician]{babel}
+
+\usepackage{pgf}
+\usepackage{color}
+\usepackage{multimedia}
+
+% Estos son los temas básicos (hay variantes 
+% en cada uno de ellos). Descomenta uno y compila.
+%\usetheme{Goettingen}
+\usetheme{Warsaw}
+%\usetheme{Dresden}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Pittsburgh}
+%\usetheme{Malmoe}
+%\usetheme{Montpellier}
+
+
+% Algunos temas de colores estándar (son feos!)
+%\usecolortheme{albatross}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{wolverine}
+
+% Este comando hace los puntos redonditos
+\beamertemplateballitem
+
+% Esta opción sirve para que, cuando pasamos la
+% presentación con pausas, lo que esté oculto 
+% se vea de color muy clarito
+\setbeamercovered{transparent}
+
+
+% Declaración de imágenes a usar 
+%\pgfdeclareimage[opciones]{etiqueta}{path+fichero}
+\pgfdeclareimage[width=60pt]{bu_logo}{images/bu_logo}
+\pgfdeclareimage[width=60pt]{ncca_logo}{images/ncca_logo_inverted}
+\pgfdeclareimage[width=140pt]{droids}{images/droids}
+\pgfdeclareimage[width=140pt]{matrix}{images/matrix}
+\pgfdeclareimage[width=110pt]{zombies}{images/zombies}
+\pgfdeclareimage[width=150pt]{battlefield}{images/battlefield}
+\pgfdeclareimage[width=300pt]{navigation_fields}{images/navigation_fields}
+\pgfdeclareimage[width=250pt]{reynolds_flocking}{images/reynolds_flocking}
+\pgfdeclareimage[width=75pt]{cohesion}{images/cohesion}
+\pgfdeclareimage[width=75pt]{separation}{images/separation}
+\pgfdeclareimage[width=75pt]{alignment}{images/alignment}
+\pgfdeclareimage[width=300pt]{rohan_army}{images/rohan_army}
+\pgfdeclareimage[width=50pt]{lego_cartoon}{images/lego_cartoon}
+\pgfdeclareimage[width=50pt]{body}{images/body}
+\pgfdeclareimage[width=50pt]{brain}{images/brain}
+\pgfdeclareimage[width=170pt]{agent}{images/agent}
+\pgfdeclareimage[width=100pt]{lua_script}{images/lua_script}
+\pgfdeclareimage[width=100pt]{lua_script_statistics}{images/lua_script_statistics}
+\pgfdeclareimage[width=100pt]{lua_script_neural_network}{images/lua_script_neural_network}
+\pgfdeclareimage[width=100pt]{lua_script_fsm}{images/lua_script_fsm}
+\pgfdeclareimage[width=100pt]{messages}{images/messages}
+
+
+% Título, subtítulo, autor, afiliación y fecha
+\title[Crowd Simulation]{Crowd Simulation based on Emergent Behaviours}
+%\subtitle{\scriptsize{Directores: Manuel F. González Penedo, Marcos Ortega Hortas}}
+\author{Carlos Pérez López}
+\institute{MSc Computer Animation and Visual Effects}
+\date{27, August 2013}
+
+\begin{document}
+
+% Portada
+\begin{frame}
+  \begin{center}
+    \begin{tabular}{c c c}
+	  \pgfuseimage{bu_logo} & & \pgfuseimage{ncca_logo} \\
+	  \scriptsize{Bournemouth University} & & \scriptsize{National Centre of Computer Animation} \\
+    \end{tabular}
+  \end{center}
+	\titlepage
+\end{frame}
+
+% index
+\begin{frame}
+	% Con este comando se pone el título de la diapositiva
+	\frametitle{Index}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Index}
+    \tableofcontents[current,currentsubsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Index}
+    \tableofcontents[current,currentsubsection]
+  \end{frame}
+}
+
+\section{Introduction}
+
+\subsection{Motivation}
+
+\begin{frame}
+	\frametitle{Crowd in Films}
+     \begin{center}
+       \begin{tabular}{cc}
+ 	 	\pgfuseimage{droids} & \pgfuseimage{matrix} \\
+	    \pgfuseimage{zombies} & \pgfuseimage{battlefield}\\
+      \end{tabular}
+     \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Crowd in Films}
+  \begin{columns}
+    \column{5cm}
+     \begin{exampleblock}{Contributions}
+      \begin{itemize}  
+	\item Visually stunning
+	\item Catch public's attention
+	\item Enrich story
+	\item The story may just need it
+      \end{itemize}
+     \end{exampleblock}
+     \column{5cm}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Crowd in Films}
+  \begin{columns}
+    \column{5cm}
+     \begin{exampleblock}{Contributions}
+      \begin{itemize}  
+	\item Visually stunning
+	\item Catch public's attention
+	\item Enrich story
+	\item The story may just need it
+      \end{itemize}
+     \end{exampleblock}
+     \column{5cm}
+     \begin{alertblock}{Issues}
+      \begin{itemize}
+    \item Requires either real extra cast
+    \item or more animators.
+	\item Requires more time and money
+      \end{itemize}
+     \end{alertblock}
+  \end{columns}
+\end{frame}
+
+\subsection{Related Work}
+
+\begin{frame}
+\frametitle{Motion Planning from Crowd}
+\begin{center}
+	\pgfuseimage{navigation_fields}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Crowd Motion Simulation}
+\begin{center}
+	\pgfuseimage{reynolds_flocking}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{C. Reynold's Flocking Model}
+\begin{center}
+\begin{tabular}{ccc}
+	\pgfuseimage{cohesion} & \pgfuseimage{separation} & \pgfuseimage{alignment} \\
+	Cohesion & Separation & Alignment \\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{MASSIVE Software}
+\begin{center}
+	\pgfuseimage{rohan_army}
+\end{center}
+\end{frame}
+
+\section{Agent-Based Model}
+
+\begin{frame}
+\frametitle{Agent}
+\begin{center}
+	\pgfuseimage{lego_cartoon}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Agent}
+\begin{center}
+\begin{tabular}{c}
+	\pgfuseimage{brain}\\ \pgfuseimage{lego_cartoon}\\
+\end{tabular}
+\end{center}
+\end{frame}
+
+\subsection{Agent Body}
+
+\begin{frame}
+\frametitle{Agent Body}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\begin{block}{Physical Properties}
+	\begin{itemize}
+	\item Mass
+	\item Strength
+	\item Maximum Strength
+	\item Velocity
+	\item Maximum Speed
+	\item Vision Radius
+	\end{itemize}
+	\end{block}
+	\column{6cm}
+	\pgfuseimage{agent}
+\end{columns}
+\end{center}
+\end{frame}
+
+\subsection{Agent Brain}
+
+\begin{frame}
+\frametitle{Agent Brain}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\begin{block}{Behaviour}
+	The brain receives information about the agent body, the environment
+	and the interactions with other agents. After processing, it determines
+	which actions the agent must perform.
+	\end{block}
+	\column{3cm}
+	\pgfuseimage{lua_script}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Agent Brain}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\begin{block}{Behaviour}
+	The brain receives information about the agent body, the environment
+	and the interactions with other agents. After processing, it determines
+	which actions the agent must perform.
+	\end{block}
+	\column{3cm}
+	\pgfuseimage{lua_script_statistics}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Agent Brain}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\begin{block}{Behaviour}
+	The brain receives information about the agent body, the environment
+	and the interactions with other agents. After processing, it determines
+	which actions the agent must perform.
+	\end{block}
+	\column{3cm}
+	\pgfuseimage{lua_script_neural_network}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Agent Brain}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\begin{block}{Behaviour}
+	The brain receives information about the agent body, the environment
+	and the interactions with other agents. After processing, it determines
+	which actions the agent must perform.
+	\end{block}
+	\column{3cm}
+	\pgfuseimage{lua_script_fsm}
+\end{columns}
+\end{center}
+\end{frame}
+
+\subsection{Interactions Among Agents. Message Passing}
+
+\begin{frame}
+\frametitle{Interactions Among Agents}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\begin{block}{Message}
+	\begin{itemize}
+	\item Agent Identification
+	\item Label
+	\item Position
+	\item Strength
+	\end{itemize}
+	\end{block}
+	\column{3cm}
+	\pgfuseimage{messages}
+\end{columns}
+\end{center}
+\end{frame}
+
+\section{Crowd Engine}
+
+\subsection{Handling Large Amounts of Agents. Space Partition}
+
+\begin{frame}
+\frametitle{Searching Neighbours in Vision Radius Algorithm}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\pgfuseimage{lua_script_fsm}
+	\column{4cm}
+	\begin{block}{Two procedures}
+	\begin{itemize}
+	\item Find the agents in the cells which
+	include the vision radius
+	\item Find the neighbours from those agents
+	\end{itemize}
+	\end{block}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Searching Neighbours in Vision Radius Algorithm}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\pgfuseimage{lua_script_fsm}
+	\column{4cm}
+	\begin{block}{Heuristic}
+	``two agents that are spatially close 
+	 may share many common neighbours'' (Lee, 2010)
+	\end{block}
+\end{columns}
+\end{center}
+\end{frame}
+
+\subsection{Virtual Force Model}
+
+\section{Results}
+
+\begin{frame}
+\frametitle{Shooter Droid}
+\begin{center}
+	\pgfuseimage{lego_cartoon}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Shooter Droid}
+\begin{center}
+	\pgfuseimage{lego_cartoon}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Shooter Droid}
+\begin{center}
+	\pgfuseimage{lego_cartoon}
+\end{center}
+\end{frame}
+
+\section{Conclusion}
+
+\subsection{Drawbacks}
+
+\subsection{Future Work}
+
+\end{document}
