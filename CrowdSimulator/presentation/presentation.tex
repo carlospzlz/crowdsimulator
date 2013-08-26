@@ -63,7 +63,18 @@
 \pgfdeclareimage[width=100pt]{lua_script_neural_network}{images/lua_script_neural_network}
 \pgfdeclareimage[width=100pt]{lua_script_fsm}{images/lua_script_fsm}
 \pgfdeclareimage[width=100pt]{messages}{images/messages}
-
+\pgfdeclareimage[width=200pt]{crowd_engine_scheme}{images/crowd_engine_scheme}
+\pgfdeclareimage[width=100pt]{cellPartition1}{images/cellPartition1}
+\pgfdeclareimage[width=100pt]{cellPartition2}{images/cellPartition2}
+\pgfdeclareimage[width=125pt]{cellPartition0}{images/cellPartition0}
+\pgfdeclareimage[width=125pt]{prime_mover_force}{images/prime_mover_force}
+\pgfdeclareimage[width=125pt]{gravity}{images/gravity}
+\pgfdeclareimage[width=125pt]{friction}{images/friction}
+\pgfdeclareimage[width=125pt]{droidFSM}{images/droidFSM}
+\pgfdeclareimage[width=125pt]{warriorFSM}{images/warriorFSM}
+\pgfdeclareimage[width=125pt]{danceLeaderFSM}{images/danceLeaderFSM}
+\pgfdeclareimage[width=125pt]{dancerFSM}{images/dancerFSM}
+\pgfdeclareimage[width=300pt]{pipeline}{images/pipeline}
 
 % Título, subtítulo, autor, afiliación y fecha
 \title[Crowd Simulation]{Crowd Simulation based on Emergent Behaviours}
@@ -129,8 +140,8 @@
      \begin{exampleblock}{Contributions}
       \begin{itemize}  
 	\item Visually stunning
-	\item Catch public's attention
-	\item Enrich story
+	\item Catches public's attention
+	\item Enriches story
 	\item The story may just need it
       \end{itemize}
      \end{exampleblock}
@@ -145,8 +156,8 @@
      \begin{exampleblock}{Contributions}
       \begin{itemize}  
 	\item Visually stunning
-	\item Catch public's attention
-	\item Enrich story
+	\item Catches public's attention
+	\item Enriches story
 	\item The story may just need it
       \end{itemize}
      \end{exampleblock}
@@ -164,7 +175,7 @@
 \subsection{Related Work}
 
 \begin{frame}
-\frametitle{Motion Planning from Crowd}
+\frametitle{Motion Planning for Crowd}
 \begin{center}
 	\pgfuseimage{navigation_fields}
 \end{center}
@@ -178,12 +189,19 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{C. Reynold's Flocking Model}
+\frametitle{C. Reynolds'< Flocking Model}
 \begin{center}
 \begin{tabular}{ccc}
 	\pgfuseimage{cohesion} & \pgfuseimage{separation} & \pgfuseimage{alignment} \\
 	Cohesion & Separation & Alignment \\
 \end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Concept of Emerge}
+\begin{center}
+	``A system which is designed and defined by certain rules or mathematical equations may configure itself in a way that could not be anticipated'' (Kleinrock, 2010)
 \end{center}
 \end{frame}
 
@@ -304,6 +322,13 @@
 \subsection{Interactions Among Agents. Message Passing}
 
 \begin{frame}
+\frametitle{Interconnections}
+\begin{center}
+``The complexity does not reside in the individuals, but on the way they are interconnected and they interact to each other'' (Kleinrock, 2010)
+\end{center}
+\end{frame}
+
+\begin{frame}
 \frametitle{Interactions Among Agents}
 \begin{center}
 \begin{columns}
@@ -324,14 +349,28 @@
 
 \section{Crowd Engine}
 
+\begin{frame}
+\frametitle{Agent}
+\begin{center}
+	\pgfuseimage{crowd_engine_scheme}
+\end{center}
+\end{frame}
+
 \subsection{Handling Large Amounts of Agents. Space Partition}
+
+\begin{frame}
+\frametitle{2D Grid Cell Partition}
+\begin{center}
+	\pgfuseimage{cellPartition0}
+\end{center}
+\end{frame}
 
 \begin{frame}
 \frametitle{Searching Neighbours in Vision Radius Algorithm}
 \begin{center}
 \begin{columns}
 	\column{4cm}
-	\pgfuseimage{lua_script_fsm}
+	\pgfuseimage{cellPartition1}
 	\column{4cm}
 	\begin{block}{Two procedures}
 	\begin{itemize}
@@ -349,10 +388,10 @@
 \begin{center}
 \begin{columns}
 	\column{4cm}
-	\pgfuseimage{lua_script_fsm}
+	\pgfuseimage{cellPartition2}
 	\column{4cm}
 	\begin{block}{Heuristic}
-	``two agents that are spatially close 
+	``Two agents that are spatially close 
 	 may share many common neighbours'' (Lee, 2010)
 	\end{block}
 \end{columns}
@@ -361,33 +400,143 @@
 
 \subsection{Virtual Force Model}
 
+\begin{frame}
+\frametitle{Forces}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\pgfuseimage{prime_mover_force}
+	\column{4cm}
+	\begin{exampleblock}{Prime Mover Force}
+		Determined by the brain
+	\end{exampleblock}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Forces}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\pgfuseimage{gravity}
+	\column{4cm}
+	\begin{exampleblock}{Prime Mover Force}
+		Determined by the brain
+	\end{exampleblock}
+	\begin{block}{Gravity}
+		Vertical towards the ground
+	\end{block}
+\end{columns}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Forces}
+\begin{center}
+\begin{columns}
+	\column{4cm}
+	\pgfuseimage{friction}
+	\column{4cm}
+	\begin{exampleblock}{Prime Mover Force}
+		Determined by the brain
+	\end{exampleblock}
+	\begin{block}{Gravity}
+		Vertical towards the ground
+	\end{block}
+	\begin{alertblock}{Friction}
+		Opposite to the movement
+	\end{alertblock}
+\end{columns}
+\end{center}
+\end{frame}
+
 \section{Results}
 
 \begin{frame}
-\frametitle{Shooter Droid}
+\frametitle{Shooter Droid FSM}
 \begin{center}
-	\pgfuseimage{lego_cartoon}
+	\pgfuseimage{droidFSM}
 \end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Shooter Droid}
+\frametitle{Warrior FSM}
 \begin{center}
-	\pgfuseimage{lego_cartoon}
+	\pgfuseimage{warriorFSM}
 \end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Shooter Droid}
+\frametitle{DanceLeader and Dancer FSM's}
 \begin{center}
-	\pgfuseimage{lego_cartoon}
+\begin{columns}
+\column{4cm}
+	\pgfuseimage{danceLeaderFSM}
+\column{4cm}
+	\pgfuseimage{dancerFSM}
+\end{columns}
 \end{center}
 \end{frame}
 
 \section{Conclusion}
 
+\begin{frame}
+\frametitle{Summary}
+  \begin{center}
+    \begin{block}{Crowd Simulation based in Emergent Behaviours}
+     \begin{itemize}
+      \item Complexity is born from simplicity
+      \item Flexible and scalable approach due to script-based behavious
+      \item Robust and solid physically-based virtual world
+      \item Scalable application design
+      \item Easy and quickly testing of AI behaviours due to brain independence
+      \item Adaptable to any sort of simulation
+     \end{itemize}
+    \end{block}
+  \end{center}
+\end{frame}
+
 \subsection{Drawbacks}
 
+\begin{frame}
+\frametitle{Summary}
+  \begin{center}
+     \begin{itemize}
+      \item The emergent crowd behaviou is hard to anticipate
+      \item Simulations remains empirical
+      \item Many tests required
+      \item This thesis presents a part of a whole process, there is no finished product to present.
+     \end{itemize}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Possible Pipeline}
+\begin{center}
+	\pgfuseimage{pipeline}
+\end{center}
+\end{frame}
+
 \subsection{Future Work}
+
+\begin{frame}
+\frametitle{Future work}
+  \begin{center}
+     \begin{itemize}
+      \item Import environment, such as terrain, from 3D package
+      \item Export the simulation. Associate animations to the states
+      \item Include a robust physics engine
+      \item Integrate it in a real pipeline
+      \item Or write a plugin
+     \end{itemize}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+	Thank you for your attention
+\end{center}
+\end{frame}
 
 \end{document}
